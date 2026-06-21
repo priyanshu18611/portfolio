@@ -10,14 +10,14 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Segoe UI',sans-serif;
 scroll-behavior:smooth;
 }
 
 body{
 background:linear-gradient(135deg,#0d1117,#161b22);
 color:white;
-line-height:1.6;
+line-height:1.7;
 }
 
 header{
@@ -31,17 +31,17 @@ height:180px;
 border-radius:50%;
 object-fit:cover;
 border:4px solid #58a6ff;
-box-shadow:0 0 25px rgba(88,166,255,.5);
+box-shadow:0 0 25px rgba(88,166,255,.7);
 }
 
 h1{
-font-size:50px;
+font-size:48px;
 margin-top:20px;
 }
 
 .tagline{
 color:#58a6ff;
-font-size:22px;
+font-size:20px;
 margin-top:10px;
 }
 
@@ -54,7 +54,7 @@ color:white;
 text-decoration:none;
 border-radius:10px;
 font-weight:bold;
-transition:.3s;
+transition:0.3s;
 }
 
 .btn:hover{
@@ -69,7 +69,7 @@ margin-top:20px;
 color:white;
 text-decoration:none;
 font-weight:bold;
-margin:0 10px;
+margin:0 12px;
 }
 
 section{
@@ -97,11 +97,12 @@ background:#161b22;
 padding:20px;
 border-radius:12px;
 margin-top:15px;
-transition:.3s;
+transition:0.3s;
 }
 
 .card:hover{
 transform:translateY(-5px);
+box-shadow:0 0 15px rgba(88,166,255,.3);
 }
 
 footer{
@@ -110,6 +111,20 @@ padding:20px;
 background:#161b22;
 margin-top:40px;
 }
+
+a{
+color:#58a6ff;
+}
+
+@media(max-width:768px){
+h1{
+font-size:38px;
+}
+.profile-pic{
+width:150px;
+height:150px;
+}
+}
 </style>
 </head>
 
@@ -117,7 +132,7 @@ margin-top:40px;
 
 <header>
 
-<img src="1000078800.jpg" class="profile-pic">
+<img src="1000078800.jpg" alt="Priyanshu Kumar" class="profile-pic">
 
 <h1>Priyanshu Kumar</h1>
 
@@ -141,9 +156,7 @@ Aspiring Software Engineer | Python Developer | Java Enthusiast
 <h2>About Me</h2>
 
 <p>
-I am a B.Tech Computer Science student passionate about Software Development,
-Machine Learning and Problem Solving. I enjoy building real-world projects
-using Python, Java and Web Technologies.
+I am a B.Tech Computer Science Engineering student passionate about Software Development, Machine Learning and Problem Solving. I enjoy building real-world applications using Python, Java, Web Technologies and continuously improving my technical skills.
 </p>
 
 </section>
@@ -174,9 +187,7 @@ using Python, Java and Web Technologies.
 <h3>East Central Railway (S&T Department)</h3>
 
 <p>
-Worked on Railway Communication Systems including OFC,
-Telephone Exchange, Public Announcement System,
-Railway Networks and Communication Infrastructure.
+Worked on Railway Communication Systems including Optical Fibre Communication (OFC), Telephone Exchange, Public Announcement System, Railway Networks and Communication Infrastructure.
 </p>
 
 </div>
@@ -192,9 +203,14 @@ Railway Networks and Communication Infrastructure.
 <h3>Spam Mail Detection</h3>
 
 <p>
-Machine Learning based application that classifies emails
-as Spam or Ham using Python and ML algorithms.
+Machine Learning based application that classifies emails as Spam or Ham using Python and ML algorithms.
 </p>
+
+<br>
+
+<a href="https://github.com/priyanshu18611" target="_blank" class="btn">
+View Project
+</a>
 
 </div>
 
@@ -203,8 +219,7 @@ as Spam or Ham using Python and ML algorithms.
 <h3>Cricket Score Predictor</h3>
 
 <p>
-Predicts cricket match scores using Machine Learning
-and historical match data.
+Predicts cricket match scores using Machine Learning and historical cricket match data.
 </p>
 
 </div>
@@ -220,7 +235,7 @@ and historical match data.
 <h3>GitHub Profile</h3>
 
 <p>
-Explore my projects, repositories and coding journey.
+Explore my projects, repositories and coding journey on GitHub.
 </p>
 
 <br>
