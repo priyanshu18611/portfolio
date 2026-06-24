@@ -1,8 +1,7 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Priyanshu Kumar | Portfolio</title><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Priyanshu Kumar | Software Engineer Portfolio</title><link rel="preconnect" href="https://fonts.googleapis.com"><style>
+
 *{
 margin:0;
 padding:0;
@@ -12,11 +11,21 @@ scroll-behavior:smooth;
 }
 
 body{
-background:linear-gradient(-45deg,#0f172a,#1e293b,#2563eb,#0ea5e9);
-background-size:400% 400%;
-animation:gradient 15s ease infinite;
+background:#0f172a;
 color:white;
-line-height:1.7;
+overflow-x:hidden;
+}
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:
+linear-gradient(45deg,#2563eb,#0ea5e9,#1e293b,#0f172a);
+background-size:400% 400%;
+animation:gradient 12s ease infinite;
+z-index:-1;
 }
 
 @keyframes gradient{
@@ -25,253 +34,295 @@ line-height:1.7;
 100%{background-position:0% 50%;}
 }
 
-header{
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 10%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+z-index:999;
+}
+
+.logo{
+font-size:24px;
+font-weight:700;
+color:#58a6ff;
+}
+
+.nav-links a{
+margin-left:20px;
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:#58a6ff;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:120px 10%;
+}
+
+.hero-card{
+width:100%;
+max-width:1100px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border-radius:25px;
+padding:50px;
 text-align:center;
-padding:80px 20px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
+box-shadow:0 0 30px rgba(0,0,0,.3);
 }
 
 .profile-pic{
-width:190px;
-height:190px;
+width:200px;
+height:200px;
 border-radius:50%;
 object-fit:cover;
-border:4px solid #58a6ff;
-box-shadow:0 0 35px rgba(88,166,255,.9);
+border:5px solid #58a6ff;
+box-shadow:0 0 30px rgba(88,166,255,.8);
 }
 
-h1{
-font-size:50px;
+.hero h1{
+font-size:52px;
 margin-top:20px;
 }
 
-.tagline{
+#typing{
 font-size:22px;
 color:#cbd5e1;
 margin-top:10px;
 height:35px;
 }
 
+.hero-buttons{
+margin-top:25px;
+}
+
 .btn{
 display:inline-block;
-margin-top:20px;
 padding:14px 28px;
+margin:10px;
 background:#58a6ff;
 color:white;
 text-decoration:none;
-border-radius:10px;
+border-radius:12px;
 font-weight:bold;
 transition:.3s;
 }
 
 .btn:hover{
-transform:scale(1.08);
+transform:translateY(-4px);
 box-shadow:0 0 20px rgba(88,166,255,.8);
 }
 
-.social{
-margin-top:20px;
-}
-
-.social a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-margin:0 12px;
-}
-
 section{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
-padding:40px 20px;
-animation:fadeUp 1s ease;
+padding:80px 20px;
 }
 
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(30px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-h2{
+.section-title{
+font-size:34px;
 color:#93c5fd;
-margin-bottom:20px;
-}
-
-.skills span{
-display:inline-block;
-background:rgba(255,255,255,0.08);
-padding:10px 15px;
-margin:5px;
-border-radius:8px;
+margin-bottom:25px;
+text-align:center;
 }
 
 .card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(10px);
-padding:20px;
-border-radius:15px;
-margin-top:15px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+padding:25px;
+border-radius:20px;
 transition:.4s;
+margin-top:15px;
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 25px rgba(88,166,255,.8);
-}
-
-footer{
-text-align:center;
-padding:20px;
-margin-top:40px;
-background:rgba(0,0,0,.2);
-}
-
-a{
-color:#93c5fd;
+transform:translateY(-8px);
+box-shadow:0 0 25px rgba(88,166,255,.6);
 }
 
 @media(max-width:768px){
-h1{
-font-size:36px;
+
+.hero h1{
+font-size:38px;
 }
 
 .profile-pic{
 width:150px;
 height:150px;
 }
+
+.nav-links{
+display:none;
 }
-</style></head><body><header><img src="1000078800.jpg" alt="Priyanshu Kumar" class="profile-pic"><h1>Priyanshu Kumar</h1><p class="tagline" id="typing"></p><a href="Priyanshu_kumar_Resume-1.pdf" target="_blank" class="btn">
-📄 Download Resume
-</a><div class="social">
-<a href="https://github.com/priyanshu18611" target="_blank">🐙 GitHub</a>
-|
-<a href="https://www.linkedin.com/in/priyanshuroy18" target="_blank">💼 LinkedIn</a>
-</div></header>
-<section>
-<h2>About Me</h2>
-<div class="card">
-<p>
-B.Tech Computer Science Engineering student passionate about Software Development,
-Machine Learning and Problem Solving. Experienced in Python, Java and Web Technologies
-with hands-on project development and internship experience.
-</p>
-</div>
-</section><section>
-<h2>Skills</h2>
-<div class="skills">
-<span>Python</span>
-<span>Java</span>
-<span>HTML</span>
-<span>CSS</span>
-<span>JavaScript</span>
-<span>SQL</span>
-<span>Machine Learning</span>
-<span>Git & GitHub</span>
-<span>XGBoost</span>
-<span>Pandas</span>
-<span>NumPy</span>
-</div>
-</section><section>
-<h2>Internship Experience</h2>
-<div class="card">
-<h3>East Central Railway (S&T Department)</h3>
-<p>
-Worked on Railway Communication Systems including OFC,
-Telephone Exchange, Public Announcement System and
-Railway Network Infrastructure.
-</p>
-</div>
-</section><section>
-<h2>Projects</h2><div class="card">
-<h3>Spam Mail Detection</h3>
-<p>
-Machine Learning application that classifies emails as Spam or Ham
-using Python and ML algorithms.
-</p>
-<br>
-<a href="https://github.com/priyanshu18611" target="_blank" class="btn">
-View Project
+
+}
+
+</style></head><body><nav class="navbar"><div class="logo">
+Priyanshu Kumar
+</div><div class="nav-links">
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div></nav><section class="hero"><div class="hero-card"><img src="1000078800.jpg"
+alt="Priyanshu Kumar"
+class="profile-pic">
+
+<h1>Priyanshu Kumar</h1><p id="typing"></p><div class="hero-buttons"><a href="Priyanshu_kumar_Resume-1.pdf"
+target="_blank"
+class="btn">
+📄 Resume
 </a>
-</div><div class="card">
-<h3>Cricket Score Predictor</h3>
-<p>
-Developed a Machine Learning based Cricket Score Predictor using
-Python, Pandas, NumPy and XGBoost.
-</p>
-<br>
-<a href="https://github.com/priyanshu18611/Cricket-Score-Predictor" target="_blank" class="btn">
-View Project
+
+<a href="https://github.com/priyanshu18611"
+target="_blank"
+class="btn">
+🐙 GitHub
 </a>
-</div><div class="card">
-<h3>Personal Portfolio Website</h3>
-<p>
-Responsive personal portfolio website built using HTML, CSS and GitHub Pages.
-</p>
-</div></section><section>
-<h2>Certifications</h2>
-<div class="card">
-<ul>
-<li>Data Science & Machine Learning</li>
-<li>Python Programming</li>
-<li>Java Programming</li>
-<li>Cybersecurity Fundamentals</li>
-<li>NPTEL / Technical Learning Programs</li>
-</ul>
-</div>
-</section><section>
-<h2>Achievements</h2>
-<div class="card">
-<ul>
-<li>Completed Internship at East Central Railway</li>
-<li>Built and deployed Machine Learning Projects</li>
-<li>Developed and hosted Personal Portfolio Website</li>
-<li>Active GitHub Project Contributor</li>
-</ul>
-</div>
-</section><section>
-<h2>GitHub Profile</h2>
-<div class="card">
-<p>🔹 Machine Learning Projects</p>
-<p>🔹 Portfolio Website</p>
-<p>🔹 Open Source Learning</p>
-<p>🔹 Active Repository Management</p>
-</div>
-</section><section>
-<h2>Contact</h2><div class="card">
-<p>Email: priyanshu6202018611@gmail.com</p><p>
-GitHub:
-<a href="https://github.com/priyanshu18611" target="_blank">
+
+<a href="https://www.linkedin.com/in/priyanshuroy18"
+target="_blank"
+class="btn">
+💼 LinkedIn
+</a>
+
+</div></div></section>
+<section id="about"><h2 class="section-title">About Me</h2><div class="card"><p>Aspiring Software Engineer and B.Tech Computer Science student with strong foundations in Python, Java, SQL and Machine Learning.
+
+Passionate about building real-world applications, solving complex problems and continuously learning modern technologies.
+
+Seeking opportunities to contribute to innovative software development teams while enhancing technical expertise.
+
+</p></div></section><section id="objective"><h2 class="section-title">Career Objective</h2><div class="card"><p>To secure a Software Engineer role where I can apply my programming, problem-solving and machine learning skills to develop impactful solutions while growing as a technology professional.
+
+</p></div></section><section id="education"><h2 class="section-title">Education</h2><div class="card"><h3>B.Tech – Computer Science & Engineering</h3><br><p><strong>Passing Year:</strong> 2026</p><p><strong>CGPA:</strong> 6.58</p><p><strong>10th:</strong> 56.8%</p><p><strong>12th:</strong> 61.6%</p></div></section><section id="skills"><h2 class="section-title">Technical Skills</h2><div class="card"><h3>Python</h3>
+<div style="background:#1e293b;border-radius:10px;">
+<div style="width:85%;background:#58a6ff;height:12px;border-radius:10px;"></div>
+</div><br><h3>Java</h3>
+<div style="background:#1e293b;border-radius:10px;">
+<div style="width:75%;background:#58a6ff;height:12px;border-radius:10px;"></div>
+</div><br><h3>SQL</h3>
+<div style="background:#1e293b;border-radius:10px;">
+<div style="width:80%;background:#58a6ff;height:12px;border-radius:10px;"></div>
+</div><br><h3>HTML / CSS</h3>
+<div style="background:#1e293b;border-radius:10px;">
+<div style="width:85%;background:#58a6ff;height:12px;border-radius:10px;"></div>
+</div><br><h3>Machine Learning</h3>
+<div style="background:#1e293b;border-radius:10px;">
+<div style="width:70%;background:#58a6ff;height:12px;border-radius:10px;"></div>
+</div></div></section>
+<section id="internship"><h2 class="section-title">Internship Experience</h2><div class="card"><h3>East Central Railway (S&T Department)</h3><br><p>Completed internship at East Central Railway, Danapur Division.
+
+Worked on various Railway Communication Systems including:
+
+</p><br><ul><li>Optical Fibre Communication (OFC)</li><li>Telephone Exchange Systems</li><li>Public Announcement Systems</li><li>Railway Communication Networks</li><li>Signal & Telecommunication Infrastructure</li></ul></div></section><section id="projects"><h2 class="section-title">Projects</h2><div class="card"><h3>Spam Mail Detection</h3><br><p>Machine Learning application that classifies emails as Spam or Ham using NLP and ML algorithms.
+
+</p><br><p><strong>Tech Stack:</strong>
+
+Python, Scikit-Learn, Pandas, NumPy
+
+</p><br><a href="https://github.com/priyanshu18611"
+target="_blank"
+class="btn">
+
+View Project
+
+</a></div><div class="card"><h3>Cricket Score Predictor</h3><br><p>Machine Learning based Cricket Score Predictor that estimates match scores using historical cricket data.
+
+</p><br><p><strong>Tech Stack:</strong>
+
+Python, Pandas, NumPy, XGBoost
+
+</p><br><a href="https://github.com/priyanshu18611/Cricket-Score-Predictor"
+target="_blank"
+class="btn">
+
+View Project
+
+</a></div><div class="card"><h3>Personal Portfolio Website</h3><br><p>Responsive portfolio website developed using HTML, CSS and GitHub Pages deployment.
+
+</p><br><p><strong>Tech Stack:</strong>
+
+HTML, CSS, GitHub Pages
+
+</p></div></section><section id="certifications"><h2 class="section-title">Certifications</h2><div class="card"><ul><li>Data Science & Machine Learning</li><li>Python Programming</li><li>Java Programming</li><li>Cybersecurity Fundamentals</li><li>NPTEL Technical Learning Programs</li></ul></div></section><section id="achievements"><h2 class="section-title">Achievements</h2><div class="card"><ul><li>Successfully completed Internship at East Central Railway</li><li>Built and deployed Machine Learning Projects</li><li>Developed and hosted Personal Portfolio Website</li><li>Maintaining active GitHub repositories and projects</li><li>Hands-on experience with Python, Java and Machine Learning</li></ul></div></section>
+<section id="github"><h2 class="section-title">GitHub Profile</h2><div class="card"><p>🚀 Machine Learning Projects</p>
+<p>💻 Portfolio Website</p>
+<p>📚 Open Source Learning</p>
+<p>📈 Active Repository Management</p><br><img
+src="https://github-readme-stats.vercel.app/api?username=priyanshu18611&show_icons=true&theme=tokyonight"
+width="100%">
+
+</div></section><section id="contact"><h2 class="section-title">Contact Me</h2><div class="card"><p><strong>Email:</strong> priyanshu6202018611@gmail.com</p><br><p><strong>GitHub:</strong>
+
+<a href="https://github.com/priyanshu18611"
+target="_blank">
+
 github.com/priyanshu18611
-</a>
-</p><p>
-LinkedIn:
-<a href="https://www.linkedin.com/in/priyanshuroy18" target="_blank">
+
+</a></p><br><p><strong>LinkedIn:</strong>
+
+<a href="https://www.linkedin.com/in/priyanshuroy18"
+target="_blank">
+
 linkedin.com/in/priyanshuroy18
-</a>
-</p></div>
-</section><footer>
-<p>© 2026 Priyanshu Kumar | All Rights Reserved</p>
-</footer><script>
+
+</a></p></div></section><footer><p>© 2026 Priyanshu Kumar | Software Engineer Portfolio
+
+</p></footer><script>
+
 const text =
-"Software Engineer | Python Developer | Java Developer | ML Enthusiast";
+"Software Engineer | Python Developer | Java Developer | Machine Learning Enthusiast";
 
 let i = 0;
 
 function typeWriter(){
+
 if(i < text.length){
+
 document.getElementById("typing").innerHTML += text.charAt(i);
+
 i++;
+
 setTimeout(typeWriter,60);
+
 }
+
 }
 
 typeWriter();
-</script></body>
-</html>
+
+</script></body></html>
+<section id="services"><h2 class="section-title">What I Do</h2><div class="card">
+<h3>💻 Software Development</h3>
+<p>Building responsive web applications using modern technologies.</p>
+</div><div class="card">
+<h3>🤖 Machine Learning</h3>
+<p>Developing predictive models and data-driven applications.</p>
+</div><div class="card">
+<h3>📊 Problem Solving</h3>
+<p>Solving programming and algorithmic challenges efficiently.</p>
+</div></section><section id="techstack"><h2 class="section-title">Tech Stack</h2><div class="card"><p>🐍 Python</p>
+<p>☕ Java</p>
+<p>🗄 SQL</p>
+<p>🌐 HTML</p>
+<p>🎨 CSS</p>
+<p>⚡ JavaScript</p>
+<p>📈 Pandas</p>
+<p>🔢 NumPy</p>
+<p>🚀 XGBoost</p>
+<p>🐙 Git & GitHub</p></div></section><section id="goals"><h2 class="section-title">Current Goals</h2><div class="card"><ul><li>Improve Data Structures & Algorithms</li><li>Strengthen SQL and Database Skills</li><li>Build More Real-World Projects</li><li>Contribute to Open Source Projects</li><li>Secure a Software Engineer / GET Role in 2026</li></ul></div></section>
+<section id="journey"><h2 class="section-title">My Learning Journey</h2><div class="card"><p>2022 → Started B.Tech Computer Science & Engineering Journey</p><br><p>2023 → Built Programming Fundamentals in Python and Java</p><br><p>2024 → Learned SQL, Web Development and GitHub</p><br><p>2025 → Completed East Central Railway Internship and Developed Machine Learning Projects</p><br><p>2026 → Preparing for Software Engineer, GET and Campus Placement Opportunities</p></div></section>
