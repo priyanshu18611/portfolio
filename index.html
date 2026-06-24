@@ -8,12 +8,13 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+background:linear-gradient(-45deg,#0f172a,#1e293b,#2563eb,#0ea5e9);
 background-size:400% 400%;
-animation:gradient 12s ease infinite;
+animation:gradient 15s ease infinite;
 color:white;
 line-height:1.7;
 }
@@ -32,23 +33,24 @@ backdrop-filter:blur(10px);
 }
 
 .profile-pic{
-width:180px;
-height:180px;
+width:190px;
+height:190px;
 border-radius:50%;
 object-fit:cover;
 border:4px solid #58a6ff;
-box-shadow:0 0 25px rgba(88,166,255,.8);
+box-shadow:0 0 35px rgba(88,166,255,.9);
 }
 
 h1{
-font-size:48px;
+font-size:50px;
 margin-top:20px;
 }
 
 .tagline{
-font-size:20px;
+font-size:22px;
 color:#cbd5e1;
 margin-top:10px;
+height:35px;
 }
 
 .btn{
@@ -64,7 +66,8 @@ transition:.3s;
 }
 
 .btn:hover{
-transform:scale(1.05);
+transform:scale(1.08);
+box-shadow:0 0 20px rgba(88,166,255,.8);
 }
 
 .social{
@@ -82,6 +85,18 @@ section{
 max-width:1000px;
 margin:auto;
 padding:40px 20px;
+animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 h2{
@@ -103,11 +118,12 @@ backdrop-filter:blur(10px);
 padding:20px;
 border-radius:15px;
 margin-top:15px;
-transition:.3s;
+transition:.4s;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-10px);
+box-shadow:0 0 25px rgba(88,166,255,.8);
 }
 
 footer{
@@ -125,25 +141,31 @@ color:#93c5fd;
 h1{
 font-size:36px;
 }
+
 .profile-pic{
 width:150px;
 height:150px;
 }
 }
-</style></head><body><header><img src="1000078800.jpg" alt="Priyanshu Kumar" class="profile-pic"><h1>Priyanshu Kumar</h1><p class="tagline">
-Software Engineer | Python Developer | Java Developer | ML Enthusiast
-</p><a href="Priyanshu_kumar_Resume-1.pdf" target="_blank" class="btn">
+</style></head><body><header><img src="1000078800.jpg" alt="Priyanshu Kumar" class="profile-pic"><h1>Priyanshu Kumar</h1><p class="tagline" id="typing"></p><a href="Priyanshu_kumar_Resume-1.pdf" target="_blank" class="btn">
 📄 Download Resume
 </a><div class="social">
 <a href="https://github.com/priyanshu18611" target="_blank">🐙 GitHub</a>
 |
 <a href="https://www.linkedin.com/in/priyanshuroy18" target="_blank">💼 LinkedIn</a>
-</div></header><section>
-<h2>About Me</h2><div class="card">
+</div></header>
+<section>
+<h2>About Me</h2>
+<div class="card">
 <p>
-B.Tech Computer Science Engineering student passionate about Software Development, Machine Learning and Problem Solving. Experienced in Python, Java and Web Technologies with hands-on project development and internship experience.
+B.Tech Computer Science Engineering student passionate about Software Development,
+Machine Learning and Problem Solving. Experienced in Python, Java and Web Technologies
+with hands-on project development and internship experience.
 </p>
-</div></section><section><h2>Skills</h2><div class="skills">
+</div>
+</section><section>
+<h2>Skills</h2>
+<div class="skills">
 <span>Python</span>
 <span>Java</span>
 <span>HTML</span>
@@ -152,26 +174,78 @@ B.Tech Computer Science Engineering student passionate about Software Developmen
 <span>SQL</span>
 <span>Machine Learning</span>
 <span>Git & GitHub</span>
-</div></section><section><h2>Internship Experience</h2><div class="card">
-<h3>East Central Railway (S&T Department)</h3><p>
-Worked on Railway Communication Systems including OFC, Telephone Exchange, Public Announcement System and Railway Network Infrastructure.
+<span>XGBoost</span>
+<span>Pandas</span>
+<span>NumPy</span>
+</div>
+</section><section>
+<h2>Internship Experience</h2>
+<div class="card">
+<h3>East Central Railway (S&T Department)</h3>
+<p>
+Worked on Railway Communication Systems including OFC,
+Telephone Exchange, Public Announcement System and
+Railway Network Infrastructure.
 </p>
-</div></section><section><h2>Projects</h2><div class="card">
+</div>
+</section><section>
+<h2>Projects</h2><div class="card">
 <h3>Spam Mail Detection</h3>
 <p>
-Machine Learning application that classifies emails as Spam or Ham using Python and ML algorithms.
+Machine Learning application that classifies emails as Spam or Ham
+using Python and ML algorithms.
 </p>
+<br>
+<a href="https://github.com/priyanshu18611" target="_blank" class="btn">
+View Project
+</a>
 </div><div class="card">
 <h3>Cricket Score Predictor</h3>
 <p>
-Developed a Machine Learning based Cricket Score Predictor using Python, Pandas, NumPy and XGBoost.
+Developed a Machine Learning based Cricket Score Predictor using
+Python, Pandas, NumPy and XGBoost.
 </p>
+<br>
+<a href="https://github.com/priyanshu18611/Cricket-Score-Predictor" target="_blank" class="btn">
+View Project
+</a>
 </div><div class="card">
 <h3>Personal Portfolio Website</h3>
 <p>
 Responsive personal portfolio website built using HTML, CSS and GitHub Pages.
 </p>
-</div></section><section><h2>Contact</h2><div class="card"><p>Email: priyanshu6202018611@gmail.com</p><p>
+</div></section><section>
+<h2>Certifications</h2>
+<div class="card">
+<ul>
+<li>Data Science & Machine Learning</li>
+<li>Python Programming</li>
+<li>Java Programming</li>
+<li>Cybersecurity Fundamentals</li>
+<li>NPTEL / Technical Learning Programs</li>
+</ul>
+</div>
+</section><section>
+<h2>Achievements</h2>
+<div class="card">
+<ul>
+<li>Completed Internship at East Central Railway</li>
+<li>Built and deployed Machine Learning Projects</li>
+<li>Developed and hosted Personal Portfolio Website</li>
+<li>Active GitHub Project Contributor</li>
+</ul>
+</div>
+</section><section>
+<h2>GitHub Profile</h2>
+<div class="card">
+<p>🔹 Machine Learning Projects</p>
+<p>🔹 Portfolio Website</p>
+<p>🔹 Open Source Learning</p>
+<p>🔹 Active Repository Management</p>
+</div>
+</section><section>
+<h2>Contact</h2><div class="card">
+<p>Email: priyanshu6202018611@gmail.com</p><p>
 GitHub:
 <a href="https://github.com/priyanshu18611" target="_blank">
 github.com/priyanshu18611
@@ -181,7 +255,23 @@ LinkedIn:
 <a href="https://www.linkedin.com/in/priyanshuroy18" target="_blank">
 linkedin.com/in/priyanshuroy18
 </a>
-</p></div></section><footer>
+</p></div>
+</section><footer>
 <p>© 2026 Priyanshu Kumar | All Rights Reserved</p>
-</footer></body>
+</footer><script>
+const text =
+"Software Engineer | Python Developer | Java Developer | ML Enthusiast";
+
+let i = 0;
+
+function typeWriter(){
+if(i < text.length){
+document.getElementById("typing").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter,60);
+}
+}
+
+typeWriter();
+</script></body>
 </html>
