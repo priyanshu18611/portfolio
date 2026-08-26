@@ -8,29 +8,49 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Font -->
+  <!-- Three.js CDN for 3D Background -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Vanilla-Tilt for 3D Card Hover -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   
   <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    .font-mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #08090d; }
     ::-webkit-scrollbar-thumb { background: #1f2430; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #ea580c; }
+    
+    .tilt-card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    .tilt-inner {
+      transform: translateZ(35px);
+    }
+    #three-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body class="bg-[#08090d] text-slate-200 selection:bg-orange-500 selection:text-white relative overflow-x-hidden">
 
-  <!-- Glow Backgrounds -->
-  <div class="fixed -top-24 -left-24 w-[500px] h-[500px] bg-orange-600/15 rounded-full blur-[140px] pointer-events-none"></div>
-  <div class="fixed top-[45%] -right-24 w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+  <!-- 3D ThreeJS Canvas Background -->
+  <canvas id="three-canvas"></canvas>
+
+  <!-- Dynamic Ambient Glows -->
+  <div class="fixed -top-24 -left-24 w-[500px] h-[500px] bg-orange-600/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+  <div class="fixed top-[45%] -right-24 w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[160px] pointer-events-none z-0"></div>
 
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 w-full z-40 bg-[#08090d]/85 backdrop-blur-md border-b border-white/5 px-6 py-4 flex items-center justify-between">
@@ -56,14 +76,14 @@
       <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" download class="px-3.5 py-1.5 rounded-full border border-orange-500/30 text-xs font-semibold text-orange-400 hover:bg-orange-500/10 transition-all flex items-center gap-1.5">
         <i data-lucide="download" class="w-3.5 h-3.5"></i> Resume
       </a>
-      <button onclick="toggleChat()" class="px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-bold text-xs shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:brightness-110 transition-all flex items-center gap-1.5">
+      <button id="navAiBtn" class="px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-bold text-xs shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:brightness-110 transition-all flex items-center gap-1.5 cursor-pointer">
         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Ask AI
       </button>
     </div>
   </nav>
 
   <!-- Main Container -->
-  <main class="max-w-6xl mx-auto px-6 pt-32 pb-24 space-y-28">
+  <main class="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 space-y-28">
 
     <!-- Hero Section -->
     <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[75vh]">
@@ -105,34 +125,33 @@
         </div>
       </div>
 
-      <!-- Futuristic Profile Card -->
+      <!-- 3D Interactive Parallax Tilt Card -->
       <div class="lg:col-span-5 flex justify-center">
-        <div class="relative w-full max-w-sm rounded-3xl p-[1px] bg-gradient-to-b from-orange-500/50 via-white/10 to-transparent shadow-2xl">
-          <div class="rounded-3xl bg-[#0f121a]/95 backdrop-blur-xl p-6 border border-white/5 space-y-6 relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/15 rounded-full blur-2xl"></div>
+        <div data-tilt data-tilt-glare data-tilt-max-glare="0.3" data-tilt-max="15" data-tilt-speed="400" class="tilt-card relative w-full max-w-sm rounded-3xl p-[1px] bg-gradient-to-b from-orange-500/60 via-white/10 to-transparent shadow-[0_0_40px_rgba(249,115,22,0.2)] cursor-pointer">
+          <div class="rounded-3xl bg-[#0f121a]/95 backdrop-blur-2xl p-6 border border-white/5 space-y-6 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-36 h-36 bg-orange-500/20 rounded-full blur-2xl"></div>
             
-            <!-- Real User Image -->
-            <div class="w-full h-64 rounded-2xl border border-white/10 overflow-hidden relative group">
-              <img src="./1000078800.jpg" alt="Priyanshu Kumar" class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60'" />
+            <div class="tilt-inner w-full h-64 rounded-2xl border border-white/10 overflow-hidden relative group shadow-lg">
+              <img src="./1000078800.jpg" alt="Priyanshu Kumar" class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60'" />
               <div class="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent"></div>
-              <div class="absolute bottom-3 left-3 right-3 flex justify-between items-center bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
-                <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider">● Open to Work</span>
-                <span class="text-[10px] font-mono text-slate-300">Patna / Remote</span>
+              <div class="absolute bottom-3 left-3 right-3 flex justify-between items-center bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+                <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider">● 3D HOLOGRAM ACTIVE</span>
+                <span class="text-[10px] font-mono text-slate-300">Move Cursor</span>
               </div>
             </div>
 
-            <div class="space-y-2.5 pt-1 text-xs font-mono">
+            <div class="tilt-inner space-y-2.5 pt-1 text-xs font-mono">
               <div class="flex justify-between items-center text-slate-400 border-b border-white/5 pb-2">
                 <span>DEGREE</span>
-                <span class="text-slate-100 font-semibold">B.Tech CSE (2022-2026)</span>
+                <span class="text-slate-100 font-semibold">B.Tech CSE (2022-2026)[span_1](start_span)[span_1](end_span)</span>
               </div>
               <div class="flex justify-between items-center text-slate-400 border-b border-white/5 pb-2">
                 <span>COLLEGE</span>
-                <span class="text-orange-400 font-semibold">Shershah Engg. College</span>
+                <span class="text-orange-400 font-semibold">Shershah Engg. College[span_2](start_span)[span_2](end_span)</span>
               </div>
               <div class="flex justify-between items-center text-slate-400">
-                <span>PHONE</span>
-                <span class="text-slate-200">+91-6202018611</span>
+                <span>SPECIALIZATION</span>
+                <span class="text-slate-200">ML, CNNs, AWS Cloud[span_3](start_span)[span_3](end_span)</span>
               </div>
             </div>
           </div>
@@ -140,69 +159,59 @@
       </div>
     </section>
 
-    <!-- Skills Section with Visual Meters -->
+    <!-- Skills Section -->
     <section id="skills" class="space-y-8">
       <div>
         <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Stack Architecture</span>
         <h2 class="text-3xl font-black text-white">Technical Arsenal</h2>
       </div>
 
-      <!-- Radial Skill Meters -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="p-5 rounded-2xl bg-[#0f121a]/70 border border-white/5 text-center space-y-2">
+        <div data-tilt data-tilt-max="10" class="tilt-card p-5 rounded-2xl bg-[#0f121a]/70 border border-white/5 text-center space-y-2 hover:border-orange-500/40 transition-colors">
           <div class="text-3xl font-black text-orange-400 font-mono">92%</div>
           <div class="text-xs font-bold text-white uppercase">Python & ML</div>
-          <div class="text-[10px] text-slate-400">NumPy, Scikit, XGBoost</div>
+          <div class="text-[10px] text-slate-400">NumPy, Scikit, XGBoost[span_4](start_span)[span_4](end_span)</div>
         </div>
-        <div class="p-5 rounded-2xl bg-[#0f121a]/70 border border-white/5 text-center space-y-2">
+        <div data-tilt data-tilt-max="10" class="tilt-card p-5 rounded-2xl bg-[#0f121a]/70 border border-white/5 text-center space-y-2 hover:border-orange-500/40 transition-colors">
           <div class="text-3xl font-black text-amber-400 font-mono">88%</div>
           <div class="text-xs font-bold text-white uppercase">Deep Learning</div>
-          <div class="text-[10px] text-slate-400">TensorFlow, Keras, CNN</div>
+          <div class="text-[10px] text-slate-400">TensorFlow, Keras, CNN[span_5](start_span)[span_5](end_span)</div>
         </div>
-        <div class="p-5 rounded-2xl bg-[#0f121a]/70 border border-white/5 text-center space-y-2">
+        <div data-tilt data-tilt-max="10" class="tilt-card p-5 rounded-2xl bg-[#0f121a]/70 border border-white/5 text-center space-y-2 hover:border-orange-500/40 transition-colors">
           <div class="text-3xl font-black text-orange-400 font-mono">86%</div>
           <div class="text-xs font-bold text-white uppercase">Full Stack & IoT</div>
-          <div class="text-[10px] text-slate-400">React, Node, Socket.io</div>
+          <div class="text-[10px] text-slate-400">React, Node, Socket.io[span_6](start_span)[span_6](end_span)</div>
         </div>
-        <div class="p-5 rounded-2xl bg-[#0f121a]/70 border border-white/5 text-center space-y-2">
+        <div data-tilt data-tilt-max="10" class="tilt-card p-5 rounded-2xl bg-[#0f121a]/70 border border-white/5 text-center space-y-2 hover:border-orange-500/40 transition-colors">
           <div class="text-3xl font-black text-amber-400 font-mono">85%</div>
           <div class="text-xs font-bold text-white uppercase">Cloud & SAP</div>
-          <div class="text-[10px] text-slate-400">AWS, SAP Analytics, SQL</div>
+          <div class="text-[10px] text-slate-400">AWS, SAP Analytics, SQL[span_7](start_span)[span_7](end_span)</div>
         </div>
       </div>
 
-      <!-- Categorized Skills Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="p-6 rounded-2xl bg-[#0f121a]/60 border border-white/5 hover:border-orange-500/30 transition-all space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-white/5 border border-white/10 text-orange-400">
-            <i data-lucide="terminal" class="w-5 h-5"></i>
-          </div>
-          <h3 class="font-bold text-white text-base">Languages</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Python, Java, C, C++, JavaScript</p>
+          <div class="p-2.5 w-fit rounded-xl bg-white/5 border border-white/10 text-orange-400"><i data-lucide="terminal" class="w-5 h-5"></i></div>
+          <h3 class="font-bold text-white text-base">Languages[span_8](start_span)[span_8](end_span)</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Python, Java, C, C++, JavaScript[span_9](start_span)[span_9](end_span)</p>
         </div>
 
         <div class="p-6 rounded-2xl bg-[#0f121a]/60 border border-white/5 hover:border-orange-500/30 transition-all space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-white/5 border border-white/10 text-orange-400">
-            <i data-lucide="brain-circuit" class="w-5 h-5"></i>
-          </div>
-          <h3 class="font-bold text-white text-base">ML & Computer Vision</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">TensorFlow, Keras, CNN, OpenCV, XGBoost, Scikit-learn, Pandas, Matplotlib, Seaborn</p>
+          <div class="p-2.5 w-fit rounded-xl bg-white/5 border border-white/10 text-orange-400"><i data-lucide="brain-circuit" class="w-5 h-5"></i></div>
+          <h3 class="font-bold text-white text-base">ML & Vision[span_10](start_span)[span_10](end_span)</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">TensorFlow, Keras, CNN, OpenCV, XGBoost, Scikit-learn, Pandas[span_11](start_span)[span_11](end_span)</p>
         </div>
 
         <div class="p-6 rounded-2xl bg-[#0f121a]/60 border border-white/5 hover:border-orange-500/30 transition-all space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-white/5 border border-white/10 text-orange-400">
-            <i data-lucide="code-2" class="w-5 h-5"></i>
-          </div>
-          <h3 class="font-bold text-white text-base">Web & Backend</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Node.js, Express.js, React, Flask, PHP, Bootstrap, REST APIs, JWT, Socket.io</p>
+          <div class="p-2.5 w-fit rounded-xl bg-white/5 border border-white/10 text-orange-400"><i data-lucide="code-2" class="w-5 h-5"></i></div>
+          <h3 class="font-bold text-white text-base">Web & Backend[span_12](start_span)[span_12](end_span)</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">Node.js, Express.js, React, Flask, REST APIs, JWT, Socket.io[span_13](start_span)[span_13](end_span)</p>
         </div>
 
         <div class="p-6 rounded-2xl bg-[#0f121a]/60 border border-white/5 hover:border-orange-500/30 transition-all space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-white/5 border border-white/10 text-orange-400">
-            <i data-lucide="database" class="w-5 h-5"></i>
-          </div>
-          <h3 class="font-bold text-white text-base">Cloud, SAP & DB</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">AWS (Data & Prompt Engg), SAP ABAP, SAP Analytics Cloud, SQL, MongoDB, Power BI, Tableau</p>
+          <div class="p-2.5 w-fit rounded-xl bg-white/5 border border-white/10 text-orange-400"><i data-lucide="database" class="w-5 h-5"></i></div>
+          <h3 class="font-bold text-white text-base">Cloud & DB[span_14](start_span)[span_14](end_span)</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">AWS, SAP ABAP, SAP Analytics, SQL, MongoDB, Power BI[span_15](start_span)[span_15](end_span)</p>
         </div>
       </div>
     </section>
@@ -215,96 +224,64 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Project 1 -->
-        <div class="p-7 rounded-3xl bg-[#0f121a]/70 border border-white/5 hover:border-orange-500/40 transition-all flex flex-col justify-between group">
+        <div data-tilt data-tilt-max="8" class="tilt-card p-7 rounded-3xl bg-[#0f121a]/80 border border-white/5 hover:border-orange-500/40 transition-all flex flex-col justify-between group">
           <div class="space-y-3">
             <div class="flex justify-between items-center text-xs font-mono text-orange-500">
-              <span>01 // IoT & Full-Stack</span>
+              <span>01 // IoT & Full-Stack[span_16](start_span)[span_16](end_span)</span>
               <a href="https://github.com/priyanshu18611/EcoSentinel" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">
-              EcoSentinel
-            </h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              MERN application for real-time wildlife tracking using simulated IoT/GPS collars with live map visualization via Leaflet. Implemented Socket.io for instant alerts on geofence breaches, abnormal vitals, and role-based JWT authentication.
-            </p>
+            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">EcoSentinel[span_17](start_span)[span_17](end_span)</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">MERN platform for real-time wildlife tracking via simulated IoT/GPS collars, Leaflet map visualization, and Socket.io geofence breach alerts[span_18](start_span)[span_18](end_span).</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">React</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Node.js</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">MongoDB</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Socket.io</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Leaflet</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">React[span_19](start_span)[span_19](end_span)</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Node.js[span_20](start_span)[span_20](end_span)</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Socket.io[span_21](start_span)[span_21](end_span)</span>
           </div>
         </div>
 
-        <!-- Project 2 -->
-        <div class="p-7 rounded-3xl bg-[#0f121a]/70 border border-white/5 hover:border-orange-500/40 transition-all flex flex-col justify-between group">
+        <div data-tilt data-tilt-max="8" class="tilt-card p-7 rounded-3xl bg-[#0f121a]/80 border border-white/5 hover:border-orange-500/40 transition-all flex flex-col justify-between group">
           <div class="space-y-3">
             <div class="flex justify-between items-center text-xs font-mono text-orange-500">
-              <span>02 // Deep Learning</span>
+              <span>02 // Deep Learning[span_22](start_span)[span_22](end_span)</span>
               <a href="https://github.com/priyanshu18611/brain-tumor-detection" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">
-              Brain Tumor Detection
-            </h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              CNN model classifying brain MRI scans into Tumor / No Tumor using TensorFlow & Keras. Built with 4 Conv+MaxPooling blocks, Batch Normalization, and Dropout regularization on Kaggle MRI datasets. Saved model as brain_tumor_model.h5.
-            </p>
+            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">Brain Tumor Detection[span_23](start_span)[span_23](end_span)</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">CNN model classifying brain MRI scans into Tumor / No Tumor using TensorFlow & Keras with Batch Normalization on Kaggle MRI datasets[span_24](start_span)[span_24](end_span).</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">TensorFlow</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Keras</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">CNN</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">OpenCV</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">TensorFlow[span_25](start_span)[span_25](end_span)</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Keras[span_26](start_span)[span_26](end_span)</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">CNN[span_27](start_span)[span_27](end_span)</span>
           </div>
         </div>
 
-        <!-- Project 3 -->
-        <div class="p-7 rounded-3xl bg-[#0f121a]/70 border border-white/5 hover:border-orange-500/40 transition-all flex flex-col justify-between group">
+        <div data-tilt data-tilt-max="8" class="tilt-card p-7 rounded-3xl bg-[#0f121a]/80 border border-white/5 hover:border-orange-500/40 transition-all flex flex-col justify-between group">
           <div class="space-y-3">
             <div class="flex justify-between items-center text-xs font-mono text-orange-500">
-              <span>03 // ML & Sports Analytics</span>
+              <span>03 // ML Analytics[span_28](start_span)[span_28](end_span)</span>
               <a href="https://github.com/priyanshu18611" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">
-              Cricket Score Predictor
-            </h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Machine Learning prediction model using XGBoost Regressor to forecast match final scores in real-time based on live match conditions (runs, wickets, overs, current run rate, and teams) trained on extensive historical match datasets.
-            </p>
+            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">Cricket Score Predictor[span_29](start_span)[span_29](end_span)</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">Predicts final cricket match scores using XGBoost Regressor trained on match conditions, run-rates, and historical match stats[span_30](start_span)[span_30](end_span).</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">XGBoost</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Scikit-learn</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Pandas</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">XGBoost[span_31](start_span)[span_31](end_span)</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Scikit-learn[span_32](start_span)[span_32](end_span)</span>
+            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[10px] font-mono text-slate-300">Pandas[span_33](start_span)[span_33](end_span)</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Education Section -->
+    <!-- Complete Education Section (10th, 12th, B.Tech) -->
     <section id="education" class="space-y-8">
       <div>
         <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Academic Background</span>
-        <h2 class="text-3xl font-black text-white">Education</h2>
+        <h2 class="text-3xl font-black text-white">Education Timeline</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="p-6 rounded-2xl bg-[#0f121a]/70 border border-white/5 hover:border-orange-500/30 transition-all space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-white/5 text-orange-400"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
-          <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider">Oct 2022 - May 2026[span_2](start_span)[span_2](end_span)</span>
-          <h3 class="font-bold text-white text-base">B.Tech in Computer Science and Engineering[span_3](start_span)[span_3](end_span)</h3>
-          <p class="text-xs text-slate-400">Shershah Engineering College, Sasaram[span_4](start_span)[span_4](end_span)</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-[#0f121a]/70 border border-white/5 hover:border-orange-500/30 transition-all space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-white/5 text-orange-400"><i data-lucide="book-open" class="w-5 h-5"></i></div>
-          <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider">May 2018 - July 2020[span_5](start_span)[span_5](end_span)</span>
-          <h3 class="font-bold text-white text-base">Intermediate - Science (PCM)[span_6](start_span)[span_6](end_span)</h3>
-          <p class="text-xs text-slate-400">RB College, Dalsingsaray[span_7](start_span)[span_7](end_span)</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-[#0f121a]/70 border border-white/5 hove
+        <!-- B.Tech -->
+        <div data-tilt data-tilt-max="8" class="tilt-card p-6 rounded-2xl bg-[#0f121a]/70 border border-white/5 hover:border-orange-500/40 transition-all space-y-3">
+          <div class="p-2.5 w-fit rounded-xl bg-white/5 text-orange-400"><i data-lucide="g
