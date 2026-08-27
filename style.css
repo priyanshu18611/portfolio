@@ -32,33 +32,34 @@ body {
   background: #ea580c;
 }
 
-/* Glassmorphic Cyber Panels */
+/* 3D Glassmorphic Cards */
 .glass-card {
   background: rgba(15, 19, 29, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .glass-card:hover {
-  border-color: rgba(249, 115, 22, 0.45);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.15);
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: 0 15px 35px -10px rgba(249, 115, 22, 0.2);
 }
 
-/* Ambient Radial Glows */
+/* Glowing Radial Backgrounds */
 .glow-orange {
   position: fixed;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(234, 88, 12, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* 3D Canvas Background */
+/* 3D Three.js Canvas */
 #three-bg {
   position: fixed;
   top: 0;
@@ -67,4 +68,14 @@ body {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+}
+
+/* Shimmer Loading Animation for Badges */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.ambient-pulse {
+  animation: pulse-glow 4s ease-in-out infinite;
 }
