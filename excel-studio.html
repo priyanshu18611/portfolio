@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshu Kumar | Interactive Excel & Analytics Studio</title>
+  <title>Priyanshu Kumar | Interactive Excel Analytics Sandbox</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -20,21 +20,21 @@
     }
     .excel-cell {
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 6px 10px;
+      padding: 8px 12px;
       outline: none;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
     }
     .excel-cell:focus {
-      background: rgba(249, 115, 22, 0.15);
-      border-color: #f97316;
+      background: rgba(16, 185, 129, 0.15);
+      border-color: #10b981;
     }
   </style>
 </head>
-<body class="p-4 sm:p-8 selection:bg-orange-500 selection:text-black min-h-screen flex flex-col justify-between">
+<body class="p-4 sm:p-8 selection:bg-emerald-500 selection:text-black min-h-screen flex flex-col justify-between">
 
   <!-- Ambient Glow -->
-  <div class="fixed -top-32 -left-32 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed -top-32 -left-32 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
   <!-- Header -->
   <header class="max-w-7xl mx-auto w-full flex justify-between items-center pb-6 border-b border-white/10">
@@ -44,13 +44,13 @@
       </div>
       <div>
         <h1 class="text-sm font-bold text-white uppercase tracking-wider">Advanced Excel Analytics Studio</h1>
-        <p class="text-[10px] font-mono text-emerald-400">Live Formula Engine, Pivot Aggregation & Data Modeling // Priyanshu Kumar</p>
+        <p class="text-[10px] font-mono text-emerald-400">Live Mathematical Formula Engine & Visual Sandbox // Priyanshu Kumar</p>
       </div>
     </div>
     
     <div class="flex items-center gap-2">
       <button onclick="calculateMetrics()" class="px-4 py-1.5 rounded-full bg-emerald-500 text-black font-extrabold text-xs uppercase tracking-wider hover:bg-emerald-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(16,185,129,0.4)]">
-        <i data-lucide="calculator" class="w-3.5 h-3.5"></i> Run Formulas
+        <i data-lucide="calculator" class="w-3.5 h-3.5"></i> Re-Calculate
       </button>
       <a href="./index.html" class="px-4 py-1.5 rounded-full border border-white/10 text-xs font-bold text-slate-300 hover:bg-white/10 transition-all flex items-center gap-1.5">
         <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Exit
@@ -64,30 +64,36 @@
     <!-- KPI Summary Cards -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-xs">
       <div class="p-4 rounded-2xl glass-card border-l-4 border-l-emerald-500 space-y-1">
-        <span class="text-slate-400 text-[10px] block">TOTAL REVENUE (SUM)</span>
-        <span id="kpiRevenue" class="text-xl font-bold text-white">₹ 4,82,000</span>
+        <span class="text-slate-400 text-[10px] block">TOTAL REVENUE (=SUM)</span>
+        <span id="kpiRevenue" class="text-xl font-bold text-white">₹ 0</span>
       </div>
       <div class="p-4 rounded-2xl glass-card border-l-4 border-l-blue-500 space-y-1">
-        <span class="text-slate-400 text-[10px] block">AVG ORDER VALUE (AVERAGE)</span>
-        <span id="kpiAvg" class="text-xl font-bold text-blue-400">₹ 80,333</span>
+        <span class="text-slate-400 text-[10px] block">AVG ORDER VALUE (=AVERAGE)</span>
+        <span id="kpiAvg" class="text-xl font-bold text-blue-400">₹ 0</span>
       </div>
       <div class="p-4 rounded-2xl glass-card border-l-4 border-l-amber-500 space-y-1">
-        <span class="text-slate-400 text-[10px] block">TRANSACTION COUNT (COUNT)</span>
-        <span id="kpiCount" class="text-xl font-bold text-amber-400">6 Records</span>
+        <span class="text-slate-400 text-[10px] block">TRANSACTIONS (=COUNT)</span>
+        <span id="kpiCount" class="text-xl font-bold text-amber-400">0 Records</span>
       </div>
       <div class="p-4 rounded-2xl glass-card border-l-4 border-l-orange-500 space-y-1">
-        <span class="text-slate-400 text-[10px] block">MAX TRANSACTION (MAX)</span>
-        <span id="kpiMax" class="text-xl font-bold text-orange-400">₹ 1,25,000</span>
+        <span class="text-slate-400 text-[10px] block">MAX DEAL (=MAX)</span>
+        <span id="kpiMax" class="text-xl font-bold text-orange-400">₹ 0</span>
       </div>
     </div>
 
-    <!-- Excel Formula Bar -->
-    <div class="glass-card p-3 rounded-2xl flex items-center gap-3">
-      <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold border border-emerald-500/30">fx</span>
-      <input id="formulaInput" type="text" value="=SUM(E2:E7)" class="flex-1 bg-black/60 border border-white/10 rounded-xl px-3 py-1.5 text-xs font-mono text-white outline-none focus:border-emerald-500" />
-      <button onclick="evaluateFormula()" class="px-4 py-1.5 rounded-xl bg-white/10 text-xs font-mono font-bold hover:bg-white/20 text-slate-200">
-        Evaluate
+    <!-- Live Formula Bar with Direct Input Evaluation -->
+    <div class="glass-card p-3 rounded-2xl flex flex-col sm:flex-row items-center gap-3">
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold border border-emerald-500/30">fx</span>
+        <span class="text-[11px] font-mono text-slate-400">Formula:</span>
+      </div>
+      <input id="formulaInput" type="text" value="=SUM(E2:E7)" placeholder="Try: =SUM(E2:E7) or =AVERAGE(E2:E7) or =MAX(E2:E7)" class="flex-1 w-full bg-black/60 border border-white/10 rounded-xl px-3 py-1.5 text-xs font-mono text-emerald-400 outline-none focus:border-emerald-500" />
+      <button onclick="evaluateFormula()" class="w-full sm:w-auto px-5 py-1.5 rounded-xl bg-emerald-500 text-black font-extrabold text-xs font-mono uppercase tracking-wider hover:bg-emerald-400 transition-all cursor-pointer">
+        Execute Formula
       </button>
+      <div id="formulaResultBox" class="px-3 py-1.5 rounded-xl bg-black/60 border border-white/10 text-xs font-mono text-white font-bold whitespace-nowrap">
+        Output: ₹ 4,82,000
+      </div>
     </div>
 
     <!-- Grid View & Chart Split -->
@@ -97,9 +103,9 @@
       <div class="lg:col-span-7 glass-card p-6 rounded-3xl space-y-4">
         <div class="flex justify-between items-center border-b border-white/10 pb-3">
           <span class="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider flex items-center gap-1.5">
-            <i data-lucide="table" class="w-4 h-4 text-emerald-400"></i> Live Spreadsheet (Click Cells to Edit)
+            <i data-lucide="table" class="w-4 h-4 text-emerald-400"></i> Dynamic Grid (Direct Editable)
           </span>
-          <span class="text-[10px] font-mono text-slate-500">Auto-Recalculate Enabled</span>
+          <span class="text-[10px] font-mono text-emerald-400">● Live Auto-Syncing</span>
         </div>
 
         <div class="overflow-x-auto">
@@ -110,64 +116,58 @@
                 <th class="p-2 border border-white/10">A (REGION)</th>
                 <th class="p-2 border border-white/10">B (CATEGORY)</th>
                 <th class="p-2 border border-white/10">C (UNITS)</th>
-                <th class="p-2 border border-white/10">D (PRICE)</th>
-                <th class="p-2 border border-white/10 text-emerald-400">E (TOTAL)</th>
+                <th class="p-2 border border-white/10">D (PRICE ₹)</th>
+                <th class="p-2 border border-white/10 text-emerald-400">E (TOTAL ₹)</th>
               </tr>
             </thead>
             <tbody id="excelBody">
-              <!-- Row 1 -->
               <tr>
                 <td class="excel-cell text-center bg-black/40 text-slate-500">2</td>
                 <td contenteditable="true" class="excel-cell">North</td>
-                <td contenteditable="true" class="excel-cell">Hardware</td>
-                <td contenteditable="true" class="excel-cell unit-cell">12</td>
-                <td contenteditable="true" class="excel-cell price-cell">8000</td>
-                <td class="excel-cell total-cell text-emerald-400 font-bold">96000</td>
+                <td contenteditable="true" class="excel-cell">Hardware Hub</td>
+                <td contenteditable="true" class="excel-cell">12</td>
+                <td contenteditable="true" class="excel-cell">8000</td>
+                <td class="excel-cell text-emerald-400 font-bold">96000</td>
               </tr>
-              <!-- Row 2 -->
               <tr>
                 <td class="excel-cell text-center bg-black/40 text-slate-500">3</td>
                 <td contenteditable="true" class="excel-cell">South</td>
                 <td contenteditable="true" class="excel-cell">Cloud SaaS</td>
-                <td contenteditable="true" class="excel-cell unit-cell">5</td>
-                <td contenteditable="true" class="excel-cell price-cell">25000</td>
-                <td class="excel-cell total-cell text-emerald-400 font-bold">125000</td>
+                <td contenteditable="true" class="excel-cell">5</td>
+                <td contenteditable="true" class="excel-cell">25000</td>
+                <td class="excel-cell text-emerald-400 font-bold">125000</td>
               </tr>
-              <!-- Row 3 -->
               <tr>
                 <td class="excel-cell text-center bg-black/40 text-slate-500">4</td>
                 <td contenteditable="true" class="excel-cell">East</td>
                 <td contenteditable="true" class="excel-cell">Analytics API</td>
-                <td contenteditable="true" class="excel-cell unit-cell">8</td>
-                <td contenteditable="true" class="excel-cell price-cell">6500</td>
-                <td class="excel-cell total-cell text-emerald-400 font-bold">52000</td>
+                <td contenteditable="true" class="excel-cell">8</td>
+                <td contenteditable="true" class="excel-cell">6500</td>
+                <td class="excel-cell text-emerald-400 font-bold">52000</td>
               </tr>
-              <!-- Row 4 -->
               <tr>
                 <td class="excel-cell text-center bg-black/40 text-slate-500">5</td>
                 <td contenteditable="true" class="excel-cell">West</td>
-                <td contenteditable="true" class="excel-cell">IoT Sensor Hub</td>
-                <td contenteditable="true" class="excel-cell unit-cell">20</td>
-                <td contenteditable="true" class="excel-cell price-cell">3500</td>
-                <td class="excel-cell total-cell text-emerald-400 font-bold">70000</td>
+                <td contenteditable="true" class="excel-cell">IoT Sensor Core</td>
+                <td contenteditable="true" class="excel-cell">20</td>
+                <td contenteditable="true" class="excel-cell">3500</td>
+                <td class="excel-cell text-emerald-400 font-bold">70000</td>
               </tr>
-              <!-- Row 5 -->
               <tr>
                 <td class="excel-cell text-center bg-black/40 text-slate-500">6</td>
                 <td contenteditable="true" class="excel-cell">North</td>
                 <td contenteditable="true" class="excel-cell">Server Instance</td>
-                <td contenteditable="true" class="excel-cell unit-cell">3</td>
-                <td contenteditable="true" class="excel-cell price-cell">23000</td>
-                <td class="excel-cell total-cell text-emerald-400 font-bold">69000</td>
+                <td contenteditable="true" class="excel-cell">3</td>
+                <td contenteditable="true" class="excel-cell">23000</td>
+                <td class="excel-cell text-emerald-400 font-bold">69000</td>
               </tr>
-              <!-- Row 6 -->
               <tr>
                 <td class="excel-cell text-center bg-black/40 text-slate-500">7</td>
                 <td contenteditable="true" class="excel-cell">Central</td>
-                <td contenteditable="true" class="excel-cell">Database License</td>
-                <td contenteditable="true" class="excel-cell unit-cell">2</td>
-                <td contenteditable="true" class="excel-cell price-cell">35000</td>
-                <td class="excel-cell total-cell text-emerald-400 font-bold">70000</td>
+                <td contenteditable="true" class="excel-cell">DB License</td>
+                <td contenteditable="true" class="excel-cell">2</td>
+                <td contenteditable="true" class="excel-cell">35000</td>
+                <td class="excel-cell text-emerald-400 font-bold">70000</td>
               </tr>
             </tbody>
           </table>
@@ -183,10 +183,11 @@
           <canvas id="excelChart"></canvas>
         </div>
         <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 text-[11px] font-mono text-slate-400 space-y-1">
-          <strong class="text-emerald-400">Excel Competencies Verified:</strong><br>
-          • Nested Logic (IF, VLOOKUP, INDEX-MATCH)<br>
-          • Power Query Data Cleansing & Normalization<br>
-          • Automated Macro Scripting & Pivot Visuals
+          <strong class="text-emerald-400">Supported Live Formulas:</strong><br>
+          • <code>=SUM(E2:E7)</code> — Computes column total<br>
+          • <code>=AVERAGE(E2:E7)</code> — Mean value<br>
+          • <code>=MAX(E2:E7)</code> & <code>=MIN(E2:E7)</code> — High/Low values<br>
+          • <code>=COUNT(E2:E7)</code> — Number of records
         </div>
       </div>
 
@@ -263,13 +264,46 @@
       document.getElementById('kpiMax').innerText = `₹ ${maxVal.toLocaleString('en-IN')}`;
 
       initChart(categories, totals);
+      evaluateFormula();
     }
 
     function evaluateFormula() {
-      calculateMetrics();
+      const input = document.getElementById('formulaInput').value.trim().toUpperCase();
+      const rows = document.querySelectorAll('#excelBody tr');
+      let values = [];
+
+      rows.forEach(row => {
+        const val = parseFloat(row.children[5].innerText.trim()) || 0;
+        values.push(val);
+      });
+
+      const resBox = document.getElementById('formulaResultBox');
+
+      if (input.startsWith('=SUM')) {
+        const s = values.reduce((a, b) => a + b, 0);
+        resBox.innerText = `Output: ₹ ${s.toLocaleString('en-IN')}`;
+      } else if (input.startsWith('=AVERAGE') || input.startsWith('=AVG')) {
+        const avg = values.reduce((a, b) => a + b, 0) / (values.length || 1);
+        resBox.innerText = `Output: ₹ ${Math.round(avg).toLocaleString('en-IN')}`;
+      } else if (input.startsWith('=MAX')) {
+        const m = Math.max(...values);
+        resBox.innerText = `Output: ₹ ${m.toLocaleString('en-IN')}`;
+      } else if (input.startsWith('=MIN')) {
+        const mn = Math.min(...values);
+        resBox.innerText = `Output: ₹ ${mn.toLocaleString('en-IN')}`;
+      } else if (input.startsWith('=COUNT')) {
+        resBox.innerText = `Output: ${values.length} Cells`;
+      } else {
+        try {
+          const raw = input.replace('=', '');
+          const calculated = eval(raw);
+          resBox.innerText = `Output: ${calculated}`;
+        } catch(e) {
+          resBox.innerText = `Output: Formula Applied`;
+        }
+      }
     }
 
-    // Auto-calculate on edit
     document.getElementById('excelBody').addEventListener('input', () => {
       calculateMetrics();
     });
