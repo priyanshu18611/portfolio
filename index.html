@@ -12,15 +12,15 @@
 
   <style>
     .glass-card {
-      background: rgba(13, 16, 24, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(12, 16, 25, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(18px);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-card:hover {
       border-color: rgba(249, 115, 22, 0.5);
       transform: translateY(-3px);
-      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(249, 115, 22, 0.2);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(249, 115, 22, 0.15);
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -31,14 +31,12 @@
   <!-- Three.js 3D Background -->
   <canvas id="three-bg"></canvas>
 
-  <!-- Ambient Glows -->
   <div class="glow-orange -top-40 -left-40"></div>
   <div class="glow-orange top-[45%] -right-40"></div>
 
-  <!-- Navigation Bar: Clean Scrollable Action Toolbar -->
+  <!-- Navigation Bar -->
   <nav class="fixed top-0 left-0 w-full z-40 bg-[#06070a]/95 backdrop-blur-2xl border-b border-white/5 px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
     
-    <!-- Brand Logo -->
     <div class="flex items-center gap-2.5 shrink-0">
       <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-600 via-amber-400 to-orange-500 flex items-center justify-center font-black text-black text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)]">
         PK
@@ -54,6 +52,11 @@
     <!-- Quick Navigation Hub -->
     <div class="flex items-center gap-1.5 shrink-0 overflow-x-auto no-scrollbar py-1">
       
+      <button onclick="toggleSpotlight()" class="px-2.5 py-1.5 rounded-full border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-300 text-xs font-mono flex items-center gap-1.5 cursor-pointer">
+        <i data-lucide="search" class="w-3.5 h-3.5 text-orange-400"></i>
+        <span class="text-[11px]">Cmd+K</span>
+      </button>
+
       <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="px-3 py-1.5 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs font-mono font-bold hover:bg-orange-500/20 transition-all flex items-center gap-1.5 whitespace-nowrap">
         <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Resume PDF
       </a>
@@ -62,20 +65,20 @@
         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> ATS Studio
       </a>
 
+      <a href="./excel-studio.html" class="px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold hover:bg-emerald-500/20 transition-all flex items-center gap-1.5 whitespace-nowrap">
+        <i data-lucide="table" class="w-3.5 h-3.5"></i> Excel Lab
+      </a>
+
       <a href="./analytics.html" class="px-3 py-1.5 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold hover:bg-blue-500/20 transition-all flex items-center gap-1.5 whitespace-nowrap">
         <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> Analytics
       </a>
 
       <a href="./playground.html" class="px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-mono font-bold hover:bg-amber-500/20 transition-all flex items-center gap-1.5 whitespace-nowrap">
-        <i data-lucide="play" class="w-3.5 h-3.5"></i> Lab
+        <i data-lucide="play" class="w-3.5 h-3.5"></i> Playground
       </a>
 
       <a href="./terminal.html" class="px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold hover:bg-emerald-500/20 transition-all flex items-center gap-1.5 whitespace-nowrap">
         <i data-lucide="terminal" class="w-3.5 h-3.5"></i> CLI
-      </a>
-
-      <a href="./system-architecture.html" class="px-3 py-1.5 rounded-full border border-purple-500/40 bg-purple-500/10 text-purple-400 text-xs font-mono font-bold hover:bg-purple-500/20 transition-all flex items-center gap-1.5 whitespace-nowrap">
-        <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Blueprint
       </a>
 
       <button onclick="openChat()" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] hover:brightness-110 transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
@@ -93,7 +96,7 @@
       <div class="lg:col-span-7 space-y-6">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-mono font-semibold uppercase tracking-wide">
           <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
-          Full-Stack & ATS Architecture • 2026
+          Full-Stack & ATS Verified Architecture • 2026
         </div>
         
         <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white leading-none">
@@ -111,9 +114,9 @@
         <div class="p-3.5 rounded-2xl glass-card flex items-center justify-between max-w-lg text-xs font-mono">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-slate-300">Backend System: <strong class="text-emerald-400">Online</strong></span>
+            <span class="text-slate-300">Edge Backend API: <strong class="text-emerald-400">Online</strong></span>
           </div>
-          <div class="text-slate-400">Global Visits: <span id="serverHitBadge" class="text-orange-400 font-bold">580+</span></div>
+          <div class="text-slate-400">Latency: <span class="text-emerald-400 font-bold">18ms</span></div>
         </div>
 
         <div class="flex flex-wrap items-center gap-3 pt-2">
@@ -526,19 +529,46 @@
 
   </main>
 
-  <!-- Interactive Project Technical Breakdown Modal -->
+  <!-- Global Command Palette (Cmd + K) -->
+  <div id="spotlightModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-start justify-center pt-24 px-4">
+    <div class="glass-card max-w-xl w-full p-4 rounded-3xl border border-orange-500/40 space-y-3">
+      <div class="flex items-center gap-3 px-3 py-2 bg-black/60 rounded-2xl border border-white/10">
+        <i data-lucide="search" class="w-4 h-4 text-orange-400"></i>
+        <input id="spotlightInput" type="text" placeholder="Jump to projects, skills, terminal, or resume..." class="w-full bg-transparent text-xs text-white focus:outline-none font-mono" />
+        <span class="text-[10px] font-mono text-slate-500">ESC</span>
+      </div>
+      <div id="spotlightResults" class="space-y-1 text-xs font-mono max-h-60 overflow-y-auto">
+        <a href="#projects" onclick="toggleSpotlight()" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-orange-400 block">
+          <span>📁 Browse All Engineering Projects</span>
+          <span class="text-[10px] text-slate-500">Jump</span>
+        </a>
+        <a href="./resume-builder.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-indigo-400 block">
+          <span>⚡ Open ATS Resume Builder Studio</span>
+          <span class="text-[10px] text-slate-500">Studio</span>
+        </a>
+        <a href="./excel-studio.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-emerald-400 block">
+          <span>📊 Open Excel Analytics Sandbox</span>
+          <span class="text-[10px] text-slate-500">Excel</span>
+        </a>
+        <a href="./terminal.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-emerald-400 block">
+          <span>💻 Launch Priyanshu Interactive CLI</span>
+          <span class="text-[10px] text-slate-500">CLI</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Technical Breakdown Modal -->
   <div id="projectModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
     <div class="glass-card max-w-xl w-full p-6 sm:p-8 rounded-3xl border border-orange-500/40 space-y-4 relative">
       <button onclick="closeProjectModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white cursor-pointer">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
-      <div id="modalContent" class="space-y-3">
-        <!-- Injected via JavaScript -->
-      </div>
+      <div id="modalContent" class="space-y-3"></div>
     </div>
   </div>
 
-  <!-- Interactive Certificate Verification Modal -->
+  <!-- Certificate Verification Modal -->
   <div id="certModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
     <div class="glass-card max-w-md w-full p-6 rounded-3xl border border-orange-500/40 space-y-4 relative text-center">
       <button onclick="closeCertModal()" class="absolute top-4 right-4 p-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white cursor-pointer">
@@ -608,7 +638,26 @@
   <script src="./script.js"></script>
 
   <script>
-    // Project Technical Breakdown Modal Logic
+    function toggleSpotlight() {
+      const s = document.getElementById('spotlightModal');
+      s.classList.toggle('hidden');
+      if (!s.classList.contains('hidden')) {
+        document.getElementById('spotlightInput').focus();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        toggleSpotlight();
+      }
+      if (e.key === 'Escape') {
+        document.getElementById('spotlightModal').classList.add('hidden');
+        closeProjectModal();
+        closeCertModal();
+      }
+    });
+
     const projectDetails = {
       ecosentinel: {
         title: "EcoSentinel — Real-Time IoT Wildlife Conservation",
@@ -659,7 +708,6 @@
       document.getElementById('projectModal').classList.add('hidden');
     }
 
-    // Certificate Verification Modal Logic
     function openCertModal(title, issuer, desc, date) {
       document.getElementById('certTitle').innerText = title;
       document.getElementById('certIssuer').innerText = `${issuer} • ${date}`;
@@ -672,7 +720,6 @@
       document.getElementById('certModal').classList.add('hidden');
     }
 
-    // Contact Form Backend Dispatch
     async function handleContactDispatch(e) {
       e.preventDefault();
       const btn = document.getElementById('dispatchBtn');
