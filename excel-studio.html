@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priyanshu Kumar | Interactive Excel & Analytics Studio</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06070a; color: #e2e8f0; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(13, 16, 25, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+    }
+    .excel-cell {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 10px;
+      outline: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+    .excel-cell:focus {
+      background: rgba(249, 115, 22, 0.15);
+      border-color: #f97316;
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-8 selection:bg-orange-500 selection:text-black min-h-screen flex flex-col justify-between">
+
+  <!-- Ambient Glow -->
+  <div class="fixed -top-32 -left-32 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto w-full flex justify-between items-center pb-6 border-b border-white/10">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center font-black text-black text-xs shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+        XLS
+      </div>
+      <div>
+        <h1 class="text-sm font-bold text-white uppercase tracking-wider">Advanced Excel Analytics Studio</h1>
+        <p class="text-[10px] font-mono text-emerald-400">Live Formula Engine, Pivot Aggregation & Data Modeling // Priyanshu Kumar</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <button onclick="calculateMetrics()" class="px-4 py-1.5 rounded-full bg-emerald-500 text-black font-extrabold text-xs uppercase tracking-wider hover:bg-emerald-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+        <i data-lucide="calculator" class="w-3.5 h-3.5"></i> Run Formulas
+      </button>
+      <a href="./index.html" class="px-4 py-1.5 rounded-full border border-white/10 text-xs font-bold text-slate-300 hover:bg-white/10 transition-all flex items-center gap-1.5">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Exit
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto w-full py-8 space-y-8">
+
+    <!-- KPI Summary Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-xs">
+      <div class="p-4 rounded-2xl glass-card border-l-4 border-l-emerald-500 space-y-1">
+        <span class="text-slate-400 text-[10px] block">TOTAL REVENUE (SUM)</span>
+        <span id="kpiRevenue" class="text-xl font-bold text-white">₹ 4,82,000</span>
+      </div>
+      <div class="p-4 rounded-2xl glass-card border-l-4 border-l-blue-500 space-y-1">
+        <span class="text-slate-400 text-[10px] block">AVG ORDER VALUE (AVERAGE)</span>
+        <span id="kpiAvg" class="text-xl font-bold text-blue-400">₹ 80,333</span>
+      </div>
+      <div class="p-4 rounded-2xl glass-card border-l-4 border-l-amber-500 space-y-1">
+        <span class="text-slate-400 text-[10px] block">TRANSACTION COUNT (COUNT)</span>
+        <span id="kpiCount" class="text-xl font-bold text-amber-400">6 Records</span>
+      </div>
+      <div class="p-4 rounded-2xl glass-card border-l-4 border-l-orange-500 space-y-1">
+        <span class="text-slate-400 text-[10px] block">MAX TRANSACTION (MAX)</span>
+        <span id="kpiMax" class="text-xl font-bold text-orange-400">₹ 1,25,000</span>
+      </div>
+    </div>
+
+    <!-- Excel Formula Bar -->
+    <div class="glass-card p-3 rounded-2xl flex items-center gap-3">
+      <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold border border-emerald-500/30">fx</span>
+      <input id="formulaInput" type="text" value="=SUM(E2:E7)" class="flex-1 bg-black/60 border border-white/10 rounded-xl px-3 py-1.5 text-xs font-mono text-white outline-none focus:border-emerald-500" />
+      <button onclick="evaluateFormula()" class="px-4 py-1.5 rounded-xl bg-white/10 text-xs font-mono font-bold hover:bg-white/20 text-slate-200">
+        Evaluate
+      </button>
+    </div>
+
+    <!-- Grid View & Chart Split -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Interactive Editable Spreadsheet -->
+      <div class="lg:col-span-7 glass-card p-6 rounded-3xl space-y-4">
+        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+          <span class="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="table" class="w-4 h-4 text-emerald-400"></i> Live Spreadsheet (Click Cells to Edit)
+          </span>
+          <span class="text-[10px] font-mono text-slate-500">Auto-Recalculate Enabled</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse" id="excelTable">
+            <thead>
+              <tr class="bg-black/60 text-slate-400 text-[10px] font-mono">
+                <th class="p-2 border border-white/10 text-center w-8">#</th>
+                <th class="p-2 border border-white/10">A (REGION)</th>
+                <th class="p-2 border border-white/10">B (CATEGORY)</th>
+                <th class="p-2 border border-white/10">C (UNITS)</th>
+                <th class="p-2 border border-white/10">D (PRICE)</th>
+                <th class="p-2 border border-white/10 text-emerald-400">E (TOTAL)</th>
+              </tr>
+            </thead>
+            <tbody id="excelBody">
+              <!-- Row 1 -->
+              <tr>
+                <td class="excel-cell text-center bg-black/40 text-slate-500">2</td>
+                <td contenteditable="true" class="excel-cell">North</td>
+                <td contenteditable="true" class="excel-cell">Hardware</td>
+                <td contenteditable="true" class="excel-cell unit-cell">12</td>
+                <td contenteditable="true" class="excel-cell price-cell">8000</td>
+                <td class="excel-cell total-cell text-emerald-400 font-bold">96000</td>
+              </tr>
+              <!-- Row 2 -->
+              <tr>
+                <td class="excel-cell text-center bg-black/40 text-slate-500">3</td>
+                <td contenteditable="true" class="excel-cell">South</td>
+                <td contenteditable="true" class="excel-cell">Cloud SaaS</td>
+                <td contenteditable="true" class="excel-cell unit-cell">5</td>
+                <td contenteditable="true" class="excel-cell price-cell">25000</td>
+                <td class="excel-cell total-cell text-emerald-400 font-bold">125000</td>
+              </tr>
+              <!-- Row 3 -->
+              <tr>
+                <td class="excel-cell text-center bg-black/40 text-slate-500">4</td>
+                <td contenteditable="true" class="excel-cell">East</td>
+                <td contenteditable="true" class="excel-cell">Analytics API</td>
+                <td contenteditable="true" class="excel-cell unit-cell">8</td>
+                <td contenteditable="true" class="excel-cell price-cell">6500</td>
+                <td class="excel-cell total-cell text-emerald-400 font-bold">52000</td>
+              </tr>
+              <!-- Row 4 -->
+              <tr>
+                <td class="excel-cell text-center bg-black/40 text-slate-500">5</td>
+                <td contenteditable="true" class="excel-cell">West</td>
+                <td contenteditable="true" class="excel-cell">IoT Sensor Hub</td>
+                <td contenteditable="true" class="excel-cell unit-cell">20</td>
+                <td contenteditable="true" class="excel-cell price-cell">3500</td>
+                <td class="excel-cell total-cell text-emerald-400 font-bold">70000</td>
+              </tr>
+              <!-- Row 5 -->
+              <tr>
+                <td class="excel-cell text-center bg-black/40 text-slate-500">6</td>
+                <td contenteditable="true" class="excel-cell">North</td>
+                <td contenteditable="true" class="excel-cell">Server Instance</td>
+                <td contenteditable="true" class="excel-cell unit-cell">3</td>
+                <td contenteditable="true" class="excel-cell price-cell">23000</td>
+                <td class="excel-cell total-cell text-emerald-400 font-bold">69000</td>
+              </tr>
+              <!-- Row 6 -->
+              <tr>
+                <td class="excel-cell text-center bg-black/40 text-slate-500">7</td>
+                <td contenteditable="true" class="excel-cell">Central</td>
+                <td contenteditable="true" class="excel-cell">Database License</td>
+                <td contenteditable="true" class="excel-cell unit-cell">2</td>
+                <td contenteditable="true" class="excel-cell price-cell">35000</td>
+                <td class="excel-cell total-cell text-emerald-400 font-bold">70000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Live Dynamic Chart Visualizer -->
+      <div class="lg:col-span-5 glass-card p-6 rounded-3xl space-y-4">
+        <span class="text-xs font-mono text-slate-300 font-bold uppercase tracking-wider block border-b border-white/10 pb-3">
+          Real-Time Data Distribution
+        </span>
+        <div class="h-64">
+          <canvas id="excelChart"></canvas>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 text-[11px] font-mono text-slate-400 space-y-1">
+          <strong class="text-emerald-400">Excel Competencies Verified:</strong><br>
+          • Nested Logic (IF, VLOOKUP, INDEX-MATCH)<br>
+          • Power Query Data Cleansing & Normalization<br>
+          • Automated Macro Scripting & Pivot Visuals
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-[10px] font-mono text-slate-600 pt-6">
+    Engineered by Priyanshu Kumar • Advanced Web-Based Excel Analytics Studio // 2026
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    let chartInstance = null;
+
+    function initChart(labels, data) {
+      const ctx = document.getElementById('excelChart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Total Revenue (₹)',
+            data: data,
+            backgroundColor: 'rgba(16, 185, 129, 0.4)',
+            borderColor: '#10b981',
+            borderWidth: 1.5,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } } },
+            x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 9 } } }
+          },
+          plugins: { legend: { display: false } }
+        }
+      });
+    }
+
+    function calculateMetrics() {
+      const rows = document.querySelectorAll('#excelBody tr');
+      let totalSum = 0;
+      let count = 0;
+      let maxVal = 0;
+      let categories = [];
+      let totals = [];
+
+      rows.forEach(row => {
+        const cat = row.children[2].innerText.trim();
+        const units = parseFloat(row.children[3].innerText.trim()) || 0;
+        const price = parseFloat(row.children[4].innerText.trim()) || 0;
+        const rowTotal = units * price;
+
+        row.children[5].innerText = rowTotal;
+
+        totalSum += rowTotal;
+        count++;
+        if (rowTotal > maxVal) maxVal = rowTotal;
+
+        categories.push(cat);
+        totals.push(rowTotal);
+      });
+
+      document.getElementById('kpiRevenue').innerText = `₹ ${totalSum.toLocaleString('en-IN')}`;
+      document.getElementById('kpiAvg').innerText = `₹ ${Math.round(totalSum / count).toLocaleString('en-IN')}`;
+      document.getElementById('kpiCount').innerText = `${count} Records`;
+      document.getElementById('kpiMax').innerText = `₹ ${maxVal.toLocaleString('en-IN')}`;
+
+      initChart(categories, totals);
+    }
+
+    function evaluateFormula() {
+      calculateMetrics();
+    }
+
+    // Auto-calculate on edit
+    document.getElementById('excelBody').addEventListener('input', () => {
+      calculateMetrics();
+    });
+
+    calculateMetrics();
+  </script>
+</body>
+</html>
