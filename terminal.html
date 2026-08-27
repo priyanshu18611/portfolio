@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priyanshu Kumar | CLI Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'JetBrains Mono', monospace; background-color: #050608; }
+  </style>
+</head>
+<body class="text-emerald-400 p-4 md:p-8 min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-black">
+  <div class="max-w-4xl w-full mx-auto space-y-4">
+    <div class="flex justify-between items-center border-b border-emerald-900/60 pb-3 text-xs">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>PRIYANSHU-OS // TERMINAL ONLINE</span>
+      </div>
+      <a href="./index.html" class="text-orange-400 hover:underline">← Exit to Portfolio</a>
+    </div>
+
+    <div id="terminal-history" class="space-y-3 text-xs leading-relaxed pt-2">
+      <div class="text-slate-400">
+        Type <span class="text-orange-400 font-bold">'help'</span> for commands. Try <span class="text-orange-400 font-bold">'projects'</span> or <span class="text-orange-400 font-bold">'skills'</span>.
+      </div>
+    </div>
+
+    <form id="terminal-form" onsubmit="handleCommand(event)" class="flex items-center gap-2 pt-2">
+      <span class="text-orange-500 font-bold">priyanshu@root:~$</span>
+      <input id="cli-input" type="text" autocomplete="off" autofocus class="flex-1 bg-transparent text-emerald-300 outline-none border-none text-xs" />
+    </form>
+  </div>
+
+  <div class="text-center text-[10px] text-slate-600 font-mono pt-8">
+    PRIYANSHU KUMAR CLI SYSTEM // 2026
+  </div>
+
+  <script>
+    const history = document.getElementById('terminal-history');
+    const input = document.getElementById('cli-input');
+
+    const commands = {
+      help: `Available Commands:
+  • about      : Bio and details
+  • skills     : Technical stack
+  • projects   : Key deployments
+  • contact    : Contact info
+  • clear      : Clear screen`,
+      about: `Software Engineer & Data Analyst
+B.Tech CSE (2022-2026) | Shershah Engineering College`,
+      skills: `Languages : Python, Java, C, C++, JavaScript
+SE/Data   : Node.js, Express, SQL, Tableau, Power BI, TensorFlow`,
+      projects: `1. EcoSentinel (IoT Wildlife Tracking)
+2. Kisan Mitra (Smart Farming Dashboard)
+3. AgroSmart AI (Crop & Fertilizer Recommender)
+4. Fake Payment Detector (Fraud Detection ML)`,
+      contact: `Phone    : +91-6202018611
+Email    : priyanshu6202018611@gmail.com
+LinkedIn : linkedin.com/in/priyanshuroy18`
+    };
+
+    function handleCommand(e) {
+      e.preventDefault();
+      const val = input.value.trim().toLowerCase();
+      if (!val) return;
+
+      const userLine = document.createElement('div');
+      userLine.innerHTML = `<span class="text-orange-500 font-bold">priyanshu@root:~$</span> <span class="text-white">${input.value}</span>`;
+      history.appendChild(userLine);
+
+      if (val === 'clear') {
+        history.innerHTML = '';
+      } else if (commands[val]) {
+        const out = document.createElement('div');
+        out.className = 'text-slate-300 whitespace-pre-wrap pl-2 border-l border-emerald-800';
+        out.innerHTML = commands[val];
+        history.appendChild(out);
+      } else {
+        const err = document.createElement('div');
+        err.className = 'text-red-400';
+        err.innerText = `Command not recognized: '${val}'. Type 'help' for valid commands.`;
+        history.appendChild(err);
+      }
+
+      input.value = '';
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  </script>
+</body>
+</html>
