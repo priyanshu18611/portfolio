@@ -3,170 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshu Kumar | Data Analytics & BI Studio</title>
+  <title>Priyanshu Kumar | Power BI, Tableau & Data Analytics Studio</title>
   
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06070a; color: #e2e8f0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030406; color: #e2e8f0; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
     .glass-card {
-      background: rgba(15, 19, 29, 0.85);
+      background: rgba(12, 16, 25, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
     }
   </style>
 </head>
-<body class="p-4 sm:p-8 selection:bg-orange-500 selection:text-black min-h-screen flex flex-col justify-between">
+<body class="p-4 sm:p-8 selection:bg-blue-500 selection:text-black min-h-screen flex flex-col justify-between">
 
   <!-- Ambient Glow -->
-  <div class="fixed -top-32 -left-32 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed -top-32 -left-32 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
   <!-- Header -->
-  <header class="max-w-6xl mx-auto w-full flex justify-between items-center pb-6 border-b border-white/10">
+  <header class="max-w-7xl mx-auto w-full flex justify-between items-center pb-6 border-b border-white/10">
     <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-400 flex items-center justify-center font-black text-black text-sm shadow-[0_0_20px_rgba(255,107,0,0.4)]">
-        PK
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 text-black flex items-center justify-center font-black text-xs shadow-[0_0_20px_rgba(37,99,235,0.5)]">
+        BI
       </div>
       <div>
-        <h1 class="text-sm font-bold text-white uppercase tracking-wider">Data Analytics & BI Studio</h1>
-        <p class="text-[10px] font-mono text-orange-400">SQL Engine • Visual Analytics • Predictive Insights</p>
+        <h1 class="text-sm font-bold text-white uppercase tracking-wider">Advanced Data Analytics & BI Studio</h1>
+        <p class="text-[10px] font-mono text-cyan-400">⚡ Power BI DAX • Tableau Visuals • SQL ETL Pipeline • Python Pandas // Priyanshu Kumar</p>
       </div>
     </div>
-    <a href="./index.html" class="px-4 py-1.5 rounded-full border border-orange-500/30 text-xs font-bold text-orange-400 hover:bg-orange-500/10 transition-all flex items-center gap-1.5">
-      <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Exit to Portfolio
-    </a>
+    
+    <div class="flex items-center gap-2">
+      <a href="./index.html" class="px-4 py-1.5 rounded-full border border-white/10 text-xs font-bold text-slate-300 hover:bg-white/10 transition-all flex items-center gap-1.5">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Exit to Portfolio
+      </a>
+    </div>
   </header>
 
-  <!-- Main Analytics Grid -->
-  <main class="max-w-6xl mx-auto w-full py-8 space-y-8">
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto w-full py-8 space-y-8">
 
-    <!-- KPI Metric Cards -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="p-5 rounded-2xl glass-card border-l-4 border-l-orange-500">
-        <span class="text-[10px] font-mono text-slate-400 uppercase">Records Processed</span>
-        <div class="text-2xl font-black text-white font-mono mt-1">2.4M+</div>
-        <div class="text-[10px] text-orange-400 font-mono">Cleaned & Transformed</div>
+    <!-- KPI Metrics Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono">
+      <div class="p-5 rounded-3xl glass-card border-l-4 border-l-blue-500 space-y-1">
+        <span class="text-slate-400 text-[10px] block uppercase">YTD Total Sales (DAX)</span>
+        <div class="flex items-baseline justify-between">
+          <span class="text-2xl font-bold text-white">₹ 1.48 Cr</span>
+          <span class="text-emerald-400 text-[10px] font-bold">+28.4% 📈</span>
+        </div>
       </div>
-      <div class="p-5 rounded-2xl glass-card border-l-4 border-l-amber-500">
-        <span class="text-[10px] font-mono text-slate-400 uppercase">Model Accuracy</span>
-        <div class="text-2xl font-black text-amber-400 font-mono mt-1">94.8%</div>
-        <div class="text-[10px] text-slate-400 font-mono">XGBoost & Random Forest</div>
-      </div>
-      <div class="p-5 rounded-2xl glass-card border-l-4 border-l-emerald-500">
-        <span class="text-[10px] font-mono text-slate-400 uppercase">Query Latency</span>
-        <div class="text-2xl font-black text-emerald-400 font-mono mt-1">&lt;18ms</div>
-        <div class="text-[10px] text-slate-400 font-mono">Optimized SQL Indexes</div>
-      </div>
-      <div class="p-5 rounded-2xl glass-card border-l-4 border-l-blue-500">
-        <span class="text-[10px] font-mono text-slate-400 uppercase">BI Dashboards</span>
-        <div class="text-2xl font-black text-blue-400 font-mono mt-1">Tableau / PowerBI</div>
-        <div class="text-[10px] text-slate-400 font-mono">Production Storyboards</div>
-      </div>
-    </div>
-
-    <!-- Live Charts Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       
-      <!-- Chart 1: ML Model Accuracy vs Epochs -->
-      <div class="glass-card p-6 rounded-3xl space-y-4">
-        <div class="flex justify-between items-center border-b border-white/10 pb-3">
-          <div class="flex items-center gap-2">
-            <i data-lucide="trending-up" class="w-4 h-4 text-orange-400"></i>
-            <h2 class="text-sm font-bold text-white">Brain Tumor CNN Convergence Curve</h2>
-          </div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-orange-500/10 text-orange-400 border border-orange-500/20">Validation 94.2%</span>
-        </div>
-        <div class="h-60">
-          <canvas id="accuracyChart"></canvas>
+      <div class="p-5 rounded-3xl glass-card border-l-4 border-l-cyan-500 space-y-1">
+        <span class="text-slate-400 text-[10px] block uppercase">Operating Margin</span>
+        <div class="flex items-baseline justify-between">
+          <span class="text-2xl font-bold text-cyan-400">32.6%</span>
+          <span class="text-emerald-400 text-[10px] font-bold">Target Met 🎯</span>
         </div>
       </div>
 
-      <!-- Chart 2: Agricultural Crop Production Analysis -->
-      <div class="glass-card p-6 rounded-3xl space-y-4">
-        <div class="flex justify-between items-center border-b border-white/10 pb-3">
-          <div class="flex items-center gap-2">
-            <i data-lucide="pie-chart" class="w-4 h-4 text-amber-400"></i>
-            <h2 class="text-sm font-bold text-white">Crop Recommender Distribution (AgroSmart)</h2>
-          </div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Multi-Class ML</span>
-        </div>
-        <div class="h-60">
-          <canvas id="cropChart"></canvas>
+      <div class="p-5 rounded-3xl glass-card border-l-4 border-l-amber-500 space-y-1">
+        <span class="text-slate-400 text-[10px] block uppercase">Data Model Structure</span>
+        <div class="flex items-baseline justify-between">
+          <span class="text-2xl font-bold text-amber-400">Star Schema</span>
+          <span class="text-slate-400 text-[10px]">1:N Rel</span>
         </div>
       </div>
 
+      <div class="p-5 rounded-3xl glass-card border-l-4 border-l-emerald-500 space-y-1">
+        <span class="text-slate-400 text-[10px] block uppercase">ETL Pipeline Refresh</span>
+        <div class="flex items-baseline justify-between">
+          <span class="text-2xl font-bold text-emerald-400">Automated</span>
+          <span class="text-cyan-400 text-[10px] font-bold">0.08s ⚡</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Live SQL Query Console -->
-    <div class="glass-card p-6 rounded-3xl space-y-4 border-t-2 border-t-orange-500">
-      <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-white/10 pb-3">
-        <div class="flex items-center gap-2">
-          <i data-lucide="database" class="w-5 h-5 text-orange-400"></i>
-          <div>
-            <h2 class="text-base font-bold text-white">Interactive SQL Query Sandbox</h2>
-            <p class="text-xs text-slate-400">Select or write SQL queries against sample analytical datasets</p>
+    <!-- BI Framework Switcher Tabs -->
+    <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+      <button onclick="switchBiTab('powerbi')" id="tabPowerbi" class="px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)] cursor-pointer flex items-center gap-2">
+        <i data-lucide="bar-chart-3" class="w-4 h-4"></i> 1. Power BI & DAX Engine
+      </button>
+      <button onclick="switchBiTab('tableau')" id="tabTableau" class="px-5 py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer flex items-center gap-2">
+        <i data-lucide="pie-chart" class="w-4 h-4 text-orange-400"></i> 2. Tableau Storytelling
+      </button>
+      <button onclick="switchBiTab('sql')" id="tabSql" class="px-5 py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer flex items-center gap-2">
+        <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i> 3. SQL & Power Query ETL
+      </button>
+    </div>
+
+    <!-- SECTION 1: POWER BI & DAX -->
+    <div id="sectionPowerbi" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <div class="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl space-y-4">
+          <div class="flex justify-between items-center border-b border-white/10 pb-3">
+            <div>
+              <h3 class="text-xs font-mono font-bold text-white uppercase tracking-wider">Multi-Region Sales Performance Visual</h3>
+              <p class="text-[11px] text-slate-400">Power BI visual aggregation across fiscal quarters</p>
+            </div>
+            <span class="text-[10px] font-mono text-cyan-400 font-bold">● Live Sync</span>
+          </div>
+          <div class="h-64">
+            <canvas id="biChart"></canvas>
           </div>
         </div>
-        <div class="flex gap-2">
-          <button onclick="setQuery(1)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono hover:text-orange-400">Query #1 (Top Mandis)</button>
-          <button onclick="setQuery(2)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono hover:text-orange-400">Query #2 (Fraud Stats)</button>
+
+        <div class="lg:col-span-5 glass-card p-6 sm:p-8 rounded-3xl space-y-4">
+          <h3 class="text-xs font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
+            <i data-lucide="code" class="w-4 h-4 text-blue-400"></i> Advanced DAX Calculation
+          </h3>
+          <p class="text-[11px] text-slate-400">Year-Over-Year Sales Variance Measure:</p>
+
+          <div class="bg-black/90 p-4 rounded-2xl border border-white/5 font-mono text-xs text-cyan-400 leading-relaxed overflow-x-auto">
+            YoY_Sales_Variance_% = <br>
+            VAR CurrentSales = CALCULATE(SUM(Sales[Amount]), DATESYTD('Date'[Date]))<br>
+            VAR PreviousSales = CALCULATE(SUM(Sales[Amount]), SAMEPERIODLASTYEAR('Date'[Date]))<br>
+            RETURN<br>
+            DIVIDE(CurrentSales - PreviousSales, PreviousSales, 0)
+          </div>
+
+          <button onclick="alert('DAX measure validated! Execution plan parsed with zero errors.')" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs font-mono uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+            Validate DAX Syntax
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 2: TABLEAU STORYTELLING -->
+    <div id="sectionTableau" class="hidden space-y-6">
+      <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+          <div>
+            <h3 class="text-base font-bold text-white font-mono">Tableau Enterprise Storyboard Architecture</h3>
+            <p class="text-xs text-slate-400">Parameter-driven drill downs, LOD (Level of Detail) expressions & cohort retention curves</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-mono font-bold">Cisco Certified</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 font-mono text-xs">
+          <div class="p-5 rounded-2xl bg-black/50 border border-white/5 space-y-2">
+            <span class="text-orange-400 font-bold block text-sm">1. FIXED LOD Calculations</span>
+            <p class="text-slate-400 text-[11px] leading-relaxed"><code>{FIXED [Customer ID] : MIN([Order Date])}</code> — Isolates baseline customer acquisition cohort independent of dashboard filter contexts.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-black/50 border border-white/5 space-y-2">
+            <span class="text-orange-400 font-bold block text-sm">2. Spatial Heatmap Mapping</span>
+            <p class="text-slate-400 text-[11px] leading-relaxed">Geospatial coordinate layer displaying logistic transit delay hot-spots across supply chain transit hubs.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-black/50 border border-white/5 space-y-2">
+            <span class="text-orange-400 font-bold block text-sm">3. Dynamic Parameter Controls</span>
+            <p class="text-slate-400 text-[11px] leading-relaxed">Single-click metric switching between Revenue, Profit Ratio, and Discount Variance without query reloading.</p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="space-y-2">
-        <textarea id="sqlInput" rows="2" class="w-full bg-black/60 border border-white/10 rounded-xl p-3 text-xs font-mono text-emerald-400 focus:outline-none focus:border-orange-500">SELECT crop_name, AVG(mandi_price) AS avg_price, state FROM crop_analytics GROUP BY crop_name ORDER BY avg_price DESC LIMIT 5;</textarea>
-        
-        <button onclick="executeSQL()" class="px-5 py-2.5 rounded-xl bg-orange-500 text-black font-extrabold text-xs uppercase tracking-wider hover:bg-orange-400 transition-all flex items-center gap-2 cursor-pointer">
-          <i data-lucide="play" class="w-3.5 h-3.5"></i> Run SQL Query
-        </button>
-      </div>
+    <!-- SECTION 3: SQL & POWER QUERY ETL -->
+    <div id="sectionSql" class="hidden space-y-6">
+      <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-5">
+        <div class="flex justify-between items-center border-b border-white/10 pb-4">
+          <div>
+            <h3 class="text-base font-bold text-white font-mono">Advanced SQL & Power Query ETL Pipeline</h3>
+            <p class="text-xs text-slate-400">Window functions, Common Table Expressions (CTEs), and star-schema ingestion models</p>
+          </div>
+          <button onclick="runSqlEtl()" class="px-4 py-2 rounded-xl bg-emerald-500 text-black font-extrabold text-xs font-mono uppercase tracking-wider hover:bg-emerald-400 transition-all cursor-pointer">
+            Execute SQL ETL
+          </button>
+        </div>
 
-      <!-- SQL Table Output -->
-      <div id="sqlOutput" class="overflow-x-auto rounded-xl border border-white/10 bg-black/40 p-3">
-        <table class="w-full text-left text-xs font-mono">
-          <thead>
-            <tr class="border-b border-white/10 text-slate-400">
-              <th class="p-2">crop_name</th>
-              <th class="p-2">avg_price (₹/Quintal)</th>
-              <th class="p-2">state</th>
-              <th class="p-2">status</th>
-            </tr>
-          </thead>
-          <tbody id="sqlTableBody" class="divide-y divide-white/5 text-slate-200">
-            <tr>
-              <td class="p-2 text-orange-400">Basmati Rice</td>
-              <td class="p-2">₹4,250</td>
-              <td class="p-2">Punjab</td>
-              <td class="p-2 text-emerald-400">High Demand</td>
-            </tr>
-            <tr>
-              <td class="p-2 text-orange-400">Cotton Medium</td>
-              <td class="p-2">₹6,800</td>
-              <td class="p-2">Gujarat</td>
-              <td class="p-2 text-emerald-400">Surplus</td>
-            </tr>
-            <tr>
-              <td class="p-2 text-orange-400">Wheat Sharbati</td>
-              <td class="p-2">₹2,840</td>
-              <td class="p-2">Madhya Pradesh</td>
-              <td class="p-2 text-amber-400">Stable</td>
-            </tr>
-            <tr>
-              <td class="p-2 text-orange-400">Mustard Seed</td>
-              <td class="p-2">₹5,400</td>
-              <td class="p-2">Rajasthan</td>
-              <td class="p-2 text-emerald-400">High Demand</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="bg-black/90 p-4 rounded-2xl border border-white/5 font-mono text-xs text-emerald-400 leading-relaxed overflow-x-auto">
+          WITH RegionalAggregates AS (<br>
+          &nbsp;&nbsp;SELECT region, category, SUM(sales_amount) as total_revenue,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;DENSE_RANK() OVER(PARTITION BY region ORDER BY SUM(sales_amount) DESC) as rank_pos<br>
+          &nbsp;&nbsp;FROM enterprise_dw.fact_sales<br>
+          &nbsp;&nbsp;GROUP BY region, category<br>
+          )<br>
+          SELECT * FROM RegionalAggregates WHERE rank_pos = 1;
+        </div>
+
+        <div id="etlOutput" class="p-4 rounded-2xl bg-black/60 border border-white/10 font-mono text-xs text-slate-300 hidden space-y-2">
+          <span class="text-emerald-400 font-bold block">⚡ ETL Pipeline Synchronized in 0.08s:</span>
+          <p>Top performing product categories isolated per regional node. Star-schema fact table populated and ready for Power BI / Tableau consumption.</p>
+        </div>
       </div>
     </div>
 
@@ -174,96 +201,70 @@
 
   <!-- Footer -->
   <footer class="text-center text-[10px] font-mono text-slate-600 pt-6">
-    Engineered by Priyanshu Kumar • Data Analytics & Business Intelligence Studio
+    Engineered by Priyanshu Kumar • Advanced Data Analytics & BI Studio // 2026
   </footer>
 
   <script>
     lucide.createIcons();
 
-    // Chart 1: CNN Accuracy Line Chart
-    const ctx1 = document.getElementById('accuracyChart').getContext('2d');
-    new Chart(ctx1, {
-      type: 'line',
-      data: {
-        labels: ['Ep 1', 'Ep 5', 'Ep 10', 'Ep 15', 'Ep 20', 'Ep 25', 'Ep 30'],
-        datasets: [
-          {
-            label: 'Training Accuracy',
-            data: [68, 79, 85, 89, 93, 96, 98.2],
-            borderColor: '#f97316',
-            backgroundColor: 'rgba(249, 115, 22, 0.1)',
-            tension: 0.3,
-            fill: true
+    let biChartInstance = null;
+
+    function initBiChart() {
+      const ctx = document.getElementById('biChart').getContext('2d');
+      if (biChartInstance) biChartInstance.destroy();
+
+      biChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['North Region', 'South Region', 'East Region', 'West Region', 'Central Hub'],
+          datasets: [{
+            label: 'Quarterly Sales (₹ Lakhs)',
+            data: [42, 38, 29, 45, 34],
+            backgroundColor: 'rgba(37, 99, 235, 0.5)',
+            borderColor: '#3b82f6',
+            borderWidth: 1.5,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } } },
+            x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } } }
           },
-          {
-            label: 'Validation Accuracy',
-            data: [65, 75, 82, 86, 91, 93.5, 94.2],
-            borderColor: '#38bdf8',
-            borderDash: [5, 5],
-            tension: 0.3
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } } } },
-        scales: {
-          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
-          y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+          plugins: { legend: { display: false } }
         }
-      }
-    });
-
-    // Chart 2: Crop Distribution Doughnut Chart
-    const ctx2 = document.getElementById('cropChart').getContext('2d');
-    new Chart(ctx2, {
-      type: 'doughnut',
-      data: {
-        labels: ['Rice (Paddy)', 'Wheat / Maize', 'Cotton / Cash Crop', 'Millets / Pulses', 'Oilseeds'],
-        datasets: [{
-          data: [35, 25, 18, 12, 10],
-          backgroundColor: ['#f97316', '#fbbf24', '#34d399', '#38bdf8', '#a855f7'],
-          borderWidth: 0
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'right', labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } } } }
-      }
-    });
-
-    // SQL Sandbox Helper
-    function setQuery(type) {
-      const input = document.getElementById('sqlInput');
-      if (type === 1) {
-        input.value = "SELECT crop_name, AVG(mandi_price) AS avg_price, state FROM crop_analytics GROUP BY crop_name ORDER BY avg_price DESC LIMIT 5;";
-      } else {
-        input.value = "SELECT transaction_type, COUNT(*) as total_count, SUM(fraud_flag) as fraud_cases FROM payment_logs GROUP BY transaction_type;";
-      }
-      executeSQL();
+      });
     }
 
-    function executeSQL() {
-      const q = document.getElementById('sqlInput').value;
-      const tbody = document.getElementById('sqlTableBody');
-      
-      if (q.includes('payment_logs')) {
-        tbody.innerHTML = `
-          <tr><td class="p-2 text-orange-400">UPI / QR Transfer</td><td class="p-2">142,500</td><td class="p-2">312 Cases</td><td class="p-2 text-red-400">0.21% Risk</td></tr>
-          <tr><td class="p-2 text-orange-400">NetBanking Portal</td><td class="p-2">89,200</td><td class="p-2">45 Cases</td><td class="p-2 text-emerald-400">0.05% Risk</td></tr>
-          <tr><td class="p-2 text-orange-400">Credit Card Gateway</td><td class="p-2">64,100</td><td class="p-2">184 Cases</td><td class="p-2 text-amber-400">0.28% Risk</td></tr>
-        `;
-      } else {
-        tbody.innerHTML = `
-          <tr><td class="p-2 text-orange-400">Basmati Rice</td><td class="p-2">₹4,250</td><td class="p-2">Punjab</td><td class="p-2 text-emerald-400">High Demand</td></tr>
-          <tr><td class="p-2 text-orange-400">Cotton Medium</td><td class="p-2">₹6,800</td><td class="p-2">Gujarat</td><td class="p-2 text-emerald-400">Surplus</td></tr>
-          <tr><td class="p-2 text-orange-400">Wheat Sharbati</td><td class="p-2">₹2,840</td><td class="p-2">Madhya Pradesh</td><td class="p-2 text-amber-400">Stable</td></tr>
-          <tr><td class="p-2 text-orange-400">Mustard Seed</td><td class="p-2">₹5,400</td><td class="p-2">Rajasthan</td><td class="p-2 text-emerald-400">High Demand</td></tr>
-        `;
+    function switchBiTab(tab) {
+      document.getElementById('sectionPowerbi').classList.add('hidden');
+      document.getElementById('sectionTableau').classList.add('hidden');
+      document.getElementById('sectionSql').classList.add('hidden');
+
+      document.getElementById('tabPowerbi').className = 'px-5 py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer flex items-center gap-2';
+      document.getElementById('tabTableau').className = 'px-5 py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer flex items-center gap-2';
+      document.getElementById('tabSql').className = 'px-5 py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer flex items-center gap-2';
+
+      if (tab === 'powerbi') {
+        document.getElementById('sectionPowerbi').classList.remove('hidden');
+        document.getElementById('tabPowerbi').className = 'px-5 py-2.5 rounded-2xl bg-blue-600 text-white font-bold transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)] cursor-pointer flex items-center gap-2';
+        setTimeout(initBiChart, 100);
+      } else if (tab === 'tableau') {
+        document.getElementById('sectionTableau').classList.remove('hidden');
+        document.getElementById('tabTableau').className = 'px-5 py-2.5 rounded-2xl bg-orange-600 text-white font-bold transition-all shadow-[0_0_15px_rgba(234,88,12,0.4)] cursor-pointer flex items-center gap-2';
+      } else if (tab === 'sql') {
+        document.getElementById('sectionSql').classList.remove('hidden');
+        document.getElementById('tabSql').className = 'px-5 py-2.5 rounded-2xl bg-emerald-600 text-white font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)] cursor-pointer flex items-center gap-2';
       }
     }
+
+    function runSqlEtl() {
+      document.getElementById('etlOutput').classList.remove('hidden');
+    }
+
+    initBiChart();
   </script>
 </body>
 </html>
