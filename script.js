@@ -1,7 +1,7 @@
 // Lucide Icons initialization
 lucide.createIcons();
 
-// 1. Interactive 3D Three.js Field
+// 1. Advanced 3D Three.js Geometric Neural Orb + Particles
 const canvas = document.getElementById('three-bg');
 if (canvas) {
   const scene = new THREE.Scene();
@@ -11,28 +11,43 @@ if (canvas) {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  const particlesCount = 350;
+  // 3D Geometric Wireframe Sphere
+  const sphereGeo = new THREE.IcosahedronGeometry(1.6, 2);
+  const sphereMat = new THREE.MeshBasicMaterial({
+    color: 0xea580c,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.22
+  });
+  const neuralOrb = new THREE.Mesh(sphereGeo, sphereMat);
+  neuralOrb.position.set(2.2, 0, -1);
+  scene.add(neuralOrb);
+
+  // Background Starfield Particles
+  const particlesCount = 450;
   const posArray = new Float32Array(particlesCount * 3);
 
   for (let i = 0; i < particlesCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 8.5;
+    posArray[i] = (Math.random() - 0.5) * 9.5;
   }
 
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
   const material = new THREE.PointsMaterial({
-    size: 0.022,
-    color: 0xea580c,
+    size: 0.024,
+    color: 0xfb923c,
     transparent: true,
-    opacity: 0.65
+    opacity: 0.6
   });
 
   const particlesMesh = new THREE.Points(geometry, material);
   scene.add(particlesMesh);
-  camera.position.z = 3;
+  camera.position.z = 3.2;
 
   let mouseX = 0, mouseY = 0;
+  let targetX = 0, targetY = 0;
+
   window.addEventListener('mousemove', (e) => {
     mouseX = (e.clientX / window.innerWidth) - 0.5;
     mouseY = (e.clientY / window.innerHeight) - 0.5;
@@ -41,8 +56,18 @@ if (canvas) {
   const clock = new THREE.Clock();
   function animate() {
     const elapsedTime = clock.getElapsedTime();
-    particlesMesh.rotation.y = elapsedTime * 0.03 + mouseX * 0.2;
-    particlesMesh.rotation.x = -mouseY * 0.2;
+
+    // Smooth camera / orb interpolation
+    targetX += (mouseX - targetX) * 0.05;
+    targetY += (mouseY - targetY) * 0.05;
+
+    neuralOrb.rotation.x = elapsedTime * 0.12;
+    neuralOrb.rotation.y = elapsedTime * 0.18 + targetX * 1.5;
+    neuralOrb.position.y = Math.sin(elapsedTime * 0.8) * 0.15;
+
+    particlesMesh.rotation.y = elapsedTime * 0.02 + targetX * 0.2;
+    particlesMesh.rotation.x = -targetY * 0.2;
+
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
@@ -55,7 +80,21 @@ if (canvas) {
   });
 }
 
-// 2. Typewriter Effect
+// 2. Interactive 3D Tilt on Cards (Parallax Hover)
+document.querySelectorAll('.glass-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    card.style.transform = `perspective(1000px) rotateX(${-y / 25}deg) rotateY(${x / 25}deg) translateY(-4px)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+  });
+});
+
+// 3. Multi-Role Typewriter Effect
 const words = ["Software Engineer", "Data Analyst", "Machine Learning Dev", "Cloud Architect"];
 let wordIdx = 0;
 const typewriterElem = document.getElementById('typewriter');
@@ -67,7 +106,7 @@ function typeEffect() {
   const loopTyping = () => {
     if (currentWord.length > 0) {
       typewriterElem.innerHTML += currentWord.shift();
-      setTimeout(loopTyping, 90);
+      setTimeout(loopTyping, 85);
     } else {
       setTimeout(eraseEffect, 1800);
     }
@@ -83,10 +122,10 @@ function eraseEffect() {
     if (wordLen > 0) {
       typewriterElem.innerHTML = typewriterElem.innerHTML.substring(0, wordLen - 1);
       wordLen--;
-      setTimeout(loopErasing, 45);
+      setTimeout(loopErasing, 40);
     } else {
       wordIdx = (wordIdx + 1) % words.length;
-      setTimeout(typeEffect, 300);
+      setTimeout(typeEffect, 250);
     }
   };
   loopErasing();
@@ -97,7 +136,7 @@ if (typewriterElem) {
   typeEffect();
 }
 
-// 3. AI Assistant System
+// 4. AI Recruiter Assistant Modal
 function openChat() {
   const modal = document.getElementById('aiChat');
   const btn = document.getElementById('floatingAiBtn');
@@ -114,7 +153,7 @@ function closeChat() {
   if (btn) btn.classList.remove('hidden');
 }
 
-function processAiResponse(userText) {
+async function processAiResponse(userText) {
   const container = document.getElementById('chatMessages');
   if (!container) return;
 
@@ -124,18 +163,19 @@ function processAiResponse(userText) {
   container.appendChild(userDiv);
   container.scrollTop = container.scrollHeight;
 
-  const q = userText.toLowerCase();
-  let reply = "Priyanshu is a Software Engineer & Data Analyst pursuing B.Tech CSE at Shershah Engineering College (2022-2026).";
+  let reply = "Priyanshu is a Software Engineer & Data Analyst pursuing B.Tech CSE (2022-2026).";
 
-  if (q.includes('project') || q.includes('kisan') || q.includes('agrosmart') || q.includes('ecosentinel')) {
-    reply = "🚀 Featured Deployments:\n• EcoSentinel: IoT & Full Stack Wildlife Platform\n• Kisan-Mitra: Smart Farming Dashboard\n• AgroSmart AI Farmer Assistant: Crop Recommendation ML\n• Fake Payment Detector & Spam Mail Classifier\n• Cricket Score Predictor & PDF Resume Parser";
-  } else if (q.includes('contact') || q.includes('phone') || q.includes('email') || q.includes('linkedin')) {
-    reply = "📬 Contact Info:\n• Phone: +91-6202018611\n• Email: priyanshu6202018611@gmail.com\n• LinkedIn: linkedin.com/in/priyanshuroy18\n• GitHub: github.com/priyanshu18611";
-  } else if (q.includes('education') || q.includes('college') || q.includes('10th') || q.includes('12th')) {
-    reply = "🎓 Education:\n1. B.Tech in CSE: Shershah Engineering College (2022-2026)\n2. Intermediate (PCM): RB College Dalsingsaray (2018-2020)\n3. Matriculation: JPNS Narhan (2017-2018)";
-  } else if (q.includes('certif') || q.includes('skills')) {
-    reply = "📜 Credentials:\n• Cisco: Data Analytics Essentials\n• JPMorgan Chase: Software Engineering Simulation\n• AWS: Data Engineering & Prompt Engineering\n• SAP: ABAP & Analytics Cloud";
-  }
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: userText })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      reply = data.reply;
+    }
+  } catch(e) {}
 
   setTimeout(() => {
     const aiDiv = document.createElement('div');
@@ -143,7 +183,7 @@ function processAiResponse(userText) {
     aiDiv.innerHTML = `<div class="max-w-[85%] p-3 rounded-2xl bg-white/5 text-slate-200 border border-white/10 leading-relaxed whitespace-pre-line">${reply}</div>`;
     container.appendChild(aiDiv);
     container.scrollTop = container.scrollHeight;
-  }, 250);
+  }, 200);
 }
 
 function handleChatSubmit(e) {
