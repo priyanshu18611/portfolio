@@ -3,89 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshu Kumar | Multi-Format ATS Resume Engine</title>
+  <title>Priyanshu Kumar | Pro Multi-Format ATS Resume Engine</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06070a; color: #e2e8f0; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
     
-    /* Format 1: Harvard Classic (Times New Roman) */
+    /* Format 1: Harvard Classic */
     .format-harvard {
       font-family: 'Times New Roman', Times, serif;
       color: #000000;
       background-color: #ffffff;
-      line-height: 1.35;
     }
     .format-harvard .sec-title {
-      font-size: 11pt;
+      font-size: 1.05em;
       font-weight: bold;
       text-transform: uppercase;
-      border-bottom: 1px solid #000000;
+      border-bottom: 1.5px solid #000000;
       margin-top: 10px;
       margin-bottom: 4px;
       letter-spacing: 0.5px;
     }
 
-    /* Format 2: Modern Minimalist (Inter Sans) */
+    /* Format 2: Silicon Valley Tech */
+    .format-tech {
+      font-family: 'Inter', sans-serif;
+      color: #0f172a;
+      background-color: #ffffff;
+    }
+    .format-tech .sec-title {
+      font-size: 0.95em;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #1e3a8a;
+      background-color: #eff6ff;
+      padding: 2px 6px;
+      border-left: 4px solid #2563eb;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    /* Format 3: Modern Clean */
     .format-modern {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
       background-color: #ffffff;
-      line-height: 1.4;
     }
     .format-modern .sec-title {
-      font-size: 10pt;
+      font-size: 0.95em;
       font-weight: 800;
       text-transform: uppercase;
       color: #0f172a;
       border-bottom: 2px solid #ea580c;
       margin-top: 12px;
       margin-bottom: 6px;
+      letter-spacing: 0.8px;
+    }
+
+    /* Format 4: Data Specialist */
+    .format-data {
+      font-family: 'Arial', sans-serif;
+      color: #050505;
+      background-color: #ffffff;
+    }
+    .format-data .sec-title {
+      font-size: 1.02em;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: 2px solid #059669;
+      color: #065f46;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    /* Format 5: Minimalist Monochrome */
+    .format-minimal {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #000000;
+      background-color: #ffffff;
+    }
+    .format-minimal .sec-title {
+      font-size: 0.95em;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: 1px dashed #4b5563;
+      margin-top: 10px;
+      margin-bottom: 4px;
       letter-spacing: 1px;
     }
 
-    /* Format 3: Tech Executive (Compact Sans + Border) */
-    .format-tech {
-      font-family: 'Arial', sans-serif;
-      color: #111827;
+    /* Format 6: Ivy Lora Serif */
+    .format-lora {
+      font-family: 'Lora', Georgia, serif;
+      color: #1c1917;
       background-color: #ffffff;
-      line-height: 1.3;
     }
-    .format-tech .sec-title {
-      font-size: 10.5pt;
-      font-weight: bold;
-      text-transform: uppercase;
-      background-color: #f1f5f9;
-      padding: 2px 6px;
-      border-left: 4px solid #0284c7;
-      margin-top: 10px;
-      margin-bottom: 4px;
-    }
-
-    /* Format 4: Data Specialist (Data-Dense Metric Focus) */
-    .format-data {
-      font-family: 'Calibri', 'Plus Jakarta Sans', sans-serif;
-      color: #050505;
-      background-color: #ffffff;
-      line-height: 1.32;
-    }
-    .format-data .sec-title {
-      font-size: 11pt;
+    .format-lora .sec-title {
+      font-size: 1.05em;
       font-weight: 700;
       text-transform: uppercase;
-      border-bottom: 1.5px solid #047857;
-      color: #047857;
+      border-bottom: 1px solid #78716c;
       margin-top: 10px;
       margin-bottom: 4px;
+      color: #292524;
     }
 
     @media print {
       @page {
-        margin: 0.35in;
+        margin: 0.3in;
         size: A4 portrait;
       }
       body * { visibility: hidden; }
@@ -107,18 +136,18 @@
   <!-- Header Controls -->
   <header class="max-w-7xl mx-auto w-full flex justify-between items-center pb-6 border-b border-white/10">
     <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-orange-500 text-black flex items-center justify-center font-black text-xs shadow-[0_0_15px_rgba(249,115,22,0.4)]">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-400 text-black flex items-center justify-center font-black text-xs shadow-[0_0_15px_rgba(249,115,22,0.4)]">
         ATS
       </div>
       <div>
-        <h1 class="text-sm font-bold text-white uppercase tracking-wider">Multi-Format ATS Resume Engine</h1>
-        <p class="text-[10px] font-mono text-orange-400">4 Switchable ATS Formats • Live PDF Generator</p>
+        <h1 class="text-sm font-bold text-white uppercase tracking-wider">Pro Multi-Format ATS Resume Engine</h1>
+        <p class="text-[10px] font-mono text-orange-400">6 ATS Layouts • Typography Engine • Instant PDF Export</p>
       </div>
     </div>
     
     <div class="flex items-center gap-3">
       <button onclick="window.print()" class="px-5 py-2 rounded-full bg-orange-500 text-black font-extrabold text-xs uppercase tracking-wider hover:bg-orange-400 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(249,115,22,0.4)] cursor-pointer">
-        <i data-lucide="printer" class="w-4 h-4"></i> Print Selected ATS PDF
+        <i data-lucide="printer" class="w-4 h-4"></i> Download Clean PDF
       </button>
       <a href="./index.html" class="px-4 py-2 rounded-full border border-white/15 text-xs font-bold text-slate-300 hover:bg-white/10 transition-all flex items-center gap-1.5">
         <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Exit
@@ -126,72 +155,96 @@
     </div>
   </header>
 
-  <!-- Main Viewport -->
+  <!-- Main Grid -->
   <main class="max-w-7xl mx-auto w-full py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-    <!-- Left Controls Panel -->
+    <!-- Left Toolbar Panel -->
     <div class="lg:col-span-4 bg-[#0d1017] p-6 rounded-3xl border border-white/10 space-y-5">
       
-      <!-- 4 FORMAT SWITCHER BUTTONS -->
+      <!-- 6 ATS FORMAT SELECTION -->
       <div>
-        <span class="text-xs font-bold text-white uppercase font-mono block mb-2.5">
-          Select ATS Resume Format
-        </span>
-        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-          <button id="btn-harvard" onclick="switchFormat('harvard')" class="p-2.5 rounded-xl border border-orange-500 bg-orange-500/20 text-orange-400 font-bold text-left transition-all">
+        <div class="flex justify-between items-center mb-2.5">
+          <span class="text-xs font-bold text-white uppercase font-mono">Select ATS Standard</span>
+          <span class="text-[10px] font-mono text-emerald-400">100% Parser Safe</span>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
+          <button id="btn-harvard" onclick="switchFormat('harvard')" class="p-2 rounded-xl border border-orange-500 bg-orange-500/20 text-orange-400 font-bold text-left transition-all">
             1. Harvard Classic
           </button>
-          <button id="btn-modern" onclick="switchFormat('modern')" class="p-2.5 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all">
-            2. Modern Clean
+          <button id="btn-tech" onclick="switchFormat('tech')" class="p-2 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all">
+            2. Silicon Valley SDE
           </button>
-          <button id="btn-tech" onclick="switchFormat('tech')" class="p-2.5 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all">
-            3. Tech Executive
+          <button id="btn-modern" onclick="switchFormat('modern')" class="p-2 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all">
+            3. Modern Clean
           </button>
-          <button id="btn-data" onclick="switchFormat('data')" class="p-2.5 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all">
+          <button id="btn-data" onclick="switchFormat('data')" class="p-2 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all">
             4. Data Specialist
           </button>
+          <button id="btn-minimal" onclick="switchFormat('minimal')" class="p-2 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all">
+            5. Monochrome ATS
+          </button>
+          <button id="btn-lora" onclick="switchFormat('lora')" class="p-2 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all">
+            6. Ivy Lora Serif
+          </button>
         </div>
       </div>
 
-      <!-- Quick Role Preset -->
+      <!-- Typography Size & Line Spacing Sliders -->
+      <div class="border-t border-white/10 pt-4 space-y-3">
+        <span class="text-xs font-bold text-white uppercase font-mono block">Layout Calibration</span>
+        
+        <div>
+          <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-1">
+            <span>Base Font Size</span>
+            <span id="fontSizeLabel" class="text-orange-400">10.0 pt</span>
+          </div>
+          <input type="range" min="9" max="11.5" step="0.5" value="10" oninput="adjustFontSize(this.value)" class="w-full accent-orange-500 cursor-pointer" />
+        </div>
+
+        <div>
+          <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-1">
+            <span>Line Spacing Density</span>
+            <span id="lineHeightLabel" class="text-orange-400">1.3x</span>
+          </div>
+          <input type="range" min="1.15" max="1.45" step="0.05" value="1.3" oninput="adjustLineHeight(this.value)" class="w-full accent-orange-500 cursor-pointer" />
+        </div>
+      </div>
+
+      <!-- Quick Role Presets -->
       <div class="border-t border-white/10 pt-4 flex justify-between items-center text-[11px] font-mono">
-        <span class="text-slate-400">Target Track:</span>
+        <span class="text-slate-400">Role Target:</span>
         <div class="flex gap-2">
           <button onclick="applyPreset('sde')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-orange-400 hover:bg-orange-500/10">SDE Track</button>
-          <button onclick="applyPreset('data')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-blue-400 hover:bg-blue-500/10">Data Track</button>
+          <button onclick="applyPreset('data')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-emerald-400 hover:bg-emerald-500/10">Data Track</button>
         </div>
       </div>
 
-      <!-- Live Editable Fields -->
+      <!-- Form Inputs -->
       <div class="space-y-3 text-xs border-t border-white/10 pt-4">
         <div>
           <label class="text-[10px] font-mono text-slate-400 block mb-1">Target Headline</label>
-          <input id="inputRole" oninput="syncResume()" type="text" value="Software Engineer & Data Analyst" class="w-full bg-black/50 border border-white/10 rounded-xl p-2.5 text-white outline-none focus:border-orange-500 text-xs font-sans" />
+          <input id="inputRole" oninput="syncResume()" type="text" value="Software Engineer & Data Analyst" class="w-full bg-black/50 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-orange-500 text-xs font-sans" />
         </div>
         <div>
-          <label class="text-[10px] font-mono text-slate-400 block mb-1">Contact & Location</label>
-          <input id="inputContact" oninput="syncResume()" type="text" value="+91-6202018611 | Bihar, India" class="w-full bg-black/50 border border-white/10 rounded-xl p-2.5 text-white outline-none focus:border-orange-500 text-xs font-sans" />
+          <label class="text-[10px] font-mono text-slate-400 block mb-1">Contact String</label>
+          <input id="inputContact" oninput="syncResume()" type="text" value="+91-6202018611 | Bihar, India" class="w-full bg-black/50 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-orange-500 text-xs font-sans" />
         </div>
         <div>
-          <label class="text-[10px] font-mono text-slate-400 block mb-1">Professional Summary</label>
-          <textarea id="inputSummary" oninput="syncResume()" rows="3" class="w-full bg-black/50 border border-white/10 rounded-xl p-2.5 text-white outline-none focus:border-orange-500 text-xs font-sans">Software Engineer & Data Analyst with expertise in building scalable microservices, REST APIs, and Machine Learning models. Skilled in Python, Java, SQL, Apache Kafka, Tableau, TensorFlow, and AWS infrastructure.</textarea>
+          <label class="text-[10px] font-mono text-slate-400 block mb-1">Summary Statement</label>
+          <textarea id="inputSummary" oninput="syncResume()" rows="3" class="w-full bg-black/50 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-orange-500 text-xs font-sans">Software Engineer & Data Analyst with expertise in building scalable microservices, REST APIs, and Machine Learning models. Skilled in Python, Java, SQL, Apache Kafka, Tableau, TensorFlow, and AWS infrastructure with verified credentials from Cisco, JPMorgan Chase, and AWS.</textarea>
         </div>
-      </div>
-
-      <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 text-[11px] font-mono text-slate-400">
-        <strong class="text-white">Active Template:</strong> <span id="activeFormatLabel" class="text-orange-400">Harvard Classic</span><br>
-        100% ATS score across Workday, Greenhouse & Taleo.
       </div>
     </div>
 
-    <!-- Live Multi-Format ATS Sheet Preview -->
+    <!-- Live Document Sheet Preview -->
     <div class="lg:col-span-8 flex justify-center">
-      <div id="printable-resume" class="format-harvard w-full max-w-[820px] p-8 sm:p-10 rounded-xl shadow-2xl text-[10.5pt]">
+      <div id="printable-resume" class="format-harvard w-full max-w-[820px] p-8 sm:p-10 rounded-xl shadow-2xl text-[10pt] leading-[1.3]">
         
         <!-- Header Section -->
         <div class="text-center pb-2">
-          <h1 id="outName" class="text-[20pt] font-bold tracking-tight uppercase">PRIYANSHU KUMAR</h1>
-          <div id="outRoleLabel" class="text-[10.5pt] font-bold pt-0.5">Software Engineer & Data Analyst</div>
+          <h1 class="text-[19pt] font-bold tracking-tight uppercase">PRIYANSHU KUMAR</h1>
+          <div id="outRoleLabel" class="text-[10pt] font-bold pt-0.5">Software Engineer & Data Analyst</div>
           <div class="text-[9.5pt] pt-1">
             <span id="outContact">+91-6202018611 | Bihar, India</span> | 
             <a href="mailto:priyanshu6202018611@gmail.com" class="underline">priyanshu6202018611@gmail.com</a>
@@ -205,13 +258,13 @@
 
         <!-- Professional Summary -->
         <div class="sec-title">PROFESSIONAL SUMMARY</div>
-        <p id="outSummary" class="text-justify text-[10pt] pt-0.5">
+        <p id="outSummary" class="text-justify text-[9.5pt] pt-0.5">
           Software Engineer & Data Analyst with expertise in building scalable microservices, REST APIs, and Machine Learning models. Skilled in Python, Java, SQL, Apache Kafka, Tableau, TensorFlow, and AWS infrastructure with verified credentials from Cisco, JPMorgan Chase, and AWS.
         </p>
 
         <!-- Technical Skills -->
         <div class="sec-title">TECHNICAL SKILLS</div>
-        <div class="text-[10pt] space-y-0.5 pt-0.5">
+        <div class="text-[9.5pt] space-y-0.5 pt-0.5">
           <div><strong>Languages:</strong> Python, Java, C, C++, JavaScript, SQL</div>
           <div><strong>Software & Backend Engineering:</strong> Node.js, Express.js, RESTful APIs, Apache Kafka, JWT, React.js, OOP</div>
           <div><strong>Data Analytics & BI:</strong> SQL, Tableau, Power BI, Excel, SAP Analytics Cloud, Data Modeling, EDA</div>
@@ -223,22 +276,22 @@
         
         <div class="pt-0.5 space-y-2">
           <div>
-            <div class="flex justify-between items-baseline text-[10pt] font-bold">
+            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>Aagaaz Training Centre Pvt. Ltd. — Cloud Computing Intern</span>
               <span>Dec 2025</span>
             </div>
-            <ul class="list-disc ml-5 text-[9.5pt] space-y-0.5">
+            <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
               <li>Configured cloud virtualization instances and analyzed multi-tier service models across distributed setups.</li>
               <li>Engineered infrastructure assignments achieving 88% overall efficiency evaluation scorecard.</li>
             </ul>
           </div>
 
           <div>
-            <div class="flex justify-between items-baseline text-[10pt] font-bold">
+            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>East Central Railway (Danapur) — Signal & Telecommunication Intern</span>
               <span>Jun 2025 – Jul 2025</span>
             </div>
-            <ul class="list-disc ml-5 text-[9.5pt] space-y-0.5">
+            <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
               <li>Analyzed Optical Fiber Communication (OFC) architectures, Telephone Exchange networks, and PRS/UTS telemetry feeds.</li>
               <li>Collaborated with on-field engineers to inspect fail-safe communication protocols across railway subdivisions.</li>
             </ul>
@@ -250,33 +303,33 @@
         
         <div class="pt-0.5 space-y-2">
           <div>
-            <div class="flex justify-between items-baseline text-[10pt] font-bold">
+            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>EcoSentinel — IoT & Kafka Wildlife Conservation Platform</span>
               <span>Node.js, Kafka, React, Socket.io</span>
             </div>
-            <ul class="list-disc ml-5 text-[9.5pt] space-y-0.5">
+            <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
               <li>Built real-time telemetry streaming system buffering GPS data through Apache Kafka message topics.</li>
               <li>Implemented sub-second polygon geofence breach algorithms rendering live markers on React Leaflet maps.</li>
             </ul>
           </div>
 
           <div>
-            <div class="flex justify-between items-baseline text-[10pt] font-bold">
+            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>Brain Tumor MRI Classification — Deep Learning CNN</span>
               <span>Python, TensorFlow, OpenCV</span>
             </div>
-            <ul class="list-disc ml-5 text-[9.5pt] space-y-0.5">
+            <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
               <li>Engineered 4-block Conv2D network with Batch Normalization and Dropout layers, achieving 94.2% validation accuracy.</li>
               <li>Developed OpenCV preprocessing pipeline for grayscale conversion, histogram equalization, and tensor resizing.</li>
             </ul>
           </div>
 
           <div>
-            <div class="flex justify-between items-baseline text-[10pt] font-bold">
+            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>AgroSmart AI & Kisan Mitra — Smart Farming & Market Analytics</span>
               <span>Python, Scikit-learn, SQL</span>
             </div>
-            <ul class="list-disc ml-5 text-[9.5pt] space-y-0.5">
+            <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
               <li>Designed ML crop recommendation engine analyzing Soil N-P-K, rainfall, and temperature variables.</li>
               <li>Aggregated daily Mandi price feeds using SQL queries and built interactive visual trend dashboards.</li>
             </ul>
@@ -286,11 +339,11 @@
         <!-- Education -->
         <div class="sec-title">EDUCATION</div>
         <div class="pt-0.5 space-y-1">
-          <div class="flex justify-between items-baseline text-[10pt]">
+          <div class="flex justify-between items-baseline text-[9.5pt]">
             <div><strong>Shershah Engineering College, Sasaram</strong> — B.Tech in Computer Science & Engineering</div>
             <span class="font-bold">2022 – 2026</span>
           </div>
-          <div class="flex justify-between items-baseline text-[9.5pt]">
+          <div class="flex justify-between items-baseline text-[9pt]">
             <div><strong>RB College, Dalsingsaray</strong> — Intermediate in Science (PCM)</div>
             <span>2018 – 2020</span>
           </div>
@@ -298,7 +351,7 @@
 
         <!-- Certifications -->
         <div class="sec-title">LICENSES & VERIFIED CERTIFICATIONS</div>
-        <ul class="list-disc ml-5 text-[9.5pt] space-y-0.5 pt-0.5">
+        <ul class="list-disc ml-5 text-[9pt] space-y-0.5 pt-0.5">
           <li><strong>Cisco:</strong> Data Analytics Essentials (Excel, SQL, Tableau Data Storytelling)</li>
           <li><strong>JPMorgan Chase:</strong> Software Engineering Job Simulation (REST APIs & Kafka Integration)</li>
           <li><strong>AWS:</strong> Data Engineering Foundations & Prompt Engineering</li>
@@ -311,9 +364,8 @@
 
   </main>
 
-  <!-- Footer -->
   <footer class="text-center text-[10px] font-mono text-slate-600 pt-6">
-    Priyanshu Kumar • Multi-Format ATS Resume Studio // 2026
+    Priyanshu Kumar • Pro Multi-Format ATS Resume Engine // 2026
   </footer>
 
   <script>
@@ -327,42 +379,38 @@
 
     function switchFormat(fmt) {
       const sheet = document.getElementById('printable-resume');
-      const label = document.getElementById('activeFormatLabel');
-
-      // Reset all classes
-      sheet.className = 'w-full max-w-[820px] p-8 sm:p-10 rounded-xl shadow-2xl text-[10.5pt]';
       
-      // Reset button styles
-      ['harvard', 'modern', 'tech', 'data'].forEach(f => {
+      const formats = ['harvard', 'tech', 'modern', 'data', 'minimal', 'lora'];
+      formats.forEach(f => {
+        sheet.classList.remove(`format-${f}`);
         const b = document.getElementById(`btn-${f}`);
-        b.className = 'p-2.5 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all';
+        if(b) b.className = 'p-2 rounded-xl border border-white/10 bg-black/40 text-slate-300 hover:border-white/30 text-left transition-all';
       });
 
+      sheet.classList.add(`format-${fmt}`);
       const activeBtn = document.getElementById(`btn-${fmt}`);
-      activeBtn.className = 'p-2.5 rounded-xl border border-orange-500 bg-orange-500/20 text-orange-400 font-bold text-left transition-all';
+      if(activeBtn) activeBtn.className = 'p-2 rounded-xl border border-orange-500 bg-orange-500/20 text-orange-400 font-bold text-left transition-all';
+    }
 
-      if (fmt === 'harvard') {
-        sheet.classList.add('format-harvard');
-        label.innerText = 'Harvard Classic (Times New Roman)';
-      } else if (fmt === 'modern') {
-        sheet.classList.add('format-modern');
-        label.innerText = 'Modern Clean (Inter Sans)';
-      } else if (fmt === 'tech') {
-        sheet.classList.add('format-tech');
-        label.innerText = 'Tech Executive (Silicon Valley)';
-      } else if (fmt === 'data') {
-        sheet.classList.add('format-data');
-        label.innerText = 'Data Specialist (Emerald Highlight)';
-      }
+    function adjustFontSize(val) {
+      document.getElementById('fontSizeLabel').innerText = `${val} pt`;
+      document.getElementById('printable-resume').style.fontSize = `${val}pt`;
+    }
+
+    function adjustLineHeight(val) {
+      document.getElementById('lineHeightLabel').innerText = `${val}x`;
+      document.getElementById('printable-resume').style.lineHeight = val;
     }
 
     function applyPreset(type) {
       if (type === 'sde') {
         document.getElementById('inputRole').value = 'Software Development Engineer (SDE)';
-        document.getElementById('inputSummary').value = 'Software Development Engineer specializing in high-throughput backend systems, Apache Kafka event streaming, REST API architectures, and Data Structures & Algorithms. Proficient in Python, Java, and scalable cloud databases.';
+        document.getElementById('inputSummary').value = 'Software Development Engineer specializing in high-throughput backend microservices, Apache Kafka event streaming, REST API architectures, and Data Structures & Algorithms. Proficient in Python, Java, and scalable cloud databases.';
+        switchFormat('tech');
       } else {
         document.getElementById('inputRole').value = 'Data Analyst & Business Intelligence Specialist';
         document.getElementById('inputSummary').value = 'Data Analyst with hands-on expertise in SQL querying, Tableau BI dashboards, exploratory data analysis (EDA), and Machine Learning pipelines (XGBoost, Scikit-learn). Certified by Cisco and SAP in Data Analytics.';
+        switchFormat('data');
       }
       syncResume();
     }
