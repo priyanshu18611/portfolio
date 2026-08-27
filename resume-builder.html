@@ -3,17 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshu Kumar | Pro Multi-Format ATS Resume Engine</title>
+  <title>Priyanshu Kumar | Direct Editable Multi-Format ATS Resume</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06070a; color: #e2e8f0; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
     
-    /* Format 1: Harvard Classic */
+    /* Click-To-Edit Visual Cue */
+    [contenteditable="true"] {
+      outline: none;
+      transition: background-color 0.2s, box-shadow 0.2s;
+      border-radius: 3px;
+    }
+    [contenteditable="true"]:hover {
+      background-color: rgba(249, 115, 22, 0.08);
+      cursor: text;
+    }
+    [contenteditable="true"]:focus {
+      background-color: rgba(249, 115, 22, 0.12);
+      box-shadow: 0 0 0 1px #f97316;
+    }
+
+    /* 6 ATS Layout Styles */
     .format-harvard {
       font-family: 'Times New Roman', Times, serif;
       color: #000000;
@@ -29,7 +44,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Format 2: Silicon Valley Tech */
     .format-tech {
       font-family: 'Inter', sans-serif;
       color: #0f172a;
@@ -47,7 +61,6 @@
       margin-bottom: 4px;
     }
 
-    /* Format 3: Modern Clean */
     .format-modern {
       font-family: 'Inter', sans-serif;
       color: #1e293b;
@@ -64,7 +77,6 @@
       letter-spacing: 0.8px;
     }
 
-    /* Format 4: Data Specialist */
     .format-data {
       font-family: 'Arial', sans-serif;
       color: #050505;
@@ -80,7 +92,6 @@
       margin-bottom: 4px;
     }
 
-    /* Format 5: Minimalist Monochrome */
     .format-minimal {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       color: #000000;
@@ -96,7 +107,6 @@
       letter-spacing: 1px;
     }
 
-    /* Format 6: Ivy Lora Serif */
     .format-lora {
       font-family: 'Lora', Georgia, serif;
       color: #1c1917;
@@ -128,20 +138,24 @@
         padding: 0 !important;
         box-shadow: none !important;
       }
+      [contenteditable="true"]:hover, [contenteditable="true"]:focus {
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
     }
   </style>
 </head>
 <body class="p-4 sm:p-8 min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-black">
 
-  <!-- Header Controls -->
+  <!-- Top Action Bar -->
   <header class="max-w-7xl mx-auto w-full flex justify-between items-center pb-6 border-b border-white/10">
     <div class="flex items-center gap-3">
       <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-400 text-black flex items-center justify-center font-black text-xs shadow-[0_0_15px_rgba(249,115,22,0.4)]">
         ATS
       </div>
       <div>
-        <h1 class="text-sm font-bold text-white uppercase tracking-wider">Pro Multi-Format ATS Resume Engine</h1>
-        <p class="text-[10px] font-mono text-orange-400">6 ATS Layouts • Typography Engine • Instant PDF Export</p>
+        <h1 class="text-sm font-bold text-white uppercase tracking-wider">Direct Editable ATS Resume Studio</h1>
+        <p class="text-[10px] font-mono text-emerald-400">⚡ Live Click-to-Edit Mode Active (Click anywhere on page to type)</p>
       </div>
     </div>
     
@@ -155,19 +169,17 @@
     </div>
   </header>
 
-  <!-- Main Grid -->
+  <!-- Main Viewport -->
   <main class="max-w-7xl mx-auto w-full py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-    <!-- Left Toolbar Panel -->
+    <!-- Left Control Hub -->
     <div class="lg:col-span-4 bg-[#0d1017] p-6 rounded-3xl border border-white/10 space-y-5">
       
-      <!-- 6 ATS FORMAT SELECTION -->
+      <!-- ATS Layout Selector -->
       <div>
-        <div class="flex justify-between items-center mb-2.5">
-          <span class="text-xs font-bold text-white uppercase font-mono">Select ATS Standard</span>
-          <span class="text-[10px] font-mono text-emerald-400">100% Parser Safe</span>
-        </div>
-        
+        <span class="text-xs font-bold text-white uppercase font-mono block mb-2.5">
+          Select ATS Design Format
+        </span>
         <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
           <button id="btn-harvard" onclick="switchFormat('harvard')" class="p-2 rounded-xl border border-orange-500 bg-orange-500/20 text-orange-400 font-bold text-left transition-all">
             1. Harvard Classic
@@ -190,13 +202,13 @@
         </div>
       </div>
 
-      <!-- Typography Size & Line Spacing Sliders -->
+      <!-- Sizing & Spacing Sliders -->
       <div class="border-t border-white/10 pt-4 space-y-3">
-        <span class="text-xs font-bold text-white uppercase font-mono block">Layout Calibration</span>
+        <span class="text-xs font-bold text-white uppercase font-mono block">Document Calibration</span>
         
         <div>
           <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-1">
-            <span>Base Font Size</span>
+            <span>Font Size Scale</span>
             <span id="fontSizeLabel" class="text-orange-400">10.0 pt</span>
           </div>
           <input type="range" min="9" max="11.5" step="0.5" value="10" oninput="adjustFontSize(this.value)" class="w-full accent-orange-500 cursor-pointer" />
@@ -204,159 +216,141 @@
 
         <div>
           <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-1">
-            <span>Line Spacing Density</span>
+            <span>Line Density Spacing</span>
             <span id="lineHeightLabel" class="text-orange-400">1.3x</span>
           </div>
           <input type="range" min="1.15" max="1.45" step="0.05" value="1.3" oninput="adjustLineHeight(this.value)" class="w-full accent-orange-500 cursor-pointer" />
         </div>
       </div>
 
-      <!-- Quick Role Presets -->
-      <div class="border-t border-white/10 pt-4 flex justify-between items-center text-[11px] font-mono">
-        <span class="text-slate-400">Role Target:</span>
-        <div class="flex gap-2">
-          <button onclick="applyPreset('sde')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-orange-400 hover:bg-orange-500/10">SDE Track</button>
-          <button onclick="applyPreset('data')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-emerald-400 hover:bg-emerald-500/10">Data Track</button>
+      <!-- Interactive Instructions Card -->
+      <div class="p-4 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-xs text-slate-300 space-y-2">
+        <div class="flex items-center gap-1.5 font-bold text-orange-400 font-mono text-[11px]">
+          <i data-lucide="edit-3" class="w-4 h-4"></i> How to Edit Content:
         </div>
-      </div>
-
-      <!-- Form Inputs -->
-      <div class="space-y-3 text-xs border-t border-white/10 pt-4">
-        <div>
-          <label class="text-[10px] font-mono text-slate-400 block mb-1">Target Headline</label>
-          <input id="inputRole" oninput="syncResume()" type="text" value="Software Engineer & Data Analyst" class="w-full bg-black/50 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-orange-500 text-xs font-sans" />
-        </div>
-        <div>
-          <label class="text-[10px] font-mono text-slate-400 block mb-1">Contact String</label>
-          <input id="inputContact" oninput="syncResume()" type="text" value="+91-6202018611 | Bihar, India" class="w-full bg-black/50 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-orange-500 text-xs font-sans" />
-        </div>
-        <div>
-          <label class="text-[10px] font-mono text-slate-400 block mb-1">Summary Statement</label>
-          <textarea id="inputSummary" oninput="syncResume()" rows="3" class="w-full bg-black/50 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-orange-500 text-xs font-sans">Software Engineer & Data Analyst with expertise in building scalable microservices, REST APIs, and Machine Learning models. Skilled in Python, Java, SQL, Apache Kafka, Tableau, TensorFlow, and AWS infrastructure with verified credentials from Cisco, JPMorgan Chase, and AWS.</textarea>
-        </div>
+        <p class="text-[11px] leading-relaxed text-slate-400">
+          Directly click on any text, skill, bullet point, date, or title on the right sheet. You can type, backspace, or paste anything like a Google Doc.
+        </p>
       </div>
     </div>
 
-    <!-- Live Document Sheet Preview -->
+    <!-- Live Direct-Editable ATS Document -->
     <div class="lg:col-span-8 flex justify-center">
       <div id="printable-resume" class="format-harvard w-full max-w-[820px] p-8 sm:p-10 rounded-xl shadow-2xl text-[10pt] leading-[1.3]">
         
         <!-- Header Section -->
         <div class="text-center pb-2">
-          <h1 class="text-[19pt] font-bold tracking-tight uppercase">PRIYANSHU KUMAR</h1>
-          <div id="outRoleLabel" class="text-[10pt] font-bold pt-0.5">Software Engineer & Data Analyst</div>
-          <div class="text-[9.5pt] pt-1">
-            <span id="outContact">+91-6202018611 | Bihar, India</span> | 
-            <a href="mailto:priyanshu6202018611@gmail.com" class="underline">priyanshu6202018611@gmail.com</a>
+          <h1 contenteditable="true" class="text-[19pt] font-bold tracking-tight uppercase">PRIYANSHU KUMAR</h1>
+          <div contenteditable="true" class="text-[10pt] font-bold pt-0.5">Software Engineer & Data Analyst</div>
+          <div contenteditable="true" class="text-[9.5pt] pt-1">
+            +91-6202018611 | Bihar, India | priyanshu6202018611@gmail.com
           </div>
-          <div class="text-[9.5pt] pt-0.5">
-            <a href="https://linkedin.com/in/priyanshuroy18" class="underline">linkedin.com/in/priyanshuroy18</a> | 
-            <a href="https://github.com/priyanshu18611" class="underline">github.com/priyanshu18611</a> | 
-            <a href="https://portfolio-lyart-alpha-16.vercel.app" class="underline">portfolio-lyart-alpha-16.vercel.app</a>
+          <div contenteditable="true" class="text-[9.5pt] pt-0.5">
+            linkedin.com/in/priyanshuroy18 | github.com/priyanshu18611 | portfolio-lyart-alpha-16.vercel.app
           </div>
         </div>
 
         <!-- Professional Summary -->
-        <div class="sec-title">PROFESSIONAL SUMMARY</div>
-        <p id="outSummary" class="text-justify text-[9.5pt] pt-0.5">
+        <div contenteditable="true" class="sec-title">PROFESSIONAL SUMMARY</div>
+        <p contenteditable="true" class="text-justify text-[9.5pt] pt-0.5">
           Software Engineer & Data Analyst with expertise in building scalable microservices, REST APIs, and Machine Learning models. Skilled in Python, Java, SQL, Apache Kafka, Tableau, TensorFlow, and AWS infrastructure with verified credentials from Cisco, JPMorgan Chase, and AWS.
         </p>
 
         <!-- Technical Skills -->
-        <div class="sec-title">TECHNICAL SKILLS</div>
+        <div contenteditable="true" class="sec-title">TECHNICAL SKILLS</div>
         <div class="text-[9.5pt] space-y-0.5 pt-0.5">
-          <div><strong>Languages:</strong> Python, Java, C, C++, JavaScript, SQL</div>
-          <div><strong>Software & Backend Engineering:</strong> Node.js, Express.js, RESTful APIs, Apache Kafka, JWT, React.js, OOP</div>
-          <div><strong>Data Analytics & BI:</strong> SQL, Tableau, Power BI, Excel, SAP Analytics Cloud, Data Modeling, EDA</div>
-          <div><strong>Machine Learning & Cloud:</strong> TensorFlow, Keras, CNN, OpenCV, XGBoost, Scikit-learn, AWS, MongoDB</div>
+          <div contenteditable="true"><strong>Languages:</strong> Python, Java, C, C++, JavaScript, SQL</div>
+          <div contenteditable="true"><strong>Software & Backend Engineering:</strong> Node.js, Express.js, RESTful APIs, Apache Kafka, JWT, React.js, OOP</div>
+          <div contenteditable="true"><strong>Data Analytics & BI:</strong> SQL, Tableau, Power BI, Excel, SAP Analytics Cloud, Data Modeling, EDA</div>
+          <div contenteditable="true"><strong>Machine Learning & Cloud:</strong> TensorFlow, Keras, CNN, OpenCV, XGBoost, Scikit-learn, AWS, MongoDB</div>
         </div>
 
         <!-- Experience & Internships -->
-        <div class="sec-title">EXPERIENCE & INTERNSHIPS</div>
+        <div contenteditable="true" class="sec-title">EXPERIENCE & INTERNSHIPS</div>
         
         <div class="pt-0.5 space-y-2">
           <div>
-            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
+            <div contenteditable="true" class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>Aagaaz Training Centre Pvt. Ltd. — Cloud Computing Intern</span>
               <span>Dec 2025</span>
             </div>
             <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
-              <li>Configured cloud virtualization instances and analyzed multi-tier service models across distributed setups.</li>
-              <li>Engineered infrastructure assignments achieving 88% overall efficiency evaluation scorecard.</li>
+              <li contenteditable="true">Configured cloud virtualization instances and analyzed multi-tier service models across distributed setups.</li>
+              <li contenteditable="true">Engineered infrastructure assignments achieving 88% overall efficiency evaluation scorecard.</li>
             </ul>
           </div>
 
           <div>
-            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
+            <div contenteditable="true" class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>East Central Railway (Danapur) — Signal & Telecommunication Intern</span>
               <span>Jun 2025 – Jul 2025</span>
             </div>
             <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
-              <li>Analyzed Optical Fiber Communication (OFC) architectures, Telephone Exchange networks, and PRS/UTS telemetry feeds.</li>
-              <li>Collaborated with on-field engineers to inspect fail-safe communication protocols across railway subdivisions.</li>
+              <li contenteditable="true">Analyzed Optical Fiber Communication (OFC) architectures, Telephone Exchange networks, and PRS/UTS telemetry feeds.</li>
+              <li contenteditable="true">Collaborated with on-field engineers to inspect fail-safe communication protocols across railway subdivisions.</li>
             </ul>
           </div>
         </div>
 
         <!-- Featured Projects -->
-        <div class="sec-title">KEY ENGINEERING & DATA PROJECTS</div>
+        <div contenteditable="true" class="sec-title">KEY ENGINEERING & DATA PROJECTS</div>
         
         <div class="pt-0.5 space-y-2">
           <div>
-            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
+            <div contenteditable="true" class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>EcoSentinel — IoT & Kafka Wildlife Conservation Platform</span>
               <span>Node.js, Kafka, React, Socket.io</span>
             </div>
             <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
-              <li>Built real-time telemetry streaming system buffering GPS data through Apache Kafka message topics.</li>
-              <li>Implemented sub-second polygon geofence breach algorithms rendering live markers on React Leaflet maps.</li>
+              <li contenteditable="true">Built real-time telemetry streaming system buffering GPS data through Apache Kafka message topics.</li>
+              <li contenteditable="true">Implemented sub-second polygon geofence breach algorithms rendering live markers on React Leaflet maps.</li>
             </ul>
           </div>
 
           <div>
-            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
+            <div contenteditable="true" class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>Brain Tumor MRI Classification — Deep Learning CNN</span>
               <span>Python, TensorFlow, OpenCV</span>
             </div>
             <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
-              <li>Engineered 4-block Conv2D network with Batch Normalization and Dropout layers, achieving 94.2% validation accuracy.</li>
-              <li>Developed OpenCV preprocessing pipeline for grayscale conversion, histogram equalization, and tensor resizing.</li>
+              <li contenteditable="true">Engineered 4-block Conv2D network with Batch Normalization and Dropout layers, achieving 94.2% validation accuracy.</li>
+              <li contenteditable="true">Developed OpenCV preprocessing pipeline for grayscale conversion, histogram equalization, and tensor resizing.</li>
             </ul>
           </div>
 
           <div>
-            <div class="flex justify-between items-baseline text-[9.5pt] font-bold">
+            <div contenteditable="true" class="flex justify-between items-baseline text-[9.5pt] font-bold">
               <span>AgroSmart AI & Kisan Mitra — Smart Farming & Market Analytics</span>
               <span>Python, Scikit-learn, SQL</span>
             </div>
             <ul class="list-disc ml-5 text-[9pt] space-y-0.5">
-              <li>Designed ML crop recommendation engine analyzing Soil N-P-K, rainfall, and temperature variables.</li>
-              <li>Aggregated daily Mandi price feeds using SQL queries and built interactive visual trend dashboards.</li>
+              <li contenteditable="true">Designed ML crop recommendation engine analyzing Soil N-P-K, rainfall, and temperature variables.</li>
+              <li contenteditable="true">Aggregated daily Mandi price feeds using SQL queries and built interactive visual trend dashboards.</li>
             </ul>
           </div>
         </div>
 
         <!-- Education -->
-        <div class="sec-title">EDUCATION</div>
+        <div contenteditable="true" class="sec-title">EDUCATION</div>
         <div class="pt-0.5 space-y-1">
-          <div class="flex justify-between items-baseline text-[9.5pt]">
+          <div contenteditable="true" class="flex justify-between items-baseline text-[9.5pt]">
             <div><strong>Shershah Engineering College, Sasaram</strong> — B.Tech in Computer Science & Engineering</div>
             <span class="font-bold">2022 – 2026</span>
           </div>
-          <div class="flex justify-between items-baseline text-[9pt]">
+          <div contenteditable="true" class="flex justify-between items-baseline text-[9pt]">
             <div><strong>RB College, Dalsingsaray</strong> — Intermediate in Science (PCM)</div>
             <span>2018 – 2020</span>
           </div>
         </div>
 
         <!-- Certifications -->
-        <div class="sec-title">LICENSES & VERIFIED CERTIFICATIONS</div>
+        <div contenteditable="true" class="sec-title">LICENSES & VERIFIED CERTIFICATIONS</div>
         <ul class="list-disc ml-5 text-[9pt] space-y-0.5 pt-0.5">
-          <li><strong>Cisco:</strong> Data Analytics Essentials (Excel, SQL, Tableau Data Storytelling)</li>
-          <li><strong>JPMorgan Chase:</strong> Software Engineering Job Simulation (REST APIs & Kafka Integration)</li>
-          <li><strong>AWS:</strong> Data Engineering Foundations & Prompt Engineering</li>
-          <li><strong>SAP:</strong> Advanced Analytics Cloud & Basic ABAP Programming (OOP, RAP)</li>
-          <li><strong>IIT Kharagpur (NPTEL):</strong> Introduction to Internet of Things (Elite 60%)</li>
+          <li contenteditable="true"><strong>Cisco:</strong> Data Analytics Essentials (Excel, SQL, Tableau Data Storytelling)</li>
+          <li contenteditable="true"><strong>JPMorgan Chase:</strong> Software Engineering Job Simulation (REST APIs & Kafka Integration)</li>
+          <li contenteditable="true"><strong>AWS:</strong> Data Engineering Foundations & Prompt Engineering</li>
+          <li contenteditable="true"><strong>SAP:</strong> Advanced Analytics Cloud & Basic ABAP Programming (OOP, RAP)</li>
+          <li contenteditable="true"><strong>IIT Kharagpur (NPTEL):</strong> Introduction to Internet of Things (Elite 60%)</li>
         </ul>
 
       </div>
@@ -365,17 +359,11 @@
   </main>
 
   <footer class="text-center text-[10px] font-mono text-slate-600 pt-6">
-    Priyanshu Kumar • Pro Multi-Format ATS Resume Engine // 2026
+    Priyanshu Kumar • Click-to-Edit ATS Resume Studio // 2026
   </footer>
 
   <script>
     lucide.createIcons();
-
-    function syncResume() {
-      document.getElementById('outRoleLabel').innerText = document.getElementById('inputRole').value;
-      document.getElementById('outContact').innerText = document.getElementById('inputContact').value;
-      document.getElementById('outSummary').innerText = document.getElementById('inputSummary').value;
-    }
 
     function switchFormat(fmt) {
       const sheet = document.getElementById('printable-resume');
@@ -400,19 +388,6 @@
     function adjustLineHeight(val) {
       document.getElementById('lineHeightLabel').innerText = `${val}x`;
       document.getElementById('printable-resume').style.lineHeight = val;
-    }
-
-    function applyPreset(type) {
-      if (type === 'sde') {
-        document.getElementById('inputRole').value = 'Software Development Engineer (SDE)';
-        document.getElementById('inputSummary').value = 'Software Development Engineer specializing in high-throughput backend microservices, Apache Kafka event streaming, REST API architectures, and Data Structures & Algorithms. Proficient in Python, Java, and scalable cloud databases.';
-        switchFormat('tech');
-      } else {
-        document.getElementById('inputRole').value = 'Data Analyst & Business Intelligence Specialist';
-        document.getElementById('inputSummary').value = 'Data Analyst with hands-on expertise in SQL querying, Tableau BI dashboards, exploratory data analysis (EDA), and Machine Learning pipelines (XGBoost, Scikit-learn). Certified by Cisco and SAP in Data Analytics.';
-        switchFormat('data');
-      }
-      syncResume();
     }
   </script>
 </body>
