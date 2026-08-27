@@ -5,90 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Priyanshu Kumar | Software Engineer & Data Analyst</title>
   
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="./style.css" />
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    /* Ultra Modern Glassmorphism & Micro-animations */
+    .bento-card {
+      background: rgba(13, 16, 23, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover {
+      border-color: rgba(249, 115, 22, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(249, 115, 22, 0.15);
+    }
+    .glow-badge {
+      box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+    }
+  </style>
 </head>
-<body class="selection:bg-orange-500 selection:text-black">
+<body class="selection:bg-orange-500 selection:text-black bg-[#040507] text-slate-100">
 
   <!-- Interactive 3D Canvas Background -->
   <canvas id="three-bg"></canvas>
 
-  <!-- Ambient Glows -->
+  <!-- Ambient Ambient Radial Lighting -->
   <div class="glow-orange -top-40 -left-40"></div>
-  <div class="glow-orange top-[45%] -right-40"></div>
+  <div class="glow-orange top-[40%] -right-40"></div>
 
-  <!-- Navigation Bar with Horizontal Scroll for Mobile -->
-  <nav class="fixed top-0 left-0 w-full z-40 bg-[#06070a]/90 backdrop-blur-xl border-b border-white/5 px-4 py-3 flex items-center justify-between gap-3 overflow-x-auto">
-    
-    <!-- Brand Logo -->
-    <div class="flex items-center gap-2.5 shrink-0">
-      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-400 flex items-center justify-center font-black text-black text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)]">
+  <!-- Ultra Responsive Fixed Nav -->
+  <nav class="fixed top-0 left-0 w-full z-40 bg-[#06070a]/90 backdrop-blur-2xl border-b border-white/5 px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4 overflow-x-auto">
+    <div class="flex items-center gap-3 shrink-0">
+      <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-orange-600 via-amber-400 to-orange-500 flex items-center justify-center font-black text-black text-xs shadow-[0_0_20px_rgba(255,107,0,0.5)]">
         PK
       </div>
       <div>
         <span class="font-extrabold tracking-wider text-xs uppercase text-slate-100 block">
           Priyanshu <span class="text-orange-500">Kumar</span>
         </span>
-        <span class="text-[8px] font-mono text-slate-400 block tracking-widest">SOFTWARE & DATA ANALYST</span>
+        <span class="text-[8.5px] font-mono text-slate-400 block tracking-widest">SOFTWARE & DATA ANALYST</span>
       </div>
     </div>
 
-    <!-- All Interactive Studio Buttons (Scrollable on Mobile) -->
-    <div class="flex items-center gap-1.5 shrink-0 overflow-x-auto no-scrollbar py-1">
-      
-      <!-- Resume PDF View -->
-      <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="px-3 py-1.5 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs font-mono font-bold hover:bg-orange-500/20 transition-all flex items-center gap-1 whitespace-nowrap">
-        <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Resume
+    <!-- Interactive Navigation Hub -->
+    <div class="flex items-center gap-2 shrink-0 overflow-x-auto py-1">
+      <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="px-3 py-1.5 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs font-mono font-bold hover:bg-orange-500/20 transition-all flex items-center gap-1.5 whitespace-nowrap glow-badge">
+        <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Resume PDF
       </a>
 
-      <!-- ATS Studio -->
-      <a href="./resume-builder.html" class="px-3 py-1.5 rounded-full border border-indigo-500/40 bg-indigo-500/10 text-indigo-400 text-xs font-mono font-bold hover:bg-indigo-500/20 transition-all flex items-center gap-1 whitespace-nowrap">
-        <i data-lucide="file-check-2" class="w-3.5 h-3.5"></i> ATS Studio
+      <a href="./resume-builder.html" class="px-3 py-1.5 rounded-full border border-indigo-500/40 bg-indigo-500/10 text-indigo-400 text-xs font-mono font-bold hover:bg-indigo-500/20 transition-all flex items-center gap-1.5 whitespace-nowrap">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> AI ATS Studio
       </a>
 
-      <!-- Analytics Studio -->
-      <a href="./analytics.html" class="px-3 py-1.5 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold hover:bg-blue-500/20 transition-all flex items-center gap-1 whitespace-nowrap">
+      <a href="./analytics.html" class="hidden sm:flex px-3 py-1.5 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold hover:bg-blue-500/20 transition-all items-center gap-1.5 whitespace-nowrap">
         <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> Analytics
       </a>
 
-      <!-- Playground -->
-      <a href="./playground.html" class="px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-mono font-bold hover:bg-amber-500/20 transition-all flex items-center gap-1 whitespace-nowrap">
-        <i data-lucide="play" class="w-3.5 h-3.5"></i> Playground
+      <a href="./playground.html" class="hidden sm:flex px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-mono font-bold hover:bg-amber-500/20 transition-all items-center gap-1.5 whitespace-nowrap">
+        <i data-lucide="play" class="w-3.5 h-3.5"></i> Lab
       </a>
 
-      <!-- CLI Terminal -->
-      <a href="./terminal.html" class="px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold hover:bg-emerald-500/20 transition-all flex items-center gap-1 whitespace-nowrap">
+      <a href="./terminal.html" class="hidden sm:flex px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold hover:bg-emerald-500/20 transition-all items-center gap-1.5 whitespace-nowrap">
         <i data-lucide="terminal" class="w-3.5 h-3.5"></i> CLI
       </a>
 
-      <!-- System Architecture -->
-      <a href="./system-architecture.html" class="px-3 py-1.5 rounded-full border border-purple-500/40 bg-purple-500/10 text-purple-400 text-xs font-mono font-bold hover:bg-purple-500/20 transition-all flex items-center gap-1 whitespace-nowrap">
-        <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Blueprint
-      </a>
-
-      <!-- Ask AI Trigger -->
-      <button onclick="openChat()" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(255,107,0,0.4)] hover:brightness-110 transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap">
+      <button onclick="openChat()" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_20px_rgba(255,107,0,0.5)] hover:brightness-110 transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
         <i data-lucide="bot" class="w-3.5 h-3.5"></i> Ask AI
       </button>
-
     </div>
   </nav>
 
-  <!-- Main Content Container -->
-  <main class="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20 space-y-28">
+  <!-- Main Hero & Bento Hub -->
+  <main class="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 space-y-28">
 
-    <!-- Hero Section -->
-    <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[65vh]">
+    <!-- Hero Section with Deep Status Indicator -->
+    <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[65vh]">
       <div class="lg:col-span-7 space-y-6">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-xs font-mono font-semibold uppercase tracking-wide">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-mono font-semibold uppercase tracking-wide">
           <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
-          Full-Stack Serverless Architecture • Online
+          Ready for 2026 Engineering & Analyst Roles
         </div>
         
         <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white leading-none">
@@ -98,63 +97,52 @@
           </span>
         </h1>
 
-        <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-xl">
+        <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl">
           Software Engineer & Data Analyst specializing in building scalable backend systems, REST APIs, and driving insights through Data Analytics, SQL, Tableau, and Machine Learning pipelines.
         </p>
 
-        <!-- Live Status Hub -->
-        <div class="p-3.5 rounded-2xl glass-card border border-white/10 flex items-center justify-between max-w-lg text-xs font-mono">
+        <!-- Live Server Status Metrics -->
+        <div class="p-3.5 rounded-2xl bento-card flex items-center justify-between max-w-lg text-xs font-mono">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-slate-300">Edge Backend API: <strong class="text-emerald-400">Active</strong></span>
+            <span class="text-slate-300">Backend API: <strong class="text-emerald-400">Online</strong></span>
           </div>
-          <div class="text-slate-400 text-[10px]">Hits: <span id="serverHitBadge" class="text-orange-400 font-bold">430+</span></div>
+          <div class="text-slate-400">Profile Hits: <span id="serverHitBadge" class="text-orange-400 font-bold">520+</span></div>
         </div>
 
         <div class="flex flex-wrap items-center gap-3 pt-2">
-          <a href="#projects" class="px-5 py-3 rounded-xl bg-orange-500 text-black font-black text-xs uppercase tracking-wider hover:bg-orange-400 transition-all shadow-[0_0_20px_rgba(255,107,0,0.4)]">
-            Explore Work →
+          <a href="#projects" class="px-6 py-3.5 rounded-2xl bg-orange-500 text-black font-black text-xs uppercase tracking-wider hover:bg-orange-400 transition-all shadow-[0_0_25px_rgba(255,107,0,0.5)]">
+            Explore Repositories →
           </a>
-          <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="px-4 py-3 rounded-xl border border-orange-500/40 bg-orange-500/10 hover:bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5">
-            <i data-lucide="eye" class="w-4 h-4 text-orange-400"></i> View Resume
+          <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="px-5 py-3.5 rounded-2xl border border-orange-500/40 bg-orange-500/10 hover:bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2">
+            <i data-lucide="eye" class="w-4 h-4 text-orange-400"></i> View PDF
           </a>
-          <a href="./resume-builder.html" class="px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-200 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5">
+          <a href="./resume-builder.html" class="px-5 py-3.5 rounded-2xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-200 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2">
             <i data-lucide="file-check-2" class="w-4 h-4 text-indigo-400"></i> ATS Studio
           </a>
-          <div class="flex items-center gap-2">
-            <a href="https://github.com/priyanshu18611" target="_blank" class="p-3 rounded-xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-300 hover:text-orange-400 transition-all">
-              <i data-lucide="github" class="w-4 h-4"></i>
-            </a>
-            <a href="https://linkedin.com/in/priyanshuroy18" target="_blank" class="p-3 rounded-xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-300 hover:text-orange-400 transition-all">
-              <i data-lucide="linkedin" class="w-4 h-4"></i>
-            </a>
-            <a href="mailto:priyanshu6202018611@gmail.com" class="p-3 rounded-xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-300 hover:text-orange-400 transition-all">
-              <i data-lucide="mail" class="w-4 h-4"></i>
-            </a>
-          </div>
         </div>
       </div>
 
-      <!-- Profile Avatar Card -->
+      <!-- Verified Candidate Avatar Card -->
       <div class="lg:col-span-5 flex justify-center">
-        <div class="relative w-full max-w-sm rounded-3xl p-[1px] bg-gradient-to-b from-orange-500/60 via-white/10 to-transparent shadow-2xl">
-          <div class="rounded-3xl bg-[#0d1017] p-6 border border-white/5 space-y-6 relative overflow-hidden">
-            <div class="w-full h-64 rounded-2xl border border-white/10 overflow-hidden relative">
+        <div class="relative w-full max-w-sm rounded-3xl p-[1px] bg-gradient-to-b from-orange-500/50 via-white/10 to-transparent shadow-2xl">
+          <div class="rounded-3xl bg-[#0b0e14] p-6 border border-white/5 space-y-6 relative overflow-hidden">
+            <div class="w-full h-64 rounded-2xl border border-white/10 overflow-hidden relative shadow-inner">
               <img src="./1000078800.jpg" alt="Priyanshu Kumar" class="w-full h-full object-cover object-top" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60'" />
             </div>
 
-            <div class="space-y-2.5 pt-1 text-xs font-mono">
+            <div class="space-y-2.5 text-xs font-mono">
               <div class="flex justify-between items-center text-slate-400 border-b border-white/5 pb-2">
                 <span>ROLE</span>
                 <span class="text-slate-100 font-semibold">Software Engg & Data Analyst</span>
               </div>
               <div class="flex justify-between items-center text-slate-400 border-b border-white/5 pb-2">
-                <span>DEGREE</span>
+                <span>EDUCATION</span>
                 <span class="text-orange-400 font-semibold">B.Tech CSE (2022-2026)</span>
               </div>
               <div class="flex justify-between items-center text-slate-400">
-                <span>COLLEGE</span>
-                <span class="text-slate-200">Shershah Engg. College</span>
+                <span>LOCATION</span>
+                <span class="text-slate-200">Bihar, India</span>
               </div>
             </div>
           </div>
@@ -162,52 +150,54 @@
       </div>
     </section>
 
-    <!-- Technical Skills Section -->
-    <section id="skills" class="space-y-8">
-      <div>
-        <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Stack Architecture</span>
-        <h2 class="text-3xl font-black text-white">Technical Arsenal</h2>
+    <!-- Technical Stack Bento Grid -->
+    <section id="skills" class="space-y-6">
+      <div class="flex justify-between items-end">
+        <div>
+          <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Stack Architecture</span>
+          <h2 class="text-3xl font-black text-white">Technical Arsenal</h2>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-6 rounded-2xl glass-card space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400"><i data-lucide="terminal" class="w-5 h-5"></i></div>
+        <div class="p-6 rounded-3xl bento-card space-y-3">
+          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400"><i data-lucide="terminal" class="w-5 h-5"></i></div>
           <h3 class="font-bold text-white text-base">Languages</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Python, Java, C, C++, JavaScript</p>
+          <p class="text-xs text-slate-400 leading-relaxed">Python, Java, C, C++, JavaScript, SQL</p>
         </div>
 
-        <div class="p-6 rounded-2xl glass-card space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400"><i data-lucide="bar-chart-3" class="w-5 h-5"></i></div>
+        <div class="p-6 rounded-3xl bento-card space-y-3">
+          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400"><i data-lucide="bar-chart-3" class="w-5 h-5"></i></div>
           <h3 class="font-bold text-white text-base">Data Analytics & BI</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Tableau, Power BI, Excel, SQL, SAP Analytics Cloud, Data Storytelling</p>
+          <p class="text-xs text-slate-400 leading-relaxed">Tableau, Power BI, Excel, SQL, SAP Analytics Cloud, EDA</p>
         </div>
 
-        <div class="p-6 rounded-2xl glass-card space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400"><i data-lucide="code-2" class="w-5 h-5"></i></div>
+        <div class="p-6 rounded-3xl bento-card space-y-3">
+          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400"><i data-lucide="code-2" class="w-5 h-5"></i></div>
           <h3 class="font-bold text-white text-base">Software Engineering</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Node.js, Express.js, React, Flask, REST APIs, Kafka Integration, JWT, H2 Database</p>
+          <p class="text-xs text-slate-400 leading-relaxed">Node.js, Express.js, React, REST APIs, Kafka Integration, JWT</p>
         </div>
 
-        <div class="p-6 rounded-2xl glass-card space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400"><i data-lucide="cpu" class="w-5 h-5"></i></div>
+        <div class="p-6 rounded-3xl bento-card space-y-3">
+          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400"><i data-lucide="cpu" class="w-5 h-5"></i></div>
           <h3 class="font-bold text-white text-base">ML, Cloud & DB</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">TensorFlow, Keras, CNN, OpenCV, AWS Data Engineering, SAP ABAP, MongoDB</p>
+          <p class="text-xs text-slate-400 leading-relaxed">TensorFlow, Keras, CNN, OpenCV, AWS Cloud, MongoDB</p>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="space-y-8">
+    <!-- Engineering Projects Section -->
+    <section id="projects" class="space-y-6">
       <div>
         <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Featured Deployments</span>
-        <h2 class="text-3xl font-black text-white">Engineering Projects</h2>
+        <h2 class="text-3xl font-black text-white">Engineering Repositories</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- EcoSentinel -->
-        <div class="p-7 rounded-3xl glass-card flex flex-col justify-between group">
+        <div class="p-7 rounded-3xl bento-card flex flex-col justify-between group">
           <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-500">
+            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
               <span>IoT & Full Stack</span>
               <a href="https://github.com/priyanshu18611/EcoSentinel" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
@@ -215,33 +205,33 @@
             <p class="text-xs text-slate-400 leading-relaxed">IoT & Full Stack Wildlife Conservation Platform with real-time collar tracking and geofence alerts.</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">JavaScript</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Node.js</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">React</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">JavaScript</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Node.js</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">React</span>
           </div>
         </div>
 
         <!-- Brain Tumor Detection -->
-        <div class="p-7 rounded-3xl glass-card flex flex-col justify-between group">
+        <div class="p-7 rounded-3xl bento-card flex flex-col justify-between group">
           <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-500">
-              <span>Deep Learning</span>
+            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
+              <span>Deep Learning / CNN</span>
               <a href="https://github.com/priyanshu18611/brain-tumor-detection" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
             <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">Brain Tumor Detection</h3>
             <p class="text-xs text-slate-400 leading-relaxed">CNN architecture analyzing medical image data using TensorFlow, Keras, and OpenCV for MRI classification.</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">TensorFlow</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">OpenCV</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">TensorFlow</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">OpenCV</span>
           </div>
         </div>
 
         <!-- Kisan Mitra -->
-        <div class="p-7 rounded-3xl glass-card flex flex-col justify-between group">
+        <div class="p-7 rounded-3xl bento-card flex flex-col justify-between group">
           <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-500">
+            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
               <span>Smart Farming</span>
               <a href="https://github.com/priyanshu18611/kisan-mitra" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
@@ -249,16 +239,16 @@
             <p class="text-xs text-slate-400 leading-relaxed">Smart Farming Dashboard for Indian farmers — Weather, Soil Health, Crop Tracker & Mandi Prices.</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">HTML</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">CSS</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">JavaScript</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">HTML</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">CSS</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">JavaScript</span>
           </div>
         </div>
 
         <!-- AgroSmart AI -->
-        <div class="p-7 rounded-3xl glass-card flex flex-col justify-between group">
+        <div class="p-7 rounded-3xl bento-card flex flex-col justify-between group">
           <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-500">
+            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
               <span>Machine Learning</span>
               <a href="https://github.com/priyanshu18611/AgroSmart-AI-Farmer-Assistant" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
@@ -266,15 +256,15 @@
             <p class="text-xs text-slate-400 leading-relaxed">ML web app to recommend optimal crops and provide precise fertilizer advisory for farmers.</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Scikit-learn</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Scikit-learn</span>
           </div>
         </div>
 
         <!-- Fake Payment Detector -->
-        <div class="p-7 rounded-3xl glass-card flex flex-col justify-between group">
+        <div class="p-7 rounded-3xl bento-card flex flex-col justify-between group">
           <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-500">
+            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
               <span>Fraud Detection</span>
               <a href="https://github.com/priyanshu18611/Fake-Payment-Detector" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
@@ -282,15 +272,15 @@
             <p class="text-xs text-slate-400 leading-relaxed">Machine Learning-based security project designed to detect fraudulent digital transactions.</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">ML</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">ML</span>
           </div>
         </div>
 
         <!-- Cricket Score Predictor -->
-        <div class="p-7 rounded-3xl glass-card flex flex-col justify-between group">
+        <div class="p-7 rounded-3xl bento-card flex flex-col justify-between group">
           <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-500">
+            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
               <span>Data Analytics & ML</span>
               <a href="https://github.com/priyanshu18611/Cricket-Score-Predictor" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
             </div>
@@ -298,37 +288,37 @@
             <p class="text-xs text-slate-400 leading-relaxed">Predictive analytics platform using XGBoost Regressor and Pandas for live cricket score forecasting.</p>
           </div>
           <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">XGBoost</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">XGBoost</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="space-y-8">
+    <!-- Education Timeline -->
+    <section id="education" class="space-y-6">
       <div>
         <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Academic Background</span>
         <h2 class="text-3xl font-black text-white">Education Timeline</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="p-6 rounded-2xl glass-card space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
+        <div class="p-6 rounded-3xl bento-card space-y-3">
+          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 text-orange-400"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
           <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider block">Oct 2022 - May 2026</span>
           <h3 class="font-bold text-white text-base">B.Tech in Computer Science & Engg</h3>
           <p class="text-xs text-slate-400">Shershah Engineering College, Sasaram</p>
         </div>
 
-        <div class="p-6 rounded-2xl glass-card space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="book-open" class="w-5 h-5"></i></div>
+        <div class="p-6 rounded-3xl bento-card space-y-3">
+          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 text-orange-400"><i data-lucide="book-open" class="w-5 h-5"></i></div>
           <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider block">May 2018 - July 2020</span>
           <h3 class="font-bold text-white text-base">Intermediate - Science (PCM)</h3>
           <p class="text-xs text-slate-400">RB College, Dalsingsaray</p>
         </div>
 
-        <div class="p-6 rounded-2xl glass-card space-y-3">
-          <div class="p-2.5 w-fit rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="school" class="w-5 h-5"></i></div>
+        <div class="p-6 rounded-3xl bento-card space-y-3">
+          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 text-orange-400"><i data-lucide="school" class="w-5 h-5"></i></div>
           <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider block">March 2017 - April 2018</span>
           <h3 class="font-bold text-white text-base">High School (Matriculation)</h3>
           <p class="text-xs text-slate-400">JPNS Narhan</p>
@@ -337,14 +327,14 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="space-y-8">
+    <section id="experience" class="space-y-6">
       <div>
         <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Hands-On Track</span>
         <h2 class="text-3xl font-black text-white">Internships & Roles</h2>
       </div>
 
       <div class="space-y-4">
-        <div class="p-6 rounded-2xl glass-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="p-6 rounded-3xl bento-card flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h3 class="text-base font-bold text-white">Cloud Computing Intern</h3>
             <div class="text-xs font-mono text-orange-400">Aagaaz Training Centre Pvt. Ltd. (Remote)</div>
@@ -353,123 +343,67 @@
           <span class="text-xs font-mono text-slate-500 whitespace-nowrap">Dec 2025</span>
         </div>
 
-        <div class="p-6 rounded-2xl glass-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="p-6 rounded-3xl bento-card flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h3 class="text-base font-bold text-white">Signal & Telecommunication Intern</h3>
-            <div class="text-xs font-mono text-orange-400">East Central Railway (ECR), Danapur Division</div>
+            <div class="text-xs font-mono text-orange-400">East Central Railway (Danapur Division)</div>
             <p class="text-xs text-slate-400 mt-2 max-w-2xl">Hands-on experience with Optical Fiber Communication (OFC), Telephone Exchange, PRS/UTS, and network communications.</p>
           </div>
           <span class="text-xs font-mono text-slate-500 whitespace-nowrap">Jun 2025 - Jul 2025</span>
         </div>
-
-        <div class="p-6 rounded-2xl glass-card flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h3 class="text-base font-bold text-white">Robotics Intern</h3>
-            <div class="text-xs font-mono text-orange-400">InfinityCore Technologies (BlinkSkills) (Remote)</div>
-            <p class="text-xs text-slate-400 mt-2 max-w-2xl">Automation concepts and robotics fundamentals. Achieved 92% in the assessment.</p>
-          </div>
-          <span class="text-xs font-mono text-slate-500 whitespace-nowrap">Jan 2024 - Feb 2024</span>
-        </div>
       </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="space-y-8">
+    <!-- All 15 Verified Certifications -->
+    <section id="certifications" class="space-y-6">
       <div>
         <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Verified Credentials</span>
-        <h2 class="text-3xl font-black text-white">All 15 Licenses & Certifications</h2>
+        <h2 class="text-3xl font-black text-white">Licenses & Certifications</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 text-xs">
-        <div class="p-4 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-start gap-3">
+        <div class="p-4 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-start gap-3">
           <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Cisco: Data Analytics Essentials</div><div class="text-[11px] text-slate-300">Excel, SQL, Tableau, Visualization (Aug 2026)</div></div>
+          <div><div class="font-bold text-white">Cisco: Data Analytics Essentials</div><div class="text-[11px] text-slate-300">Excel, SQL, Tableau, Visualization</div></div>
         </div>
 
-        <div class="p-4 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-start gap-3">
+        <div class="p-4 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-start gap-3">
           <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">JPMorgan Chase: Software Engg Simulation</div><div class="text-[11px] text-slate-300">Kafka & REST API Integration - Forage (July 2026)</div></div>
+          <div><div class="font-bold text-white">JPMorgan Chase: Software Engg</div><div class="text-[11px] text-slate-300">Kafka & REST API Integration - Forage</div></div>
         </div>
 
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
+        <div class="p-4 rounded-2xl bento-card flex items-start gap-3">
           <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">AWS: Data Engineering Foundations</div><div class="text-[11px] text-slate-400">AWS Training & Certification (Aug 2026)</div></div>
+          <div><div class="font-bold text-white">AWS: Data Engineering Foundations</div><div class="text-[11px] text-slate-400">AWS Training & Certification</div></div>
         </div>
 
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
+        <div class="p-4 rounded-2xl bento-card flex items-start gap-3">
           <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Deloitte: Data Analytics Simulation</div><div class="text-[11px] text-slate-400">Data Analysis & Forensic Tech - Forage (June 2026)</div></div>
+          <div><div class="font-bold text-white">Deloitte: Data Analytics Simulation</div><div class="text-[11px] text-slate-400">Data Analysis & Forensic Tech - Forage</div></div>
         </div>
 
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
+        <div class="p-4 rounded-2xl bento-card flex items-start gap-3">
           <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Tata: GenAI Data Analytics</div><div class="text-[11px] text-slate-400">GenAI Analytics Simulation - Forage (June 2026)</div></div>
+          <div><div class="font-bold text-white">SAP: Advanced Analytics Cloud</div><div class="text-[11px] text-slate-400">Predictive Modeling & Planning</div></div>
         </div>
 
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
+        <div class="p-4 rounded-2xl bento-card flex items-start gap-3">
           <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">SAP: Advanced Analytics Cloud</div><div class="text-[11px] text-slate-400">Predictive Modeling & Planning (July 2026)</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Cisco: Data Science with Python</div><div class="text-[11px] text-slate-400">Cisco Networking Academy (June 2026)</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">SAP: Basic ABAP Programming</div><div class="text-[11px] text-slate-400">OOP, ABAP SQL, RESTful RAP (July 2026)</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">AWS: Prompt Engineering Foundations</div><div class="text-[11px] text-slate-400">AWS Training & Certification (June 2026)</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">SAP: SAP Business Data Cloud</div><div class="text-[11px] text-slate-400">Database Management & Modeling (July 2026)</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Mastercard: Cybersecurity Simulation</div><div class="text-[11px] text-slate-400">Phishing Simulation & Analysis (June 2026)</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">NPTEL: Intro to Internet of Things</div><div class="text-[11px] text-slate-400">IIT Kharagpur, 12-week course (60%)</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">NPTEL: Soft Skill Development</div><div class="text-[11px] text-slate-400">IIT Kharagpur, 8-week course</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Data Science & ML Track</div><div class="text-[11px] text-slate-400">YBI Foundation Certification</div></div>
-        </div>
-
-        <div class="p-4 rounded-xl glass-card flex items-start gap-3">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Python Certification</div><div class="text-[11px] text-slate-400">Skills4India</div></div>
+          <div><div class="font-bold text-white">IIT Kharagpur (NPTEL): IoT</div><div class="text-[11px] text-slate-400">12-week course (Elite 60%)</div></div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="space-y-8 pt-6 border-t border-white/10">
+    <!-- Interactive Contact Form -->
+    <section id="contact" class="space-y-6 pt-6 border-t border-white/10">
       <div>
         <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Connect & Hire</span>
         <h2 class="text-3xl font-black text-white">Get In Touch Directly</h2>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <!-- Direct Channels -->
         <div class="lg:col-span-5 space-y-4">
-          <a href="mailto:priyanshu6202018611@gmail.com" class="p-5 rounded-2xl glass-card flex items-center gap-4 hover:border-orange-500/50 transition-all block">
+          <a href="mailto:priyanshu6202018611@gmail.com" class="p-5 rounded-2xl bento-card flex items-center gap-4 block">
             <div class="p-3 rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="mail" class="w-5 h-5"></i></div>
             <div>
               <div class="text-[10px] font-mono text-slate-400 uppercase">Email Address</div>
@@ -477,26 +411,17 @@
             </div>
           </a>
 
-          <a href="tel:+916202018611" class="p-5 rounded-2xl glass-card flex items-center gap-4 hover:border-orange-500/50 transition-all block">
+          <a href="tel:+916202018611" class="p-5 rounded-2xl bento-card flex items-center gap-4 block">
             <div class="p-3 rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="phone" class="w-5 h-5"></i></div>
             <div>
               <div class="text-[10px] font-mono text-slate-400 uppercase">Phone Number</div>
               <div class="text-xs font-bold text-white">+91-6202018611</div>
             </div>
           </a>
-
-          <a href="https://linkedin.com/in/priyanshuroy18" target="_blank" class="p-5 rounded-2xl glass-card flex items-center gap-4 hover:border-orange-500/50 transition-all block">
-            <div class="p-3 rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="linkedin" class="w-5 h-5"></i></div>
-            <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase">LinkedIn Profile</div>
-              <div class="text-xs font-bold text-white">linkedin.com/in/priyanshuroy18</div>
-            </div>
-          </a>
         </div>
 
-        <!-- Live Serverless Contact Dispatch Form -->
         <div class="lg:col-span-7">
-          <form onsubmit="handleContactDispatch(event)" class="glass-card p-6 rounded-3xl space-y-4 border border-white/10">
+          <form onsubmit="handleContactDispatch(event)" class="bento-card p-6 rounded-3xl space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="text-[10px] font-mono text-slate-400 block mb-1">Your Name</label>
@@ -509,34 +434,31 @@
             </div>
 
             <div>
-              <label class="text-[10px] font-mono text-slate-400 block mb-1">Project Details / Opportunity</label>
-              <textarea id="formMessage" rows="3" required placeholder="Let's discuss full-time roles, software architecture, or analytical projects..." class="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-orange-500 font-sans"></textarea>
+              <label class="text-[10px] font-mono text-slate-400 block mb-1">Message</label>
+              <textarea id="formMessage" rows="3" required placeholder="Let's connect for engineering roles or data projects..." class="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-orange-500 font-sans"></textarea>
             </div>
 
-            <button id="dispatchBtn" type="submit" class="w-full py-3 rounded-xl bg-orange-500 text-black font-extrabold text-xs uppercase tracking-wider hover:bg-orange-400 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,107,0,0.3)]">
+            <button id="dispatchBtn" type="submit" class="w-full py-3.5 rounded-xl bg-orange-500 text-black font-extrabold text-xs uppercase tracking-wider hover:bg-orange-400 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,107,0,0.4)]">
               <i data-lucide="send" class="w-3.5 h-3.5"></i> Dispatch Message to Backend API
             </button>
-
             <div id="formStatus" class="hidden p-3 rounded-xl bg-black/60 border border-emerald-500/40 text-emerald-400 text-xs font-mono"></div>
           </form>
         </div>
-
       </div>
     </section>
 
   </main>
 
   <!-- Signature Footer -->
-  <footer class="border-t border-white/10 bg-[#040507] py-10 px-6 text-center space-y-4 relative">
+  <footer class="border-t border-white/10 bg-[#040507] py-10 px-6 text-center space-y-4">
     <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-[0_0_20px_rgba(255,107,0,0.15)]">
       <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
       <span class="text-xs font-mono uppercase tracking-widest text-slate-300">
         Engineered by <span class="text-orange-400 font-bold">Priyanshu Kumar</span>
       </span>
     </div>
-
     <div class="text-xs text-slate-500 font-mono">
-      © 2026 Priyanshu Kumar. Built with Code, Precision & Passion.
+      © 2026 Priyanshu Kumar. Built with Code, Precision & Full-Stack Architecture.
     </div>
   </footer>
 
@@ -560,34 +482,24 @@
       </button>
     </div>
 
-    <!-- Quick Prompts -->
-    <div class="px-3 py-2 bg-black/40 border-b border-white/5 flex gap-1.5 overflow-x-auto text-[10px] font-mono text-slate-300">
-      <button onclick="askQuickPrompt('Explain Full-Stack Backend Architecture')" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-orange-500/20 hover:text-orange-400 border border-white/10 whitespace-nowrap">Backend APIs</button>
-      <button onclick="askQuickPrompt('Tell me about your projects')" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-orange-500/20 hover:text-orange-400 border border-white/10 whitespace-nowrap">Projects</button>
-      <button onclick="askQuickPrompt('What is your contact info?')" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-orange-500/20 hover:text-orange-400 border border-white/10 whitespace-nowrap">Contact</button>
-      <button onclick="askQuickPrompt('List your certifications')" class="px-2.5 py-1 rounded-full bg-white/5 hover:bg-orange-500/20 hover:text-orange-400 border border-white/10 whitespace-nowrap">Certs</button>
-    </div>
-
     <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
       <div class="flex justify-start">
         <div class="max-w-[85%] p-3 rounded-2xl bg-white/5 text-slate-200 border border-white/10 leading-relaxed">
-          Hello! I am connected to Priyanshu's serverless backend. Ask me about his full-stack architecture, projects, or credentials!
+          Hello! I am connected to Priyanshu's serverless backend. Ask me about his projects, skills, or certifications!
         </div>
       </div>
     </div>
 
     <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-white/10 flex gap-2 bg-black/30">
-      <input id="chatInput" type="text" placeholder="Type a message or question..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 font-sans" />
+      <input id="chatInput" type="text" placeholder="Type a message..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 font-sans" />
       <button type="submit" class="p-2 rounded-xl bg-orange-500 text-black hover:bg-orange-400 transition-colors font-bold cursor-pointer">
         <i data-lucide="send" class="w-4 h-4"></i>
       </button>
     </form>
   </div>
 
-  <!-- Custom Script -->
   <script src="./script.js"></script>
 
-  <!-- Live Backend API Connectors -->
   <script>
     async function handleContactDispatch(e) {
       e.preventDefault();
@@ -606,7 +518,6 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, email, message })
         });
-
         const data = await res.json();
         status.classList.remove('hidden');
         status.innerHTML = `✅ <strong>Success:</strong> ${data.message || 'Message recorded!'}`;
