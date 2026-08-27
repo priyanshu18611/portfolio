@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priyanshu Kumar | System & Pipeline Architecture</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06070a; color: #e2e8f0; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(15, 19, 29, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+    }
+    .flow-line {
+      background: linear-gradient(90deg, rgba(249,115,22,0.8), rgba(59,130,246,0.8));
+    }
+  </style>
+</head>
+<body class="p-4 sm:p-8 selection:bg-orange-500 selection:text-black min-h-screen flex flex-col justify-between">
+
+  <!-- Ambient Glow -->
+  <div class="fixed -top-32 -left-32 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Header -->
+  <header class="max-w-6xl mx-auto w-full flex justify-between items-center pb-6 border-b border-white/10">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-400 flex items-center justify-center font-black text-black text-sm shadow-[0_0_20px_rgba(255,107,0,0.4)]">
+        PK
+      </div>
+      <div>
+        <h1 class="text-sm font-bold text-white uppercase tracking-wider">System Architecture Blueprints</h1>
+        <p class="text-[10px] font-mono text-orange-400">Data Streaming • REST Microservices • ML Inference Pipelines</p>
+      </div>
+    </div>
+    <a href="./index.html" class="px-4 py-1.5 rounded-full border border-orange-500/30 text-xs font-bold text-orange-400 hover:bg-orange-500/10 transition-all flex items-center gap-1.5">
+      <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Exit to Portfolio
+    </a>
+  </header>
+
+  <!-- Main Diagrams Container -->
+  <main class="max-w-6xl mx-auto w-full py-8 space-y-12">
+
+    <!-- Architecture 1: Real-Time IoT & Kafka Event Streaming (EcoSentinel) -->
+    <section class="space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono text-orange-400 uppercase">
+        <i data-lucide="cpu" class="w-4 h-4"></i>
+        <span>System Blueprint 01 // Real-Time IoT & Streaming</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">EcoSentinel Real-Time Data Pipeline</h2>
+
+      <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border-t-2 border-t-orange-500">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+          
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-orange-400 block">STEP 01: INGESTION</span>
+            <h3 class="font-bold text-white text-xs">Simulated IoT Collars</h3>
+            <p class="text-[11px] text-slate-400 leading-relaxed">GPS coordinates & telemetry packets pushed via HTTP/Socket payloads.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-amber-400 block">STEP 02: STREAMING</span>
+            <h3 class="font-bold text-white text-xs">Kafka Message Broker</h3>
+            <p class="text-[11px] text-slate-400 leading-relaxed">Distributed topic partitioning for fault-tolerant, high-throughput queueing.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-blue-400 block">STEP 03: PROCESSING</span>
+            <h3 class="font-bold text-white text-xs">Node.js Geofence Engine</h3>
+            <p class="text-[11px] text-slate-400 leading-relaxed">Spatial polygon calculations trigger breach alerts with sub-second latency.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-emerald-400 block">STEP 04: PRESENTATION</span>
+            <h3 class="font-bold text-white text-xs">React + Leaflet UI</h3>
+            <p class="text-[11px] text-slate-400 leading-relaxed">Real-time socket subscription rendering live marker coordinates.</p>
+          </div>
+
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-orange-500/10 border border-orange-500/20 text-xs text-slate-300 font-mono">
+          <strong class="text-orange-400">Core Stack:</strong> Apache Kafka, Node.js, Express, MongoDB Atlas, Socket.io, React.js, Leaflet.js
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture 2: Deep Learning Model Training & Inference (Brain Tumor Detection) -->
+    <section class="space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono text-blue-400 uppercase">
+        <i data-lucide="layers" class="w-4 h-4"></i>
+        <span>System Blueprint 02 // Computer Vision ML Pipeline</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">Brain Tumor MRI CNN Classification Flow</h2>
+
+      <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border-t-2 border-t-blue-500">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-blue-400 block">01 // PREPROCESSING</span>
+            <h3 class="font-bold text-white text-xs">OpenCV Image Pipeline</h3>
+            <p class="text-[11px] text-slate-400 leading-relaxed">MRI scan grayscale conversion, contrast histogram normalization, and tensor resizing.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-amber-400 block">02 // NEURAL NETWORK</span>
+            <h3 class="font-bold text-white text-xs">4-Block CNN Architecture</h3>
+            <p class="text-[11px] text-slate-400 leading-relaxed">Conv2D feature extractors, Batch Normalization, MaxPooling, Dropout (0.3), Softmax output.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-emerald-400 block">03 // DEPLOYMENT</span>
+            <h3 class="font-bold text-white text-xs">Flask REST API Endpoint</h3>
+            <p class="text-[11px] text-slate-400 leading-relaxed">Serialized HDF5 model loaded in memory for real-time inference with confidence score output.</p>
+          </div>
+
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-xs text-slate-300 font-mono">
+          <strong class="text-blue-400">Core Stack:</strong> TensorFlow, Keras, OpenCV, Flask, Python, Docker Containerization
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture 3: Data Analytics & Mandi Aggregation (Kisan Mitra / AgroSmart) -->
+    <section class="space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase">
+        <i data-lucide="database" class="w-4 h-4"></i>
+        <span>System Blueprint 03 // Analytics ETL Pipeline</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">Smart Agriculture Analytics & Advisory Engine</h2>
+
+      <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border-t-2 border-t-emerald-500">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-slate-400 block">INPUT DATA</span>
+            <h3 class="font-bold text-white text-xs">Multi-Source Feeds</h3>
+            <p class="text-[11px] text-slate-400">OpenWeather API, Soil N-P-K datasets, Mandi daily price feeds.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-emerald-400 block">ETL ENGINE</span>
+            <h3 class="font-bold text-white text-xs">Pandas Cleanse & SQL</h3>
+            <p class="text-[11px] text-slate-400">Outlier handling, missing value imputation, aggregated SQL views.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-orange-400 block">PREDICTIVE ML</span>
+            <h3 class="font-bold text-white text-xs">XGBoost Regressor</h3>
+            <p class="text-[11px] text-slate-400">Score & price trend projection based on historical market trends.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-2">
+            <span class="text-[10px] font-mono text-blue-400 block">BI DASHBOARD</span>
+            <h3 class="font-bold text-white text-xs">Interactive Studio</h3>
+            <p class="text-[11px] text-slate-400">Farmer-friendly visual cards and regional price breakdown tables.</p>
+          </div>
+
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-slate-300 font-mono">
+          <strong class="text-emerald-400">Core Stack:</strong> SQL, Pandas, Scikit-learn, XGBoost, Streamlit / Web UI, REST APIs
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-[10px] font-mono text-slate-600 pt-6">
+    Engineered by Priyanshu Kumar • Software Engineering & Data Systems Architecture
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
