@@ -24,20 +24,20 @@
   <div class="glow-orange top-[45%] -right-40"></div>
 
   <!-- Navigation Bar -->
-  <nav class="fixed top-0 left-0 w-full z-40 bg-[#06070a]/90 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-400 flex items-center justify-center font-black text-black text-sm shadow-[0_0_20px_rgba(255,107,0,0.5)]">
+  <nav class="fixed top-0 left-0 w-full z-40 bg-[#06070a]/90 backdrop-blur-xl border-b border-white/5 px-4 sm:px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-400 flex items-center justify-center font-black text-black text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)]">
         PK
       </div>
       <div>
         <span class="font-extrabold tracking-wider text-xs uppercase text-slate-100 block">
           Priyanshu <span class="text-orange-500">Kumar</span>
         </span>
-        <span class="text-[9px] font-mono text-slate-400 block tracking-widest">SOFTWARE & DATA ANALYST</span>
+        <span class="text-[8.5px] font-mono text-slate-400 block tracking-widest">SOFTWARE & DATA ANALYST</span>
       </div>
     </div>
 
-    <!-- Section Links -->
+    <!-- Section Links (Desktop) -->
     <div class="hidden xl:flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-slate-400">
       <a href="#about" class="hover:text-orange-400 transition-colors">Overview</a>
       <a href="#skills" class="hover:text-orange-400 transition-colors">Skills</a>
@@ -48,36 +48,34 @@
       <a href="#contact" class="hover:text-orange-400 transition-colors">Contact</a>
     </div>
 
-    <!-- Interactive Navigation Buttons with ATS Engine -->
-    <div class="flex items-center gap-2">
-      <a href="./resume-builder.html" class="px-3 py-1.5 rounded-full border border-orange-500/50 bg-orange-500/15 text-orange-400 text-xs font-mono font-bold hover:bg-orange-500/25 transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(249,115,22,0.3)]">
-        <i data-lucide="file-check-2" class="w-3.5 h-3.5"></i> ATS Resume
+    <!-- Interactive Navigation Buttons (Mobile & Desktop Visible) -->
+    <div class="flex items-center gap-1.5 sm:gap-2">
+      <!-- Direct View Resume PDF Button -->
+      <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="px-2.5 sm:px-3.5 py-1.5 rounded-full border border-orange-500/40 bg-orange-500/10 text-xs font-semibold text-orange-400 hover:bg-orange-500/20 transition-all flex items-center gap-1 shadow-[0_0_10px_rgba(249,115,22,0.2)]">
+        <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+        <span class="text-[11px] font-bold">Resume</span>
       </a>
 
-      <a href="./analytics.html" class="px-3 py-1.5 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold hover:bg-blue-500/20 transition-all flex items-center gap-1.5">
+      <!-- ATS Studio Button -->
+      <a href="./resume-builder.html" class="px-2.5 sm:px-3 py-1.5 rounded-full border border-indigo-500/40 bg-indigo-500/10 text-indigo-400 text-xs font-mono font-bold hover:bg-indigo-500/20 transition-all flex items-center gap-1">
+        <i data-lucide="file-check-2" class="w-3.5 h-3.5"></i>
+        <span class="hidden sm:inline">ATS Studio</span>
+      </a>
+
+      <!-- Analytics Button -->
+      <a href="./analytics.html" class="hidden sm:flex px-3 py-1.5 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold hover:bg-blue-500/20 transition-all items-center gap-1.5">
         <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> Analytics
       </a>
 
-      <a href="./playground.html" class="px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-mono font-bold hover:bg-amber-500/20 transition-all flex items-center gap-1.5">
-        <i data-lucide="play" class="w-3.5 h-3.5"></i> Playground
-      </a>
-
-      <a href="./terminal.html" class="px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold hover:bg-emerald-500/20 transition-all flex items-center gap-1.5">
-        <i data-lucide="terminal" class="w-3.5 h-3.5"></i> CLI
-      </a>
-
-      <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" download class="hidden sm:flex px-3.5 py-1.5 rounded-full border border-white/15 text-xs font-semibold text-slate-300 hover:bg-white/10 transition-all items-center gap-1.5">
-        <i data-lucide="download" class="w-3.5 h-3.5"></i> PDF
-      </a>
-
-      <button onclick="openChat()" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_20px_rgba(255,107,0,0.4)] hover:brightness-110 transition-all flex items-center gap-1.5 cursor-pointer">
-        <i data-lucide="bot" class="w-3.5 h-3.5"></i> Ask AI
+      <!-- Ask AI Button -->
+      <button onclick="openChat()" class="px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(255,107,0,0.4)] hover:brightness-110 transition-all flex items-center gap-1 cursor-pointer">
+        <i data-lucide="bot" class="w-3.5 h-3.5"></i> AI
       </button>
     </div>
   </nav>
 
   <!-- Main Content Container -->
-  <main class="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20 space-y-28">
+  <main class="relative z-10 max-w-6xl mx-auto px-6 pt-28 sm:pt-32 pb-20 space-y-28">
 
     <!-- Hero Section -->
     <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[65vh]">
@@ -87,7 +85,7 @@
           Full-Stack & ATS Verified Architecture • 2026
         </div>
         
-        <h1 class="text-5xl sm:text-7xl font-black tracking-tight text-white leading-none">
+        <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white leading-none">
           Priyanshu <br />
           <span id="typewriter" class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-300 to-orange-600">
             Software Engineer
@@ -109,13 +107,22 @@
           </a>
         </div>
 
-        <div class="flex flex-wrap items-center gap-4 pt-2">
-          <a href="#projects" class="px-6 py-3.5 rounded-xl bg-orange-500 text-black font-black text-xs uppercase tracking-wider hover:bg-orange-400 transition-all shadow-[0_0_25px_rgba(255,107,0,0.4)]">
+        <!-- Primary Action Buttons (Resume View + ATS Studio) -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="#projects" class="px-5 py-3 rounded-xl bg-orange-500 text-black font-black text-xs uppercase tracking-wider hover:bg-orange-400 transition-all shadow-[0_0_20px_rgba(255,107,0,0.4)]">
             Explore Work →
           </a>
-          <a href="./resume-builder.html" class="px-5 py-3.5 rounded-xl border border-orange-500/40 bg-orange-500/10 hover:bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2">
-            <i data-lucide="file-check-2" class="w-4 h-4 text-orange-400"></i> ATS Resume Engine
+
+          <!-- Dedicated View Resume PDF Button -->
+          <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="px-5 py-3 rounded-xl border border-orange-500/40 bg-orange-500/10 hover:bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2">
+            <i data-lucide="eye" class="w-4 h-4 text-orange-400"></i> View Resume (PDF)
           </a>
+
+          <!-- ATS Engine Button -->
+          <a href="./resume-builder.html" class="px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-200 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2">
+            <i data-lucide="file-check-2" class="w-4 h-4 text-indigo-400"></i> ATS Studio
+          </a>
+
           <div class="flex items-center gap-2">
             <a href="https://github.com/priyanshu18611" target="_blank" class="p-3 rounded-xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-300 hover:text-orange-400 transition-all">
               <i data-lucide="github" class="w-4 h-4"></i>
@@ -531,7 +538,7 @@
     </div>
 
     <div class="text-xs text-slate-500 font-mono">
-      © 2026 Priyanshu Kumar. Built with Code, Precision & Full-Stack Architecture.
+      © 2026 Priyanshu Kumar. Built with Code, Precision & Passion.
     </div>
   </footer>
 
@@ -571,7 +578,7 @@
       </div>
     </div>
 
-    <form onsubmit="handleContactDispatch(event)" class="p-3 border-t border-white/10 flex gap-2 bg-black/30">
+    <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-white/10 flex gap-2 bg-black/30">
       <input id="chatInput" type="text" placeholder="Type a message or question..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 font-sans" />
       <button type="submit" class="p-2 rounded-xl bg-orange-500 text-black hover:bg-orange-400 transition-colors font-bold cursor-pointer">
         <i data-lucide="send" class="w-4 h-4"></i>
@@ -584,19 +591,6 @@
 
   <!-- Live Backend API Connectors -->
   <script>
-    // Live Server Analytics Fetcher
-    async function loadServerHits() {
-      try {
-        const res = await fetch('/api/analytics', { method: 'POST' });
-        if(res.ok) {
-          const data = await res.json();
-          document.getElementById('serverHitBadge').innerText = data.totalViewsTracked + ' (Live)';
-        }
-      } catch(e) {}
-    }
-    loadServerHits();
-
-    // Contact Form Backend Dispatcher
     async function handleContactDispatch(e) {
       e.preventDefault();
       const btn = document.getElementById('dispatchBtn');
