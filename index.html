@@ -26,9 +26,12 @@
       transition: all 0.2s ease;
       white-space: nowrap;
       flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
     }
     .nav-pill:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       border-color: rgba(249, 115, 22, 0.5);
       transform: translateY(-1px);
     }
@@ -44,16 +47,16 @@
   <div class="glow-orange -top-40 -left-40"></div>
   <div class="glow-orange top-[45%] -right-40"></div>
 
-  <!-- Perfectly Aligned Fixed Navigation Bar -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-[#06070a]/90 backdrop-blur-2xl border-b border-white/10 px-4 sm:px-8 py-3">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+  <!-- Complete Fixed Navigation Bar with ALL 10 Options -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-[#06070a]/95 backdrop-blur-2xl border-b border-white/10 px-3 sm:px-6 py-2.5">
+    <div class="max-w-[1400px] mx-auto flex items-center justify-between gap-3">
       
       <!-- Brand Logo -->
-      <a href="#about" class="flex items-center gap-2.5 shrink-0 group">
+      <a href="#about" class="flex items-center gap-2 shrink-0 group">
         <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-600 via-amber-400 to-orange-500 flex items-center justify-center font-black text-black text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] group-hover:scale-105 transition-transform">
           PK
         </div>
-        <div class="hidden sm:block">
+        <div class="hidden lg:block">
           <span class="font-extrabold tracking-wider text-xs uppercase text-slate-100 block">
             Priyanshu <span class="text-orange-500">Kumar</span>
           </span>
@@ -61,36 +64,63 @@
         </div>
       </a>
 
-      <!-- Smooth Scrollable Action Hub (Never Breaks Lines) -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+      <!-- Full Action Hub (Scrollable Row - All 10 Options) -->
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
         
-        <button onclick="toggleSpotlight()" class="nav-pill px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-slate-300 text-xs font-mono flex items-center gap-1.5 cursor-pointer">
+        <!-- 1. Search Spotlight -->
+        <button onclick="toggleSpotlight()" class="nav-pill px-2.5 py-1.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 text-xs font-mono cursor-pointer">
           <i data-lucide="search" class="w-3.5 h-3.5 text-orange-400"></i>
-          <span class="text-[11px] hidden md:inline">Cmd+K</span>
+          <span class="text-[11px] hidden sm:inline">Cmd+K</span>
         </button>
 
-        <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="nav-pill px-3.5 py-1.5 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs font-mono font-bold flex items-center gap-1.5">
-          <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Resume PDF
+        <!-- 2. Resume PDF -->
+        <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="nav-pill px-3 py-1.5 rounded-xl border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs font-mono font-bold">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Resume
         </a>
 
-        <a href="./resume-builder.html" class="nav-pill px-3.5 py-1.5 rounded-full border border-indigo-500/40 bg-indigo-500/10 text-indigo-400 text-xs font-mono font-bold flex items-center gap-1.5">
+        <!-- 3. ATS Studio -->
+        <a href="./resume-builder.html" class="nav-pill px-3 py-1.5 rounded-xl border border-indigo-500/40 bg-indigo-500/10 text-indigo-400 text-xs font-mono font-bold">
           <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> ATS Studio
         </a>
 
-        <a href="./analytics.html" class="nav-pill px-3.5 py-1.5 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold flex items-center gap-1.5">
+        <!-- 4. Analytics BI -->
+        <a href="./analytics.html" class="nav-pill px-3 py-1.5 rounded-xl border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold">
           <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> Analytics BI
         </a>
 
-        <a href="./excel-studio.html" class="nav-pill px-3.5 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold flex items-center gap-1.5">
+        <!-- 5. Excel Lab -->
+        <a href="./excel-studio.html" class="nav-pill px-3 py-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold">
           <i data-lucide="table" class="w-3.5 h-3.5"></i> Excel Lab
         </a>
 
-        <a href="./terminal.html" class="nav-pill px-3.5 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold flex items-center gap-1.5">
-          <i data-lucide="terminal" class="w-3.5 h-3.5"></i> CLI
+        <!-- 6. Python 3.11 WASM Engine -->
+        <a href="./python-engine.html" class="nav-pill px-3 py-1.5 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 text-xs font-mono font-bold">
+          <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Python 3.11
         </a>
 
-        <button onclick="openChat()" class="nav-pill px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] hover:brightness-110 flex items-center gap-1.5 cursor-pointer">
-          <i data-lucide="bot" class="w-3.5 h-3.5"></i> AI Assistant
+        <!-- 7. AI Matcher Workspace -->
+        <a href="./ai-workspace.html" class="nav-pill px-3 py-1.5 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-mono font-bold">
+          <i data-lucide="cpu" class="w-3.5 h-3.5"></i> AI Matcher
+        </a>
+
+        <!-- 8. Interactive CLI -->
+        <a href="./terminal.html" class="nav-pill px-3 py-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold">
+          <i data-lucide="terminal-square" class="w-3.5 h-3.5"></i> CLI
+        </a>
+
+        <!-- 9. Playground Lab -->
+        <a href="./playground.html" class="nav-pill px-3 py-1.5 rounded-xl border border-pink-500/40 bg-pink-500/10 text-pink-400 text-xs font-mono font-bold">
+          <i data-lucide="play" class="w-3.5 h-3.5"></i> Lab
+        </a>
+
+        <!-- 10. Blueprint Architecture -->
+        <a href="./system-architecture.html" class="nav-pill px-3 py-1.5 rounded-xl border border-purple-500/40 bg-purple-500/10 text-purple-400 text-xs font-mono font-bold">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i> Blueprint
+        </a>
+
+        <!-- 11. AI Neural Assistant -->
+        <button onclick="openChat()" class="nav-pill px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] hover:brightness-110 cursor-pointer">
+          <i data-lucide="bot" class="w-3.5 h-3.5"></i> AI
         </button>
 
       </div>
@@ -581,6 +611,14 @@
         <a href="./excel-studio.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-emerald-400 block">
           <span>📊 Open Excel Analytics Sandbox</span>
           <span class="text-[10px] text-slate-500">Excel</span>
+        </a>
+        <a href="./python-engine.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-cyan-400 block">
+          <span>🐍 Launch Python 3.11 Runtime Core</span>
+          <span class="text-[10px] text-slate-500">Python</span>
+        </a>
+        <a href="./ai-workspace.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-amber-400 block">
+          <span>🤖 Open Autonomous AI Recruiter Matcher</span>
+          <span class="text-[10px] text-slate-500">AI</span>
         </a>
       </div>
     </div>
