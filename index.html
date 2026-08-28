@@ -22,21 +22,26 @@
       transform: translateY(-3px);
       box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(249, 115, 22, 0.15);
     }
-    .nav-pill {
+    .floating-header {
+      background: rgba(6, 7, 10, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px rgba(249, 115, 22, 0.05);
+    }
+    .nav-btn {
       transition: all 0.2s ease;
       white-space: nowrap;
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
     }
-    .nav-pill:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(249, 115, 22, 0.5);
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
       transform: translateY(-1px);
     }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .dropdown-menu {
+      background: rgba(10, 13, 20, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 30px rgba(249, 115, 22, 0.15);
+    }
   </style>
 </head>
 <body class="selection:bg-orange-500 selection:text-black bg-[#040507] text-slate-100">
@@ -47,16 +52,16 @@
   <div class="glow-orange -top-40 -left-40"></div>
   <div class="glow-orange top-[45%] -right-40"></div>
 
-  <!-- Complete Fixed Navigation Bar with ALL 10 Options -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-[#06070a]/95 backdrop-blur-2xl border-b border-white/10 px-3 sm:px-6 py-2.5">
-    <div class="max-w-[1400px] mx-auto flex items-center justify-between gap-3">
+  <!-- Ultra-Modern Dynamic Island Floating Header -->
+  <header class="fixed top-3 sm:top-5 left-0 w-full z-50 px-3 sm:px-6 flex justify-center">
+    <nav class="floating-header max-w-5xl w-full rounded-2xl sm:rounded-full px-3.5 py-2 flex items-center justify-between gap-2 sm:gap-4">
       
-      <!-- Brand Logo -->
-      <a href="#about" class="flex items-center gap-2 shrink-0 group">
+      <!-- Brand Identity -->
+      <a href="#about" class="flex items-center gap-2.5 shrink-0 group">
         <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-600 via-amber-400 to-orange-500 flex items-center justify-center font-black text-black text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] group-hover:scale-105 transition-transform">
           PK
         </div>
-        <div class="hidden lg:block">
+        <div class="hidden sm:block">
           <span class="font-extrabold tracking-wider text-xs uppercase text-slate-100 block">
             Priyanshu <span class="text-orange-500">Kumar</span>
           </span>
@@ -64,71 +69,131 @@
         </div>
       </a>
 
-      <!-- Full Action Hub (Scrollable Row - All 10 Options) -->
-      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+      <!-- Main Action Controls -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
         
-        <!-- 1. Search Spotlight -->
-        <button onclick="toggleSpotlight()" class="nav-pill px-2.5 py-1.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 text-xs font-mono cursor-pointer">
+        <!-- Quick Spotlight Search (Cmd + K) -->
+        <button onclick="toggleSpotlight()" class="nav-btn px-2.5 py-1.5 rounded-xl sm:rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs font-mono flex items-center gap-1.5 cursor-pointer">
           <i data-lucide="search" class="w-3.5 h-3.5 text-orange-400"></i>
-          <span class="text-[11px] hidden sm:inline">Cmd+K</span>
+          <span class="text-[11px] hidden md:inline">Cmd+K</span>
         </button>
 
-        <!-- 2. Resume PDF -->
-        <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="nav-pill px-3 py-1.5 rounded-xl border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs font-mono font-bold">
-          <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Resume
+        <!-- Direct Action 1: Resume PDF -->
+        <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="nav-btn px-3 py-1.5 rounded-xl sm:rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs font-mono font-bold flex items-center gap-1.5">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i> <span class="hidden xs:inline">Resume</span>
         </a>
 
-        <!-- 3. ATS Studio -->
-        <a href="./resume-builder.html" class="nav-pill px-3 py-1.5 rounded-xl border border-indigo-500/40 bg-indigo-500/10 text-indigo-400 text-xs font-mono font-bold">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> ATS Studio
+        <!-- Direct Action 2: ATS Studio -->
+        <a href="./resume-builder.html" class="nav-btn px-3 py-1.5 rounded-xl sm:rounded-full border border-indigo-500/40 bg-indigo-500/10 text-indigo-400 text-xs font-mono font-bold flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> <span class="hidden xs:inline">ATS Studio</span>
         </a>
 
-        <!-- 4. Analytics BI -->
-        <a href="./analytics.html" class="nav-pill px-3 py-1.5 rounded-xl border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold">
-          <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> Analytics BI
+        <!-- Direct Action 3: Analytics BI -->
+        <a href="./analytics.html" class="nav-btn px-3 py-1.5 rounded-xl sm:rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold flex items-center gap-1.5">
+          <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Analytics</span>
         </a>
 
-        <!-- 5. Excel Lab -->
-        <a href="./excel-studio.html" class="nav-pill px-3 py-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold">
-          <i data-lucide="table" class="w-3.5 h-3.5"></i> Excel Lab
-        </a>
+        <!-- WORKSPACE SUITE DROPDOWN (Organizes all other engines cleanly) -->
+        <div class="relative">
+          <button onclick="toggleSuiteMenu()" id="suiteBtn" class="nav-btn px-3 py-1.5 rounded-xl sm:rounded-full border border-white/15 bg-white/5 hover:border-orange-500/40 text-slate-200 text-xs font-mono font-bold flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="grid" class="w-3.5 h-3.5 text-orange-400"></i>
+            <span>Studios</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400 transition-transform duration-200" id="chevronIcon"></i>
+          </button>
 
-        <!-- 6. Python 3.11 WASM Engine -->
-        <a href="./python-engine.html" class="nav-pill px-3 py-1.5 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 text-xs font-mono font-bold">
-          <i data-lucide="terminal" class="w-3.5 h-3.5"></i> Python 3.11
-        </a>
+          <!-- Dropdown Popover Menu -->
+          <div id="suiteMenu" class="hidden dropdown-menu absolute right-0 top-11 w-72 sm:w-80 rounded-3xl p-3 space-y-1.5 z-50">
+            <div class="px-3 py-1.5 border-b border-white/10 flex justify-between items-center text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+              <span>Interactive Workspaces</span>
+              <span class="text-orange-400">6 Engines</span>
+            </div>
 
-        <!-- 7. AI Matcher Workspace -->
-        <a href="./ai-workspace.html" class="nav-pill px-3 py-1.5 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-mono font-bold">
-          <i data-lucide="cpu" class="w-3.5 h-3.5"></i> AI Matcher
-        </a>
+            <!-- 1. Python 3.11 WASM -->
+            <a href="./python-engine.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"><i data-lucide="terminal" class="w-4 h-4"></i></div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">Python 3.11 Engine</div>
+                  <div class="text-[10px] text-slate-400">Real WebAssembly runtime compiler</div>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">WASM</span>
+            </a>
 
-        <!-- 8. Interactive CLI -->
-        <a href="./terminal.html" class="nav-pill px-3 py-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold">
-          <i data-lucide="terminal-square" class="w-3.5 h-3.5"></i> CLI
-        </a>
+            <!-- 2. Excel Analytics Studio -->
+            <a href="./excel-studio.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i data-lucide="table" class="w-4 h-4"></i></div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">Excel Studio Sandbox</div>
+                  <div class="text-[10px] text-slate-400">Formulas, SUM, AVG & live charts</div>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">XLS</span>
+            </a>
 
-        <!-- 9. Playground Lab -->
-        <a href="./playground.html" class="nav-pill px-3 py-1.5 rounded-xl border border-pink-500/40 bg-pink-500/10 text-pink-400 text-xs font-mono font-bold">
-          <i data-lucide="play" class="w-3.5 h-3.5"></i> Lab
-        </a>
+            <!-- 3. AI Recruiter Matcher -->
+            <a href="./ai-workspace.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20"><i data-lucide="cpu" class="w-4 h-4"></i></div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">AI Recruiter Matcher</div>
+                  <div class="text-[10px] text-slate-400">Automated candidate JD audit</div>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">AI</span>
+            </a>
 
-        <!-- 10. Blueprint Architecture -->
-        <a href="./system-architecture.html" class="nav-pill px-3 py-1.5 rounded-xl border border-purple-500/40 bg-purple-500/10 text-purple-400 text-xs font-mono font-bold">
-          <i data-lucide="layers" class="w-3.5 h-3.5"></i> Blueprint
-        </a>
+            <!-- 4. Interactive CLI Terminal -->
+            <a href="./terminal.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i data-lucide="terminal-square" class="w-4 h-4"></i></div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">Developer CLI Console</div>
+                  <div class="text-[10px] text-slate-400">Interactive shell commands</div>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">CLI</span>
+            </a>
 
-        <!-- 11. AI Neural Assistant -->
-        <button onclick="openChat()" class="nav-pill px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] hover:brightness-110 cursor-pointer">
-          <i data-lucide="bot" class="w-3.5 h-3.5"></i> AI
+            <!-- 5. Playground Lab -->
+            <a href="./playground.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-500/20"><i data-lucide="play" class="w-4 h-4"></i></div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover:text-pink-400 transition-colors">Playground Lab</div>
+                  <div class="text-[10px] text-slate-400">Visual test environment</div>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">TEST</span>
+            </a>
+
+            <!-- 6. System Architecture Blueprint -->
+            <a href="./system-architecture.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20"><i data-lucide="layers" class="w-4 h-4"></i></div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover:text-purple-400 transition-colors">Architecture Blueprint</div>
+                  <div class="text-[10px] text-slate-400">Microservices system topology</div>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400 border border-purple-500/30">ARCH</span>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- AI Assistant Button -->
+        <button onclick="openChat()" class="nav-btn px-3 sm:px-4 py-1.5 rounded-xl sm:rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] hover:brightness-110 flex items-center gap-1.5 cursor-pointer">
+          <i data-lucide="bot" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">AI</span>
         </button>
 
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <!-- Main Container -->
-  <main class="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-24 space-y-28">
+  <main class="relative z-10 max-w-6xl mx-auto px-6 pt-28 sm:pt-32 pb-24 space-y-28">
 
     <!-- Hero Section -->
     <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center min-h-[65vh]">
@@ -704,6 +769,26 @@
   <script src="./script.js"></script>
 
   <script>
+    // Suite Menu Dropdown Toggle
+    function toggleSuiteMenu() {
+      const menu = document.getElementById('suiteMenu');
+      const chevron = document.getElementById('chevronIcon');
+      menu.classList.toggle('hidden');
+      if (chevron) {
+        chevron.classList.toggle('rotate-180');
+      }
+    }
+
+    // Close Dropdown when clicked outside
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('suiteMenu');
+      const btn = document.getElementById('suiteBtn');
+      if (menu && btn && !btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+        document.getElementById('chevronIcon')?.classList.remove('rotate-180');
+      }
+    });
+
     function toggleSpotlight() {
       const s = document.getElementById('spotlightModal');
       s.classList.toggle('hidden');
@@ -721,6 +806,7 @@
         document.getElementById('spotlightModal').classList.add('hidden');
         closeProjectModal();
         closeCertModal();
+        document.getElementById('suiteMenu')?.classList.add('hidden');
       }
     });
 
