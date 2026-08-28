@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
 
 :root {
   --bg-primary: #040507;
   --accent-orange: #f97316;
   --accent-amber: #f59e0b;
   --accent-blue: #3b82f6;
-  --card-bg: rgba(13, 16, 25, 0.82);
+  --accent-cyan: #06b6d4;
+  --card-bg: rgba(11, 15, 23, 0.85);
   --card-border: rgba(255, 255, 255, 0.08);
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,17 +18,20 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-primary);
 }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-primary);
-  color: #f1f5f9;
+  color: #f8fafc;
   overflow-x: hidden;
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Interactive ThreeJS Canvas Canvas */
+/* Hardware Accelerated ThreeJS Background Canvas */
 #three-bg {
   position: fixed;
   top: 0;
@@ -36,30 +40,32 @@ body {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
+  transform: translateZ(0);
 }
 
 /* Ambient Radial Glow Gradients */
 .glow-orange {
   position: fixed;
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 550px;
   background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
-  filter: blur(80px);
+  filter: blur(90px);
   pointer-events: none;
   z-index: 1;
+  transform: translateZ(0);
 }
 
-/* Glassmorphism Dynamic 3D Tilt Cards */
+/* Glassmorphism 3D Holographic Card Architecture */
 .glass-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
   position: relative;
   overflow: hidden;
   transform-style: preserve-3d;
-  will-change: transform, box-shadow;
-  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), 
+  will-change: transform, box-shadow, border-color;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.3s ease, 
               box-shadow 0.3s ease;
 }
@@ -67,15 +73,15 @@ body {
 .glass-card::before {
   content: '';
   position: absolute;
-  top: var(--mouse-y, -100px);
-  left: var(--mouse-x, -100px);
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+  top: var(--mouse-y, -150px);
+  left: var(--mouse-x, -150px);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.16) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover::before {
@@ -84,26 +90,53 @@ body {
 
 .glass-card:hover {
   border-color: rgba(249, 115, 22, 0.45);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.85), 0 0 25px rgba(249, 115, 22, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 25px rgba(249, 115, 22, 0.14);
 }
 
-/* Typography Monospace Engine */
+/* Floating Navigation Bar Dock */
+.floating-header {
+  background: rgba(6, 7, 10, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.85), 0 0 25px rgba(249, 115, 22, 0.08);
+}
+
+.nav-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1.5px);
+}
+
+.dropdown-menu {
+  background: rgba(8, 11, 18, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 35px 70px rgba(0,0,0,0.95), 0 0 35px rgba(249, 115, 22, 0.18);
+}
+
+/* Monospace & Micro Typography */
 .font-mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Custom Scrollbar System */
+/* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #040507;
+  background: #030406;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 9999px;
 }
 
@@ -111,26 +144,5 @@ body {
   background: var(--accent-orange);
 }
 
-/* Interactive Cursor Trail Dot */
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-orange);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.1s ease-out;
-  box-shadow: 0 0 12px var(--accent-orange);
-}
-
-.cursor-trail {
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid rgba(249, 115, 22, 0.4);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transition: all 0.15s ease-out;
-}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
