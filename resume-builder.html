@@ -3,46 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshu Kumar | Full-Featured ATS Resume Studio & Creator</title>
+  <title>Priyanshu Kumar | Complete ATS Resume Studio</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Merriweather:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     body { 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
-      background-color: #040508; 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+      background-color: #030406; 
       color: #e2e8f0; 
     }
-    .font-serif-custom { font-family: 'Merriweather', Georgia, serif; }
-    .font-mono-custom { font-family: 'JetBrains Mono', monospace; }
     
     /* Strict Standard 1-Page A4 Sheet (210mm x 297mm) */
     .a4-page-strict {
       width: 210mm;
       min-height: 297mm;
       max-height: 297mm;
-      padding: var(--page-padding, 9mm 12mm);
+      padding: var(--page-pad, 8.5mm 12mm);
       margin: 0 auto;
       background: #ffffff;
-      color: #0f172a;
+      color: #000000;
       box-sizing: border-box;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
-      font-size: var(--doc-fs, 8.6pt);
-      line-height: var(--doc-lh, 1.28);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
+      font-size: var(--doc-fs, 8.4pt);
+      line-height: var(--doc-lh, 1.25);
     }
 
-    .editable-focus:hover {
-      outline: 1.5px dashed #0284c7;
+    .resume-section-header {
+      font-size: calc(var(--doc-fs, 8.4pt) + 0.8pt);
+      font-weight: 700;
+      color: #000000;
+      border-bottom: 1.2px solid #000000;
+      padding-bottom: 1px;
+      margin-top: 3.5px;
+      margin-bottom: 2.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .editable-box:hover {
+      outline: 1px dashed #0284c7;
       background-color: #f0f9ff;
       border-radius: 2px;
       cursor: text;
     }
-    .editable-focus:focus {
-      outline: 2px solid #0369a1;
+    .editable-box:focus {
+      outline: 1.5px solid #0369a1;
       background-color: #f8fafc;
       border-radius: 2px;
     }
@@ -58,7 +67,7 @@
         width: 210mm !important;
         height: 297mm !important;
         max-height: 297mm !important;
-        padding: 9mm 12mm !important;
+        padding: 8.5mm 12mm !important;
         margin: 0 !important;
         border: none !important;
         box-shadow: none !important;
@@ -66,22 +75,22 @@
     }
   </style>
 </head>
-<body class="p-3 sm:p-6 min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+<body class="p-3 sm:p-5 min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
 
   <!-- Header Navigation -->
-  <header class="max-w-[1500px] mx-auto w-full flex justify-between items-center pb-4 border-b border-white/10 no-print">
+  <header class="max-w-[1550px] mx-auto w-full flex justify-between items-center pb-3 border-b border-white/10 no-print">
     <div class="flex items-center gap-3">
       <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 text-white flex items-center justify-center font-black text-xs shadow-[0_0_20px_rgba(6,182,212,0.4)]">
-        PRO
+        ATS
       </div>
       <div>
-        <h1 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Interactive ATS Resume Studio Suite</h1>
-        <p class="text-[9px] font-mono-custom text-cyan-400">⚡ Live Form Controls • Direct Edit • Multi-Layouts • 1-Page A4 PDF</p>
+        <h1 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Master ATS Resume Studio Suite</h1>
+        <p class="text-[9px] font-mono text-cyan-400">⚡ Exact Authentic ATS Layout • Live Tools & Form Controls • 1-Page A4 PDF</p>
       </div>
     </div>
     
     <div class="flex items-center gap-2">
-      <button onclick="downloadExactA4PDF()" id="downloadBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:brightness-110 text-white text-xs font-mono-custom font-bold shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all flex items-center gap-1.5 cursor-pointer">
+      <button onclick="downloadExactA4PDF()" id="downloadBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:brightness-110 text-white text-xs font-mono font-bold shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all flex items-center gap-1.5 cursor-pointer">
         <i data-lucide="download" class="w-3.5 h-3.5"></i> Export Exact A4 PDF
       </button>
       <a href="./index.html" class="px-3 py-2 rounded-xl border border-white/10 text-xs font-bold text-slate-300 hover:bg-white/10 transition-all flex items-center gap-1">
@@ -90,277 +99,282 @@
     </div>
   </header>
 
-  <!-- Main Container: Dual Split Workspace -->
-  <main class="max-w-[1500px] mx-auto w-full py-4 space-y-4">
+  <!-- Main Container -->
+  <main class="max-w-[1550px] mx-auto w-full py-2 space-y-3">
 
-    <!-- Top Design Control Ribbon -->
-    <div class="bg-slate-900/95 border border-white/10 p-3 rounded-2xl flex flex-wrap items-center justify-between gap-3 no-print">
+    <!-- Top Optimizer Ribbon & Role Preset Selector -->
+    <div class="bg-slate-900/95 border border-white/10 p-3 rounded-2xl space-y-2 no-print">
       
-      <!-- Layout Switcher -->
-      <div class="flex items-center gap-2 font-mono-custom text-xs">
-        <span class="text-slate-400 text-[10px] uppercase">Layout:</span>
-        <button onclick="switchLayout('classic')" id="btnClassic" class="px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition-all cursor-pointer">Harvard Classic</button>
-        <button onclick="switchLayout('modern')" id="btnModern" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer">Modern 2-Col</button>
-        <button onclick="switchLayout('ivy')" id="btnIvy" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer">Ivy League Serif</button>
-      </div>
+      <!-- Font Scale & Spacing Controls -->
+      <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] text-slate-400 uppercase">Font Size:</span>
+          <input type="range" min="7.8" max="9.2" step="0.1" value="8.4" id="fsRange" oninput="adjustFontSize(this.value)" class="w-24 accent-cyan-500 cursor-pointer" />
+          <span id="fsVal" class="text-cyan-400 text-[10px] font-bold">8.4pt</span>
+        </div>
 
-      <!-- Accent Color Picker -->
-      <div class="flex items-center gap-2 font-mono-custom text-xs">
-        <span class="text-slate-400 text-[10px] uppercase">Accent:</span>
-        <button onclick="setThemeColor('#0f2b48')" class="w-6 h-6 rounded-full bg-[#0f2b48] border-2 border-white/40 cursor-pointer shadow"></button>
-        <button onclick="setThemeColor('#0284c7')" class="w-6 h-6 rounded-full bg-[#0284c7] border-2 border-transparent cursor-pointer shadow"></button>
-        <button onclick="setThemeColor('#0f766e')" class="w-6 h-6 rounded-full bg-[#0f766e] border-2 border-transparent cursor-pointer shadow"></button>
-        <button onclick="setThemeColor('#000000')" class="w-6 h-6 rounded-full bg-[#000000] border-2 border-transparent cursor-pointer shadow"></button>
-        <button onclick="setThemeColor('#991b1b')" class="w-6 h-6 rounded-full bg-[#991b1b] border-2 border-transparent cursor-pointer shadow"></button>
-      </div>
-
-      <!-- Live Metric Sliders -->
-      <div class="flex items-center gap-3 font-mono-custom text-xs">
         <div class="flex items-center gap-1.5">
-          <span class="text-slate-400 text-[10px] uppercase">Font:</span>
-          <input type="range" min="8.0" max="9.6" step="0.1" value="8.6" id="fsRange" oninput="adjustDocFontSize(this.value)" class="w-20 accent-cyan-500 cursor-pointer" />
-          <span id="fsVal" class="text-cyan-400 text-[10px] font-bold">8.6pt</span>
+          <span class="text-[10px] text-slate-400 uppercase mr-1">Page Padding:</span>
+          <button onclick="adjustPadding('tight')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-bold">Tight</button>
+          <button onclick="adjustPadding('standard')" class="px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-bold">Standard</button>
+          <button onclick="adjustPadding('dense')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-bold">Ultra-Dense</button>
         </div>
-        <div class="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold">
-          ATS Integrity: 99.8%
+
+        <div class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold flex items-center gap-1">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Strict 1-Page A4 Lock (210×297mm)
         </div>
       </div>
 
+      <!-- 15 Sample Profile Presets -->
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 border-t border-white/5">
+        <span class="text-slate-400 text-[9.5px] font-mono uppercase shrink-0 mr-1">Presets:</span>
+        <button onclick="applyPreset('data_analyst')" class="preset-btn px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-mono font-bold whitespace-nowrap">1. Data Analyst (BI Core)</button>
+        <button onclick="applyPreset('powerbi_spec')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">2. Power BI & DAX Specialist</button>
+        <button onclick="applyPreset('tableau_spec')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">3. Tableau Storytelling</button>
+        <button onclick="applyPreset('sde')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">4. Software Engineer (SDE)</button>
+        <button onclick="applyPreset('backend_python')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">5. Python Backend Dev</button>
+        <button onclick="applyPreset('data_engineer')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">6. Data Engineer (SQL ETL)</button>
+        <button onclick="applyPreset('ai_ml')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">7. AI & Deep Learning (CNN)</button>
+        <button onclick="applyPreset('cloud_devops')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">8. Cloud Computing Intern</button>
+        <button onclick="applyPreset('iot_kafka')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">9. IoT & Kafka Streaming</button>
+        <button onclick="applyPreset('fullstack_web')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">10. Full-Stack Web Dev</button>
+        <button onclick="applyPreset('sap_consultant')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">11. SAP Analytics & ABAP</button>
+        <button onclick="applyPreset('telecom_net')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">12. Telecom & Networking</button>
+        <button onclick="applyPreset('cyber_security')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">13. Cybersecurity Analyst</button>
+        <button onclick="applyPreset('sql_specialist')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">14. Advanced SQL Specialist</button>
+        <button onclick="applyPreset('fresher_cse')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">15. B.Tech CSE Comprehensive</button>
+      </div>
     </div>
 
-    <!-- Dual Layout: Left Toolset & Right Paper Canvas -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <!-- Dual Layout: Left Editing Tools & Right Exact Sheet -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
       
-      <!-- LEFT COLUMN: Live Form Controls & Sample Injection (45% Width) -->
-      <div class="lg:col-span-5 space-y-4 no-print max-h-[85vh] overflow-y-auto pr-1">
+      <!-- LEFT TOOLSET: Live Form & Dynamic Adders (45% Width) -->
+      <div class="lg:col-span-5 space-y-3.5 no-print max-h-[86vh] overflow-y-auto pr-1">
         
-        <!-- Sample Injector Box -->
-        <div class="bg-slate-900/90 border border-white/10 p-4 rounded-2xl space-y-2.5">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xs font-mono-custom font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-orange-400"></i> Role Presets (Click to Fill)
-            </h3>
-          </div>
-          <div class="grid grid-cols-2 gap-2 text-[11px] font-mono-custom">
-            <button onclick="injectPreset('data')" class="p-2 rounded-xl bg-white/5 hover:bg-cyan-600 hover:text-white text-slate-300 transition-all text-left">📊 Data Analyst / BI</button>
-            <button onclick="injectPreset('sde')" class="p-2 rounded-xl bg-white/5 hover:bg-cyan-600 hover:text-white text-slate-300 transition-all text-left">💻 Software Engg (SDE)</button>
-            <button onclick="injectPreset('ai')" class="p-2 rounded-xl bg-white/5 hover:bg-cyan-600 hover:text-white text-slate-300 transition-all text-left">🤖 AI & Deep Learning</button>
-            <button onclick="injectPreset('de')" class="p-2 rounded-xl bg-white/5 hover:bg-cyan-600 hover:text-white text-slate-300 transition-all text-left">🗄️ Data Engineer (ETL)</button>
-          </div>
-        </div>
-
-        <!-- Personal Info Form -->
-        <div class="bg-slate-900/90 border border-white/10 p-4 rounded-2xl space-y-3 font-mono-custom text-xs">
-          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-2 flex items-center gap-1.5">
-            <i data-lucide="user" class="w-3.5 h-3.5 text-blue-400"></i> Personal Information
+        <!-- Live Personal Info Form -->
+        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-2.5 text-xs font-mono">
+          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-1.5 flex items-center gap-1.5">
+            <i data-lucide="user" class="w-3.5 h-3.5 text-blue-400"></i> Contact Header Information
           </h3>
           <div class="grid grid-cols-2 gap-2">
             <div>
-              <label class="text-[10px] text-slate-400 block mb-1">Full Name</label>
-              <input type="text" id="inpName" value="Priyanshu Kumar" oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <label class="text-[9.5px] text-slate-400 block mb-0.5">Full Name</label>
+              <input type="text" id="inpName" value="PRIYANSHU KUMAR" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
             </div>
             <div>
-              <label class="text-[10px] text-slate-400 block mb-1">Target Headline</label>
-              <input type="text" id="inpTitle" value="Data Analyst & Business Intelligence Specialist | Software Engineer" oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <label class="text-[10px] text-slate-400 block mb-1">Email Address</label>
-              <input type="text" id="inpEmail" value="priyanshu6202018611@gmail.com" oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
-            </div>
-            <div>
-              <label class="text-[10px] text-slate-400 block mb-1">Phone Number</label>
-              <input type="text" id="inpPhone" value="+91-6202018611" oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <label class="text-[9.5px] text-slate-400 block mb-0.5">Location</label>
+              <input type="text" id="inpLoc" value="Samastipur, Bihar, India" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
             </div>
           </div>
           <div class="grid grid-cols-2 gap-2">
             <div>
-              <label class="text-[10px] text-slate-400 block mb-1">LinkedIn URL</label>
-              <input type="text" id="inpLinkedIn" value="linkedin.com/in/priyanshuroy18" oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <label class="text-[9.5px] text-slate-400 block mb-0.5">Phone Number</label>
+              <input type="text" id="inpPhone" value="+91-6202018611" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
             </div>
             <div>
-              <label class="text-[10px] text-slate-400 block mb-1">GitHub / Portfolio URL</label>
-              <input type="text" id="inpGitHub" value="github.com/priyanshu18611" oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <label class="text-[9.5px] text-slate-400 block mb-0.5">Email Address</label>
+              <input type="text" id="inpEmail" value="priyanshu6202018611@gmail.com" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-[9.5px] text-slate-400 block mb-0.5">LinkedIn Handle</label>
+              <input type="text" id="inpLinkedIn" value="linkedin.com/in/priyanshuroy18" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+            </div>
+            <div>
+              <label class="text-[9.5px] text-slate-400 block mb-0.5">GitHub Handle</label>
+              <input type="text" id="inpGitHub" value="github.com/priyanshu18611" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
             </div>
           </div>
         </div>
 
         <!-- Summary Form -->
-        <div class="bg-slate-900/90 border border-white/10 p-4 rounded-2xl space-y-2 font-mono-custom text-xs">
-          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-2 flex items-center gap-1.5">
-            <i data-lucide="file-text" class="w-3.5 h-3.5 text-blue-400"></i> Executive Summary
+        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-1.5 text-xs font-mono">
+          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-1.5 flex items-center gap-1.5">
+            <i data-lucide="file-text" class="w-3.5 h-3.5 text-blue-400"></i> Professional Summary
           </h3>
-          <textarea id="inpSummary" rows="3" oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500 resize-none leading-relaxed">Analytical and performance-driven B.Tech in Computer Science & Engineering (2022–2026) with a verified portfolio of 15+ industry credentials from Cisco, JPMorgan Chase, AWS, Deloitte, and SAP. Advanced proficiency in architecting normalized SQL Data Warehouses, Power BI DAX data models, interactive Tableau dashboards, and automated Python ETL pipelines. Proven track record in developing high-throughput IoT telemetry streams (2,500+ msgs/sec) and deploying deep learning computer vision architectures with 94%+ accuracy.</textarea>
+          <textarea id="inpSummary" rows="3" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500 resize-none leading-relaxed">Final-year Computer Science undergraduate with hands-on experience across full-stack development, data analytics, and machine learning. Skilled in Python, Java, SQL, and the MERN stack, with proven ability to build end-to-end IoT, ML, and BI solutions. Seeking Software Engineer / Data Analyst roles to apply strong problem-solving and analytical skills in a fast-paced, product-driven environment.</textarea>
         </div>
 
         <!-- Technical Skills Form -->
-        <div class="bg-slate-900/90 border border-white/10 p-4 rounded-2xl space-y-2.5 font-mono-custom text-xs">
-          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-2 flex items-center gap-1.5">
+        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-2 text-xs font-mono">
+          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-1.5 flex items-center gap-1.5">
             <i data-lucide="cpu" class="w-3.5 h-3.5 text-blue-400"></i> Technical Skills Matrix
           </h3>
           <div>
-            <label class="text-[10px] text-slate-400 block mb-0.5">Business Intelligence & Analytics</label>
-            <input type="text" id="inpSkillBI" value="Power BI (DAX, Power Query, VertiPaq Engine), Tableau Desktop (LOD Calculations, Cohort Retention Analytics), Advanced Excel (Power Pivot, XLOOKUP, VBA Macros), SAP Analytics Cloud." oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+            <label class="text-[9px] text-slate-400 block mb-0.5">Languages</label>
+            <input type="text" id="inpSkillLang" value="C, C++, Java, Python, SQL" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
           </div>
           <div>
-            <label class="text-[10px] text-slate-400 block mb-0.5">Databases & ETL Architecture</label>
-            <input type="text" id="inpSkillDB" value="SQL (Complex Joins, CTEs, Window Functions, Stored Procedures), PostgreSQL, MySQL, SQL Server, Star & Snowflake Schema Data Modeling, Dimensional Modeling, MongoDB." oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+            <label class="text-[9px] text-slate-400 block mb-0.5">Web & Frameworks</label>
+            <input type="text" id="inpSkillWeb" value="JavaScript, Node.js, React (MERN), HTML, CSS, Bootstrap, PHP, Flask" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
           </div>
           <div>
-            <label class="text-[10px] text-slate-400 block mb-0.5">Languages & Frameworks</label>
-            <input type="text" id="inpSkillProg" value="Python (Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn), Java, C++, RESTful APIs, Node.js, Express, Apache Kafka, TensorFlow CNN, OpenCV, Git/GitHub Version Control." oninput="syncLiveContent()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+            <label class="text-[9px] text-slate-400 block mb-0.5">Data & ML</label>
+            <input type="text" id="inpSkillML" value="Pandas, NumPy, TensorFlow, Keras, OpenCV, CNN, Scikit-learn, XGBoost, Matplotlib, Seaborn" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
+          </div>
+          <div>
+            <label class="text-[9px] text-slate-400 block mb-0.5">Databases & BI</label>
+            <input type="text" id="inpSkillDB" value="MongoDB, MySQL, JDBC, Power BI, Tableau, DAX" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
           </div>
         </div>
 
       </div>
 
-      <!-- RIGHT COLUMN: Exact Standard 1-Page A4 Sheet Canvas (55% Width) -->
+      <!-- RIGHT COLUMN: EXACT AUTHENTIC A4 RESUME (55% Width) -->
       <div class="lg:col-span-7 flex flex-col items-center overflow-x-auto">
         
-        <div class="mb-2 text-[10.5px] font-mono-custom text-slate-400 flex items-center gap-1.5 no-print">
-          <i data-lucide="edit-3" class="w-3.5 h-3.5 text-cyan-400"></i> Click any text on the page below to edit directly in real-time
+        <div class="mb-1 text-[10px] font-mono text-slate-400 flex items-center gap-1.5 no-print">
+          <i data-lucide="edit-3" class="w-3.5 h-3.5 text-cyan-400"></i> Click any text on the sheet below to edit directly
         </div>
 
-        <!-- STRICT A4 SHEET CANVAS -->
-        <div id="a4ResumeSheet" class="a4-page-strict flex flex-col justify-between select-text shadow-2xl">
+        <!-- STRICT EXACT A4 SHEET -->
+        <div id="a4ResumeSheet" class="a4-page-strict flex flex-col justify-between select-text">
           
-          <!-- 1. HEADER SECTION -->
-          <div class="text-center pb-1 mb-1 border-b-2" id="docHeaderBorder" style="border-color: #0f2b48;">
-            <h1 contenteditable="true" id="resName" class="editable-focus text-[18pt] font-extrabold tracking-wide uppercase leading-none" style="color: #0f2b48;">
+          <!-- HEADER -->
+          <div class="text-center pb-0.5 mb-0.5">
+            <h1 contenteditable="true" id="rName" class="editable-box text-[18pt] font-extrabold tracking-wide text-black uppercase leading-none">
               PRIYANSHU KUMAR
             </h1>
-            <p contenteditable="true" id="resTitle" class="editable-focus text-[9pt] font-bold uppercase tracking-wide mt-1" style="color: #0284c7;">
-              Data Analyst & Business Intelligence Specialist | Software Engineer
-            </p>
-            <div class="flex flex-wrap items-center justify-center gap-x-2 text-[8pt] text-slate-700 font-semibold pt-0.5 font-mono-custom">
-              <span contenteditable="true" class="editable-focus">📍 Patna / Delhi, India</span> • 
-              <span contenteditable="true" id="resEmail" class="editable-focus">priyanshu6202018611@gmail.com</span> • 
-              <span contenteditable="true" id="resPhone" class="editable-focus">+91-6202018611</span> • 
-              <span contenteditable="true" id="resLinkedIn" class="editable-focus">linkedin.com/in/priyanshuroy18</span> • 
-              <span contenteditable="true" id="resGitHub" class="editable-focus">github.com/priyanshu18611</span>
+            <div class="text-[8pt] text-black font-semibold pt-1">
+              <span contenteditable="true" id="rLoc" class="editable-box">Samastipur, Bihar, India</span> | 
+              <span contenteditable="true" id="rPhone" class="editable-box">+91-6202018611</span> | 
+              <span contenteditable="true" id="rEmail" class="editable-box">priyanshu6202018611@gmail.com</span> | 
+              <span contenteditable="true" id="rLinkedIn" class="editable-box">linkedin.com/in/priyanshuroy18</span> | 
+              <span contenteditable="true" id="rGitHub" class="editable-box">github.com/priyanshu18611</span>
             </div>
           </div>
 
-          <!-- 2. SUMMARY SECTION -->
-          <div class="mb-1">
-            <h2 class="resume-section-title text-[8.8pt] font-extrabold tracking-wider uppercase border-b pb-0.5 mb-0.5 flex justify-between" style="border-color: #cbd5e1; color: #0f2b48;">
-              <span>Professional Summary</span>
-            </h2>
-            <p contenteditable="true" id="resSummary" class="editable-focus text-[8.2pt] text-slate-800 leading-snug text-justify">
-              Analytical and performance-driven <strong>B.Tech in Computer Science & Engineering</strong> (2022–2026) with a verified portfolio of <strong>15+ industry credentials</strong> from Cisco, JPMorgan Chase, AWS, Deloitte, and SAP. Advanced proficiency in architecting normalized <strong>SQL Data Warehouses, Power BI DAX data models, interactive Tableau dashboards, and automated Python ETL pipelines</strong>. Proven track record in developing high-throughput IoT telemetry streams (2,500+ msgs/sec) and deploying deep learning computer vision architectures with 94%+ accuracy.
-            </p>
-          </div>
-
-          <!-- 3. TECHNICAL SKILLS SECTION -->
-          <div class="mb-1">
-            <h2 class="resume-section-title text-[8.8pt] font-extrabold tracking-wider uppercase border-b pb-0.5 mb-0.5" style="border-color: #cbd5e1; color: #0f2b48;">
-              Technical Competencies & Tools
-            </h2>
-            <table class="w-full text-[8.1pt] text-slate-800 leading-snug">
-              <tr>
-                <td class="w-[22%] font-bold py-0.5" style="color: #0f2b48;">Business Intelligence:</td>
-                <td class="py-0.5" id="resSkillBI" contenteditable="true">Power BI (DAX, Power Query, VertiPaq Engine), Tableau Desktop (LOD Calculations, Cohort Retention Analytics), Advanced Excel (Power Pivot, XLOOKUP, VBA Macros), SAP Analytics Cloud.</td>
-              </tr>
-              <tr>
-                <td class="w-[22%] font-bold py-0.5" style="color: #0f2b48;">Databases & ETL:</td>
-                <td class="py-0.5" id="resSkillDB" contenteditable="true">SQL (Complex Joins, CTEs, Window Functions, Stored Procedures), PostgreSQL, MySQL, SQL Server, Star & Snowflake Schema Data Modeling, Dimensional Modeling, MongoDB.</td>
-              </tr>
-              <tr>
-                <td class="w-[22%] font-bold py-0.5" style="color: #0f2b48;">Programming & AI:</td>
-                <td class="py-0.5" id="resSkillProg" contenteditable="true">Python (Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn), Java, C++, RESTful APIs, Node.js, Express, Apache Kafka, TensorFlow CNN, OpenCV, Git/GitHub Version Control.</td>
-              </tr>
-            </table>
-          </div>
-
-          <!-- 4. KEY PROJECTS SECTION -->
-          <div class="mb-1">
-            <h2 class="resume-section-title text-[8.8pt] font-extrabold tracking-wider uppercase border-b pb-0.5 mb-0.5" style="border-color: #cbd5e1; color: #0f2b48;">
-              Key Technical Projects
-            </h2>
-
-            <div class="mb-1">
-              <div class="flex justify-between items-baseline font-bold text-[8.4pt]" style="color: #09090b;">
-                <span id="resP1Title" contenteditable="true">Enterprise Sales Analytics & BI Warehouse Architecture</span>
-                <span id="resP1Stack" class="text-[7.6pt] font-semibold text-slate-600">Power BI | PostgreSQL | DAX | Tableau</span>
-              </div>
-              <ul class="list-disc list-outside ml-4 text-[8pt] text-slate-800 space-y-0.5 leading-snug">
-                <li id="resP1B1" contenteditable="true">Architected a normalized <strong>Star Schema Data Warehouse</strong> processing <strong>1.2M+ transaction records</strong>, reducing executive query execution latency by <strong>42%</strong> and eliminating redundant data joins.</li>
-                <li id="resP1B2" contenteditable="true">Authored <strong>25+ complex DAX measures</strong> (<code>SAMEPERIODLASTYEAR</code>, <code>DATESYTD</code>, Dynamic Ranking) to automate real-time Year-Over-Year variance metrics across 12 regional distribution hubs, uncovering <strong>₹1.48 Cr in cross-selling opportunities</strong>.</li>
-                <li id="resP1B3" contenteditable="true">Constructed executive Tableau dashboards leveraging <strong>{FIXED} Level of Detail (LOD)</strong> expressions to visualize retention curves.</li>
-              </ul>
-            </div>
-
-            <div class="mb-1">
-              <div class="flex justify-between items-baseline font-bold text-[8.4pt]" style="color: #09090b;">
-                <span id="resP2Title" contenteditable="true">EcoSentinel — Real-Time IoT & Apache Kafka Streaming Platform</span>
-                <span id="resP2Stack" class="text-[7.6pt] font-semibold text-slate-600">Node.js | Apache Kafka | WebSockets | Leaflet</span>
-              </div>
-              <ul class="list-disc list-outside ml-4 text-[8pt] text-slate-800 space-y-0.5 leading-snug">
-                <li id="resP2B1" contenteditable="true">Engineered an event-driven telemetry ingestion engine consuming <strong>2,500+ GPS messages/sec</strong> with zero data drop across distributed worker threads.</li>
-                <li id="resP2B2" contenteditable="true">Implemented high-frequency ray-casting spatial algorithms for sub-second geofence breach validation, triggering automated SMS and Webhook alerts.</li>
-              </ul>
-            </div>
-
-            <div>
-              <div class="flex justify-between items-baseline font-bold text-[8.4pt]" style="color: #09090b;">
-                <span id="resP3Title" contenteditable="true">Brain Tumor MRI Diagnostic Classifier (Deep Learning)</span>
-                <span id="resP3Stack" class="text-[7.6pt] font-semibold text-slate-600">Python | TensorFlow | OpenCV | Scikit-learn</span>
-              </div>
-              <ul class="list-disc list-outside ml-4 text-[8pt] text-slate-800 space-y-0.5 leading-snug">
-                <li id="resP3B1" contenteditable="true">Trained a 4-stage Deep Convolutional Neural Network (CNN) on 3,000+ clinical MRI images, attaining <strong>94.2% test classification accuracy</strong>.</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- 5. PROFESSIONAL EXPERIENCE SECTION -->
-          <div class="mb-1">
-            <h2 class="resume-section-title text-[8.8pt] font-extrabold tracking-wider uppercase border-b pb-0.5 mb-0.5" style="border-color: #cbd5e1; color: #0f2b48;">
-              Professional Experience & Internships
-            </h2>
-            <div class="mb-1">
-              <div class="flex justify-between text-[8.4pt] font-bold" style="color: #09090b;">
-                <span contenteditable="true">Cloud Computing Intern • Aagaaz Training Centre Pvt. Ltd.</span>
-                <span class="text-[7.6pt] font-semibold text-slate-600">Dec 2025 – Jan 2026</span>
-              </div>
-              <p contenteditable="true" class="text-[8pt] text-slate-800 leading-snug">
-                Configured multi-tier cloud infrastructure, microservices in Docker containers, and robust IAM security policy definitions. Awarded an outstanding <strong>88% performance audit score</strong> on final enterprise evaluation.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-[8.4pt] font-bold" style="color: #09090b;">
-                <span contenteditable="true">Signal & Telecommunication Intern • East Central Railway (Danapur Division)</span>
-                <span class="text-[7.6pt] font-semibold text-slate-600">Jun 2025 – Jul 2025</span>
-              </div>
-              <p contenteditable="true" class="text-[8pt] text-slate-800 leading-snug">
-                Analyzed Optical Fiber Communication (OFC) transmission backbones, digital telephone exchange switching, and PRS/UTS telemetry data pipelines.
-              </p>
-            </div>
-          </div>
-
-          <!-- 6. EDUCATION SECTION -->
-          <div class="mb-1">
-            <h2 class="resume-section-title text-[8.8pt] font-extrabold tracking-wider uppercase border-b pb-0.5 mb-0.5" style="border-color: #cbd5e1; color: #0f2b48;">
-              Education
-            </h2>
-            <div class="flex justify-between text-[8.4pt] font-bold text-slate-900">
-              <span>B.Tech in Computer Science & Engineering • Shershah Engineering College, Sasaram</span>
-              <span class="text-[7.6pt] font-semibold text-slate-600">2022 – 2026</span>
-            </div>
-            <div class="flex justify-between text-[7.9pt] text-slate-700">
-              <span>Bihar Engineering University (BEU), Patna • First Class Honours</span>
-              <span class="text-[7.6pt] text-slate-600">Patna, Bihar</span>
-            </div>
-          </div>
-
-          <!-- 7. CERTIFICATIONS SECTION -->
+          <!-- PROFESSIONAL SUMMARY -->
           <div>
-            <h2 class="resume-section-title text-[8.8pt] font-extrabold tracking-wider uppercase border-b pb-0.5 mb-0.5" style="border-color: #cbd5e1; color: #0f2b48;">
-              15 Verified Industry Credentials & Certifications
-            </h2>
-            <div contenteditable="true" class="editable-focus text-[7.8pt] text-slate-800 leading-snug">
-              <strong>Enterprise Credentials:</strong> Cisco Data Analytics Essentials • JPMorgan Chase & Co. Software Engineering Simulation • AWS Data Engineering • Deloitte Data Analytics • SAP Analytics Cloud • Cisco Python for Data Science • Infosys Springboard Java & SQL • Tata Data Visualization • Postman API Fundamentals • PwC Power BI Analyst.
+            <div class="resume-section-header">PROFESSIONAL SUMMARY</div>
+            <p contenteditable="true" id="rSummary" class="editable-box text-[8.2pt] text-black leading-snug text-justify">
+              Final-year Computer Science undergraduate with hands-on experience across full-stack development, data analytics, and machine learning. Skilled in Python, Java, SQL, and the MERN stack, with proven ability to build end-to-end IoT, ML, and BI solutions. Seeking Software Engineer / Data Analyst roles to apply strong problem-solving and analytical skills in a fast-paced, product-driven environment.
+            </p>
+          </div>
+
+          <!-- TECHNICAL SKILLS -->
+          <div>
+            <div class="resume-section-header">TECHNICAL SKILLS</div>
+            <div class="space-y-0.5 text-[8.2pt] text-black leading-tight">
+              <div><strong>Languages:</strong> <span id="rSkillLang" contenteditable="true">C, C++, Java, Python, SQL</span></div>
+              <div><strong>Web & Frameworks:</strong> <span id="rSkillWeb" contenteditable="true">JavaScript, Node.js, React (MERN), HTML, CSS, Bootstrap, PHP, Flask</span></div>
+              <div><strong>Data & ML:</strong> <span id="rSkillML" contenteditable="true">Pandas, NumPy, TensorFlow, Keras, OpenCV, CNN, Scikit-learn, XGBoost, Matplotlib, Seaborn</span></div>
+              <div><strong>Databases & BI:</strong> <span id="rSkillDB" contenteditable="true">MongoDB, MySQL, JDBC, Power BI, Tableau, DAX</span></div>
+              <div><strong>Tools & Platforms:</strong> <span contenteditable="true">Git/GitHub, VS Code, Jupyter, Google Colab, IntelliJ, Arduino IDE</span></div>
+            </div>
+          </div>
+
+          <!-- WORK EXPERIENCE -->
+          <div>
+            <div class="resume-section-header">WORK EXPERIENCE</div>
+            <div class="space-y-1 text-[8.2pt]">
+              
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-black">
+                  <span>Cloud Computing Intern — Aagaaz Training Centre Pvt. Ltd.</span>
+                  <span class="font-normal text-black text-[7.8pt]">Dec 2025</span>
+                </div>
+                <div class="text-black italic text-[7.8pt]">Remote</div>
+                <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
+                  <li contenteditable="true">Completed a 4-week internship covering cloud computing concepts, virtualization, and cloud service models, scoring 88% in the final evaluation.</li>
+                  <li contenteditable="true">Worked on hands-on assignments and assessments related to cloud infrastructure.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-black">
+                  <span>Signal & Telecommunication Intern — East Central Railway (ECR)</span>
+                  <span class="font-normal text-black text-[7.8pt]">Jun 2025 – Jul 2025</span>
+                </div>
+                <div class="text-black italic text-[7.8pt]">Danapur Division, Bihar, India</div>
+                <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
+                  <li contenteditable="true">Gained exposure to Optical Fiber Communication (OFC), Telephone Exchange, PRS/UTS, and Mobile Train Radio Communication systems.</li>
+                  <li contenteditable="true">Studied railway communication network operations and maintenance procedures for high-availability systems.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-black">
+                  <span>Robotics Intern — InfinityCore Technologies (BlinkSkills)</span>
+                  <span class="font-normal text-black text-[7.8pt]">Jan 2024 – Feb 2024</span>
+                </div>
+                <div class="text-black italic text-[7.8pt]">Remote</div>
+                <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
+                  <li contenteditable="true">Applied automation and problem-solving fundamentals to practical robotics assignments, scoring 92% in the internship assessment.</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- PROJECTS -->
+          <div>
+            <div class="resume-section-header">PROJECTS</div>
+            <div class="space-y-1 text-[8.2pt]">
+              
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-black">
+                  <span id="p1_title" contenteditable="true">EcoSentinel — IoT Solution for Wildlife Conservation</span>
+                  <span id="p1_stack" class="font-normal italic text-[7.8pt]">MERN, IoT, Socket.io, JWT</span>
+                </div>
+                <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
+                  <li id="p1_b1" contenteditable="true">Built a full-stack MERN app for real-time wildlife tracking using simulated GPS collars with live Leaflet map visualization.</li>
+                  <li id="p1_b2" contenteditable="true">Implemented Socket.io real-time alerts for geofence breaches, abnormal vitals, and low battery, secured with role-based JWT auth.</li>
+                  <li id="p1_b3" contenteditable="true">Developed REST APIs for tracking and alert management, plus an IoT simulator streaming GPS/biometric data every 5 seconds.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-black">
+                  <span id="p2_title" contenteditable="true">Brain Tumor Detection using MRI Images</span>
+                  <span id="p2_stack" class="font-normal italic text-[7.8pt]">Deep Learning, CNN, TensorFlow, OpenCV</span>
+                </div>
+                <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
+                  <li id="p2_b1" contenteditable="true">Built a CNN (4 Conv+MaxPooling blocks with Batch Normalization) to classify MRI scans as Tumor / No Tumor using TensorFlow/Keras.</li>
+                  <li id="p2_b2" contenteditable="true">Applied data augmentation and Dropout regularization on Kaggle Brain MRI dataset; evaluated via confusion matrix and classification report.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-black">
+                  <span id="p3_title" contenteditable="true">Enterprise Sales Analytics — Sales Intelligence & Customer Analytics</span>
+                  <span id="p3_stack" class="font-normal italic text-[7.8pt]">Python, SQL, Power BI, DAX</span>
+                </div>
+                <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
+                  <li id="p3_b1" contenteditable="true">Designed a Star Schema data warehouse and built a Python ETL pipeline to normalize raw transaction data.</li>
+                  <li id="p3_b2" contenteditable="true">Implemented K-Means clustering for RFM customer segmentation and SQL cohort retention analysis.</li>
+                  <li id="p3_b3" contenteditable="true">Built a Power BI data model with time-intelligence DAX KPIs for executive-level sales reporting.</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- EDUCATION -->
+          <div>
+            <div class="resume-section-header">EDUCATION</div>
+            <div class="space-y-0.5 text-[8.2pt]">
+              <div class="flex justify-between items-baseline font-bold text-black">
+                <span>B.Tech, Computer Science and Engineering — Shershah Engineering College, Sasaram</span>
+                <span class="font-normal text-black text-[7.8pt]">Oct 2022 – May 2026</span>
+              </div>
+              <div class="flex justify-between items-baseline font-bold text-black">
+                <span>Intermediate (Science, PCM) — RB College, Dalsingsaray</span>
+                <span class="font-normal text-black text-[7.8pt]">May 2018 – Jul 2020</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CERTIFICATIONS -->
+          <div>
+            <div class="resume-section-header">CERTIFICATIONS</div>
+            <div class="text-[7.4pt] text-black leading-tight space-y-0.5">
+              <div>• <strong>AWS:</strong> Data Engineering on AWS: Foundations • AWS Foundations of Prompt Engineering</div>
+              <div>• <strong>Cisco:</strong> Data Analytics Essentials (Excel, SQL, Tableau) • Cisco Data Science Essentials with Python</div>
+              <div>• <strong>Corporate Job Simulations:</strong> JPMorgan Chase Software Engg • Deloitte Data Analytics • Tata GenAI Data Analytics • Mastercard Cybersecurity</div>
+              <div>• <strong>SAP & Academic:</strong> SAP Analytics Cloud for Planning (Advanced) • NPTEL IoT IIT Kharagpur (60%) • Skills4India Python • YBI Foundation ML</div>
             </div>
           </div>
 
@@ -373,122 +387,244 @@
   </main>
 
   <!-- Footer -->
-  <footer class="text-center text-[10px] font-mono-custom text-slate-600 pt-4 no-print">
-    Engineered by Priyanshu Kumar • Full-Featured ATS Resume Studio Suite // 2026
+  <footer class="text-center text-[9.5px] font-mono text-slate-600 pt-3 no-print">
+    Engineered by Priyanshu Kumar • Complete ATS Resume Studio Suite // 2026
   </footer>
 
   <script>
     lucide.createIcons();
 
-    // LIVE FORM TO CANVAS SYNC ENGINE
-    function syncLiveContent() {
-      document.getElementById('resName').innerText = document.getElementById('inpName').value.toUpperCase();
-      document.getElementById('resTitle').innerText = document.getElementById('inpTitle').value.toUpperCase();
-      document.getElementById('resEmail').innerText = document.getElementById('inpEmail').value;
-      document.getElementById('resPhone').innerText = document.getElementById('inpPhone').value;
-      document.getElementById('resLinkedIn').innerText = document.getElementById('inpLinkedIn').value;
-      document.getElementById('resGitHub').innerText = document.getElementById('inpGitHub').value;
-      document.getElementById('resSummary').innerText = document.getElementById('inpSummary').value;
-      document.getElementById('resSkillBI').innerText = document.getElementById('inpSkillBI').value;
-      document.getElementById('resSkillDB').innerText = document.getElementById('inpSkillDB').value;
-      document.getElementById('resSkillProg').innerText = document.getElementById('inpSkillProg').value;
+    // LIVE FORM SYNC
+    function syncLive() {
+      document.getElementById('rName').innerText = document.getElementById('inpName').value.toUpperCase();
+      document.getElementById('rLoc').innerText = document.getElementById('inpLoc').value;
+      document.getElementById('rPhone').innerText = document.getElementById('inpPhone').value;
+      document.getElementById('rEmail').innerText = document.getElementById('inpEmail').value;
+      document.getElementById('rLinkedIn').innerText = document.getElementById('inpLinkedIn').value;
+      document.getElementById('rGitHub').innerText = document.getElementById('inpGitHub').value;
+      document.getElementById('rSummary').innerText = document.getElementById('inpSummary').value;
+      document.getElementById('rSkillLang').innerText = document.getElementById('inpSkillLang').value;
+      document.getElementById('rSkillWeb').innerText = document.getElementById('inpSkillWeb').value;
+      document.getElementById('rSkillML').innerText = document.getElementById('inpSkillML').value;
+      document.getElementById('rSkillDB').innerText = document.getElementById('inpSkillDB').value;
     }
 
-    // THEME COLOR SWITCHER
-    function setThemeColor(color) {
-      document.getElementById('resName').style.color = color;
-      document.getElementById('docHeaderBorder').style.borderColor = color;
-      document.querySelectorAll('.resume-section-title').forEach(el => el.style.color = color);
-    }
-
-    // FONT SIZE SLIDER
-    function adjustDocFontSize(val) {
+    // LIVE OPTIMIZERS
+    function adjustFontSize(val) {
       document.getElementById('a4ResumeSheet').style.setProperty('--doc-fs', `${val}pt`);
       document.getElementById('fsVal').innerText = `${val}pt`;
     }
 
-    // 4-IN-1 LAYOUT SWITCHER
-    function switchLayout(layout) {
+    function adjustPadding(type) {
       const sheet = document.getElementById('a4ResumeSheet');
-      document.getElementById('btnClassic').className = 'px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer';
-      document.getElementById('btnModern').className = 'px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer';
-      document.getElementById('btnIvy').className = 'px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-bold transition-all cursor-pointer';
-
-      sheet.classList.remove('font-serif-custom', 'grid', 'grid-cols-12');
-
-      if (layout === 'classic') {
-        document.getElementById('btnClassic').className = 'px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition-all cursor-pointer';
-        setThemeColor('#0f2b48');
-      } else if (layout === 'modern') {
-        document.getElementById('btnModern').className = 'px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition-all cursor-pointer';
-        setThemeColor('#0284c7');
-      } else if (layout === 'ivy') {
-        document.getElementById('btnIvy').className = 'px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition-all cursor-pointer';
-        sheet.classList.add('font-serif-custom');
-        setThemeColor('#000000');
+      if (type === 'tight') {
+        sheet.style.setProperty('--page-pad', '7mm 10mm');
+        sheet.style.setProperty('--doc-lh', '1.20');
+      } else if (type === 'standard') {
+        sheet.style.setProperty('--page-pad', '8.5mm 12mm');
+        sheet.style.setProperty('--doc-lh', '1.25');
+      } else if (type === 'dense') {
+        sheet.style.setProperty('--page-pad', '6.5mm 9.5mm');
+        sheet.style.setProperty('--doc-lh', '1.18');
       }
     }
 
-    // ROLE PRESETS
+    // 15 PRESETS
     const presets = {
-      data: {
-        title: "Data Analyst & Business Intelligence Specialist | Software Engineer",
-        summary: "Analytical and performance-driven B.Tech in Computer Science & Engineering (2022–2026) with a verified portfolio of 15+ industry credentials from Cisco, JPMorgan Chase, AWS, Deloitte, and SAP. Advanced proficiency in architecting normalized SQL Data Warehouses, Power BI DAX data models, interactive Tableau dashboards, and automated Python ETL pipelines. Proven track record in developing high-throughput IoT telemetry streams (2,500+ msgs/sec) and deploying deep learning computer vision architectures with 94%+ accuracy.",
-        skillBI: "Power BI (DAX, Power Query, VertiPaq Engine), Tableau Desktop (LOD Calculations, Cohort Retention Analytics), Advanced Excel (Power Pivot, XLOOKUP, VBA Macros), SAP Analytics Cloud.",
-        skillDB: "SQL (Complex Joins, CTEs, Window Functions, Stored Procedures), PostgreSQL, MySQL, SQL Server, Star & Snowflake Schema Data Modeling, Dimensional Modeling, MongoDB.",
-        p1Title: "Enterprise Sales Analytics & BI Warehouse Architecture",
-        p1Stack: "Power BI | PostgreSQL | DAX | Tableau",
-        p1B1: "Architected a normalized Star Schema Data Warehouse processing 1.2M+ transaction records, reducing executive query execution latency by 42% and eliminating redundant data joins.",
-        p1B2: "Authored 25+ complex DAX measures (SAMEPERIODLASTYEAR, DATESYTD, Dynamic Ranking) to automate real-time Year-Over-Year variance metrics across 12 regional distribution hubs, uncovering ₹1.48 Cr in cross-selling opportunities."
+      data_analyst: {
+        skillLang: "Python, SQL, R, JavaScript, C++",
+        skillWeb: "Flask, REST APIs, JSON Data Pipelines, Power BI Web Embedding",
+        skillML: "Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, Statistical Analysis, EDA",
+        skillDB: "SQL (PostgreSQL, MySQL), MongoDB, Power BI, Tableau, DAX",
+        p3_title: "Enterprise Sales Analytics — Sales Intelligence & Customer Analytics",
+        p3_stack: "Python, SQL, Power BI, DAX",
+        p3_b1: "Designed a Star Schema data warehouse and built a Python ETL pipeline to normalize raw transaction data.",
+        p3_b2: "Implemented K-Means clustering for RFM customer segmentation and SQL cohort retention analysis.",
+        p3_b3: "Built a Power BI data model with time-intelligence DAX KPIs for executive-level sales reporting."
+      },
+      powerbi_spec: {
+        skillLang: "SQL, DAX, M-Code (Power Query), Python",
+        skillWeb: "REST APIs, Embedded BI Dashboards, Tabular Data Models",
+        skillML: "Time-Series Forecasting, Statistical Variance, Trend Analysis",
+        skillDB: "SQL Server, PostgreSQL, Snowflake, MongoDB, Power BI",
+        p3_title: "Enterprise Power BI Executive Tabular Analytics Engine",
+        p3_stack: "Power BI Desktop, DAX Studio, SQL Server, Tabular Editor",
+        p3_b1: "Engineered Tabular data models handling 2M+ transaction rows with sub-second visual refresh times.",
+        p3_b2: "Implemented Dynamic Row-Level Security (RLS) across 15 enterprise departments ensuring complete compliance.",
+        p3_b3: "Automated incremental scheduled refresh pipelines integrating multi-tier databases."
+      },
+      tableau_spec: {
+        skillLang: "SQL, Python, Calculated Fields, Tableau Prep",
+        skillWeb: "Tableau Server JavaScript API, Web Data Connectors",
+        skillML: "Cohort Retention Analysis, Cluster Modeling, Trend Regression",
+        skillDB: "PostgreSQL, MySQL, Google BigQuery, Tableau Prep",
+        p3_title: "Interactive Tableau Retain & Profit Storyboard Dashboard",
+        p3_stack: "Tableau Desktop, Tableau Prep, PostgreSQL, LODs",
+        p3_b1: "Constructed multi-tab Tableau viewsheets utilizing {FIXED} LOD expressions to isolate cohort churn rates.",
+        p3_b2: "Integrated dynamic parameter controls allowing single-click metric swapping between Revenue and Profit Ratios.",
+        p3_b3: "Cleaned and normalized multi-tier relational data sources using Tableau Prep Builder."
       },
       sde: {
-        title: "Software Development Engineer (SDE) | Full-Stack Developer",
-        summary: "Full-Stack Software Engineer with B.Tech in CSE (2022–2026) possessing deep expertise in high-concurrency Node.js microservices, Apache Kafka event streaming, and PostgreSQL database indexing. Certified in JPMorgan Chase Software Engineering simulation with solid grasp of Data Structures, System Design, and REST APIs.",
-        skillBI: "System Performance Monitoring, Grafana, API Logging, Prometheus Telemetry.",
-        skillDB: "PostgreSQL, MongoDB, Redis Caching, Database Indexing, Schema Optimization.",
-        p1Title: "High-Throughput Distributed Microservices Engine",
-        p1Stack: "Node.js | Express | Redis | PostgreSQL | Docker",
-        p1B1: "Architected asynchronous REST microservices processing 3,000+ API requests/sec with 99.98% uptime and zero cache-invalidation deadlocks.",
-        p1B2: "Implemented Redis distributed caching layer, slashing database load by 48% during peak transaction traffic spikes."
+        skillLang: "Java, Python, C++, JavaScript, C",
+        skillWeb: "Node.js, Express.js, React, REST APIs, Microservices, Socket.io, JWT",
+        skillML: "Data Structures & Algorithms, OOP Design, System Architecture",
+        skillDB: "PostgreSQL, MongoDB, Redis Caching, MySQL",
+        p3_title: "High-Concurrency Distributed Microservices Architecture",
+        p3_stack: "Node.js, Express, Redis, PostgreSQL, Docker",
+        p3_b1: "Architected asynchronous REST microservices processing 3,000+ API requests/sec with 99.98% uptime.",
+        p3_b2: "Implemented Redis distributed caching layer, slashing database load by 48% during peak traffic.",
+        p3_b3: "Configured automated CI/CD pipeline using GitHub Actions and Docker containerization."
       },
-      ai: {
-        title: "AI & Machine Learning Engineer | Deep Learning CNN & Predictive Modeling",
-        summary: "Applied AI/ML Engineer with strong mathematical foundations in Computer Vision, Convolutional Neural Networks (TensorFlow, OpenCV), and automated data pipelines. Experienced in training high-precision classifiers (94.2% accuracy) and optimizing inference endpoints for scalable production use.",
-        skillBI: "Matplotlib, Seaborn, Model Performance Curve Evaluation, Confusion Matrices.",
-        skillDB: "SQL, Feature Stores, Data Normalization, Pandas, NumPy.",
-        p1Title: "Automated Brain Tumor MRI Classification Engine",
-        p1Stack: "TensorFlow | OpenCV | Scikit-learn | Python",
-        p1B1: "Trained a 4-stage Deep Convolutional Neural Network (CNN) on 3,000+ clinical MRI images, attaining 94.2% test classification accuracy.",
-        p1B2: "Implemented CLAHE histogram normalization and automated data augmentation pipelines, suppressing scan artifact noise by 28%."
+      backend_python: {
+        skillLang: "Python 3.11, SQL, C++, Bash",
+        skillWeb: "FastAPI, Flask, Django, RESTful APIs, Celery Task Queues, Asyncio",
+        skillML: "NumPy Vectorization, Pandas Data Pipelines, Performance Profiling",
+        skillDB: "PostgreSQL (SQLAlchemy), Redis, MongoDB, Alembic Migrations",
+        p3_title: "Scalable Python Asynchronous REST Microservice Engine",
+        p3_stack: "Python 3.11, FastAPI, PostgreSQL, Redis, PyTest",
+        p3_b1: "Built asynchronous FastAPI endpoints handling 1.5M daily requests with average response latency below 25ms.",
+        p3_b2: "Automated test suites achieving 92% code coverage using PyTest, preventing staging regression bugs.",
+        p3_b3: "Optimized database queries with connection pooling and Redis caching."
       },
-      de: {
-        title: "Data Engineer | SQL ETL Pipelines, Apache Kafka & Data Warehousing",
-        summary: "Data Engineering practitioner experienced in constructing automated ETL/ELT ingestion pipelines, event-driven streaming with Apache Kafka, and relational data warehousing (Star/Snowflake). Proficient in SQL query tuning, window functions, and data cleansing.",
-        skillBI: "Power BI Integration, Tableau Data Prep, Pipeline Telemetry.",
-        skillDB: "SQL (Advanced Window Functions, CTEs), Snowflake, PostgreSQL, Star Schema, Delta Lake basics.",
-        p1Title: "Automated Multi-Stage SQL ETL Data Warehouse Pipeline",
-        p1Stack: "Apache Kafka | Python ETL | PostgreSQL | Star Schema",
-        p1B1: "Engineered end-to-end data pipeline extracting data from 5 disparate OLTP sources into a unified Star Schema data warehouse.",
-        p1B2: "Reduced nightly batch ETL processing runtime from 45 minutes to 8 minutes via vectorized Python batching and indexing."
+      data_engineer: {
+        skillLang: "Python, SQL (Advanced CTEs, Window Functions), Java",
+        skillWeb: "REST Data Extractors, Web Scraping, API Ingestion",
+        skillML: "Pandas, NumPy, PySpark concepts, Data Normalization",
+        skillDB: "PostgreSQL, Snowflake, MySQL, Star & Snowflake Schema, Delta Lake",
+        p3_title: "Automated Multi-Source SQL ETL Data Warehouse Pipeline",
+        p3_stack: "Python ETL, Apache Kafka, PostgreSQL, Star Schema",
+        p3_b1: "Engineered end-to-end ETL pipelines extracting data from 5 OLTP sources into a unified Star Schema data warehouse.",
+        p3_b2: "Reduced nightly batch ETL processing runtime from 45 minutes to 8 minutes via vectorized Python batching.",
+        p3_b3: "Configured Kafka streaming consumer to ingest live telemetry logs directly into analytical tables."
+      },
+      ai_ml: {
+        skillLang: "Python, C++, Java, R",
+        skillWeb: "Flask, FastAPI Model Serving, Streamlit",
+        skillML: "TensorFlow, Keras, CNN, OpenCV, XGBoost, Scikit-learn, Pandas, NumPy",
+        skillDB: "SQL, MongoDB, Vector Databases",
+        p3_title: "Automated Brain Tumor MRI Classification Engine",
+        p3_stack: "TensorFlow, OpenCV, Keras, Scikit-learn, Python",
+        p3_b1: "Trained a 4-stage Deep Convolutional Neural Network (CNN) achieving 94.2% test accuracy across 3,000+ MRI images.",
+        p3_b2: "Implemented CLAHE histogram normalization and data augmentation pipelines, suppressing scan noise by 28%.",
+        p3_b3: "Exported quantized weights for low-latency web inference via Flask REST endpoints."
+      },
+      cloud_devops: {
+        skillLang: "Python, Bash Scripting, YAML, SQL",
+        skillWeb: "REST APIs, Nginx Reverse Proxy, Microservices",
+        skillML: "Log Analytics, Infrastructure Monitoring, Prometheus Telemetry",
+        skillDB: "PostgreSQL, AWS RDS, DynamoDB, MongoDB",
+        p3_title: "Fault-Tolerant Enterprise Cloud Infrastructure Deployment",
+        p3_stack: "AWS (EC2, S3, VPC), Docker, Nginx, Linux CLI",
+        p3_b1: "Configured fault-tolerant multi-tier cloud infrastructure in Docker containers with automated load balancing.",
+        p3_b2: "Enforced strict IAM role-based access policies and security group filters mitigating vulnerabilities.",
+        p3_b3: "Achieved 88% overall scorecard during enterprise cloud virtualization assessment audit."
+      },
+      iot_kafka: {
+        skillLang: "JavaScript, Node.js, Python, C++",
+        skillWeb: "WebSockets, Socket.io, React, Express.js, REST APIs",
+        skillML: "Geospatial Telemetry Algorithms, Spatial Heatmap Clustering",
+        skillDB: "MongoDB, Time-Series Databases, PostgreSQL",
+        p3_title: "EcoSentinel — Distributed IoT & Apache Kafka Streaming Platform",
+        p3_stack: "Node.js, Apache Kafka, WebSockets, Leaflet, React",
+        p3_b1: "Deployed distributed Apache Kafka cluster ingesting live GPS collar telemetry at 2,500 messages/sec with zero loss.",
+        p3_b2: "Engineered sub-second ray-casting algorithm to execute dynamic geofence containment analysis.",
+        p3_b3: "Rendered live moving spatial entities with dynamic heatmap clustering using Leaflet.js."
+      },
+      fullstack_web: {
+        skillLang: "JavaScript (ES6+), Python, Java, HTML5, CSS3",
+        skillWeb: "React, Node.js, Express.js, Bootstrap, TailwindCSS, REST APIs, JWT",
+        skillML: "Data Visualization with Chart.js, Frontend State Optimization",
+        skillDB: "MongoDB, PostgreSQL, MySQL, JDBC",
+        p3_title: "Full-Stack Responsive Analytics & Workspace Application",
+        p3_stack: "React, Node.js, Express, PostgreSQL, TailwindCSS",
+        p3_b1: "Engineered responsive full-stack platform supporting interactive data visualizations and multi-tier authentication.",
+        p3_b2: "Optimized client bundle size by 35% using code splitting, achieving 98+ Google Lighthouse score.",
+        p3_b3: "Authored robust backend REST controllers with JWT token validation and rate limiting."
+      },
+      sap_consultant: {
+        skillLang: "SAP ABAP, ABAP SQL, Python, Java",
+        skillWeb: "RESTful Application Programming (RAP), SAP Fiori basics",
+        skillML: "Predictive Analytics, Business Planning Models",
+        skillDB: "SAP Business Data Cloud, SQL, Database Management",
+        p3_title: "Enterprise SAP Analytics Cloud & Data Modeling Architecture",
+        p3_stack: "SAP Analytics Cloud, SAP Business Data Cloud, ABAP SQL",
+        p3_b1: "Configured advanced predictive planning models and allocation processes in SAP Analytics Cloud.",
+        p3_b2: "Developed object-oriented ABAP programs with ABAP SQL queries under RESTful RAP architecture.",
+        p3_b3: "Integrated multi-tier enterprise database models for centralized analytical reporting."
+      },
+      telecom_net: {
+        skillLang: "Python, C, Shell Scripting, SQL",
+        skillWeb: "Network Telemetry APIs, Protocol Analyzers",
+        skillML: "Signal Noise Reduction, Traffic Telemetry Forecasting",
+        skillDB: "SQL, Relational Logging Databases, Network Records",
+        p3_title: "Optical Fiber & PRS/UTS Telemetry Network Inspection",
+        p3_stack: "OFC Systems, Telephone Exchange, PRS/UTS Telemetry",
+        p3_b1: "Inspected high-bandwidth Optical Fiber Communication transmission links, telephone exchanges, and fail-safe signaling.",
+        p3_b2: "Evaluated PRS/UTS reservation telemetry data lines, ensuring uninterrupted network transmission.",
+        p3_b3: "Mastered telecom operations and infrastructure maintenance across railway divisions."
+      },
+      cyber_security: {
+        skillLang: "Python, Bash, C, SQL",
+        skillWeb: "JWT Authentication, CORS Policies, OWASP Top 10 Mitigation",
+        skillML: "Anomaly Detection, Network Intrusion Pattern Recognition",
+        skillDB: "SQL Injection Prevention, Encrypted Database Storage",
+        p3_title: "Digital Transaction Fraud & Phishing Detection System",
+        p3_stack: "Python, XGBoost, Scikit-learn, Security Simulations",
+        p3_b1: "Built ML classifier analyzing digital transactions to flag fraudulent payments based on velocity deviations.",
+        p3_b2: "Completed Mastercard cybersecurity job simulation identifying sophisticated phishing threats.",
+        p3_b3: "Configured JWT role-based access security across REST API microservice endpoints."
+      },
+      sql_specialist: {
+        skillLang: "SQL (ANSI, T-SQL, PL/pgSQL), Python",
+        skillWeb: "Database Connection Pooling, REST Controllers",
+        skillML: "Data Aggregations, Statistical Summaries, IQR Outlier Detection",
+        skillDB: "PostgreSQL, MySQL, SQL Server, Star Schema, Snowflake Schema",
+        p3_title: "High-Performance Relational SQL Query Optimization Engine",
+        p3_stack: "PostgreSQL, Window Functions, CTEs, Indexing",
+        p3_b1: "Authored complex CTEs and analytical window functions (DENSE_RANK, LEAD, LAG) reducing execution time by 55%.",
+        p3_b2: "Engineered database indexing strategies on multi-million row transaction tables eliminating table scans.",
+        p3_b3: "Constructed automated stored procedures for transactional data validation and daily reconciliation."
+      },
+      fresher_cse: {
+        skillLang: "C, C++, Java, Python, SQL",
+        skillWeb: "JavaScript, Node.js, React (MERN), HTML, CSS, Bootstrap, PHP, Flask",
+        skillML: "Pandas, NumPy, TensorFlow, Keras, OpenCV, CNN, Scikit-learn, XGBoost, Matplotlib, Seaborn",
+        skillDB: "MongoDB, MySQL, JDBC, Power BI, Tableau, DAX",
+        p3_title: "Enterprise Sales Analytics — Sales Intelligence & Customer Analytics",
+        p3_stack: "Python, SQL, Power BI, DAX",
+        p3_b1: "Designed a Star Schema data warehouse and built a Python ETL pipeline to normalize raw transaction data.",
+        p3_b2: "Implemented K-Means clustering for RFM customer segmentation and SQL cohort retention analysis.",
+        p3_b3: "Built a Power BI data model with time-intelligence DAX KPIs for executive-level sales reporting."
       }
     };
 
-    function injectPreset(key) {
+    function applyPreset(key) {
+      document.querySelectorAll('.preset-btn').forEach(b => {
+        b.className = 'preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap cursor-pointer';
+      });
+      event.target.className = 'preset-btn px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-mono font-bold whitespace-nowrap cursor-pointer';
+
       const p = presets[key];
       if (!p) return;
-      document.getElementById('inpTitle').value = p.title;
-      document.getElementById('inpSummary').value = p.summary;
-      document.getElementById('inpSkillBI').value = p.skillBI;
+
+      document.getElementById('inpSkillLang').value = p.skillLang;
+      document.getElementById('inpSkillWeb').value = p.skillWeb;
+      document.getElementById('inpSkillML').value = p.skillML;
       document.getElementById('inpSkillDB').value = p.skillDB;
-      
-      document.getElementById('resP1Title').innerText = p.p1Title;
-      document.getElementById('resP1Stack').innerText = p.p1Stack;
-      document.getElementById('resP1B1').innerText = p.p1B1;
-      document.getElementById('resP1B2').innerText = p.p1B2;
-      syncLiveContent();
+
+      document.getElementById('rSkillLang').innerText = p.skillLang;
+      document.getElementById('rSkillWeb').innerText = p.skillWeb;
+      document.getElementById('rSkillML').innerText = p.skillML;
+      document.getElementById('rSkillDB').innerText = p.skillDB;
+
+      document.getElementById('p3_title').innerText = p.p3_title;
+      document.getElementById('p3_stack').innerText = p.p3_stack;
+      document.getElementById('p3_b1').innerText = p.p3_b1;
+      document.getElementById('p3_b2').innerText = p.p3_b2;
+      document.getElementById('p3_b3').innerText = p.p3_b3;
     }
 
-    // VECTOR PDF DOWNLOAD
+    // VECTOR PDF EXPORT
     function downloadExactA4PDF() {
       const element = document.getElementById('a4ResumeSheet');
       const btn = document.getElementById('downloadBtn');
@@ -497,7 +633,7 @@
 
       const opt = {
         margin: 0,
-        filename: 'Priyanshu_Kumar_A4_ATS_Resume.pdf',
+        filename: 'Priyanshu_Kumar_ATS_Resume.pdf',
         image: { type: 'jpeg', quality: 1.0 },
         html2canvas: { scale: 3, useCORS: true, letterRendering: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
