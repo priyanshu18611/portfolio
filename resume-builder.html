@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshu Kumar | Complete ATS Resume Studio</title>
+  <title>Priyanshu Kumar | Authentic Exact ATS Resume Studio</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -21,27 +21,30 @@
       width: 210mm;
       min-height: 297mm;
       max-height: 297mm;
-      padding: var(--page-pad, 8.5mm 12mm);
+      padding: var(--page-pad, 7.5mm 11mm);
       margin: 0 auto;
       background: #ffffff;
       color: #000000;
       box-sizing: border-box;
       overflow: hidden;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
-      font-size: var(--doc-fs, 8.4pt);
-      line-height: var(--doc-lh, 1.25);
+      font-size: var(--doc-fs, 8.2pt);
+      line-height: var(--doc-lh, 1.23);
+      font-family: 'Times New Roman', Times, serif, 'Segoe UI', Roboto;
     }
 
-    .resume-section-header {
-      font-size: calc(var(--doc-fs, 8.4pt) + 0.8pt);
+    /* Exact Original Black Banner Bar for Section Headers */
+    .resume-section-bar {
+      font-size: calc(var(--doc-fs, 8.2pt) + 0.8pt);
       font-weight: 700;
       color: #000000;
       border-bottom: 1.2px solid #000000;
       padding-bottom: 1px;
-      margin-top: 3.5px;
-      margin-bottom: 2.5px;
+      margin-top: 3px;
+      margin-bottom: 2px;
       text-transform: uppercase;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     .editable-box:hover {
@@ -67,7 +70,7 @@
         width: 210mm !important;
         height: 297mm !important;
         max-height: 297mm !important;
-        padding: 8.5mm 12mm !important;
+        padding: 7.5mm 11mm !important;
         margin: 0 !important;
         border: none !important;
         box-shadow: none !important;
@@ -84,8 +87,8 @@
         ATS
       </div>
       <div>
-        <h1 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Master ATS Resume Studio Suite</h1>
-        <p class="text-[9px] font-mono text-cyan-400">⚡ Exact Authentic ATS Layout • Live Tools & Form Controls • 1-Page A4 PDF</p>
+        <h1 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Exact Match ATS Resume Studio</h1>
+        <p class="text-[9px] font-mono text-cyan-400">⚡ 1:1 Matching Original Layout • Exact 1-Page A4 • 300 DPI PDF</p>
       </div>
     </div>
     
@@ -109,12 +112,12 @@
       <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
         <div class="flex items-center gap-2">
           <span class="text-[10px] text-slate-400 uppercase">Font Size:</span>
-          <input type="range" min="7.8" max="9.2" step="0.1" value="8.4" id="fsRange" oninput="adjustFontSize(this.value)" class="w-24 accent-cyan-500 cursor-pointer" />
-          <span id="fsVal" class="text-cyan-400 text-[10px] font-bold">8.4pt</span>
+          <input type="range" min="7.6" max="9.0" step="0.1" value="8.2" id="fsRange" oninput="adjustFontSize(this.value)" class="w-24 accent-cyan-500 cursor-pointer" />
+          <span id="fsVal" class="text-cyan-400 text-[10px] font-bold">8.2pt</span>
         </div>
 
         <div class="flex items-center gap-1.5">
-          <span class="text-[10px] text-slate-400 uppercase mr-1">Page Padding:</span>
+          <span class="text-[10px] text-slate-400 uppercase mr-1">Padding:</span>
           <button onclick="adjustPadding('tight')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-bold">Tight</button>
           <button onclick="adjustPadding('standard')" class="px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-bold">Standard</button>
           <button onclick="adjustPadding('dense')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-bold">Ultra-Dense</button>
@@ -127,7 +130,7 @@
 
       <!-- 15 Sample Profile Presets -->
       <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 border-t border-white/5">
-        <span class="text-slate-400 text-[9.5px] font-mono uppercase shrink-0 mr-1">Presets:</span>
+        <span class="text-slate-400 text-[9.5px] font-mono uppercase shrink-0 mr-1">Role Presets:</span>
         <button onclick="applyPreset('data_analyst')" class="preset-btn px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-mono font-bold whitespace-nowrap">1. Data Analyst (BI Core)</button>
         <button onclick="applyPreset('powerbi_spec')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">2. Power BI & DAX Specialist</button>
         <button onclick="applyPreset('tableau_spec')" class="preset-btn px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-mono font-bold whitespace-nowrap">3. Tableau Storytelling</button>
@@ -153,53 +156,53 @@
       <div class="lg:col-span-5 space-y-3.5 no-print max-h-[86vh] overflow-y-auto pr-1">
         
         <!-- Live Personal Info Form -->
-        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-2.5 text-xs font-mono">
+        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-2 text-xs font-mono">
           <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-1.5 flex items-center gap-1.5">
             <i data-lucide="user" class="w-3.5 h-3.5 text-blue-400"></i> Contact Header Information
           </h3>
           <div class="grid grid-cols-2 gap-2">
             <div>
               <label class="text-[9.5px] text-slate-400 block mb-0.5">Full Name</label>
-              <input type="text" id="inpName" value="PRIYANSHU KUMAR" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <input type="text" id="inpName" value="PRIYANSHU KUMAR" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
             </div>
             <div>
               <label class="text-[9.5px] text-slate-400 block mb-0.5">Location</label>
-              <input type="text" id="inpLoc" value="Samastipur, Bihar, India" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <input type="text" id="inpLoc" value="Samastipur, Bihar, India" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
             </div>
           </div>
           <div class="grid grid-cols-2 gap-2">
             <div>
               <label class="text-[9.5px] text-slate-400 block mb-0.5">Phone Number</label>
-              <input type="text" id="inpPhone" value="+91-6202018611" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <input type="text" id="inpPhone" value="+91-6202018611" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
             </div>
             <div>
               <label class="text-[9.5px] text-slate-400 block mb-0.5">Email Address</label>
-              <input type="text" id="inpEmail" value="priyanshu6202018611@gmail.com" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <input type="text" id="inpEmail" value="priyanshu6202018611@gmail.com" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
             </div>
           </div>
           <div class="grid grid-cols-2 gap-2">
             <div>
               <label class="text-[9.5px] text-slate-400 block mb-0.5">LinkedIn Handle</label>
-              <input type="text" id="inpLinkedIn" value="linkedin.com/in/priyanshuroy18" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <input type="text" id="inpLinkedIn" value="linkedin.com/in/priyanshuroy18" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
             </div>
             <div>
               <label class="text-[9.5px] text-slate-400 block mb-0.5">GitHub Handle</label>
-              <input type="text" id="inpGitHub" value="github.com/priyanshu18611" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500" />
+              <input type="text" id="inpGitHub" value="github.com/priyanshu18611" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-1.5 text-white outline-none focus:border-cyan-500" />
             </div>
           </div>
         </div>
 
         <!-- Summary Form -->
-        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-1.5 text-xs font-mono">
-          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-1.5 flex items-center gap-1.5">
+        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-1 text-xs font-mono">
+          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-1 flex items-center gap-1.5">
             <i data-lucide="file-text" class="w-3.5 h-3.5 text-blue-400"></i> Professional Summary
           </h3>
           <textarea id="inpSummary" rows="3" oninput="syncLive()" class="w-full bg-black/60 border border-white/10 rounded-xl p-2 text-white outline-none focus:border-cyan-500 resize-none leading-relaxed">Final-year Computer Science undergraduate with hands-on experience across full-stack development, data analytics, and machine learning. Skilled in Python, Java, SQL, and the MERN stack, with proven ability to build end-to-end IoT, ML, and BI solutions. Seeking Software Engineer / Data Analyst roles to apply strong problem-solving and analytical skills in a fast-paced, product-driven environment.</textarea>
         </div>
 
         <!-- Technical Skills Form -->
-        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-2 text-xs font-mono">
-          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-1.5 flex items-center gap-1.5">
+        <div class="bg-slate-900/90 border border-white/10 p-3.5 rounded-2xl space-y-1.5 text-xs font-mono">
+          <h3 class="text-xs font-bold text-white uppercase border-b border-white/10 pb-1 flex items-center gap-1.5">
             <i data-lucide="cpu" class="w-3.5 h-3.5 text-blue-400"></i> Technical Skills Matrix
           </h3>
           <div>
@@ -232,32 +235,35 @@
         <!-- STRICT EXACT A4 SHEET -->
         <div id="a4ResumeSheet" class="a4-page-strict flex flex-col justify-between select-text">
           
-          <!-- HEADER -->
-          <div class="text-center pb-0.5 mb-0.5">
+          <!-- HEADER (Exact PDF Format) -->
+          <div class="text-center pb-0.5">
             <h1 contenteditable="true" id="rName" class="editable-box text-[18pt] font-extrabold tracking-wide text-black uppercase leading-none">
               PRIYANSHU KUMAR
             </h1>
-            <div class="text-[8pt] text-black font-semibold pt-1">
+            <div class="text-[7.8pt] text-black pt-0.5">
               <span contenteditable="true" id="rLoc" class="editable-box">Samastipur, Bihar, India</span> | 
               <span contenteditable="true" id="rPhone" class="editable-box">+91-6202018611</span> | 
               <span contenteditable="true" id="rEmail" class="editable-box">priyanshu6202018611@gmail.com</span> | 
               <span contenteditable="true" id="rLinkedIn" class="editable-box">linkedin.com/in/priyanshuroy18</span> | 
               <span contenteditable="true" id="rGitHub" class="editable-box">github.com/priyanshu18611</span>
             </div>
+            <div class="text-right text-[7.2pt] text-slate-700 font-mono -mt-1 pb-0.5">
+              priyanshu18611.github.io/portfolio
+            </div>
           </div>
 
           <!-- PROFESSIONAL SUMMARY -->
           <div>
-            <div class="resume-section-header">PROFESSIONAL SUMMARY</div>
-            <p contenteditable="true" id="rSummary" class="editable-box text-[8.2pt] text-black leading-snug text-justify">
+            <div class="resume-section-bar">PROFESSIONAL SUMMARY</div>
+            <p contenteditable="true" id="rSummary" class="editable-box text-[8pt] text-black leading-snug text-justify">
               Final-year Computer Science undergraduate with hands-on experience across full-stack development, data analytics, and machine learning. Skilled in Python, Java, SQL, and the MERN stack, with proven ability to build end-to-end IoT, ML, and BI solutions. Seeking Software Engineer / Data Analyst roles to apply strong problem-solving and analytical skills in a fast-paced, product-driven environment.
             </p>
           </div>
 
           <!-- TECHNICAL SKILLS -->
           <div>
-            <div class="resume-section-header">TECHNICAL SKILLS</div>
-            <div class="space-y-0.5 text-[8.2pt] text-black leading-tight">
+            <div class="resume-section-bar">TECHNICAL SKILLS</div>
+            <div class="space-y-0.5 text-[8pt] text-black leading-tight">
               <div><strong>Languages:</strong> <span id="rSkillLang" contenteditable="true">C, C++, Java, Python, SQL</span></div>
               <div><strong>Web & Frameworks:</strong> <span id="rSkillWeb" contenteditable="true">JavaScript, Node.js, React (MERN), HTML, CSS, Bootstrap, PHP, Flask</span></div>
               <div><strong>Data & ML:</strong> <span id="rSkillML" contenteditable="true">Pandas, NumPy, TensorFlow, Keras, OpenCV, CNN, Scikit-learn, XGBoost, Matplotlib, Seaborn</span></div>
@@ -268,27 +274,26 @@
 
           <!-- WORK EXPERIENCE -->
           <div>
-            <div class="resume-section-header">WORK EXPERIENCE</div>
-            <div class="space-y-1 text-[8.2pt]">
+            <div class="resume-section-bar">WORK EXPERIENCE</div>
+            <div class="space-y-0.5 text-[8pt]">
               
               <div>
                 <div class="flex justify-between items-baseline font-bold text-black">
                   <span>Cloud Computing Intern — Aagaaz Training Centre Pvt. Ltd.</span>
-                  <span class="font-normal text-black text-[7.8pt]">Dec 2025</span>
+                  <span class="font-normal text-black text-[7.6pt]">Dec 2025</span>
                 </div>
-                <div class="text-black italic text-[7.8pt]">Remote</div>
+                <div class="text-black italic text-[7.4pt]">Remote</div>
                 <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
                   <li contenteditable="true">Completed a 4-week internship covering cloud computing concepts, virtualization, and cloud service models, scoring 88% in the final evaluation.</li>
-                  <li contenteditable="true">Worked on hands-on assignments and assessments related to cloud infrastructure.</li>
                 </ul>
               </div>
 
               <div>
                 <div class="flex justify-between items-baseline font-bold text-black">
                   <span>Signal & Telecommunication Intern — East Central Railway (ECR)</span>
-                  <span class="font-normal text-black text-[7.8pt]">Jun 2025 – Jul 2025</span>
+                  <span class="font-normal text-black text-[7.6pt]">Jun 2025 – Jul 2025</span>
                 </div>
-                <div class="text-black italic text-[7.8pt]">Danapur Division, Bihar, India</div>
+                <div class="text-black italic text-[7.4pt]">Danapur Division, Bihar, India</div>
                 <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
                   <li contenteditable="true">Gained exposure to Optical Fiber Communication (OFC), Telephone Exchange, PRS/UTS, and Mobile Train Radio Communication systems.</li>
                   <li contenteditable="true">Studied railway communication network operations and maintenance procedures for high-availability systems.</li>
@@ -298,9 +303,9 @@
               <div>
                 <div class="flex justify-between items-baseline font-bold text-black">
                   <span>Robotics Intern — InfinityCore Technologies (BlinkSkills)</span>
-                  <span class="font-normal text-black text-[7.8pt]">Jan 2024 – Feb 2024</span>
+                  <span class="font-normal text-black text-[7.6pt]">Jan 2024 – Feb 2024</span>
                 </div>
-                <div class="text-black italic text-[7.8pt]">Remote</div>
+                <div class="text-black italic text-[7.4pt]">Remote</div>
                 <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
                   <li contenteditable="true">Applied automation and problem-solving fundamentals to practical robotics assignments, scoring 92% in the internship assessment.</li>
                 </ul>
@@ -311,13 +316,13 @@
 
           <!-- PROJECTS -->
           <div>
-            <div class="resume-section-header">PROJECTS</div>
-            <div class="space-y-1 text-[8.2pt]">
+            <div class="resume-section-bar">PROJECTS</div>
+            <div class="space-y-0.5 text-[8pt]">
               
               <div>
                 <div class="flex justify-between items-baseline font-bold text-black">
                   <span id="p1_title" contenteditable="true">EcoSentinel — IoT Solution for Wildlife Conservation</span>
-                  <span id="p1_stack" class="font-normal italic text-[7.8pt]">MERN, IoT, Socket.io, JWT</span>
+                  <span id="p1_stack" class="font-normal italic text-[7.4pt]">MERN, IoT, Socket.io, JWT</span>
                 </div>
                 <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
                   <li id="p1_b1" contenteditable="true">Built a full-stack MERN app for real-time wildlife tracking using simulated GPS collars with live Leaflet map visualization.</li>
@@ -329,7 +334,7 @@
               <div>
                 <div class="flex justify-between items-baseline font-bold text-black">
                   <span id="p2_title" contenteditable="true">Brain Tumor Detection using MRI Images</span>
-                  <span id="p2_stack" class="font-normal italic text-[7.8pt]">Deep Learning, CNN, TensorFlow, OpenCV</span>
+                  <span id="p2_stack" class="font-normal italic text-[7.4pt]">Deep Learning, CNN, TensorFlow, OpenCV</span>
                 </div>
                 <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
                   <li id="p2_b1" contenteditable="true">Built a CNN (4 Conv+MaxPooling blocks with Batch Normalization) to classify MRI scans as Tumor / No Tumor using TensorFlow/Keras.</li>
@@ -339,8 +344,8 @@
 
               <div>
                 <div class="flex justify-between items-baseline font-bold text-black">
-                  <span id="p3_title" contenteditable="true">Enterprise Sales Analytics — Sales Intelligence & Customer Analytics</span>
-                  <span id="p3_stack" class="font-normal italic text-[7.8pt]">Python, SQL, Power BI, DAX</span>
+                  <span id="p3_title" contenteditable="true">Enterprise Sales Analytics — Sales Intelligence & Customer Analytics Engine</span>
+                  <span id="p3_stack" class="font-normal italic text-[7.4pt]">Python, SQL, Power BI, DAX</span>
                 </div>
                 <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
                   <li id="p3_b1" contenteditable="true">Designed a Star Schema data warehouse and built a Python ETL pipeline to normalize raw transaction data.</li>
@@ -349,32 +354,42 @@
                 </ul>
               </div>
 
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-black">
+                  <span id="p4_title" contenteditable="true">Cricket Score Predictor</span>
+                  <span id="p4_stack" class="font-normal italic text-[7.4pt]">Python, XGBoost, Scikit-learn</span>
+                </div>
+                <ul class="list-disc list-outside ml-4 text-black space-y-0.5 leading-snug">
+                  <li id="p4_b1" contenteditable="true">Built an XGBoost regression model to predict final cricket match scores from live match conditions and historical data.</li>
+                </ul>
+              </div>
+
             </div>
           </div>
 
           <!-- EDUCATION -->
           <div>
-            <div class="resume-section-header">EDUCATION</div>
-            <div class="space-y-0.5 text-[8.2pt]">
+            <div class="resume-section-bar">EDUCATION</div>
+            <div class="space-y-0.5 text-[8pt]">
               <div class="flex justify-between items-baseline font-bold text-black">
                 <span>B.Tech, Computer Science and Engineering — Shershah Engineering College, Sasaram</span>
-                <span class="font-normal text-black text-[7.8pt]">Oct 2022 – May 2026</span>
+                <span class="font-normal text-black text-[7.6pt]">Oct 2022 – May 2026</span>
               </div>
               <div class="flex justify-between items-baseline font-bold text-black">
                 <span>Intermediate (Science, PCM) — RB College, Dalsingsaray</span>
-                <span class="font-normal text-black text-[7.8pt]">May 2018 – Jul 2020</span>
+                <span class="font-normal text-black text-[7.6pt]">May 2018 – Jul 2020</span>
               </div>
             </div>
           </div>
 
           <!-- CERTIFICATIONS -->
           <div>
-            <div class="resume-section-header">CERTIFICATIONS</div>
-            <div class="text-[7.4pt] text-black leading-tight space-y-0.5">
+            <div class="resume-section-bar">CERTIFICATIONS</div>
+            <div class="text-[7.2pt] text-black leading-tight space-y-0.5">
               <div>• <strong>AWS:</strong> Data Engineering on AWS: Foundations • AWS Foundations of Prompt Engineering</div>
-              <div>• <strong>Cisco:</strong> Data Analytics Essentials (Excel, SQL, Tableau) • Cisco Data Science Essentials with Python</div>
-              <div>• <strong>Corporate Job Simulations:</strong> JPMorgan Chase Software Engg • Deloitte Data Analytics • Tata GenAI Data Analytics • Mastercard Cybersecurity</div>
-              <div>• <strong>SAP & Academic:</strong> SAP Analytics Cloud for Planning (Advanced) • NPTEL IoT IIT Kharagpur (60%) • Skills4India Python • YBI Foundation ML</div>
+              <div>• <strong>Cisco:</strong> Data Analytics Essentials • Cisco Data Science Essentials with Python</div>
+              <div>• <strong>Job Simulations:</strong> JPMorgan Chase Software Engg • Deloitte Data Analytics • Tata GenAI Data Analytics • Mastercard Cybersecurity</div>
+              <div>• <strong>Academic & Professional:</strong> NPTEL (IIT Kharagpur) - Introduction to IoT • SAP Analytics Cloud for Planning (Advanced)</div>
             </div>
           </div>
 
@@ -388,13 +403,12 @@
 
   <!-- Footer -->
   <footer class="text-center text-[9.5px] font-mono text-slate-600 pt-3 no-print">
-    Engineered by Priyanshu Kumar • Complete ATS Resume Studio Suite // 2026
+    Engineered by Priyanshu Kumar • Exact Match ATS Resume Studio // 2026
   </footer>
 
   <script>
     lucide.createIcons();
 
-    // LIVE FORM SYNC
     function syncLive() {
       document.getElementById('rName').innerText = document.getElementById('inpName').value.toUpperCase();
       document.getElementById('rLoc').innerText = document.getElementById('inpLoc').value;
@@ -409,7 +423,6 @@
       document.getElementById('rSkillDB').innerText = document.getElementById('inpSkillDB').value;
     }
 
-    // LIVE OPTIMIZERS
     function adjustFontSize(val) {
       document.getElementById('a4ResumeSheet').style.setProperty('--doc-fs', `${val}pt`);
       document.getElementById('fsVal').innerText = `${val}pt`;
@@ -418,25 +431,24 @@
     function adjustPadding(type) {
       const sheet = document.getElementById('a4ResumeSheet');
       if (type === 'tight') {
-        sheet.style.setProperty('--page-pad', '7mm 10mm');
-        sheet.style.setProperty('--doc-lh', '1.20');
-      } else if (type === 'standard') {
-        sheet.style.setProperty('--page-pad', '8.5mm 12mm');
-        sheet.style.setProperty('--doc-lh', '1.25');
-      } else if (type === 'dense') {
         sheet.style.setProperty('--page-pad', '6.5mm 9.5mm');
         sheet.style.setProperty('--doc-lh', '1.18');
+      } else if (type === 'standard') {
+        sheet.style.setProperty('--page-pad', '7.5mm 11mm');
+        sheet.style.setProperty('--doc-lh', '1.23');
+      } else if (type === 'dense') {
+        sheet.style.setProperty('--page-pad', '5.5mm 8.5mm');
+        sheet.style.setProperty('--doc-lh', '1.15');
       }
     }
 
-    // 15 PRESETS
     const presets = {
       data_analyst: {
         skillLang: "Python, SQL, R, JavaScript, C++",
         skillWeb: "Flask, REST APIs, JSON Data Pipelines, Power BI Web Embedding",
         skillML: "Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, Statistical Analysis, EDA",
         skillDB: "SQL (PostgreSQL, MySQL), MongoDB, Power BI, Tableau, DAX",
-        p3_title: "Enterprise Sales Analytics — Sales Intelligence & Customer Analytics",
+        p3_title: "Enterprise Sales Analytics — Sales Intelligence & Customer Analytics Engine",
         p3_stack: "Python, SQL, Power BI, DAX",
         p3_b1: "Designed a Star Schema data warehouse and built a Python ETL pipeline to normalize raw transaction data.",
         p3_b2: "Implemented K-Means clustering for RFM customer segmentation and SQL cohort retention analysis.",
@@ -590,7 +602,7 @@
         skillWeb: "JavaScript, Node.js, React (MERN), HTML, CSS, Bootstrap, PHP, Flask",
         skillML: "Pandas, NumPy, TensorFlow, Keras, OpenCV, CNN, Scikit-learn, XGBoost, Matplotlib, Seaborn",
         skillDB: "MongoDB, MySQL, JDBC, Power BI, Tableau, DAX",
-        p3_title: "Enterprise Sales Analytics — Sales Intelligence & Customer Analytics",
+        p3_title: "Enterprise Sales Analytics — Sales Intelligence & Customer Analytics Engine",
         p3_stack: "Python, SQL, Power BI, DAX",
         p3_b1: "Designed a Star Schema data warehouse and built a Python ETL pipeline to normalize raw transaction data.",
         p3_b2: "Implemented K-Means clustering for RFM customer segmentation and SQL cohort retention analysis.",
@@ -624,7 +636,6 @@
       document.getElementById('p3_b3').innerText = p.p3_b3;
     }
 
-    // VECTOR PDF EXPORT
     function downloadExactA4PDF() {
       const element = document.getElementById('a4ResumeSheet');
       const btn = document.getElementById('downloadBtn');
@@ -633,7 +644,7 @@
 
       const opt = {
         margin: 0,
-        filename: 'Priyanshu_Kumar_ATS_Resume.pdf',
+        filename: 'Priyanshu_Kumar_A4_Resume.pdf',
         image: { type: 'jpeg', quality: 1.0 },
         html2canvas: { scale: 3, useCORS: true, letterRendering: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
