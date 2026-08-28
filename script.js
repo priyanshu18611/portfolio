@@ -1,14 +1,45 @@
-/* =========================================================
-   PRIYANSHU KUMAR — ULTRA ARCHITECTURE SCRIPT ENGINE 2026
-   Features: Interactive ThreeJS 3D Core, 3D Card Tilt Physics,
-   Real-Time Latency Ping, Neural Chat Engine, Terminal Logic
-   ========================================================= */
+/* =========================================================================
+   PRIYANSHU KUMAR — HIGH-PERFORMANCE WORKSTATION ENGINE // 2026
+   Architecture: WebGL Three.js Particle Mesh, 3D Dynamic Card Physics,
+   Web Audio Micro-Haptics Synthesizer, Real-Time Edge Telemetry Ping
+   ========================================================================= */
 
-// 1. THREE.JS 3D INTERACTIVE PARTICLE CONSTELLATION
+// 1. WEB AUDIO SYNTHESIZER (Sci-Fi Micro Haptics)
+class AudioHaptics {
+  constructor() {
+    this.ctx = null;
+  }
+  init() {
+    if (!this.ctx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioContext();
+    }
+  }
+  playTone(freq, type = 'sine', duration = 0.04, gainVal = 0.015) {
+    try {
+      this.init();
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+      gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + duration);
+    } catch (e) {}
+  }
+  hover() { this.playTone(850, 'sine', 0.03, 0.008); }
+  click() { this.playTone(1200, 'triangle', 0.05, 0.02); }
+}
+const haptics = new AudioHaptics();
+
+// 2. THREE.JS GPU PARTICLE WAVE CONSTELLATION
 let scene, camera, renderer, particles, particlePositions, linesMesh;
-const particleCount = 120;
-let mouseX = 0, mouseY = 0;
-let targetX = 0, targetY = 0;
+const particleCount = 135;
+let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
 
 function initThreeBackground() {
   const canvas = document.getElementById('three-bg');
@@ -16,26 +47,26 @@ function initThreeBackground() {
 
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-  camera.position.z = 240;
+  camera.position.z = 230;
 
-  renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true, powerPreference: "high-performance" });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  // Particles Setup
+  // Particle Buffer
   const geometry = new THREE.BufferGeometry();
   particlePositions = new Float32Array(particleCount * 3);
   const particleVelocities = [];
 
   for (let i = 0; i < particleCount * 3; i += 3) {
-    particlePositions[i] = (Math.random() - 0.5) * 450;
-    particlePositions[i + 1] = (Math.random() - 0.5) * 450;
-    particlePositions[i + 2] = (Math.random() - 0.5) * 200;
+    particlePositions[i] = (Math.random() - 0.5) * 480;
+    particlePositions[i + 1] = (Math.random() - 0.5) * 480;
+    particlePositions[i + 2] = (Math.random() - 0.5) * 220;
 
     particleVelocities.push({
-      x: (Math.random() - 0.5) * 0.35,
-      y: (Math.random() - 0.5) * 0.35,
-      z: (Math.random() - 0.5) * 0.2
+      x: (Math.random() - 0.5) * 0.32,
+      y: (Math.random() - 0.5) * 0.32,
+      z: (Math.random() - 0.5) * 0.18
     });
   }
 
@@ -43,29 +74,28 @@ function initThreeBackground() {
 
   const pMaterial = new THREE.PointsMaterial({
     color: 0xf97316,
-    size: 3.2,
+    size: 3.0,
     transparent: true,
-    opacity: 0.75,
+    opacity: 0.8,
     blending: THREE.AdditiveBlending
   });
 
   particles = new THREE.Points(geometry, pMaterial);
   scene.add(particles);
 
-  // Line Mesh for Particle Web
+  // Dynamic Connective Strings
   const lineMaterial = new THREE.LineBasicMaterial({
     color: 0xf97316,
     transparent: true,
-    opacity: 0.15,
+    opacity: 0.14,
     blending: THREE.AdditiveBlending
   });
   const lineGeometry = new THREE.BufferGeometry();
   linesMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
   scene.add(linesMesh);
 
-  // Event Listeners
-  window.addEventListener('resize', onWindowResize, false);
-  document.addEventListener('mousemove', onDocumentMouseMove, false);
+  window.addEventListener('resize', onWindowResize, { passive: true });
+  document.addEventListener('mousemove', onDocumentMouseMove, { passive: true });
 
   animateThree(particleVelocities);
 }
@@ -78,17 +108,17 @@ function onWindowResize() {
 }
 
 function onDocumentMouseMove(event) {
-  mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
-  mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
+  mouseX = (event.clientX - window.innerWidth / 2) * 0.04;
+  mouseY = (event.clientY - window.innerHeight / 2) * 0.04;
 }
 
 function animateThree(velocities) {
   requestAnimationFrame(() => animateThree(velocities));
 
-  targetX += (mouseX - targetX) * 0.05;
-  targetY += (mouseY - targetY) * 0.05;
-  scene.rotation.y = targetX * 0.01;
-  scene.rotation.x = -targetY * 0.01;
+  targetX += (mouseX - targetX) * 0.04;
+  targetY += (mouseY - targetY) * 0.04;
+  scene.rotation.y = targetX * 0.012;
+  scene.rotation.x = -targetY * 0.012;
 
   const positions = particles.geometry.attributes.position.array;
   const linePositions = [];
@@ -99,12 +129,10 @@ function animateThree(velocities) {
     positions[idx + 1] += velocities[i].y;
     positions[idx + 2] += velocities[i].z;
 
-    // Boundary Bounce
-    if (positions[idx] < -250 || positions[idx] > 250) velocities[i].x *= -1;
-    if (positions[idx + 1] < -250 || positions[idx + 1] > 250) velocities[i].y *= -1;
-    if (positions[idx + 2] < -150 || positions[idx + 2] > 150) velocities[i].z *= -1;
+    if (positions[idx] < -240 || positions[idx] > 240) velocities[i].x *= -1;
+    if (positions[idx + 1] < -240 || positions[idx + 1] > 240) velocities[i].y *= -1;
+    if (positions[idx + 2] < -140 || positions[idx + 2] > 140) velocities[i].z *= -1;
 
-    // Connect close particles with dynamic line strings
     for (let j = i + 1; j < particleCount; j++) {
       const jdx = j * 3;
       const dx = positions[idx] - positions[jdx];
@@ -112,7 +140,7 @@ function animateThree(velocities) {
       const dz = positions[idx + 2] - positions[jdx + 2];
       const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-      if (dist < 55) {
+      if (dist < 58) {
         linePositions.push(positions[idx], positions[idx + 1], positions[idx + 2]);
         linePositions.push(positions[jdx], positions[jdx + 1], positions[jdx + 2]);
       }
@@ -124,7 +152,7 @@ function animateThree(velocities) {
   renderer.render(scene, camera);
 }
 
-// 2. 3D CARD TILT & RADIAL SPOTLIGHT PHYSICS
+// 3. 3D DYNAMIC CARD TILT PHYSICS
 function initCardPhysics() {
   const cards = document.querySelectorAll('.glass-card');
 
@@ -139,19 +167,26 @@ function initCardPhysics() {
 
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -5;
-      const rotateY = ((x - centerX) / centerX) * 5;
+      const rotateX = ((y - centerY) / centerY) * -5.5;
+      const rotateY = ((x - centerX) / centerX) * 5.5;
 
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
     });
+
+    card.addEventListener('mouseenter', () => haptics.hover());
 
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
     });
   });
+
+  // Attach micro-haptics to all interactive buttons
+  document.querySelectorAll('button, a').forEach(el => {
+    el.addEventListener('click', () => haptics.click());
+  });
 }
 
-// 3. REAL-TIME EDGE LATENCY MONITOR
+// 4. REAL-TIME EDGE NETWORK TELEMETRY PING
 async function pingEdgeServer() {
   const badge = document.querySelector('.text-emerald-400.font-bold');
   const start = performance.now();
@@ -162,16 +197,16 @@ async function pingEdgeServer() {
       badge.innerText = `${latency}ms`;
     }
   } catch(e) {
-    if (badge) badge.innerText = '14ms';
+    if (badge) badge.innerText = '16ms';
   }
 }
 
-// 4. PRECISION TYPEWRITER LOOP
+// 5. STREAMING TYPEWRITER ENGINE
 const roles = [
   "Software Engineer",
   "Data Analyst & BI Specialist",
   "Full-Stack Developer",
-  "Machine Learning Enthusiast"
+  "Machine Learning Engineer"
 ];
 let roleIndex = 0, charIndex = 0, isDeleting = false;
 
@@ -188,23 +223,26 @@ function typeRole() {
     charIndex++;
   }
 
-  let delay = isDeleting ? 40 : 80;
+  let delay = isDeleting ? 38 : 75;
   if (!isDeleting && charIndex === currentRole.length) {
-    delay = 2000;
+    delay = 2200;
     isDeleting = true;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
     roleIndex = (roleIndex + 1) % roles.length;
-    delay = 300;
+    delay = 350;
   }
 
   setTimeout(typeRole, delay);
 }
 
-// 5. AI NEURAL CHAT HELPER
+// 6. NEURAL AI COPILOT CHAT
 function openChat() {
   const chat = document.getElementById('aiChat');
-  if (chat) chat.classList.remove('hidden');
+  if (chat) {
+    chat.classList.remove('hidden');
+    haptics.click();
+  }
 }
 
 function closeChat() {
@@ -233,7 +271,7 @@ async function handleChatSubmit(e) {
   msgs.innerHTML += `
     <div id="${loadingId}" class="flex justify-start">
       <div class="p-3 rounded-2xl bg-white/5 text-slate-400 border border-white/10 font-mono text-xs animate-pulse">
-        Querying Priyanshu neural knowledge graph...
+        Executing semantic vector retrieval across Priyanshu repositories...
       </div>
     </div>
   `;
@@ -268,7 +306,7 @@ async function handleChatSubmit(e) {
   msgs.scrollTop = msgs.scrollHeight;
 }
 
-// Global Initialization
+// Master Initialization on DOM Load
 window.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
   initThreeBackground();
