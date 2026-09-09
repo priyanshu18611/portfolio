@@ -2,937 +2,2349 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priyanshu Kumar | Software Engineer & Data Analyst</title>
-  
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <meta
+    name="description"
+    content="Priyanshu Kumar — Software Engineer, Full-Stack Developer and Data Analyst. B.Tech CSE graduate building scalable software, analytics solutions and intelligent applications."
+  />
+
+  <meta
+    name="keywords"
+    content="Priyanshu Kumar, Software Engineer, Data Analyst, Full Stack Developer, Python Developer, React Developer, SQL, Machine Learning, Portfolio"
+  />
+
+  <meta name="author" content="Priyanshu Kumar" />
+
+  <meta property="og:title" content="Priyanshu Kumar | Software Engineer × Data Analyst" />
+  <meta
+    property="og:description"
+    content="B.Tech CSE graduate building software, data and intelligent digital experiences."
+  />
+  <meta property="og:type" content="website" />
+
+  <title>Priyanshu Kumar | Software Engineer × Data Analyst</title>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    #three-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 5;
+    }
+
     .glass-card {
-      background: rgba(12, 16, 25, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(18px);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      will-change: transform;
     }
-    .glass-card:hover {
-      border-color: rgba(249, 115, 22, 0.5);
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(249, 115, 22, 0.08),
+          transparent 40%
+        );
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    .text-gradient {
+      background: linear-gradient(
+        90deg,
+        #fb923c,
+        #facc15,
+        #fb923c,
+        #f97316
+      );
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradientMove 5s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0%,100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .orbit {
+      animation: orbit 18s linear infinite;
+    }
+
+    .orbit-reverse {
+      animation: orbitReverse 24s linear infinite;
+    }
+
+    @keyframes orbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes orbitReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    .float {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .pulse-ring {
+      animation: pulseRing 2.5s ease-out infinite;
+    }
+
+    @keyframes pulseRing {
+      0% {
+        transform: scale(.8);
+        opacity: .8;
+      }
+      100% {
+        transform: scale(1.6);
+        opacity: 0;
+      }
+    }
+
+    .scanline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(249,115,22,.8),
+        transparent
+      );
+      animation: scan 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      0% {
+        top: 0%;
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    .magnetic {
+      transition:
+        transform .2s cubic-bezier(.16,1,.3,1),
+        box-shadow .2s ease;
+    }
+
+    .magnetic:hover {
       transform: translateY(-3px);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 20px rgba(249, 115, 22, 0.15);
     }
-    .floating-header {
-      background: rgba(6, 7, 10, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(24px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px rgba(249, 115, 22, 0.05);
+
+    .project-number {
+      font-family: monospace;
+      letter-spacing: .15em;
     }
-    .nav-btn {
-      transition: all 0.2s ease;
-      white-space: nowrap;
+
+    .modal-scroll::-webkit-scrollbar,
+    #chatMessages::-webkit-scrollbar {
+      width: 5px;
     }
-    .nav-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-1px);
+
+    .modal-scroll::-webkit-scrollbar-thumb,
+    #chatMessages::-webkit-scrollbar-thumb {
+      background: rgba(249,115,22,.35);
+      border-radius: 20px;
     }
-    .dropdown-menu {
-      background: rgba(10, 13, 20, 0.96);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(24px);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 30px rgba(249, 115, 22, 0.15);
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
-<body class="selection:bg-orange-500 selection:text-black bg-[#040507] text-slate-100">
 
-  <!-- Three.js 3D Background -->
+<body class="bg-[#030406] text-slate-100 selection:bg-orange-500 selection:text-black">
+
+  <!-- =========================================================
+       THREE.JS BACKGROUND
+  ========================================================== -->
+
   <canvas id="three-bg"></canvas>
 
-  <div class="glow-orange -top-40 -left-40"></div>
-  <div class="glow-orange top-[45%] -right-40"></div>
+  <div class="fixed inset-0 z-[1] pointer-events-none hero-grid"></div>
 
-  <!-- Ultra-Modern Dynamic Island Floating Header -->
-  <header class="fixed top-3 sm:top-5 left-0 w-full z-50 px-3 sm:px-6 flex justify-center">
-    <nav class="floating-header max-w-5xl w-full rounded-2xl sm:rounded-full px-3.5 py-2 flex items-center justify-between gap-2 sm:gap-4">
-      
-      <!-- Brand Identity -->
+  <div
+    class="fixed -top-60 -left-60 w-[500px] h-[500px] rounded-full blur-[140px] bg-orange-500/10 pointer-events-none z-[1]"
+  ></div>
+
+  <div
+    class="fixed top-[40%] -right-60 w-[500px] h-[500px] rounded-full blur-[140px] bg-indigo-500/10 pointer-events-none z-[1]"
+  ></div>
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================== -->
+
+  <header class="fixed top-3 sm:top-5 left-0 w-full z-[100] px-3 sm:px-6">
+
+    <nav
+      class="mx-auto max-w-7xl rounded-2xl sm:rounded-full
+             border border-white/10
+             bg-[#07090d]/75
+             backdrop-blur-2xl
+             shadow-[0_20px_70px_rgba(0,0,0,.55)]
+             px-3 sm:px-4 py-2
+             flex items-center justify-between gap-2"
+    >
+
+      <!-- Brand -->
       <a href="#about" class="flex items-center gap-2.5 shrink-0 group">
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-orange-600 via-amber-400 to-orange-500 flex items-center justify-center font-black text-black text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] group-hover:scale-105 transition-transform">
+
+        <div
+          class="w-9 h-9 rounded-xl
+                 bg-gradient-to-br from-orange-400 via-amber-400 to-orange-600
+                 flex items-center justify-center
+                 font-black text-black
+                 shadow-[0_0_25px_rgba(249,115,22,.35)]
+                 group-hover:rotate-6 group-hover:scale-110
+                 transition-all"
+        >
           PK
         </div>
+
         <div class="hidden sm:block">
-          <span class="font-extrabold tracking-wider text-xs uppercase text-slate-100 block">
-            Priyanshu <span class="text-orange-500">Kumar</span>
-          </span>
-          <span class="text-[7.5px] font-mono text-slate-400 block tracking-widest">SDE & DATA ANALYST</span>
-        </div>
-      </a>
+          <div class="text-xs font-black tracking-[.18em] uppercase">
+            Priyanshu <span class="text-orange-400">Kumar</span>
+          </div>
 
-      <!-- Main Action Controls -->
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        
-        <!-- Quick Spotlight Search (Cmd + K) -->
-        <button onclick="toggleSpotlight()" class="nav-btn px-2.5 py-1.5 rounded-xl sm:rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs font-mono flex items-center gap-1.5 cursor-pointer">
-          <i data-lucide="search" class="w-3.5 h-3.5 text-orange-400"></i>
-          <span class="text-[11px] hidden md:inline">Cmd+K</span>
-        </button>
-
-        <!-- Direct Action 1: Resume PDF -->
-        <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="nav-btn px-3 py-1.5 rounded-xl sm:rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs font-mono font-bold flex items-center gap-1.5">
-          <i data-lucide="file-text" class="w-3.5 h-3.5"></i> <span class="hidden xs:inline">Resume</span>
-        </a>
-
-        <!-- Direct Action 2: ATS Studio -->
-        <a href="./resume-builder.html" class="nav-btn px-3 py-1.5 rounded-xl sm:rounded-full border border-indigo-500/40 bg-indigo-500/10 text-indigo-400 text-xs font-mono font-bold flex items-center gap-1.5">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> <span class="hidden xs:inline">ATS Studio</span>
-        </a>
-
-        <!-- Direct Action 3: Analytics BI -->
-        <a href="./analytics.html" class="nav-btn px-3 py-1.5 rounded-xl sm:rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-mono font-bold flex items-center gap-1.5">
-          <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Analytics</span>
-        </a>
-
-        <!-- WORKSPACE SUITE DROPDOWN -->
-        <div class="relative">
-          <button onclick="toggleSuiteMenu()" id="suiteBtn" class="nav-btn px-3 py-1.5 rounded-xl sm:rounded-full border border-white/15 bg-white/5 hover:border-orange-500/40 text-slate-200 text-xs font-mono font-bold flex items-center gap-1.5 cursor-pointer">
-            <i data-lucide="grid" class="w-3.5 h-3.5 text-orange-400"></i>
-            <span>Studios</span>
-            <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400 transition-transform duration-200" id="chevronIcon"></i>
-          </button>
-
-          <!-- Dropdown Popover Menu -->
-          <div id="suiteMenu" class="hidden dropdown-menu absolute right-0 top-11 w-72 sm:w-80 rounded-3xl p-3 space-y-1.5 z-50">
-            <div class="px-3 py-1.5 border-b border-white/10 flex justify-between items-center text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-              <span>Interactive Workspaces</span>
-              <span class="text-orange-400">6 Engines</span>
-            </div>
-
-            <!-- 1. Python 3.11 WASM -->
-            <a href="./python-engine.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
-              <div class="flex items-center gap-2.5">
-                <div class="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"><i data-lucide="terminal" class="w-4 h-4"></i></div>
-                <div>
-                  <div class="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">Python 3.11 Engine</div>
-                  <div class="text-[10px] text-slate-400">Real WebAssembly runtime compiler</div>
-                </div>
-              </div>
-              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">WASM</span>
-            </a>
-
-            <!-- 2. Excel Analytics Studio -->
-            <a href="./excel-studio.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
-              <div class="flex items-center gap-2.5">
-                <div class="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i data-lucide="table" class="w-4 h-4"></i></div>
-                <div>
-                  <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">Excel Studio Sandbox</div>
-                  <div class="text-[10px] text-slate-400">Formulas, SUM, AVG & live charts</div>
-                </div>
-              </div>
-              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">XLS</span>
-            </a>
-
-            <!-- 3. AI Recruiter Matcher -->
-            <a href="./ai-workspace.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
-              <div class="flex items-center gap-2.5">
-                <div class="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20"><i data-lucide="cpu" class="w-4 h-4"></i></div>
-                <div>
-                  <div class="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">AI Recruiter Matcher</div>
-                  <div class="text-[10px] text-slate-400">Automated candidate JD audit</div>
-                </div>
-              </div>
-              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">AI</span>
-            </a>
-
-            <!-- 4. Interactive CLI Terminal -->
-            <a href="./terminal.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
-              <div class="flex items-center gap-2.5">
-                <div class="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i data-lucide="terminal-square" class="w-4 h-4"></i></div>
-                <div>
-                  <div class="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors">Developer CLI Console</div>
-                  <div class="text-[10px] text-slate-400">Interactive shell commands</div>
-                </div>
-              </div>
-              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">CLI</span>
-            </a>
-
-            <!-- 5. Playground Lab -->
-            <a href="./playground.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
-              <div class="flex items-center gap-2.5">
-                <div class="p-2 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-500/20"><i data-lucide="play" class="w-4 h-4"></i></div>
-                <div>
-                  <div class="text-xs font-bold text-white group-hover:text-pink-400 transition-colors">Playground Lab</div>
-                  <div class="text-[10px] text-slate-400">Visual test environment</div>
-                </div>
-              </div>
-              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/30">TEST</span>
-            </a>
-
-            <!-- 6. System Architecture Blueprint -->
-            <a href="./system-architecture.html" class="p-2.5 rounded-2xl hover:bg-white/5 flex items-center justify-between group transition-all">
-              <div class="flex items-center gap-2.5">
-                <div class="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20"><i data-lucide="layers" class="w-4 h-4"></i></div>
-                <div>
-                  <div class="text-xs font-bold text-white group-hover:text-purple-400 transition-colors">Architecture Blueprint</div>
-                  <div class="text-[10px] text-slate-400">Microservices system topology</div>
-                </div>
-              </div>
-              <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400 border border-purple-500/30">ARCH</span>
-            </a>
-
+          <div class="text-[8px] font-mono text-slate-500 tracking-[.25em]">
+            SOFTWARE × DATA
           </div>
         </div>
 
-        <!-- AI Assistant Button -->
-        <button onclick="openChat()" class="nav-btn px-3 sm:px-4 py-1.5 rounded-xl sm:rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_15px_rgba(255,107,0,0.5)] hover:brightness-110 flex items-center gap-1.5 cursor-pointer">
-          <i data-lucide="bot" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">AI</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-1">
+
+        <a href="#about"
+           class="px-3 py-2 rounded-full text-xs text-slate-400 hover:text-white hover:bg-white/5 transition">
+          About
+        </a>
+
+        <a href="#skills"
+           class="px-3 py-2 rounded-full text-xs text-slate-400 hover:text-white hover:bg-white/5 transition">
+          Skills
+        </a>
+
+        <a href="#projects"
+           class="px-3 py-2 rounded-full text-xs text-slate-400 hover:text-white hover:bg-white/5 transition">
+          Projects
+        </a>
+
+        <a href="#experience"
+           class="px-3 py-2 rounded-full text-xs text-slate-400 hover:text-white hover:bg-white/5 transition">
+          Experience
+        </a>
+
+        <a href="#contact"
+           class="px-3 py-2 rounded-full text-xs text-slate-400 hover:text-white hover:bg-white/5 transition">
+          Contact
+        </a>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-1.5">
+
+        <button
+          onclick="toggleSpotlight()"
+          class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-full
+                 border border-white/10 bg-white/5
+                 text-slate-400 hover:text-white hover:border-orange-500/30
+                 transition"
+        >
+          <i data-lucide="search" class="w-3.5 h-3.5"></i>
+          <span class="text-[10px] font-mono">CMD K</span>
+        </button>
+
+        <a
+          href="./Priyanshu_Krr_Resume.pdf"
+          target="_blank"
+          class="flex items-center gap-1.5 px-3 py-2 rounded-full
+                 border border-orange-500/30 bg-orange-500/10
+                 text-orange-300 hover:bg-orange-500/20 transition
+                 text-xs font-bold"
+        >
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Resume</span>
+        </a>
+
+        <button
+          onclick="toggleSuiteMenu()"
+          id="suiteBtn"
+          class="flex items-center gap-1.5 px-3 py-2 rounded-full
+                 border border-white/10 bg-white/5
+                 text-xs font-bold hover:border-orange-500/30 transition"
+        >
+          <i data-lucide="grid-2x2" class="w-3.5 h-3.5 text-orange-400"></i>
+          <span class="hidden sm:inline">Studios</span>
+          <i data-lucide="chevron-down" id="chevronIcon" class="w-3 h-3"></i>
+        </button>
+
+        <button
+          onclick="openChat()"
+          class="flex items-center gap-1.5 px-3 py-2 rounded-full
+                 bg-gradient-to-r from-orange-500 to-amber-400
+                 text-black text-xs font-black
+                 shadow-[0_0_25px_rgba(249,115,22,.3)]
+                 hover:scale-105 transition"
+        >
+          <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">AI</span>
         </button>
 
       </div>
+
+      <!-- Studio Menu -->
+      <div
+        id="suiteMenu"
+        class="hidden absolute right-3 sm:right-6 top-16 w-[320px]
+               rounded-3xl border border-white/10
+               bg-[#080a0f]/95 backdrop-blur-2xl
+               shadow-[0_30px_100px_rgba(0,0,0,.8)]
+               p-3"
+      >
+
+        <div class="flex items-center justify-between px-3 pb-3 border-b border-white/10">
+          <span class="text-[9px] uppercase tracking-[.2em] text-slate-500 font-mono">
+            Interactive Workspace
+          </span>
+          <span class="text-[9px] text-orange-400 font-mono">
+            6 ENGINES
+          </span>
+        </div>
+
+        <a href="./python-engine.html"
+           class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 transition group">
+          <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+            <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold group-hover:text-cyan-400">Python Engine</div>
+            <div class="text-[10px] text-slate-500">Python WebAssembly runtime</div>
+          </div>
+        </a>
+
+        <a href="./excel-studio.html"
+           class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 transition group">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+            <i data-lucide="table" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold group-hover:text-emerald-400">Excel Studio</div>
+            <div class="text-[10px] text-slate-500">Interactive spreadsheet analytics</div>
+          </div>
+        </a>
+
+        <a href="./ai-workspace.html"
+           class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 transition group">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+            <i data-lucide="brain-circuit" class="w-4 h-4 text-amber-400"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold group-hover:text-amber-400">AI Recruiter Matcher</div>
+            <div class="text-[10px] text-slate-500">JD and candidate analysis</div>
+          </div>
+        </a>
+
+        <a href="./terminal.html"
+           class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 transition group">
+          <div class="w-9 h-9 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+            <i data-lucide="terminal-square" class="w-4 h-4 text-green-400"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold group-hover:text-green-400">Developer Terminal</div>
+            <div class="text-[10px] text-slate-500">Interactive CLI environment</div>
+          </div>
+        </a>
+
+        <a href="./playground.html"
+           class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 transition group">
+          <div class="w-9 h-9 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center">
+            <i data-lucide="play" class="w-4 h-4 text-pink-400"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold group-hover:text-pink-400">Playground Lab</div>
+            <div class="text-[10px] text-slate-500">Visual testing environment</div>
+          </div>
+        </a>
+
+        <a href="./system-architecture.html"
+           class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 transition group">
+          <div class="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+            <i data-lucide="layers-3" class="w-4 h-4 text-purple-400"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold group-hover:text-purple-400">Architecture Blueprint</div>
+            <div class="text-[10px] text-slate-500">System design visualization</div>
+          </div>
+        </a>
+
+      </div>
+
     </nav>
   </header>
 
-  <!-- Main Container -->
-  <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-20 space-y-16 sm:space-y-20">
 
-    <!-- Hero Section (Balanced 2-Column Grid with Full Portrait Photo) -->
-    <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-      
-      <!-- Left Column: Bio & Core Info -->
-      <div class="lg:col-span-7 space-y-5">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-mono font-semibold uppercase tracking-wide">
-          <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
-          Full-Stack & Data Analytics Portfolio • 2026
+  <!-- =========================================================
+       MAIN
+  ========================================================== -->
+
+  <main class="page-content max-w-7xl mx-auto px-4 sm:px-6 pt-28 sm:pt-36 pb-24">
+
+    <!-- =======================================================
+         HERO
+    ======================================================== -->
+
+    <section id="about" class="min-h-[85vh] flex items-center">
+
+      <div class="w-full grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+        <!-- Hero Copy -->
+        <div class="lg:col-span-7">
+
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full
+                   border border-emerald-500/20 bg-emerald-500/5
+                   text-emerald-400 text-[10px] font-mono uppercase tracking-[.15em]"
+          >
+            <span class="relative flex w-2 h-2">
+              <span class="absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75 pulse-ring"></span>
+              <span class="relative inline-flex w-2 h-2 rounded-full bg-emerald-400"></span>
+            </span>
+
+            Open to Software Engineering & Data Roles
+          </div>
+
+          <div class="mt-7">
+
+            <p class="text-xs sm:text-sm font-mono text-slate-500 mb-3">
+              HELLO, I'M
+            </p>
+
+            <h1
+              class="text-5xl sm:text-7xl lg:text-8xl font-black
+                     tracking-[-.055em] leading-[.9]"
+            >
+              Priyanshu
+              <span class="block text-gradient">
+                Kumar.
+              </span>
+            </h1>
+
+          </div>
+
+          <div class="mt-7">
+
+            <div
+              class="text-xl sm:text-3xl font-bold text-white min-h-[45px]"
+            >
+              <span class="text-slate-500">I build </span>
+              <span
+                id="typewriter"
+                class="text-orange-400"
+              >
+                Software Engineer
+              </span>
+            </div>
+
+            <p
+              class="mt-5 max-w-2xl text-sm sm:text-base
+                     leading-7 text-slate-400"
+            >
+              B.Tech Computer Science graduate focused on
+              <span class="text-slate-200 font-semibold">
+                software engineering, full-stack development,
+                data analytics and machine learning.
+              </span>
+
+              I enjoy turning complex problems into clean,
+              scalable and useful digital products.
+            </p>
+
+          </div>
+
+
+          <!-- CTA -->
+          <div class="flex flex-wrap gap-3 mt-8">
+
+            <a
+              href="#projects"
+              class="magnetic inline-flex items-center gap-2
+                     px-5 py-3.5 rounded-2xl
+                     bg-orange-500 text-black
+                     text-xs font-black uppercase tracking-wider
+                     shadow-[0_0_35px_rgba(249,115,22,.3)]
+                     hover:bg-orange-400"
+            >
+              Explore Projects
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+
+            <a
+              href="./Priyanshu_Krr_Resume.pdf"
+              target="_blank"
+              class="magnetic inline-flex items-center gap-2
+                     px-5 py-3.5 rounded-2xl
+                     border border-white/10 bg-white/5
+                     hover:border-orange-500/40 hover:bg-orange-500/5
+                     text-xs font-bold"
+            >
+              <i data-lucide="download" class="w-4 h-4 text-orange-400"></i>
+              Resume
+            </a>
+
+            <a
+              href="https://github.com/priyanshu18611"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="magnetic inline-flex items-center justify-center
+                     w-12 h-12 rounded-2xl
+                     border border-white/10 bg-white/5
+                     hover:border-orange-500/40 hover:text-orange-400"
+            >
+              <i data-lucide="github" class="w-5 h-5"></i>
+            </a>
+
+            <a
+              href="https://linkedin.com/in/priyanshuroy18"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="magnetic inline-flex items-center justify-center
+                     w-12 h-12 rounded-2xl
+                     border border-white/10 bg-white/5
+                     hover:border-blue-500/40 hover:text-blue-400"
+            >
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+
+          </div>
+
+
+          <!-- Quick Facts -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-10 max-w-2xl">
+
+            <div class="p-3 rounded-2xl border border-white/5 bg-white/[.025]">
+              <div class="text-lg font-black text-orange-400">2026</div>
+              <div class="text-[9px] text-slate-500 uppercase tracking-wider">
+                Graduate
+              </div>
+            </div>
+
+            <div class="p-3 rounded-2xl border border-white/5 bg-white/[.025]">
+              <div class="text-lg font-black text-blue-400">CSE</div>
+              <div class="text-[9px] text-slate-500 uppercase tracking-wider">
+                B.Tech
+              </div>
+            </div>
+
+            <div class="p-3 rounded-2xl border border-white/5 bg-white/[.025]">
+              <div class="text-lg font-black text-emerald-400">Full</div>
+              <div class="text-[9px] text-slate-500 uppercase tracking-wider">
+                Stack
+              </div>
+            </div>
+
+            <div class="p-3 rounded-2xl border border-white/5 bg-white/[.025]">
+              <div class="text-lg font-black text-purple-400">Data</div>
+              <div class="text-[9px] text-slate-500 uppercase tracking-wider">
+                Analytics
+              </div>
+            </div>
+
+          </div>
+
         </div>
-        
-        <h1 class="text-3xl sm:text-6xl font-black tracking-tight text-white leading-tight">
-          Priyanshu <br />
-          <span id="typewriter" class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-300 to-orange-600">
-            Software Engineer
-          </span>
-        </h1>
 
-        <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl">
-          Software Engineer & Data Analyst specializing in building scalable backend systems, REST APIs, and driving insights through Data Analytics, SQL, Tableau, Power BI, and Machine Learning pipelines.
+
+        <!-- ===================================================
+             3D PROFILE POD
+        ==================================================== -->
+
+        <div class="lg:col-span-5 flex justify-center">
+
+          <div class="relative w-full max-w-[430px]">
+
+            <!-- Outer orbital rings -->
+
+            <div
+              class="absolute inset-[-30px] rounded-full
+                     border border-orange-500/10 orbit pointer-events-none"
+            ></div>
+
+            <div
+              class="absolute inset-[-55px] rounded-full
+                     border border-indigo-500/10 orbit-reverse pointer-events-none"
+            ></div>
+
+            <!-- Floating tech nodes -->
+
+            <div
+              class="absolute -top-4 -right-2 sm:right-2 z-20
+                     px-3 py-2 rounded-2xl
+                     border border-orange-500/20
+                     bg-black/60 backdrop-blur-xl
+                     text-[9px] font-mono text-orange-300 float"
+            >
+              Python
+            </div>
+
+            <div
+              class="absolute top-[35%] -left-7 sm:-left-12 z-20
+                     px-3 py-2 rounded-2xl
+                     border border-blue-500/20
+                     bg-black/60 backdrop-blur-xl
+                     text-[9px] font-mono text-blue-300 float"
+              style="animation-delay:1s"
+            >
+              React
+            </div>
+
+            <div
+              class="absolute bottom-8 -right-4 z-20
+                     px-3 py-2 rounded-2xl
+                     border border-emerald-500/20
+                     bg-black/60 backdrop-blur-xl
+                     text-[9px] font-mono text-emerald-300 float"
+              style="animation-delay:2s"
+            >
+              SQL
+            </div>
+
+
+            <!-- Main pod -->
+
+            <div
+              class="relative rounded-[2rem] p-[1px]
+                     bg-gradient-to-br from-orange-500/50 via-white/10 to-indigo-500/30
+                     shadow-[0_30px_100px_rgba(0,0,0,.7)]"
+            >
+
+              <div
+                class="relative overflow-hidden rounded-[2rem]
+                       bg-[#080b11]/90 backdrop-blur-2xl
+                       border border-white/5 p-5"
+              >
+
+                <div class="scanline"></div>
+
+                <!-- Header -->
+
+                <div class="flex items-center justify-between pb-4 border-b border-white/5">
+
+                  <div class="flex items-center gap-2">
+
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+
+                    <span class="text-[9px] font-mono text-emerald-400 uppercase tracking-widest">
+                      Available for opportunities
+                    </span>
+
+                  </div>
+
+                  <span class="text-[9px] font-mono text-slate-600">
+                    PK/2026
+                  </span>
+
+                </div>
+
+
+                <!-- Photo -->
+
+                <div class="relative mt-5">
+
+                  <div
+                    class="absolute inset-0 rounded-3xl
+                           bg-orange-500/10 blur-3xl"
+                  ></div>
+
+                  <div
+                    class="relative rounded-3xl overflow-hidden
+                           border border-white/10 bg-black/40
+                           p-2"
+                  >
+
+                    <img
+                      src="./1000078800.jpg"
+                      alt="Priyanshu Kumar"
+                      class="w-full max-h-[390px] object-contain rounded-2xl"
+                      onerror="this.style.display='none';"
+                    />
+
+                  </div>
+
+                </div>
+
+
+                <!-- Profile info -->
+
+                <div class="mt-5">
+
+                  <div class="text-lg font-black">
+                    Software Engineer
+                  </div>
+
+                  <div class="text-xs text-slate-500 font-mono mt-1">
+                    Full-Stack • Data • ML
+                  </div>
+
+                </div>
+
+
+                <!-- Status Grid -->
+
+                <div class="grid grid-cols-3 gap-2 mt-5">
+
+                  <div
+                    class="rounded-2xl p-3
+                           border border-white/5
+                           bg-white/[.025]"
+                  >
+                    <div class="text-[9px] text-slate-600 uppercase">
+                      Education
+                    </div>
+                    <div class="text-xs font-bold mt-1">
+                      B.Tech CSE
+                    </div>
+                  </div>
+
+                  <div
+                    class="rounded-2xl p-3
+                           border border-white/5
+                           bg-white/[.025]"
+                  >
+                    <div class="text-[9px] text-slate-600 uppercase">
+                      Focus
+                    </div>
+                    <div class="text-xs font-bold mt-1">
+                      Software
+                    </div>
+                  </div>
+
+                  <div
+                    class="rounded-2xl p-3
+                           border border-white/5
+                           bg-white/[.025]"
+                  >
+                    <div class="text-[9px] text-slate-600 uppercase">
+                      Domain
+                    </div>
+                    <div class="text-xs font-bold mt-1">
+                      Data
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <!-- College -->
+
+                <div
+                  class="mt-3 p-3 rounded-2xl
+                         border border-white/5
+                         bg-white/[.025]"
+                >
+
+                  <div class="flex justify-between gap-4">
+
+                    <span class="text-[9px] text-slate-600 uppercase">
+                      Institution
+                    </span>
+
+                    <span class="text-[10px] text-slate-300 font-semibold text-right">
+                      Shershah Engineering College, Sasaram
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         SECTION DIVIDER
+    ======================================================== -->
+
+    <div class="my-20 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+
+    <!-- =======================================================
+         SKILLS
+    ======================================================== -->
+
+    <section id="skills" class="space-y-8">
+
+      <div>
+
+        <span class="text-orange-400 text-[10px] font-mono uppercase tracking-[.25em]">
+          01 / STACK
+        </span>
+
+        <h2 class="text-3xl sm:text-4xl font-black mt-2">
+          Technical Arsenal
+        </h2>
+
+        <p class="text-sm text-slate-500 mt-2 max-w-2xl">
+          A practical stack across software engineering, analytics,
+          databases and machine learning.
         </p>
 
-        <!-- Live Server Status Metrics -->
-        <div class="p-3 rounded-2xl glass-card flex items-center justify-between max-w-lg text-xs font-mono">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-slate-300">Backend API: <strong class="text-emerald-400">Online</strong></span>
+      </div>
+
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <!-- Languages -->
+
+        <div class="glass-card relative overflow-hidden p-6 rounded-3xl
+                    border border-white/10 bg-white/[.025]">
+
+          <div class="w-11 h-11 rounded-2xl bg-orange-500/10
+                      border border-orange-500/20
+                      flex items-center justify-center">
+            <i data-lucide="code-2" class="w-5 h-5 text-orange-400"></i>
           </div>
-          <div class="text-slate-400">Edge Latency: <span class="text-emerald-400 font-bold">18ms</span></div>
+
+          <h3 class="mt-5 font-bold">
+            Languages
+          </h3>
+
+          <p class="mt-2 text-xs text-slate-500 leading-6">
+            Python, Java, C, C++, JavaScript, SQL
+          </p>
+
         </div>
 
-        <div class="flex flex-wrap items-center gap-2.5 pt-1">
-          <a href="#projects" class="px-5 py-3 rounded-2xl bg-orange-500 text-black font-black text-xs uppercase tracking-wider hover:bg-orange-400 transition-all shadow-[0_0_25px_rgba(255,107,0,0.5)]">
-            Explore Work →
-          </a>
-          <a href="./Priyanshu_Krr_Resume.pdf" target="_blank" class="px-4 py-3 rounded-2xl border border-orange-500/40 bg-orange-500/10 hover:bg-orange-500/20 text-orange-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5">
-            <i data-lucide="eye" class="w-4 h-4 text-orange-400"></i> View PDF
-          </a>
-          <a href="./resume-builder.html" class="px-4 py-3 rounded-2xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-200 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5">
-            <i data-lucide="file-check-2" class="w-4 h-4 text-indigo-400"></i> ATS Studio
-          </a>
-          <div class="flex items-center gap-1.5">
-            <a href="https://github.com/priyanshu18611" target="_blank" class="p-3 rounded-2xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-300 hover:text-orange-400 transition-all">
+
+        <!-- Full Stack -->
+
+        <div class="glass-card relative overflow-hidden p-6 rounded-3xl
+                    border border-white/10 bg-white/[.025]">
+
+          <div class="w-11 h-11 rounded-2xl bg-blue-500/10
+                      border border-blue-500/20
+                      flex items-center justify-center">
+            <i data-lucide="layers" class="w-5 h-5 text-blue-400"></i>
+          </div>
+
+          <h3 class="mt-5 font-bold">
+            Full-Stack
+          </h3>
+
+          <p class="mt-2 text-xs text-slate-500 leading-6">
+            React, Node.js, Express.js, REST APIs, JWT,
+            MongoDB, Git & GitHub
+          </p>
+
+        </div>
+
+
+        <!-- Analytics -->
+
+        <div class="glass-card relative overflow-hidden p-6 rounded-3xl
+                    border border-white/10 bg-white/[.025]">
+
+          <div class="w-11 h-11 rounded-2xl bg-emerald-500/10
+                      border border-emerald-500/20
+                      flex items-center justify-center">
+            <i data-lucide="bar-chart-3" class="w-5 h-5 text-emerald-400"></i>
+          </div>
+
+          <h3 class="mt-5 font-bold">
+            Data & BI
+          </h3>
+
+          <p class="mt-2 text-xs text-slate-500 leading-6">
+            SQL, Excel, Power BI, Tableau, EDA,
+            dashboards and data storytelling
+          </p>
+
+        </div>
+
+
+        <!-- ML -->
+
+        <div class="glass-card relative overflow-hidden p-6 rounded-3xl
+                    border border-white/10 bg-white/[.025]">
+
+          <div class="w-11 h-11 rounded-2xl bg-purple-500/10
+                      border border-purple-500/20
+                      flex items-center justify-center">
+            <i data-lucide="brain-circuit" class="w-5 h-5 text-purple-400"></i>
+          </div>
+
+          <h3 class="mt-5 font-bold">
+            AI / ML
+          </h3>
+
+          <p class="mt-2 text-xs text-slate-500 leading-6">
+            TensorFlow, Keras, CNN, OpenCV,
+            Python ML pipelines
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Tech Cloud -->
+
+      <div
+        class="rounded-3xl border border-white/5
+               bg-white/[.02] p-5 flex flex-wrap gap-2"
+      >
+
+        <span class="tech-chip">Python</span>
+        <span class="tech-chip">Java</span>
+        <span class="tech-chip">C++</span>
+        <span class="tech-chip">JavaScript</span>
+        <span class="tech-chip">React</span>
+        <span class="tech-chip">Node.js</span>
+        <span class="tech-chip">Express</span>
+        <span class="tech-chip">MongoDB</span>
+        <span class="tech-chip">SQL</span>
+        <span class="tech-chip">Power BI</span>
+        <span class="tech-chip">Tableau</span>
+        <span class="tech-chip">Excel</span>
+        <span class="tech-chip">TensorFlow</span>
+        <span class="tech-chip">Keras</span>
+        <span class="tech-chip">OpenCV</span>
+        <span class="tech-chip">Git</span>
+        <span class="tech-chip">GitHub</span>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PROJECTS
+    ======================================================== -->
+
+    <section id="projects" class="mt-28 space-y-8">
+
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+
+        <div>
+
+          <span class="text-orange-400 text-[10px] font-mono uppercase tracking-[.25em]">
+            02 / SELECTED WORK
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-black mt-2">
+            Featured Projects
+          </h2>
+
+          <p class="text-sm text-slate-500 mt-2 max-w-2xl">
+            Selected engineering and analytics projects demonstrating
+            practical problem solving.
+          </p>
+
+        </div>
+
+        <a
+          href="https://github.com/priyanshu18611?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-orange-400 transition"
+        >
+          View all repositories
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </a>
+
+      </div>
+
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+
+        <!-- PROJECT 01 -->
+
+        <article
+          onclick="openProjectModal('ecosentinel')"
+          class="glass-card relative overflow-hidden
+                 group cursor-pointer rounded-3xl
+                 border border-orange-500/20
+                 bg-orange-500/[.025] p-6"
+        >
+
+          <div class="flex items-center justify-between">
+
+            <span class="project-number text-[9px] text-orange-400">
+              PROJECT / 01
+            </span>
+
+            <a
+              href="https://github.com/priyanshu18611/EcoSentinel"
+              target="_blank"
+              rel="noopener noreferrer"
+              onclick="event.stopPropagation()"
+              class="w-9 h-9 rounded-xl border border-white/10
+                     flex items-center justify-center
+                     hover:border-orange-500/40 hover:text-orange-400"
+            >
               <i data-lucide="github" class="w-4 h-4"></i>
             </a>
-            <a href="https://linkedin.com/in/priyanshuroy18" target="_blank" class="p-3 rounded-2xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-300 hover:text-orange-400 transition-all">
-              <i data-lucide="linkedin" class="w-4 h-4"></i>
+
+          </div>
+
+          <div class="mt-8">
+
+            <div class="text-xs font-mono text-orange-400">
+              IoT × Full-Stack
+            </div>
+
+            <h3 class="text-xl font-black mt-2 group-hover:text-orange-400 transition">
+              EcoSentinel
+            </h3>
+
+            <p class="text-xs text-slate-500 leading-6 mt-3">
+              Wildlife conservation platform concept combining
+              real-time tracking, geofencing and full-stack application
+              architecture.
+            </p>
+
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="tech-chip">React</span>
+            <span class="tech-chip">Node.js</span>
+            <span class="tech-chip">Socket.io</span>
+            <span class="tech-chip">MongoDB</span>
+          </div>
+
+        </article>
+
+
+        <!-- PROJECT 02 -->
+
+        <article
+          onclick="openProjectModal('braintumor')"
+          class="glass-card relative overflow-hidden
+                 group cursor-pointer rounded-3xl
+                 border border-purple-500/20
+                 bg-purple-500/[.025] p-6"
+        >
+
+          <div class="flex items-center justify-between">
+
+            <span class="project-number text-[9px] text-purple-400">
+              PROJECT / 02
+            </span>
+
+            <a
+              href="https://github.com/priyanshu18611/brain-tumor-detection"
+              target="_blank"
+              rel="noopener noreferrer"
+              onclick="event.stopPropagation()"
+              class="w-9 h-9 rounded-xl border border-white/10
+                     flex items-center justify-center
+                     hover:border-purple-500/40 hover:text-purple-400"
+            >
+              <i data-lucide="github" class="w-4 h-4"></i>
             </a>
-            <a href="mailto:priyanshu6202018611@gmail.com" class="p-3 rounded-2xl border border-white/10 bg-white/5 hover:border-orange-500/40 text-slate-300 hover:text-orange-400 transition-all">
+
+          </div>
+
+          <div class="mt-8">
+
+            <div class="text-xs font-mono text-purple-400">
+              Deep Learning
+            </div>
+
+            <h3 class="text-xl font-black mt-2 group-hover:text-purple-400 transition">
+              Brain Tumor Detection
+            </h3>
+
+            <p class="text-xs text-slate-500 leading-6 mt-3">
+              MRI image classification project exploring CNN-based
+              deep learning using TensorFlow, Keras and OpenCV.
+            </p>
+
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">TensorFlow</span>
+            <span class="tech-chip">CNN</span>
+            <span class="tech-chip">OpenCV</span>
+          </div>
+
+        </article>
+
+
+        <!-- PROJECT 03 -->
+
+        <article
+          onclick="openProjectModal('sales')"
+          class="glass-card relative overflow-hidden
+                 group cursor-pointer rounded-3xl
+                 border border-blue-500/20
+                 bg-blue-500/[.025] p-6"
+        >
+
+          <div class="flex items-center justify-between">
+
+            <span class="project-number text-[9px] text-blue-400">
+              PROJECT / 03
+            </span>
+
+            <a
+              href="https://github.com/priyanshu18611/enterprise-sales-analytics"
+              target="_blank"
+              rel="noopener noreferrer"
+              onclick="event.stopPropagation()"
+              class="w-9 h-9 rounded-xl border border-white/10
+                     flex items-center justify-center
+                     hover:border-blue-500/40 hover:text-blue-400"
+            >
+              <i data-lucide="github" class="w-4 h-4"></i>
+            </a>
+
+          </div>
+
+          <div class="mt-8">
+
+            <div class="text-xs font-mono text-blue-400">
+              BI × SQL
+            </div>
+
+            <h3 class="text-xl font-black mt-2 group-hover:text-blue-400 transition">
+              Enterprise Sales Analytics
+            </h3>
+
+            <p class="text-xs text-slate-500 leading-6 mt-3">
+              Analytics project focused on sales performance,
+              business metrics, dashboards and SQL-based data workflows.
+            </p>
+
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="tech-chip">Power BI</span>
+            <span class="tech-chip">SQL</span>
+            <span class="tech-chip">DAX</span>
+            <span class="tech-chip">Excel</span>
+          </div>
+
+        </article>
+
+
+        <!-- PROJECT 04 -->
+
+        <article
+          onclick="openProjectModal('kisan')"
+          class="glass-card relative overflow-hidden
+                 group cursor-pointer rounded-3xl
+                 border border-emerald-500/20
+                 bg-emerald-500/[.025] p-6"
+        >
+
+          <div class="flex items-center justify-between">
+
+            <span class="project-number text-[9px] text-emerald-400">
+              PROJECT / 04
+            </span>
+
+            <i data-lucide="sprout" class="w-5 h-5 text-emerald-400"></i>
+
+          </div>
+
+          <div class="mt-8">
+
+            <div class="text-xs font-mono text-emerald-400">
+              Full-Stack Platform
+            </div>
+
+            <h3 class="text-xl font-black mt-2 group-hover:text-emerald-400 transition">
+              Kisan Mitra
+            </h3>
+
+            <p class="text-xs text-slate-500 leading-6 mt-3">
+              Digital agriculture-focused application concept designed
+              around farmer-oriented information and services.
+            </p>
+
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="tech-chip">Web</span>
+            <span class="tech-chip">JavaScript</span>
+            <span class="tech-chip">API</span>
+          </div>
+
+        </article>
+
+
+        <!-- PROJECT 05 -->
+
+        <article
+          onclick="openProjectModal('agrosmart')"
+          class="glass-card relative overflow-hidden
+                 group cursor-pointer rounded-3xl
+                 border border-cyan-500/20
+                 bg-cyan-500/[.025] p-6"
+        >
+
+          <div class="flex items-center justify-between">
+
+            <span class="project-number text-[9px] text-cyan-400">
+              PROJECT / 05
+            </span>
+
+            <i data-lucide="cloud-sun" class="w-5 h-5 text-cyan-400"></i>
+
+          </div>
+
+          <div class="mt-8">
+
+            <div class="text-xs font-mono text-cyan-400">
+              AI × Agriculture
+            </div>
+
+            <h3 class="text-xl font-black mt-2 group-hover:text-cyan-400 transition">
+              AgroSmart AI
+            </h3>
+
+            <p class="text-xs text-slate-500 leading-6 mt-3">
+              Intelligent agriculture-oriented project concept combining
+              data and AI-assisted decision support.
+            </p>
+
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">AI</span>
+            <span class="tech-chip">Data</span>
+          </div>
+
+        </article>
+
+
+        <!-- PROJECT 06 -->
+
+        <article
+          onclick="openProjectModal('cricket')"
+          class="glass-card relative overflow-hidden
+                 group cursor-pointer rounded-3xl
+                 border border-yellow-500/20
+                 bg-yellow-500/[.025] p-6"
+        >
+
+          <div class="flex items-center justify-between">
+
+            <span class="project-number text-[9px] text-yellow-400">
+              PROJECT / 06
+            </span>
+
+            <i data-lucide="activity" class="w-5 h-5 text-yellow-400"></i>
+
+          </div>
+
+          <div class="mt-8">
+
+            <div class="text-xs font-mono text-yellow-400">
+              Machine Learning
+            </div>
+
+            <h3 class="text-xl font-black mt-2 group-hover:text-yellow-400 transition">
+              Cricket Score Predictor
+            </h3>
+
+            <p class="text-xs text-slate-500 leading-6 mt-3">
+              Machine learning project exploring cricket match data
+              and score prediction using Python-based modelling.
+            </p>
+
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">ML</span>
+            <span class="tech-chip">Pandas</span>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         EXPERIENCE
+    ======================================================== -->
+
+    <section id="experience" class="mt-28 space-y-8">
+
+      <div>
+
+        <span class="text-orange-400 text-[10px] font-mono uppercase tracking-[.25em]">
+          03 / JOURNEY
+        </span>
+
+        <h2 class="text-3xl sm:text-4xl font-black mt-2">
+          Experience & Education
+        </h2>
+
+      </div>
+
+
+      <div class="grid lg:grid-cols-2 gap-5">
+
+        <!-- Education -->
+
+        <div
+          class="glass-card rounded-3xl border border-white/10
+                 bg-white/[.025] p-6 sm:p-8"
+        >
+
+          <div class="flex items-center gap-3">
+
+            <div
+              class="w-11 h-11 rounded-2xl
+                     bg-orange-500/10 border border-orange-500/20
+                     flex items-center justify-center"
+            >
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-orange-400"></i>
+            </div>
+
+            <div>
+              <div class="text-[9px] font-mono text-orange-400 uppercase tracking-widest">
+                Education
+              </div>
+              <h3 class="font-black text-lg">
+                B.Tech — Computer Science & Engineering
+              </h3>
+            </div>
+
+          </div>
+
+          <div class="mt-6 pl-2 border-l border-orange-500/20">
+
+            <div class="font-bold text-white">
+              Shershah Engineering College, Sasaram
+            </div>
+
+            <div class="text-xs text-slate-500 mt-1">
+              Bihar Engineering University, Patna
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-4">
+
+              <span class="tech-chip">
+                2022 — 2026
+              </span>
+
+              <span class="tech-chip">
+                Computer Science
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Career Focus -->
+
+        <div
+          class="glass-card rounded-3xl border border-white/10
+                 bg-white/[.025] p-6 sm:p-8"
+        >
+
+          <div class="flex items-center gap-3">
+
+            <div
+              class="w-11 h-11 rounded-2xl
+                     bg-blue-500/10 border border-blue-500/20
+                     flex items-center justify-center"
+            >
+              <i data-lucide="briefcase-business" class="w-5 h-5 text-blue-400"></i>
+            </div>
+
+            <div>
+              <div class="text-[9px] font-mono text-blue-400 uppercase tracking-widest">
+                Career Focus
+              </div>
+              <h3 class="font-black text-lg">
+                Building for real-world problems
+              </h3>
+            </div>
+
+          </div>
+
+          <p class="text-sm text-slate-500 leading-7 mt-6">
+            Currently focused on entry-level opportunities across
+            software engineering, full-stack development,
+            data analytics and Python-based development.
+          </p>
+
+          <div class="grid grid-cols-2 gap-2 mt-5">
+
+            <div class="p-3 rounded-2xl bg-white/[.025] border border-white/5">
+              <div class="text-xs font-bold text-orange-400">
+                Software
+              </div>
+              <div class="text-[9px] text-slate-600 mt-1">
+                Backend / Full-Stack
+              </div>
+            </div>
+
+            <div class="p-3 rounded-2xl bg-white/[.025] border border-white/5">
+              <div class="text-xs font-bold text-blue-400">
+                Analytics
+              </div>
+              <div class="text-[9px] text-slate-600 mt-1">
+                SQL / BI / Insights
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         WORKSPACE
+    ======================================================== -->
+
+    <section class="mt-28">
+
+      <div
+        class="relative overflow-hidden rounded-[2rem]
+               border border-orange-500/10
+               bg-gradient-to-br from-orange-500/[.06] via-white/[.02] to-indigo-500/[.05]
+               p-7 sm:p-10"
+      >
+
+        <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-orange-500/10 blur-[100px]"></div>
+
+        <div class="relative z-10">
+
+          <div class="text-[10px] font-mono uppercase tracking-[.25em] text-orange-400">
+            Interactive Workstation
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-black mt-2">
+            Explore the Developer Lab.
+          </h2>
+
+          <p class="text-sm text-slate-500 max-w-2xl mt-3 leading-7">
+            Don't just read the portfolio. Explore interactive tools,
+            analytics environments, developer utilities and system
+            architecture experiments.
+          </p>
+
+          <div class="flex flex-wrap gap-3 mt-7">
+
+            <a
+              href="./analytics.html"
+              class="magnetic inline-flex items-center gap-2
+                     px-4 py-3 rounded-2xl
+                     border border-blue-500/20 bg-blue-500/5
+                     text-xs font-bold text-blue-300"
+            >
+              <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+              Analytics
+            </a>
+
+            <a
+              href="./excel-studio.html"
+              class="magnetic inline-flex items-center gap-2
+                     px-4 py-3 rounded-2xl
+                     border border-emerald-500/20 bg-emerald-500/5
+                     text-xs font-bold text-emerald-300"
+            >
+              <i data-lucide="table" class="w-4 h-4"></i>
+              Excel Studio
+            </a>
+
+            <a
+              href="./python-engine.html"
+              class="magnetic inline-flex items-center gap-2
+                     px-4 py-3 rounded-2xl
+                     border border-cyan-500/20 bg-cyan-500/5
+                     text-xs font-bold text-cyan-300"
+            >
+              <i data-lucide="terminal" class="w-4 h-4"></i>
+              Python Engine
+            </a>
+
+            <a
+              href="./system-architecture.html"
+              class="magnetic inline-flex items-center gap-2
+                     px-4 py-3 rounded-2xl
+                     border border-purple-500/20 bg-purple-500/5
+                     text-xs font-bold text-purple-300"
+            >
+              <i data-lucide="layers-3" class="w-4 h-4"></i>
+              Architecture
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         CONTACT
+    ======================================================== -->
+
+    <section id="contact" class="mt-28">
+
+      <div
+        class="relative overflow-hidden rounded-[2rem]
+               border border-white/10
+               bg-[#07090d]/80
+               p-8 sm:p-12"
+      >
+
+        <div
+          class="absolute -top-32 -right-32
+                 w-80 h-80 rounded-full
+                 bg-orange-500/10 blur-[100px]"
+        ></div>
+
+        <div class="relative z-10 text-center">
+
+          <div class="text-[10px] font-mono uppercase tracking-[.3em] text-orange-400">
+            Let's Connect
+          </div>
+
+          <h2 class="text-4xl sm:text-6xl font-black mt-4">
+            Let's build something
+            <span class="text-gradient">
+              meaningful.
+            </span>
+          </h2>
+
+          <p class="text-sm text-slate-500 max-w-xl mx-auto mt-5 leading-7">
+            Looking for opportunities where I can contribute to
+            software engineering, data analytics and intelligent
+            product development.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-3 mt-8">
+
+            <a
+              href="mailto:priyanshu6202018611@gmail.com"
+              class="magnetic inline-flex items-center gap-2
+                     px-5 py-3.5 rounded-2xl
+                     bg-orange-500 text-black
+                     text-xs font-black"
+            >
               <i data-lucide="mail" class="w-4 h-4"></i>
+              Email Me
             </a>
-          </div>
-        </div>
-      </div>
 
-      <!-- Right Column: Full Portrait Passport Photo Pod (100% Uncropped) -->
-      <div class="lg:col-span-5 flex justify-center w-full">
-        <div class="relative w-full max-w-sm rounded-3xl p-[1px] bg-gradient-to-b from-orange-500/40 via-white/10 to-transparent shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-          <div class="rounded-3xl bg-[#0a0d14]/95 p-5 border border-white/5 space-y-4 relative overflow-hidden backdrop-blur-xl">
-            
-            <!-- Live Availability Tag -->
-            <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
-              <div class="flex items-center gap-2 text-[11px] font-mono text-emerald-400">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>Active for 2026 Roles</span>
-              </div>
-              <span class="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-slate-400">Full-Stack / BI</span>
-            </div>
+            <a
+              href="https://www.linkedin.com/in/priyanshuroy18"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="magnetic inline-flex items-center gap-2
+                     px-5 py-3.5 rounded-2xl
+                     border border-white/10 bg-white/5
+                     text-xs font-bold"
+            >
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+              LinkedIn
+            </a>
 
-            <!-- Full Passport Size Photo Container -->
-            <div class="w-full rounded-2xl border border-white/10 bg-black/40 overflow-hidden flex items-center justify-center p-1.5 shadow-inner">
-              <img src="./1000078800.jpg" alt="Priyanshu Kumar" class="w-full h-auto max-h-[340px] object-contain rounded-xl" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60'" />
-            </div>
-
-            <!-- Micro Metrics Pill Grid -->
-            <div class="grid grid-cols-3 gap-2 text-center font-mono pt-1">
-              <div class="p-2 rounded-xl bg-white/5 border border-white/5">
-                <span class="text-xs font-bold text-orange-400 block">15</span>
-                <span class="text-[9px] text-slate-400 uppercase">Licenses</span>
-              </div>
-              <div class="p-2 rounded-xl bg-white/5 border border-white/5">
-                <span class="text-xs font-bold text-blue-400 block">7+</span>
-                <span class="text-[9px] text-slate-400 uppercase">Deployments</span>
-              </div>
-              <div class="p-2 rounded-xl bg-white/5 border border-white/5">
-                <span class="text-xs font-bold text-emerald-400 block">94.2%</span>
-                <span class="text-[9px] text-slate-400 uppercase">ML Metric</span>
-              </div>
-            </div>
-
-            <!-- Institutional Details -->
-            <div class="space-y-1.5 text-xs font-mono pt-1">
-              <div class="flex justify-between items-center text-slate-400 border-b border-white/5 pb-1.5">
-                <span class="text-[10px] uppercase">College</span>
-                <span class="text-slate-200 text-[11px] font-semibold">Shershah Engg. College</span>
-              </div>
-              <div class="flex justify-between items-center text-slate-400">
-                <span class="text-[10px] uppercase">Domain</span>
-                <span class="text-orange-400 text-[11px] font-semibold">SDE & Data Analytics</span>
-              </div>
-            </div>
+            <a
+              href="https://github.com/priyanshu18611"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="magnetic inline-flex items-center gap-2
+                     px-5 py-3.5 rounded-2xl
+                     border border-white/10 bg-white/5
+                     text-xs font-bold"
+            >
+              <i data-lucide="github" class="w-4 h-4"></i>
+              GitHub
+            </a>
 
           </div>
+
         </div>
+
       </div>
 
     </section>
 
-    <!-- Technical Arsenal -->
-    <section id="skills" class="space-y-6">
-      <div>
-        <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Stack Architecture</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">Technical Arsenal</h2>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-6 rounded-3xl glass-card space-y-3">
-          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400"><i data-lucide="terminal" class="w-5 h-5"></i></div>
-          <h3 class="font-bold text-white text-base">Languages</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Python, Java, C, C++, JavaScript, SQL</p>
+    <!-- =======================================================
+         FOOTER
+    ======================================================== -->
+
+    <footer class="pt-12 pb-4">
+
+      <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+      <div
+        class="flex flex-col sm:flex-row
+               justify-between items-center gap-3
+               pt-6 text-[10px] font-mono text-slate-600"
+      >
+
+        <div>
+          © 2026 Priyanshu Kumar
         </div>
 
-        <div class="p-6 rounded-3xl glass-card space-y-3">
-          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400"><i data-lucide="bar-chart-3" class="w-5 h-5"></i></div>
-          <h3 class="font-bold text-white text-base">Data Analytics & BI</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Tableau, Power BI, Excel, SQL, SAP Analytics Cloud, EDA</p>
-        </div>
-
-        <div class="p-6 rounded-3xl glass-card space-y-3">
-          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400"><i data-lucide="code-2" class="w-5 h-5"></i></div>
-          <h3 class="font-bold text-white text-base">Software Engineering</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">Node.js, Express.js, React, REST APIs, Kafka Integration, JWT</p>
-        </div>
-
-        <div class="p-6 rounded-3xl glass-card space-y-3">
-          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 border border-orange-500/30 text-orange-400"><i data-lucide="cpu" class="w-5 h-5"></i></div>
-          <h3 class="font-bold text-white text-base">ML, Cloud & DB</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">TensorFlow, Keras, CNN, OpenCV, AWS Cloud, MongoDB</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Engineering Projects -->
-    <section id="projects" class="space-y-6">
-      <div>
-        <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Featured Deployments</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">Engineering Repositories</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- 1. Enterprise Sales Analytics -->
-        <div onclick="openProjectModal('enterprisesales')" class="p-6 sm:p-7 rounded-3xl glass-card flex flex-col justify-between group cursor-pointer border border-blue-500/30 bg-blue-950/20">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-cyan-400">
-              <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold">BI & SQL Pipeline</span>
-              <a href="https://github.com/priyanshu18611/enterprise-sales-analytics" target="_blank" onclick="event.stopPropagation()" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
-            </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">Enterprise Sales Analytics</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">End-to-end BI dashboard evaluating revenue velocity, regional churn, and DAX predictive measures across multi-tier enterprise ledgers.</p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Power BI</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">SQL ETL</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">DAX</span>
-          </div>
-        </div>
-
-        <!-- 2. EcoSentinel -->
-        <div onclick="openProjectModal('ecosentinel')" class="p-6 sm:p-7 rounded-3xl glass-card flex flex-col justify-between group cursor-pointer">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
-              <span>IoT & Full Stack</span>
-              <a href="https://github.com/priyanshu18611/EcoSentinel" target="_blank" onclick="event.stopPropagation()" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
-            </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">EcoSentinel</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">IoT & Full Stack Wildlife Conservation Platform with real-time collar tracking and geofence alerts.</p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">JavaScript</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Node.js</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">React</span>
-          </div>
-        </div>
-
-        <!-- 3. Brain Tumor Detection -->
-        <div onclick="openProjectModal('braintumor')" class="p-6 sm:p-7 rounded-3xl glass-card flex flex-col justify-between group cursor-pointer">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
-              <span>Deep Learning / CNN</span>
-              <a href="https://github.com/priyanshu18611/brain-tumor-detection" target="_blank" onclick="event.stopPropagation()" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
-            </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">Brain Tumor Detection</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">CNN architecture analyzing medical image data using TensorFlow, Keras, and OpenCV for MRI classification.</p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">TensorFlow</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">OpenCV</span>
-          </div>
-        </div>
-
-        <!-- 4. Kisan Mitra -->
-        <div onclick="openProjectModal('kisanmitra')" class="p-6 sm:p-7 rounded-3xl glass-card flex flex-col justify-between group cursor-pointer">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
-              <span>Smart Farming</span>
-              <a href="https://github.com/priyanshu18611/kisan-mitra" target="_blank" onclick="event.stopPropagation()" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
-            </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">Kisan Mitra</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">Smart Farming Dashboard for Indian farmers — Weather, Soil Health, Crop Tracker & Mandi Prices.</p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">HTML</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">CSS</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">JavaScript</span>
-          </div>
-        </div>
-
-        <!-- 5. AgroSmart AI -->
-        <div onclick="openProjectModal('agrosmart')" class="p-6 sm:p-7 rounded-3xl glass-card flex flex-col justify-between group cursor-pointer">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
-              <span>Machine Learning</span>
-              <a href="https://github.com/priyanshu18611/AgroSmart-AI-Farmer-Assistant" target="_blank" onclick="event.stopPropagation()" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
-            </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">AgroSmart AI</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">ML web app to recommend optimal crops and provide precise fertilizer advisory for farmers.</p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Scikit-learn</span>
-          </div>
-        </div>
-
-        <!-- 6. Fake Payment Detector -->
-        <div onclick="openProjectModal('fakepayment')" class="p-6 sm:p-7 rounded-3xl glass-card flex flex-col justify-between group cursor-pointer">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
-              <span>Fraud Detection</span>
-              <a href="https://github.com/priyanshu18611/Fake-Payment-Detector" target="_blank" onclick="event.stopPropagation()" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
-            </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">Fake Payment Detector</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">Machine Learning-based security project designed to detect fraudulent digital transactions.</p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">ML</span>
-          </div>
-        </div>
-
-        <!-- 7. Cricket Score Predictor -->
-        <div onclick="openProjectModal('cricket')" class="p-6 sm:p-7 rounded-3xl glass-card flex flex-col justify-between group cursor-pointer">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center text-xs font-mono text-orange-400">
-              <span>Data Analytics & ML</span>
-              <a href="https://github.com/priyanshu18611/Cricket-Score-Predictor" target="_blank" onclick="event.stopPropagation()" class="hover:text-white"><i data-lucide="github" class="w-4 h-4"></i></a>
-            </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors">Cricket Score Predictor</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">Predictive analytics platform using XGBoost Regressor and Pandas for live cricket score forecasting.</p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-6">
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">Python</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-mono text-slate-300">XGBoost</span>
-          </div>
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          Built with code, curiosity & caffeine.
         </div>
 
       </div>
-    </section>
 
-    <!-- Education Timeline -->
-    <section id="education" class="space-y-6">
-      <div>
-        <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Academic Background</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">Education Timeline</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="p-6 rounded-3xl glass-card space-y-3">
-          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 text-orange-400"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
-          <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider block">Oct 2022 - May 2026</span>
-          <h3 class="font-bold text-white text-base">B.Tech in Computer Science & Engg</h3>
-          <p class="text-xs text-slate-400">Shershah Engineering College, Sasaram</p>
-        </div>
-
-        <div class="p-6 rounded-3xl glass-card space-y-3">
-          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 text-orange-400"><i data-lucide="book-open" class="w-5 h-5"></i></div>
-          <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider block">May 2018 - July 2020</span>
-          <h3 class="font-bold text-white text-base">Intermediate - Science (PCM)</h3>
-          <p class="text-xs text-slate-400">RB College, Dalsingsaray</p>
-        </div>
-
-        <div class="p-6 rounded-3xl glass-card space-y-3">
-          <div class="p-3 w-fit rounded-2xl bg-orange-500/10 text-orange-400"><i data-lucide="school" class="w-5 h-5"></i></div>
-          <span class="text-[10px] font-mono text-orange-400 font-bold uppercase tracking-wider block">March 2017 - April 2018</span>
-          <h3 class="font-bold text-white text-base">High School (Matriculation)</h3>
-          <p class="text-xs text-slate-400">JPNS Narhan</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience & Internships -->
-    <section id="experience" class="space-y-6">
-      <div>
-        <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Hands-On Track</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">Internships & Roles</h2>
-      </div>
-
-      <div class="space-y-4">
-        <div class="p-6 rounded-3xl glass-card flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h3 class="text-base font-bold text-white">Cloud Computing Intern</h3>
-            <div class="text-xs font-mono text-orange-400">Aagaaz Training Centre Pvt. Ltd. (Remote)</div>
-            <p class="text-xs text-slate-400 mt-2 max-w-2xl">Virtualization, cloud service models, and hands-on infrastructure assignments. Achieved 88% overall performance.</p>
-          </div>
-          <span class="text-xs font-mono text-slate-500 whitespace-nowrap">Dec 2025</span>
-        </div>
-
-        <div class="p-6 rounded-3xl glass-card flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h3 class="text-base font-bold text-white">Signal & Telecommunication Intern</h3>
-            <div class="text-xs font-mono text-orange-400">East Central Railway (Danapur Division)</div>
-            <p class="text-xs text-slate-400 mt-2 max-w-2xl">Hands-on experience with Optical Fiber Communication (OFC), Telephone Exchange, PRS/UTS, and network communications.</p>
-          </div>
-          <span class="text-xs font-mono text-slate-500 whitespace-nowrap">Jun 2025 - Jul 2025</span>
-        </div>
-
-        <div class="p-6 rounded-3xl glass-card flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h3 class="text-base font-bold text-white">Robotics Intern</h3>
-            <div class="text-xs font-mono text-orange-400">InfinityCore Technologies (BlinkSkills) (Remote)</div>
-            <p class="text-xs text-slate-400 mt-2 max-w-2xl">Automation concepts and robotics fundamentals. Achieved 92% in the assessment.</p>
-          </div>
-          <span class="text-xs font-mono text-slate-500 whitespace-nowrap">Jan 2024 - Feb 2024</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ALL 15 VERIFIED CERTIFICATIONS -->
-    <section id="certifications" class="space-y-6">
-      <div>
-        <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Verified Credentials</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">All 15 Licenses & Certifications</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 text-xs">
-        <div onclick="openCertModal('Cisco: Data Analytics Essentials', 'Cisco Networking Academy', 'Excel, SQL, Tableau, Visualization', 'Aug 2026')" class="p-4 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Cisco: Data Analytics Essentials</div><div class="text-[11px] text-slate-300">Excel, SQL, Tableau, Visualization (Aug 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('JPMorgan Chase: Software Engg', 'Forage Simulation', 'Kafka & REST API Integration', 'July 2026')" class="p-4 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">JPMorgan Chase: Software Engg Simulation</div><div class="text-[11px] text-slate-300">Kafka & REST API Integration - Forage (July 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('AWS: Data Engineering Foundations', 'AWS Training', 'Cloud Data Pipelines & SQL', 'Aug 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">AWS: Data Engineering Foundations</div><div class="text-[11px] text-slate-400">AWS Training & Certification (Aug 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('Deloitte: Data Analytics Simulation', 'Deloitte / Forage', 'Data Analysis & Forensic Tech', 'June 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Deloitte: Data Analytics Simulation</div><div class="text-[11px] text-slate-400">Data Analysis & Forensic Tech - Forage (June 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('Tata: GenAI Data Analytics', 'Tata Insights / Forage', 'Generative AI Analytics & EDA', 'June 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Tata: GenAI Data Analytics</div><div class="text-[11px] text-slate-400">GenAI Analytics Simulation - Forage (June 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('SAP: Advanced Analytics Cloud', 'SAP OpenCourse', 'Predictive Modeling & Planning', 'July 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">SAP: Advanced Analytics Cloud</div><div class="text-[11px] text-slate-400">Predictive Modeling & Planning (July 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('Cisco: Data Science with Python', 'Cisco Academy', 'Python Pandas, NumPy, Scikit-learn', 'June 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Cisco: Data Science with Python</div><div class="text-[11px] text-slate-400">Cisco Networking Academy (June 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('SAP: Basic ABAP Programming', 'SAP Certification', 'OOP, ABAP SQL, RESTful RAP', 'July 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">SAP: Basic ABAP Programming</div><div class="text-[11px] text-slate-400">OOP, ABAP SQL, RESTful RAP (July 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('AWS: Prompt Engineering', 'AWS Training', 'Foundational Models & LLM Prompts', 'June 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">AWS: Prompt Engineering Foundations</div><div class="text-[11px] text-slate-400">AWS Training & Certification (June 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('SAP: Business Data Cloud', 'SAP Cloud Platform', 'Database Management & Modeling', 'July 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">SAP: SAP Business Data Cloud</div><div class="text-[11px] text-slate-400">Database Management & Modeling (July 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('Mastercard: Cybersecurity Simulation', 'Mastercard / Forage', 'Phishing & Threat Identification', 'June 2026')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Mastercard: Cybersecurity Simulation</div><div class="text-[11px] text-slate-400">Phishing Simulation & Analysis (June 2026)</div></div>
-        </div>
-
-        <div onclick="openCertModal('NPTEL: Intro to IoT', 'IIT Kharagpur', 'Internet of Things Architecture (Elite 60%)', '12-Week')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">NPTEL: Intro to Internet of Things</div><div class="text-[11px] text-slate-400">IIT Kharagpur, 12-week course (Elite 60%)</div></div>
-        </div>
-
-        <div onclick="openCertModal('NPTEL: Soft Skill Development', 'IIT Kharagpur', 'Professional Communication', '8-Week')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">NPTEL: Soft Skill Development</div><div class="text-[11px] text-slate-400">IIT Kharagpur, 8-week course</div></div>
-        </div>
-
-        <div onclick="openCertModal('Data Science & ML Track', 'YBI Foundation', 'Machine Learning Algorithms', 'Verified')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Data Science & ML Track</div><div class="text-[11px] text-slate-400">YBI Foundation Certification</div></div>
-        </div>
-
-        <div onclick="openCertModal('Python Certification', 'Skills4India', 'Core Python & Algorithms', 'Verified')" class="p-4 rounded-2xl glass-card flex items-start gap-3 cursor-pointer hover:border-orange-500/60 transition-all">
-          <i data-lucide="award" class="text-orange-400 w-4 h-4 shrink-0 mt-0.5"></i>
-          <div><div class="font-bold text-white">Python Certification</div><div class="text-[11px] text-slate-400">Skills4India</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Form -->
-    <section id="contact" class="space-y-6 pt-6 border-t border-white/10">
-      <div>
-        <span class="text-orange-500 font-mono text-xs uppercase tracking-widest">Connect & Hire</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">Get In Touch Directly</h2>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div class="lg:col-span-5 space-y-4">
-          <a href="mailto:priyanshu6202018611@gmail.com" class="p-5 rounded-2xl glass-card flex items-center gap-4 block">
-            <div class="p-3 rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="mail" class="w-5 h-5"></i></div>
-            <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase">Email Address</div>
-              <div class="text-xs font-bold text-white">priyanshu6202018611@gmail.com</div>
-            </div>
-          </a>
-
-          <a href="tel:+916202018611" class="p-5 rounded-2xl glass-card flex items-center gap-4 block">
-            <div class="p-3 rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="phone" class="w-5 h-5"></i></div>
-            <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase">Phone Number</div>
-              <div class="text-xs font-bold text-white">+91-6202018611</div>
-            </div>
-          </a>
-
-          <a href="https://linkedin.com/in/priyanshuroy18" target="_blank" class="p-5 rounded-2xl glass-card flex items-center gap-4 block">
-            <div class="p-3 rounded-xl bg-orange-500/10 text-orange-400"><i data-lucide="linkedin" class="w-5 h-5"></i></div>
-            <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase">LinkedIn Profile</div>
-              <div class="text-xs font-bold text-white">linkedin.com/in/priyanshuroy18</div>
-            </div>
-          </a>
-        </div>
-
-        <div class="lg:col-span-7">
-          <form onsubmit="handleContactDispatch(event)" class="glass-card p-6 rounded-3xl space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="text-[10px] font-mono text-slate-400 block mb-1">Your Name</label>
-                <input id="formName" type="text" required placeholder="Recruiter / Engineer" class="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-orange-500 font-sans" />
-              </div>
-              <div>
-                <label class="text-[10px] font-mono text-slate-400 block mb-1">Your Email</label>
-                <input id="formEmail" type="email" required placeholder="name@company.com" class="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-orange-500 font-sans" />
-              </div>
-            </div>
-
-            <div>
-              <label class="text-[10px] font-mono text-slate-400 block mb-1">Message</label>
-              <textarea id="formMessage" rows="3" required placeholder="Let's discuss engineering roles or analytical projects..." class="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-orange-500 font-sans"></textarea>
-            </div>
-
-            <button id="dispatchBtn" type="submit" class="w-full py-3.5 rounded-xl bg-orange-500 text-black font-extrabold text-xs uppercase tracking-wider hover:bg-orange-400 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(255,107,0,0.4)]">
-              <i data-lucide="send" class="w-3.5 h-3.5"></i> Dispatch Message to Backend API
-            </button>
-            <div id="formStatus" class="hidden p-3 rounded-xl bg-black/60 border border-emerald-500/40 text-emerald-400 text-xs font-mono"></div>
-          </form>
-        </div>
-      </div>
-    </section>
+    </footer>
 
   </main>
 
-  <!-- Global Command Palette -->
-  <div id="spotlightModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-start justify-center pt-24 px-4">
-    <div class="glass-card max-w-xl w-full p-4 rounded-3xl border border-orange-500/40 space-y-3">
-      <div class="flex items-center gap-3 px-3 py-2 bg-black/60 rounded-2xl border border-white/10">
-        <i data-lucide="search" class="w-4 h-4 text-orange-400"></i>
-        <input id="spotlightInput" type="text" placeholder="Jump to projects, skills, terminal, or resume..." class="w-full bg-transparent text-xs text-white focus:outline-none font-mono" />
-        <span class="text-[10px] font-mono text-slate-500">ESC</span>
+
+  <!-- =========================================================
+       PROJECT MODAL
+  ========================================================== -->
+
+  <div
+    id="projectModal"
+    class="hidden fixed inset-0 z-[200]
+           bg-black/80 backdrop-blur-md
+           p-4 sm:p-8"
+  >
+
+    <div
+      class="min-h-full flex items-center justify-center"
+      onclick="closeProjectModal(event)"
+    >
+
+      <div
+        id="projectModalBox"
+        class="relative w-full max-w-3xl max-h-[90vh]
+               overflow-y-auto modal-scroll
+               rounded-[2rem]
+               border border-white/10
+               bg-[#080a0f]/95
+               shadow-[0_40px_120px_rgba(0,0,0,.8)]
+               p-6 sm:p-9"
+        onclick="event.stopPropagation()"
+      >
+
+        <button
+          onclick="closeProjectModal()"
+          class="absolute top-4 right-4
+                 w-10 h-10 rounded-xl
+                 border border-white/10
+                 bg-white/5
+                 flex items-center justify-center
+                 hover:border-orange-500/40
+                 hover:text-orange-400 transition"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <div id="projectModalContent"></div>
+
       </div>
-      <div id="spotlightResults" class="space-y-1 text-xs font-mono max-h-60 overflow-y-auto">
-        <a href="#projects" onclick="toggleSpotlight()" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-orange-400 block">
-          <span>📁 Browse All Engineering Projects</span>
-          <span class="text-[10px] text-slate-500">Jump</span>
-        </a>
-        <a href="./resume-builder.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-indigo-400 block">
-          <span>⚡ Open ATS Resume Builder Studio</span>
-          <span class="text-[10px] text-slate-500">Studio</span>
-        </a>
-        <a href="./analytics.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-blue-400 block">
-          <span>📊 View Power BI & Tableau Analytics Suite</span>
-          <span class="text-[10px] text-slate-500">Analytics</span>
-        </a>
-        <a href="./excel-studio.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-emerald-400 block">
-          <span>📊 Open Excel Analytics Sandbox</span>
-          <span class="text-[10px] text-slate-500">Excel</span>
-        </a>
-        <a href="./python-engine.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-cyan-400 block">
-          <span>🐍 Launch Python 3.11 Runtime Core</span>
-          <span class="text-[10px] text-slate-500">Python</span>
-        </a>
-        <a href="./ai-workspace.html" class="p-2.5 rounded-xl hover:bg-white/5 flex items-center justify-between text-slate-300 hover:text-amber-400 block">
-          <span>🤖 Open Autonomous AI Recruiter Matcher</span>
-          <span class="text-[10px] text-slate-500">AI</span>
-        </a>
-      </div>
+
     </div>
+
   </div>
 
-  <!-- Project Modal -->
-  <div id="projectModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="glass-card max-w-xl w-full p-6 sm:p-8 rounded-3xl border border-orange-500/40 space-y-4 relative">
-      <button onclick="closeProjectModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white cursor-pointer">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-      <div id="modalContent" class="space-y-3"></div>
-    </div>
-  </div>
 
-  <!-- Certificate Modal -->
-  <div id="certModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="glass-card max-w-md w-full p-6 rounded-3xl border border-orange-500/40 space-y-4 relative text-center">
-      <button onclick="closeCertModal()" class="absolute top-4 right-4 p-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white cursor-pointer">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-      <div class="w-12 h-12 rounded-2xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 mx-auto">
-        <i data-lucide="award" class="w-6 h-6"></i>
-      </div>
-      <h3 id="certTitle" class="text-base font-bold text-white">Certificate Name</h3>
-      <p id="certIssuer" class="text-xs text-orange-400 font-mono">Issuing Authority</p>
-      <div id="certDesc" class="p-3 rounded-xl bg-black/40 border border-white/5 text-xs text-slate-300 font-mono">Skills details</div>
-      <div class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400">
-        <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Verified Credential Authenticated
-      </div>
-    </div>
-  </div>
+  <!-- =========================================================
+       AI CHAT
+  ========================================================== -->
 
-  <!-- Signature Footer -->
-  <footer class="border-t border-white/10 bg-[#040507] py-10 px-6 text-center space-y-4">
-    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-[0_0_20px_rgba(255,107,0,0.15)]">
-      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-      <span class="text-xs font-mono uppercase tracking-widest text-slate-300">
-        Engineered by <span class="text-orange-400 font-bold">Priyanshu Kumar</span>
-      </span>
-    </div>
-    <div class="text-xs text-slate-500 font-mono">
-      © 2026 Priyanshu Kumar. Built with Code, Precision & Full-Stack Architecture.
-    </div>
-  </footer>
+  <div
+    id="aiChat"
+    class="hidden fixed z-[300]
+           bottom-4 right-4
+           w-[calc(100vw-2rem)] sm:w-[400px]
+           rounded-[2rem]
+           border border-orange-500/20
+           bg-[#07090d]/95
+           backdrop-blur-2xl
+           shadow-[0_30px_100px_rgba(0,0,0,.8)]
+           overflow-hidden"
+  >
 
-  <!-- Floating AI Button -->
-  <button id="floatingAiBtn" onclick="openChat()" class="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-black font-extrabold text-xs shadow-[0_0_25px_rgba(255,107,0,0.6)] hover:scale-105 transition-all flex items-center gap-2 cursor-pointer">
-    <i data-lucide="sparkles" class="w-4 h-4"></i> Ask Priyanshu AI
-  </button>
+    <div
+      class="flex items-center justify-between
+             px-4 py-3 border-b border-white/10"
+    >
 
-  <!-- AI Chat Window -->
-  <div id="aiChat" class="hidden fixed bottom-6 right-6 w-96 max-w-[calc(100vw-3rem)] h-[500px] bg-[#0c0e14] border border-orange-500/50 rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] z-50 flex flex-col overflow-hidden backdrop-blur-2xl">
-    <div class="px-4 py-3.5 bg-white/5 border-b border-white/10 flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <div class="w-7 h-7 rounded-lg bg-orange-500 text-black flex items-center justify-center font-bold text-xs">AI</div>
+      <div class="flex items-center gap-2">
+
+        <div
+          class="w-9 h-9 rounded-xl
+                 bg-orange-500/10
+                 border border-orange-500/20
+                 flex items-center justify-center"
+        >
+          <i data-lucide="bot" class="w-4 h-4 text-orange-400"></i>
+        </div>
+
         <div>
-          <span class="text-xs font-bold text-white block leading-tight">Priyanshu Neural Assistant</span>
-          <span class="text-[9px] font-mono text-emerald-400">Connected to /api/chat</span>
+
+          <div class="text-xs font-black">
+            Priyanshu AI
+          </div>
+
+          <div class="text-[9px] text-emerald-400 font-mono">
+            ONLINE
+          </div>
+
         </div>
+
       </div>
-      <button onclick="closeChat()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/5 cursor-pointer">
+
+      <button
+        onclick="closeChat()"
+        class="w-8 h-8 rounded-lg
+               hover:bg-white/5
+               flex items-center justify-center"
+      >
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
+
     </div>
 
-    <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
+
+    <div
+      id="chatMessages"
+      class="h-[360px] overflow-y-auto p-4 space-y-3"
+    >
+
       <div class="flex justify-start">
-        <div class="max-w-[85%] p-3 rounded-2xl bg-white/5 text-slate-200 border border-white/10 leading-relaxed">
-          Hello! I am connected to Priyanshu's serverless backend. Ask me about his projects, skills, or certifications!
+
+        <div
+          class="max-w-[88%]
+                 p-3 rounded-2xl
+                 bg-white/5
+                 border border-white/10
+                 text-xs text-slate-300
+                 leading-6"
+        >
+          Hi! I'm Priyanshu's portfolio assistant.
+          Ask me about his skills, projects, education or career focus.
         </div>
+
       </div>
+
     </div>
 
-    <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-white/10 flex gap-2 bg-black/30">
-      <input id="chatInput" type="text" placeholder="Type a message..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 font-sans" />
-      <button type="submit" class="p-2 rounded-xl bg-orange-500 text-black hover:bg-orange-400 transition-colors font-bold cursor-pointer">
-        <i data-lucide="send" class="w-4 h-4"></i>
-      </button>
+
+    <form
+      onsubmit="handleChatSubmit(event)"
+      class="p-3 border-t border-white/10"
+    >
+
+      <div class="flex gap-2">
+
+        <input
+          id="chatInput"
+          type="text"
+          autocomplete="off"
+          placeholder="Ask something..."
+          class="flex-1 min-w-0
+                 px-4 py-3 rounded-xl
+                 bg-white/5
+                 border border-white/10
+                 outline-none
+                 text-xs
+                 placeholder:text-slate-600
+                 focus:border-orange-500/40"
+        />
+
+        <button
+          type="submit"
+          class="w-12 rounded-xl
+                 bg-orange-500
+                 text-black
+                 flex items-center justify-center
+                 hover:bg-orange-400 transition"
+        >
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+
+      </div>
+
     </form>
+
   </div>
+
+
+  <!-- =========================================================
+       SPOTLIGHT SEARCH
+  ========================================================== -->
+
+  <div
+    id="spotlight"
+    class="hidden fixed inset-0 z-[250]
+           bg-black/75 backdrop-blur-md
+           p-4"
+    onclick="closeSpotlight(event)"
+  >
+
+    <div class="flex justify-center pt-[15vh]">
+
+      <div
+        class="w-full max-w-2xl
+               rounded-[2rem]
+               border border-white/10
+               bg-[#080a0f]/95
+               shadow-[0_40px_120px_rgba(0,0,0,.8)]
+               overflow-hidden"
+        onclick="event.stopPropagation()"
+      >
+
+        <div class="flex items-center gap-3 p-4 border-b border-white/10">
+
+          <i data-lucide="search" class="w-5 h-5 text-orange-400"></i>
+
+          <input
+            id="spotlightInput"
+            type="text"
+            placeholder="Search portfolio..."
+            class="flex-1 bg-transparent outline-none text-sm"
+            oninput="filterSpotlight()"
+          />
+
+          <button
+            onclick="closeSpotlight()"
+            class="text-xs text-slate-600"
+          >
+            ESC
+          </button>
+
+        </div>
+
+
+        <div id="spotlightResults" class="p-3">
+
+          <a href="#projects" onclick="closeSpotlight()"
+             class="spotlight-item flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5">
+            <i data-lucide="folder-code" class="w-4 h-4 text-orange-400"></i>
+            <span class="text-xs">Projects</span>
+          </a>
+
+          <a href="#skills" onclick="closeSpotlight()"
+             class="spotlight-item flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5">
+            <i data-lucide="code-2" class="w-4 h-4 text-blue-400"></i>
+            <span class="text-xs">Technical Skills</span>
+          </a>
+
+          <a href="#experience" onclick="closeSpotlight()"
+             class="spotlight-item flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-purple-400"></i>
+            <span class="text-xs">Education & Experience</span>
+          </a>
+
+          <a href="#contact" onclick="closeSpotlight()"
+             class="spotlight-item flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5">
+            <i data-lucide="mail" class="w-4 h-4 text-emerald-400"></i>
+            <span class="text-xs">Contact</span>
+          </a>
+
+          <a href="./analytics.html"
+             class="spotlight-item flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5">
+            <i data-lucide="bar-chart-3" class="w-4 h-4 text-cyan-400"></i>
+            <span class="text-xs">Analytics Studio</span>
+          </a>
+
+          <a href="./system-architecture.html"
+             class="spotlight-item flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5">
+            <i data-lucide="layers-3" class="w-4 h-4 text-pink-400"></i>
+            <span class="text-xs">System Architecture</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       PROJECT DATA
+  ========================================================== -->
+
+  <script>
+
+    const projectData = {
+
+      ecosentinel: {
+        category: "IoT × Full-Stack",
+        title: "EcoSentinel",
+        color: "orange",
+        description:
+          "A wildlife conservation platform concept focused on real-time tracking, geofencing and full-stack application architecture.",
+        stack: [
+          "React",
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "Socket.io"
+        ],
+        github:
+          "https://github.com/priyanshu18611/EcoSentinel"
+      },
+
+      braintumor: {
+        category: "Deep Learning / Computer Vision",
+        title: "Brain Tumor Detection",
+        color: "purple",
+        description:
+          "A computer vision project exploring MRI image classification using convolutional neural networks and Python machine-learning tooling.",
+        stack: [
+          "Python",
+          "TensorFlow",
+          "Keras",
+          "CNN",
+          "OpenCV"
+        ],
+        github:
+          "https://github.com/priyanshu18611/brain-tumor-detection"
+      },
+
+      sales: {
+        category: "Data Analytics / BI",
+        title: "Enterprise Sales Analytics",
+        color: "blue",
+        description:
+          "A business analytics project focused on sales performance, SQL-based data preparation, dashboarding and decision-oriented insights.",
+        stack: [
+          "Power BI",
+          "SQL",
+          "DAX",
+          "Excel"
+        ],
+        github:
+          "https://github.com/priyanshu18611/enterprise-sales-analytics"
+      },
+
+      kisan: {
+        category: "Full-Stack / Agriculture",
+        title: "Kisan Mitra",
+        color: "emerald",
+        description:
+          "An agriculture-focused digital platform concept designed around useful information and services for farmers.",
+        stack: [
+          "JavaScript",
+          "Web Development",
+          "APIs"
+        ],
+        github:
+          "https://github.com/priyanshu18611"
+      },
+
+      agrosmart: {
+        category: "AI / Agriculture",
+        title: "AgroSmart AI",
+        color: "cyan",
+        description:
+          "An intelligent agriculture-oriented project concept combining data-driven workflows with AI-assisted decision support.",
+        stack: [
+          "Python",
+          "AI",
+          "Data Analytics"
+        ],
+        github:
+          "https://github.com/priyanshu18611"
+      },
+
+      cricket: {
+        category: "Machine Learning",
+        title: "Cricket Score Predictor",
+        color: "yellow",
+        description:
+          "A machine-learning project exploring cricket match data and prediction workflows using Python.",
+        stack: [
+          "Python",
+          "Machine Learning",
+          "Pandas"
+        ],
+        github:
+          "https://github.com/priyanshu18611"
+      }
+
+    };
+
+
+    function openProjectModal(projectId) {
+
+      const project = projectData[projectId];
+
+      if (!project) return;
+
+      const modal = document.getElementById("projectModal");
+      const content = document.getElementById("projectModalContent");
+
+      content.innerHTML = `
+
+        <div class="pt-3">
+
+          <div class="text-[10px] uppercase tracking-[.25em]
+                      font-mono text-orange-400">
+            ${project.category}
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-black mt-3">
+            ${project.title}
+          </h2>
+
+          <div class="h-px bg-gradient-to-r
+                      from-orange-500/40
+                      via-white/10
+                      to-transparent
+                      mt-6">
+          </div>
+
+          <p class="text-sm text-slate-400 leading-7 mt-6">
+            ${project.description}
+          </p>
+
+          <div class="mt-8">
+
+            <div class="text-[9px] font-mono uppercase
+                        tracking-[.2em] text-slate-600">
+              Technology Stack
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-3">
+
+              ${project.stack.map(item => `
+                <span class="tech-chip">
+                  ${item}
+                </span>
+              `).join("")}
+
+            </div>
+
+          </div>
+
+          <div class="flex flex-wrap gap-3 mt-8">
+
+            <a
+              href="${project.github}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2
+                     px-5 py-3 rounded-2xl
+                     bg-orange-500 text-black
+                     text-xs font-black"
+            >
+              <i data-lucide="github" class="w-4 h-4"></i>
+              View GitHub
+            </a>
+
+            <button
+              onclick="closeProjectModal()"
+              class="inline-flex items-center gap-2
+                     px-5 py-3 rounded-2xl
+                     border border-white/10 bg-white/5
+                     text-xs font-bold"
+            >
+              Close
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+      modal.classList.remove("hidden");
+
+      document.body.style.overflow = "hidden";
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+
+    }
+
+
+    function closeProjectModal(event) {
+
+      if (event && event.target !== event.currentTarget) {
+        return;
+      }
+
+      const modal = document.getElementById("projectModal");
+
+      modal.classList.add("hidden");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    function toggleSuiteMenu() {
+
+      const menu = document.getElementById("suiteMenu");
+      const icon = document.getElementById("chevronIcon");
+
+      menu.classList.toggle("hidden");
+
+      if (icon) {
+        icon.style.transform =
+          menu.classList.contains("hidden")
+            ? "rotate(0deg)"
+            : "rotate(180deg)";
+      }
+
+    }
+
+
+    function toggleSpotlight() {
+
+      const spotlight = document.getElementById("spotlight");
+
+      spotlight.classList.remove("hidden");
+
+      document.body.style.overflow = "hidden";
+
+      setTimeout(() => {
+        document.getElementById("spotlightInput")?.focus();
+      }, 100);
+
+    }
+
+
+    function closeSpotlight(event) {
+
+      if (event && event.target !== event.currentTarget) {
+        return;
+      }
+
+      document.getElementById("spotlight").classList.add("hidden");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    function filterSpotlight() {
+
+      const input =
+        document.getElementById("spotlightInput").value.toLowerCase();
+
+      document.querySelectorAll(".spotlight-item").forEach(item => {
+
+        const text = item.innerText.toLowerCase();
+
+        item.style.display =
+          text.includes(input)
+            ? "flex"
+            : "none";
+
+      });
+
+    }
+
+
+    document.addEventListener("keydown", event => {
+
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "k"
+      ) {
+
+        event.preventDefault();
+
+        toggleSpotlight();
+
+      }
+
+      if (event.key === "Escape") {
+
+        document.getElementById("spotlight")?.classList.add("hidden");
+
+        document.getElementById("projectModal")?.classList.add("hidden");
+
+        document.getElementById("aiChat")?.classList.add("hidden");
+
+        document.body.style.overflow = "";
+
+      }
+
+    });
+
+
+    document.addEventListener("click", event => {
+
+      const menu = document.getElementById("suiteMenu");
+      const button = document.getElementById("suiteBtn");
+
+      if (
+        menu &&
+        !menu.contains(event.target) &&
+        button &&
+        !button.contains(event.target)
+      ) {
+
+        menu.classList.add("hidden");
+
+        const icon = document.getElementById("chevronIcon");
+
+        if (icon) {
+          icon.style.transform = "rotate(0deg)";
+        }
+
+      }
+
+    });
+
+  </script>
+
+
+  <!-- =========================================================
+       MAIN JS ENGINE
+  ========================================================== -->
 
   <script src="./script.js"></script>
 
+
+  <!-- =========================================================
+       SMALL UI HELPERS
+  ========================================================== -->
+
   <script>
-    function toggleSuiteMenu() {
-      const menu = document.getElementById('suiteMenu');
-      const chevron = document.getElementById('chevronIcon');
-      menu.classList.toggle('hidden');
-      if (chevron) {
-        chevron.classList.toggle('rotate-180');
-      }
-    }
 
-    document.addEventListener('click', (e) => {
-      const menu = document.getElementById('suiteMenu');
-      const btn = document.getElementById('suiteBtn');
-      if (menu && btn && !btn.contains(e.target) && !menu.contains(e.target)) {
-        menu.classList.add('hidden');
-        document.getElementById('chevronIcon')?.classList.remove('rotate-180');
-      }
-    });
+    document.addEventListener("DOMContentLoaded", () => {
 
-    function toggleSpotlight() {
-      const s = document.getElementById('spotlightModal');
-      s.classList.toggle('hidden');
-      if (!s.classList.contains('hidden')) {
-        document.getElementById('spotlightInput').focus();
-      }
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        toggleSpotlight();
-      }
-      if (e.key === 'Escape') {
-        document.getElementById('spotlightModal').classList.add('hidden');
-        closeProjectModal();
-        closeCertModal();
-        document.getElementById('suiteMenu')?.classList.add('hidden');
-      }
-    });
-
-    const projectDetails = {
-      enterprisesales: {
-        title: "Enterprise Sales Analytics — Power BI & SQL Data Warehouse",
-        stack: "Power BI, SQL, DAX, Power Query ETL, Tableau",
-        desc: "Interactive business intelligence suite analyzing multi-tier sales transaction ledgers. Features complex DAX measures (YTD, YoY variance), SQL ETL normalization pipelines, and regional profit heatmaps."
-      },
-      ecosentinel: {
-        title: "EcoSentinel — Real-Time IoT Wildlife Conservation",
-        stack: "Node.js, Express, Apache Kafka, React, Leaflet Maps, WebSockets",
-        desc: "Ingests simulated telemetry packets from GPS-tagged collar units into Apache Kafka topic streams. Executes sub-second ray-casting algorithms to detect unauthorized polygon geofence breaches with real-time browser map visual updates."
-      },
-      braintumor: {
-        title: "Brain Tumor MRI Classification — CNN Deep Learning",
-        stack: "Python, TensorFlow, Keras, OpenCV, NumPy",
-        desc: "4-stage Convolutional Neural Network trained on brain MRI scan data achieving 94.2% validation accuracy. Preprocessing pipeline includes contrast histogram normalization and OpenCV affine augmentation transforms."
-      },
-      kisanmitra: {
-        title: "Kisan Mitra — Smart Agri Dashboard",
-        stack: "JavaScript, HTML5, CSS3, Mandi Price API, OpenWeatherMap",
-        desc: "Frontend dashboard aggregating live APMC Mandi commodity pricing feeds and weather advisory charts to empower local farmers with actionable market intelligence."
-      },
-      agrosmart: {
-        title: "AgroSmart AI — Crop & Fertilizer Recommendation",
-        stack: "Python, Scikit-learn, Pandas, Flask REST API",
-        desc: "Random Forest & Decision Tree classification models analyzing soil chemical composition (N, P, K), rainfall, and temperature variables to recommend optimal crop yields."
-      },
-      fakepayment: {
-        title: "Fake Payment Detector — Digital Transaction Classifier",
-        stack: "Python, XGBoost, Scikit-learn, Machine Learning",
-        desc: "Feature engineering pipeline analyzing transaction velocity, geographic dispersion, and amount deviations to flag fraudulent digital payment instances."
-      },
-      cricket: {
-        title: "Cricket Score Predictor — Real-Time Regressor",
-        stack: "Python, XGBoost Regressor, Pandas, Streamlit",
-        desc: "Predictive engine calculating expected innings totals in T20 & ODI formats based on current run rate, remaining wickets, and pitch conditions."
-      }
-    };
-
-    function openProjectModal(key) {
-      const p = projectDetails[key];
-      if (!p) return;
-      document.getElementById('modalContent').innerHTML = `
-        <span class="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-[10px] font-mono font-bold uppercase">Architecture Breakdown</span>
-        <h2 class="text-xl font-bold text-white">${p.title}</h2>
-        <div class="p-3 rounded-xl bg-black/40 border border-white/10 font-mono text-xs text-orange-300">Stack: ${p.stack}</div>
-        <p class="text-xs text-slate-300 leading-relaxed">${p.desc}</p>
-      `;
-      document.getElementById('projectModal').classList.remove('hidden');
-      lucide.createIcons();
-    }
-
-    function closeProjectModal() {
-      document.getElementById('projectModal').classList.add('hidden');
-    }
-
-    function openCertModal(title, issuer, desc, date) {
-      document.getElementById('certTitle').innerText = title;
-      document.getElementById('certIssuer').innerText = `${issuer} • ${date}`;
-      document.getElementById('certDesc').innerText = `Skills Verified: ${desc}`;
-      document.getElementById('certModal').classList.remove('hidden');
-      lucide.createIcons();
-    }
-
-    function closeCertModal() {
-      document.getElementById('certModal').classList.add('hidden');
-    }
-
-    async function handleContactDispatch(e) {
-      e.preventDefault();
-      const btn = document.getElementById('dispatchBtn');
-      const status = document.getElementById('formStatus');
-      const name = document.getElementById('formName').value;
-      const email = document.getElementById('formEmail').value;
-      const message = document.getElementById('formMessage').value;
-
-      btn.disabled = true;
-      btn.innerText = 'Dispatching to API...';
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, message })
-        });
-        const data = await res.json();
-        status.classList.remove('hidden');
-        status.innerHTML = `✅ <strong>Success:</strong> ${data.message || 'Message recorded!'}`;
-        e.target.reset();
-      } catch(err) {
-        status.classList.remove('hidden');
-        status.innerHTML = `✅ <strong>Acknowledged:</strong> Dispatch logged into queue. We will connect soon!`;
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="send" class="w-3.5 h-3.5"></i> Dispatch Message to Backend API`;
+      if (window.lucide) {
         lucide.createIcons();
       }
-    }
+
+      document.querySelectorAll(".tech-chip").forEach(chip => {
+
+        chip.classList.add(
+          "px-2.5",
+          "py-1",
+          "rounded-lg",
+          "border",
+          "border-white/5",
+          "bg-white/[.03]",
+          "text-[9px]",
+          "font-mono",
+          "text-slate-400",
+          "hover:border-orange-500/20",
+          "hover:text-orange-300",
+          "transition"
+        );
+
+      });
+
+    });
+
   </script>
+
 </body>
 </html>
