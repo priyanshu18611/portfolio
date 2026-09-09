@@ -515,3 +515,292 @@ section:hover h2::after {
         transform: none;
     }
 }
+/* =========================================================
+   STEP 6 — CINEMATIC PROJECT SHOWCASE
+   ========================================================= */
+
+#projectModal {
+    perspective: 1400px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+#projectModal:not(.hidden) {
+    animation: projectBackdropIn 0.35s ease forwards;
+}
+
+@keyframes projectBackdropIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#projectModalBox {
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+}
+
+#projectModal:not(.hidden) #projectModalBox {
+    animation: projectModalIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes projectModalIn {
+    from {
+        opacity: 0;
+        transform:
+            translateY(40px)
+            scale(0.92)
+            rotateX(8deg);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1)
+            rotateX(0);
+        filter: blur(0);
+    }
+}
+
+/* ---------- MODAL GLOW ---------- */
+
+#projectModalBox::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(255, 170, 0, 0.14),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 100%,
+            rgba(255, 120, 0, 0.08),
+            transparent 35%
+        );
+
+    opacity: 0.8;
+
+    z-index: 0;
+}
+
+#projectModalBox > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- MODAL CONTENT ---------- */
+
+#projectModalContent {
+    transform-style: preserve-3d;
+}
+
+#projectModalContent img {
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.4s ease;
+}
+
+#projectModalContent img:hover {
+    transform:
+        translateZ(18px)
+        scale(1.025);
+
+    filter:
+        brightness(1.06)
+        saturate(1.08);
+}
+
+/* ---------- PROJECT TECH CHIPS ---------- */
+
+.project-tech-chip {
+    display: inline-flex;
+    align-items: center;
+
+    padding:
+        6px 10px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    color:
+        rgba(255, 255, 255, 0.75);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.project-tech-chip:hover {
+    transform:
+        translateY(-2px);
+
+    border-color:
+        rgba(255, 170, 0, 0.3);
+
+    background:
+        rgba(255, 170, 0, 0.07);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- PROJECT CARD ---------- */
+
+.project-card {
+    position: relative;
+    overflow: hidden;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.project-card::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.06) 45%,
+            transparent 70%
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:
+        transform 0.7s ease;
+}
+
+.project-card:hover::after {
+    transform:
+        translateX(120%);
+}
+
+.project-card:hover {
+    border-color:
+        rgba(255, 170, 0, 0.28);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 170, 0, 0.07);
+}
+
+/* ---------- PROJECT CTA ---------- */
+
+.project-card button {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.project-card button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- MODAL CLOSE BUTTON ---------- */
+
+#projectModal button {
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+#projectModal button:hover {
+    transform:
+        scale(1.06);
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 768px) {
+
+    #projectModal {
+        padding:
+            12px;
+    }
+
+    #projectModalBox {
+        max-height:
+            92vh;
+
+        overflow-y:
+            auto;
+
+        transform:
+            none !important;
+    }
+
+    #projectModal:not(.hidden) #projectModalBox {
+        animation:
+            projectModalMobileIn
+            0.4s
+            cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes projectModalMobileIn {
+        from {
+            opacity: 0;
+            transform:
+                translateY(25px)
+                scale(0.96);
+        }
+
+        to {
+            opacity: 1;
+            transform:
+                translateY(0)
+                scale(1);
+        }
+    }
+}
+
+/* ---------- REDUCED MOTION ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #projectModal,
+    #projectModalBox,
+    #projectModalContent img {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}
