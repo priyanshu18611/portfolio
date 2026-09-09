@@ -804,3 +804,426 @@ section:hover h2::after {
         transform: none !important;
     }
 }
+/* =========================================================
+   STEP 7 — PREMIUM LOADER + HERO + SKILL MICRO-INTERACTIONS
+   ========================================================= */
+
+/* =========================
+   PREMIUM PAGE LOADER
+   ========================= */
+
+.portfolio-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 170, 0, 0.07),
+            transparent 35%
+        ),
+        #050505;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
+}
+
+.portfolio-loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-inner {
+    width: min(420px, 82vw);
+    text-align: center;
+}
+
+.loader-logo {
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+
+    color: white;
+
+    text-shadow:
+        0 0 35px rgba(255, 170, 0, 0.18);
+
+    animation:
+        loaderLogoPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes loaderLogoPulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(0.98);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.loader-subtitle {
+    margin-top: 10px;
+
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+
+    color:
+        rgba(255, 255, 255, 0.38);
+}
+
+.loader-line {
+    position: relative;
+
+    width: 100%;
+    height: 2px;
+
+    margin-top: 28px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+}
+
+.loader-line::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    width: 45%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 170, 0, 0.95),
+            transparent
+        );
+
+    animation:
+        loaderLine 1.2s ease-in-out infinite;
+}
+
+@keyframes loaderLine {
+    0% {
+        transform: translateX(-130%);
+    }
+
+    100% {
+        transform: translateX(250%);
+    }
+}
+
+.loader-status {
+    margin-top: 14px;
+
+    font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        monospace;
+
+    font-size: 10px;
+
+    color:
+        rgba(255, 170, 0, 0.65);
+}
+
+/* =========================
+   HERO 3D DEPTH
+   ========================= */
+
+.hero-grid {
+    perspective: 1200px;
+}
+
+.hero-grid .hero-content,
+.hero-grid .hero-profile,
+.hero-grid > div {
+    transform-style: preserve-3d;
+}
+
+.hero-depth {
+    transform:
+        translateZ(35px);
+}
+
+/* =========================
+   HERO GLOW
+   ========================= */
+
+.hero-glow {
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 170, 0, 0.09),
+            transparent 68%
+        );
+
+    filter: blur(8px);
+
+    animation:
+        heroGlowFloat 8s ease-in-out infinite;
+}
+
+@keyframes heroGlowFloat {
+    0%, 100% {
+        transform:
+            translate3d(0, 0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(20px, -15px, 0)
+            scale(1.08);
+    }
+}
+
+/* =========================
+   PROFILE POD DEPTH
+   ========================= */
+
+.profile-pod {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.profile-pod::after {
+    content: "";
+
+    position: absolute;
+
+    width: 70%;
+    height: 20%;
+
+    left: 15%;
+    bottom: -8%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 170, 0, 0.12);
+
+    filter:
+        blur(25px);
+
+    transform:
+        translateZ(-30px);
+
+    pointer-events: none;
+}
+
+/* =========================
+   SKILL CARD INTERACTION
+   ========================= */
+
+.skill-card {
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.skill-card::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at var(--skill-x, 50%)
+                var(--skill-y, 50%),
+            rgba(255, 170, 0, 0.11),
+            transparent 45%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+}
+
+.skill-card:hover {
+    transform:
+        translateY(-5px)
+        translateZ(12px);
+
+    border-color:
+        rgba(255, 170, 0, 0.28);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(255, 170, 0, 0.06);
+}
+
+.skill-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   SKILL PROGRESS
+   ========================= */
+
+.skill-progress {
+    position: relative;
+
+    width: 100%;
+    height: 4px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+}
+
+.skill-progress span {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 140, 0, 0.75),
+            rgba(255, 195, 70, 0.95)
+        );
+
+    box-shadow:
+        0 0 12px rgba(255, 170, 0, 0.25);
+
+    transition:
+        width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-progress.active span {
+    width: var(--skill-level, 75%);
+}
+
+/* =========================
+   FLOATING PARTICLE EFFECT
+   ========================= */
+
+.floating-dot {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 180, 60, 0.7);
+
+    box-shadow:
+        0 0 12px rgba(255, 170, 0, 0.4);
+
+    pointer-events: none;
+
+    animation:
+        floatingDot 5s ease-in-out infinite;
+}
+
+@keyframes floatingDot {
+    0%, 100% {
+        transform:
+            translate3d(0, 0, 0);
+        opacity: 0.25;
+    }
+
+    50% {
+        transform:
+            translate3d(0, -25px, 0);
+        opacity: 0.9;
+    }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .hero-glow {
+        width: 260px;
+        height: 260px;
+    }
+
+    .profile-pod {
+        transform: none !important;
+    }
+
+    .skill-card:hover {
+        transform:
+            translateY(-3px);
+    }
+
+    .loader-logo {
+        font-size: 48px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .portfolio-loader,
+    .loader-logo,
+    .loader-line::after,
+    .hero-glow,
+    .floating-dot {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .skill-progress span {
+        transition: none !important;
+    }
+}
