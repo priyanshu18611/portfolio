@@ -1782,4 +1782,325 @@ function initProjectModalEnhancement() {
 }
 
 initProjectModalEnhancement();
+/* =========================================================
+   STEP 7 — LOADER + HERO PARALLAX + SKILL EFFECTS
+   ========================================================= */
+
+/* =========================
+   PREMIUM LOADER
+   ========================= */
+
+function createPortfolioLoader() {
+
+    if (
+        document.querySelector(".portfolio-loader")
+    ) {
+        return;
+    }
+
+    const loader =
+        document.createElement("div");
+
+    loader.className =
+        "portfolio-loader";
+
+    loader.innerHTML = `
+        <div class="loader-inner">
+
+            <div class="loader-logo">
+                PK
+            </div>
+
+            <div class="loader-subtitle">
+                Priyanshu Kumar • Portfolio
+            </div>
+
+            <div class="loader-line"></div>
+
+            <div class="loader-status">
+                INITIALIZING EXPERIENCE...
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(loader);
+
+    const status =
+        loader.querySelector(".loader-status");
+
+    const messages = [
+        "INITIALIZING EXPERIENCE...",
+        "LOADING PROJECTS...",
+        "BUILDING INTERFACE...",
+        "STARTING 3D ENGINE...",
+        "READY."
+    ];
+
+    let index = 0;
+
+    const statusTimer =
+        setInterval(() => {
+
+            index++;
+
+            if (
+                index >= messages.length
+            ) {
+                clearInterval(statusTimer);
+                return;
+            }
+
+            if (status) {
+                status.textContent =
+                    messages[index];
+            }
+
+        }, 420);
+
+    const finishLoader = () => {
+
+        setTimeout(() => {
+
+            loader.classList.add(
+                "loaded"
+            );
+
+            setTimeout(() => {
+                loader.remove();
+            }, 800);
+
+        }, reducedMotion ? 100 : 1500);
+    };
+
+    if (
+        document.readyState ===
+        "complete"
+    ) {
+        finishLoader();
+    } else {
+        window.addEventListener(
+            "load",
+            finishLoader,
+            { once: true }
+        );
+    }
+}
+
+
+/* =========================
+   HERO PARALLAX
+   ========================= */
+
+function initHeroParallax() {
+
+    if (
+        isMobile ||
+        reducedMotion
+    ) {
+        return;
+    }
+
+    const hero =
+        $(".hero-grid");
+
+    if (!hero) return;
+
+    let targetX = 0;
+    let targetY = 0;
+
+    let currentX = 0;
+    let currentY = 0;
+
+    hero.addEventListener(
+        "pointermove",
+        event => {
+
+            const rect =
+                hero.getBoundingClientRect();
+
+            const x =
+                (event.clientX -
+                    rect.left) /
+                rect.width -
+                0.5;
+
+            const y =
+                (event.clientY -
+                    rect.top) /
+                rect.height -
+                0.5;
+
+            targetX = x;
+            targetY = y;
+        },
+        { passive: true }
+    );
+
+    hero.addEventListener(
+        "pointerleave",
+        () => {
+            targetX = 0;
+            targetY = 0;
+        }
+    );
+
+    function animateHero() {
+
+        currentX +=
+            (targetX - currentX) *
+            0.06;
+
+        currentY +=
+            (targetY - currentY) *
+            0.06;
+
+        hero.style.transform =
+            `rotateX(${currentY * -1.4}deg)
+             rotateY(${currentX * 1.4}deg)`;
+
+        requestAnimationFrame(
+            animateHero
+        );
+    }
+
+    animateHero();
+}
+
+
+/* =========================
+   SKILL INTERACTIONS
+   ========================= */
+
+function initSkillInteractions() {
+
+    const cards =
+        $$(".skill-card");
+
+    if (!cards.length) {
+        return;
+    }
+
+    cards.forEach(card => {
+
+        card.addEventListener(
+            "pointermove",
+            event => {
+
+                const rect =
+                    card.getBoundingClientRect();
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+                card.style.setProperty(
+                    "--skill-x",
+                    `${x}px`
+                );
+
+                card.style.setProperty(
+                    "--skill-y",
+                    `${y}px`
+                );
+            },
+            { passive: true }
+        );
+    });
+}
+
+
+/* =========================
+   AUTO-DETECT SKILL CARDS
+   ========================= */
+
+function detectSkillCards() {
+
+    const section =
+        $("#skills");
+
+    if (!section) {
+        return;
+    }
+
+    const cards =
+        $$(".glass-card", section);
+
+    cards.forEach(card => {
+
+        if (
+            !card.classList.contains(
+                "skill-card"
+            )
+        ) {
+            card.classList.add(
+                "skill-card"
+            );
+        }
+    });
+}
+
+
+/* =========================
+   FLOATING DOTS
+   ========================= */
+
+function createFloatingDots() {
+
+    if (
+        isMobile ||
+        reducedMotion
+    ) {
+        return;
+    }
+
+    const hero =
+        $(".hero-grid");
+
+    if (!hero) return;
+
+    const count = 12;
+
+    for (
+        let i = 0;
+        i < count;
+        i++
+    ) {
+
+        const dot =
+            document.createElement("span");
+
+        dot.className =
+            "floating-dot";
+
+        dot.style.left =
+            `${Math.random() * 100}%`;
+
+        dot.style.top =
+            `${Math.random() * 100}%`;
+
+        dot.style.animationDelay =
+            `${Math.random() * 5}s`;
+
+        dot.style.animationDuration =
+            `${4 + Math.random() * 4}s`;
+
+        hero.appendChild(dot);
+    }
+}
+
+
+/* =========================
+   INITIALIZE STEP 7
+   ========================= */
+
+createPortfolioLoader();
+detectSkillCards();
+initSkillInteractions();
+initHeroParallax();
+createFloatingDots();
 })();
