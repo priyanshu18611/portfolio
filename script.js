@@ -1,1999 +1,1694 @@
 /* =========================================================
-   PRIYANSHU KUMAR — PORTFOLIO V3 ENGINE
-   Advanced UI / 3D / Animation / AI / Interaction
-========================================================= */
+   PRIYANSHU KUMAR — PORTFOLIO INTERACTION ENGINE
+   STEP 5
+   AI CHAT + SPOTLIGHT + 3D + SCROLL + INTERACTIONS
+   ========================================================= */
 
 (() => {
-  "use strict";
+    "use strict";
 
-  /* =========================================================
-     CONFIG
-  ========================================================= */
+    /* -----------------------------------------------------
+       PREVENT DOUBLE INITIALIZATION
+    ----------------------------------------------------- */
 
-  const CONFIG = {
-    particleCountDesktop: 150,
-    particleCountMobile: 70,
-    maxConnections: 2,
-    mouseStrength: 0.035,
-    cardTilt: 7,
-    magneticStrength: 0.28,
-    cursorEnabled: true,
-    typingSpeed: 65,
-    deletingSpeed: 35,
-    pauseAfterTyping: 1500,
-    pauseAfterDeleting: 500
-  };
+    if (window.__PriyanshuPortfolioEngine) return;
+    window.__PriyanshuPortfolioEngine = true;
 
-  const prefersReducedMotion =
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-  const isMobile = window.matchMedia &&
-    window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia(
+        "(max-width: 768px)"
+    ).matches;
 
+    /* -----------------------------------------------------
+       HELPERS
+    ----------------------------------------------------- */
 
-  /* =========================================================
-     SAFE HELPERS
-  ========================================================= */
+    const $ = (selector, parent = document) =>
+        parent.querySelector(selector);
 
-  const $ = (selector, parent = document) =>
-    parent.querySelector(selector);
+    const $$ = (selector, parent = document) =>
+        [...parent.querySelectorAll(selector)];
 
-  const $$ = (selector, parent = document) =>
-    [...parent.querySelectorAll(selector)];
+    const wait = (ms) =>
+        new Promise(resolve => setTimeout(resolve, ms));
 
-  const clamp = (value, min, max) =>
-    Math.min(Math.max(value, min), max);
+    const escapeHTML = (value) => {
+        const div = document.createElement("div");
+        div.textContent = String(value ?? "");
+        return div.innerHTML;
+    };
 
-  const lerp = (a, b, t) =>
-    a + (b - a) * t;
+    /* -----------------------------------------------------
+       LUCIDE ICONS
+    ----------------------------------------------------- */
 
-
-  /* =========================================================
-     MICRO AUDIO / HAPTIC ENGINE
-  ========================================================= */
-
-  class MicroAudio {
-    constructor() {
-      this.ctx = null;
-    }
-
-    init() {
-      if (this.ctx) return;
-
-      try {
-        const AudioContext =
-          window.AudioContext ||
-          window.webkitAudioContext;
-
-        if (AudioContext) {
-          this.ctx = new AudioContext();
+    function refreshIcons() {
+        try {
+            if (window.lucide?.createIcons) {
+                window.lucide.createIcons();
+            }
+        } catch (error) {
+            console.warn("Lucide initialization failed:", error);
         }
-      } catch (error) {
-        this.ctx = null;
-      }
     }
 
-    beep(frequency = 520, duration = 0.035, volume = 0.018) {
-      if (!this.ctx) return;
+    /* -----------------------------------------------------
+       PAGE READY
+    ----------------------------------------------------- */
 
-      try {
-        if (this.ctx.state === "suspended") {
-          this.ctx.resume();
+    function initPage() {
+        refreshIcons();
+
+        initScrollProgress();
+        initBackToTop();
+        initScrollReveal();
+        initActiveNavigation();
+        initMagneticButtons();
+        initCardTilt();
+        initCursorGlow();
+        initTypewriter();
+        initAnimatedCounters();
+        initKeyboardShortcuts();
+        initChatKeyboard();
+        initSpotlightEnhancement();
+        initSmoothAnchors();
+
+        if (!isMobile && !reducedMotion) {
+            initThreeBackground();
         }
 
-        const oscillator = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
+        cinematicEntrance();
 
-        oscillator.type = "sine";
-        oscillator.frequency.value = frequency;
-
-        gain.gain.setValueAtTime(volume, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(
-          0.0001,
-          this.ctx.currentTime + duration
-        );
-
-        oscillator.connect(gain);
-        gain.connect(this.ctx.destination);
-
-        oscillator.start();
-        oscillator.stop(this.ctx.currentTime + duration);
-      } catch (error) {}
-    }
-  }
-
-  const audio = new MicroAudio();
-
-  document.addEventListener(
-    "pointerdown",
-    () => audio.init(),
-    { once: true, passive: true }
-  );
-
-
-  /* =========================================================
-     THREE.JS — INTERACTIVE PARTICLE NETWORK
-  ========================================================= */
-
-  let scene = null;
-  let camera = null;
-  let renderer = null;
-  let particleGroup = null;
-
-  const particleObjects = [];
-
-  const threeMouse = {
-    x: 0,
-    y: 0,
-    targetX: 0,
-    targetY: 0
-  };
-
-  function initThreeBackground() {
-    const canvas = $("#three-bg");
-
-    if (!canvas || !window.THREE || prefersReducedMotion) {
-      return;
+        setTimeout(refreshIcons, 500);
     }
 
-    try {
-      scene = new THREE.Scene();
-
-      scene.fog = new THREE.FogExp2(
-        0x030406,
-        0.0018
-      );
-
-      camera = new THREE.PerspectiveCamera(
-        55,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
-
-      camera.position.z = 115;
-
-      renderer = new THREE.WebGLRenderer({
-        canvas,
-        alpha: true,
-        antialias: !isMobile,
-        powerPreference: "high-performance"
-      });
-
-      renderer.setPixelRatio(
-        Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.7)
-      );
-
-      renderer.setSize(
-        window.innerWidth,
-        window.innerHeight
-      );
-
-      particleGroup = new THREE.Group();
-
-      scene.add(particleGroup);
-
-      createParticleField();
-      createAmbientGeometry();
-
-      window.addEventListener(
-        "resize",
-        resizeThree,
-        { passive: true }
-      );
-
-      window.addEventListener(
-        "pointermove",
-        handleThreePointer,
-        { passive: true }
-      );
-
-      animateThree();
-
-    } catch (error) {
-      console.warn("Three.js initialization failed:", error);
-    }
-  }
-
-
-  function createParticleField() {
-    if (!particleGroup) return;
-
-    const count = isMobile
-      ? CONFIG.particleCountMobile
-      : CONFIG.particleCountDesktop;
-
-    const particleGeometry =
-      new THREE.SphereGeometry(
-        0.35,
-        6,
-        6
-      );
-
-    const particleMaterial =
-      new THREE.MeshBasicMaterial({
-        color: 0xf97316,
-        transparent: true,
-        opacity: 0.72
-      });
-
-    const positions = [];
-
-    for (let i = 0; i < count; i++) {
-
-      const x =
-        (Math.random() - 0.5) * 150;
-
-      const y =
-        (Math.random() - 0.5) * 85;
-
-      const z =
-        (Math.random() - 0.5) * 100;
-
-      const particle =
-        new THREE.Mesh(
-          particleGeometry,
-          particleMaterial.clone()
-        );
-
-      particle.position.set(x, y, z);
-
-      particle.userData = {
-        baseX: x,
-        baseY: y,
-        baseZ: z,
-        speed: 0.15 + Math.random() * 0.35,
-        phase: Math.random() * Math.PI * 2,
-        drift: 0.3 + Math.random() * 0.8
-      };
-
-      particleGroup.add(particle);
-      particleObjects.push(particle);
-
-      positions.push(x, y, z);
-    }
-
-    createConnectionLines(positions);
-  }
-
-
-  function createConnectionLines(positions) {
-    if (!scene || !positions.length) return;
-
-    const geometry =
-      new THREE.BufferGeometry();
-
-    geometry.setAttribute(
-      "position",
-      new THREE.Float32BufferAttribute(
-        positions,
-        3
-      )
-    );
-
-    const material =
-      new THREE.PointsMaterial({
-        color: 0xfb923c,
-        size: isMobile ? 1.1 : 1.5,
-        transparent: true,
-        opacity: 0.5
-      });
-
-    const points =
-      new THREE.Points(
-        geometry,
-        material
-      );
-
-    particleGroup.add(points);
-  }
-
-
-  function createAmbientGeometry() {
-    if (!scene) return;
-
-    const ringGeometry =
-      new THREE.TorusGeometry(
-        35,
-        0.025,
-        8,
-        120
-      );
-
-    const ringMaterial =
-      new THREE.MeshBasicMaterial({
-        color: 0xf97316,
-        transparent: true,
-        opacity: 0.09
-      });
-
-    const ring =
-      new THREE.Mesh(
-        ringGeometry,
-        ringMaterial
-      );
-
-    ring.rotation.x = Math.PI * 0.35;
-    ring.rotation.y = Math.PI * 0.18;
-
-    scene.add(ring);
-
-    const ring2 =
-      new THREE.Mesh(
-        ringGeometry.clone(),
-        ringMaterial.clone()
-      );
-
-    ring2.rotation.x = -Math.PI * 0.25;
-    ring2.rotation.z = Math.PI * 0.4;
-    ring2.scale.setScalar(1.35);
-
-    ring2.material.opacity = 0.045;
-
-    scene.add(ring2);
-  }
-
-
-  function handleThreePointer(event) {
-    threeMouse.targetX =
-      (event.clientX / window.innerWidth) * 2 - 1;
-
-    threeMouse.targetY =
-      -(event.clientY / window.innerHeight) * 2 + 1;
-  }
-
-
-  function animateThree(time = 0) {
-    if (!renderer || !scene || !camera) return;
-
-    requestAnimationFrame(animateThree);
-
-    const elapsed = time * 0.001;
-
-    threeMouse.x =
-      lerp(
-        threeMouse.x,
-        threeMouse.targetX,
-        0.035
-      );
-
-    threeMouse.y =
-      lerp(
-        threeMouse.y,
-        threeMouse.targetY,
-        0.035
-      );
-
-    camera.position.x =
-      lerp(
-        camera.position.x,
-        threeMouse.x * 5,
-        0.02
-      );
-
-    camera.position.y =
-      lerp(
-        camera.position.y,
-        threeMouse.y * 3,
-        0.02
-      );
-
-    camera.lookAt(0, 0, 0);
-
-    particleObjects.forEach((particle) => {
-
-      const data = particle.userData;
-
-      particle.position.x =
-        data.baseX +
-        Math.sin(elapsed * data.speed + data.phase) *
-        data.drift;
-
-      particle.position.y =
-        data.baseY +
-        Math.cos(elapsed * data.speed * 0.7 + data.phase) *
-        data.drift;
-
-      particle.position.z =
-        data.baseZ +
-        Math.sin(elapsed * 0.2 + data.phase) *
-        0.8;
-    });
-
-    if (particleGroup) {
-      particleGroup.rotation.y =
-        elapsed * 0.012;
-
-      particleGroup.rotation.x =
-        Math.sin(elapsed * 0.15) * 0.025;
-    }
-
-    renderer.render(
-      scene,
-      camera
-    );
-  }
-
-
-  function resizeThree() {
-    if (!renderer || !camera) return;
-
-    camera.aspect =
-      window.innerWidth /
-      window.innerHeight;
-
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(
-      window.innerWidth,
-      window.innerHeight
-    );
-  }
-
-
-  /* =========================================================
-     CURSOR GLOW
-  ========================================================= */
-
-  function initCursorGlow() {
-    if (
-      !CONFIG.cursorEnabled ||
-      prefersReducedMotion ||
-      isMobile
-    ) {
-      return;
-    }
-
-    const glow =
-      document.createElement("div");
-
-    glow.id = "cursorGlow";
-
-    glow.style.cssText = `
-      position:fixed;
-      width:260px;
-      height:260px;
-      border-radius:50%;
-      pointer-events:none;
-      z-index:2;
-      left:0;
-      top:0;
-      transform:translate3d(-50%,-50%,0);
-      background:radial-gradient(
-        circle,
-        rgba(249,115,22,.12) 0%,
-        rgba(249,115,22,.045) 28%,
-        transparent 70%
-      );
-      filter:blur(10px);
-      opacity:0;
-      transition:opacity .25s ease;
-      will-change:transform;
-    `;
-
-    document.body.appendChild(glow);
-
-    let currentX = 0;
-    let currentY = 0;
-    let targetX = 0;
-    let targetY = 0;
-
-    window.addEventListener(
-      "pointermove",
-      (event) => {
-        targetX = event.clientX;
-        targetY = event.clientY;
-
-        glow.style.opacity = "1";
-      },
-      { passive: true }
-    );
-
-    function animateCursor() {
-
-      currentX =
-        lerp(currentX, targetX, 0.16);
-
-      currentY =
-        lerp(currentY, targetY, 0.16);
-
-      glow.style.transform =
-        `translate3d(${currentX}px,${currentY}px,0) translate(-50%,-50%)`;
-
-      requestAnimationFrame(animateCursor);
-    }
-
-    animateCursor();
-  }
-
-
-  /* =========================================================
-     3D CARD TILT
-  ========================================================= */
-
-  function initCardTilt() {
-
-    if (prefersReducedMotion) return;
-
-    $$(".glass-card").forEach((card) => {
-
-      card.addEventListener(
-        "pointermove",
-        (event) => {
-
-          const rect =
-            card.getBoundingClientRect();
-
-          const x =
-            event.clientX - rect.left;
-
-          const y =
-            event.clientY - rect.top;
-
-          const rotateY =
-            ((x / rect.width) - 0.5) *
-            CONFIG.cardTilt;
-
-          const rotateX =
-            ((y / rect.height) - 0.5) *
-            -CONFIG.cardTilt;
-
-          card.style.setProperty(
-            "--mouse-x",
-            `${x}px`
-          );
-
-          card.style.setProperty(
-            "--mouse-y",
-            `${y}px`
-          );
-
-          card.style.transform =
-            `perspective(1000px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)
-             translateY(-4px)`;
-        },
-        { passive: true }
-      );
-
-      card.addEventListener(
-        "pointerleave",
-        () => {
-
-          card.style.transform =
-            "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
-
-        },
-        { passive: true }
-      );
-    });
-  }
-
-
-  /* =========================================================
-     MAGNETIC BUTTONS
-  ========================================================= */
-
-  function initMagneticButtons() {
-
-    if (
-      prefersReducedMotion ||
-      isMobile
-    ) {
-      return;
-    }
-
-    $$(".magnetic").forEach((button) => {
-
-      button.addEventListener(
-        "pointermove",
-        (event) => {
-
-          const rect =
-            button.getBoundingClientRect();
-
-          const x =
-            event.clientX -
-            (rect.left + rect.width / 2);
-
-          const y =
-            event.clientY -
-            (rect.top + rect.height / 2);
-
-          button.style.transform =
-            `translate(${x * CONFIG.magneticStrength}px,
-                        ${y * CONFIG.magneticStrength}px)
-             translateY(-3px)`;
-        },
-        { passive: true }
-      );
-
-      button.addEventListener(
-        "pointerleave",
-        () => {
-          button.style.transform = "";
-        },
-        { passive: true }
-      );
-    });
-  }
-
-
-  /* =========================================================
-     TYPEWRITER ENGINE
-  ========================================================= */
-
-  function initTypewriter() {
-
-    const element =
-      $("#typewriter");
-
-    if (!element) return;
-
-    const roles = [
-      "Software Engineer",
-      "Data Analyst",
-      "Full-Stack Developer",
-      "Python Developer",
-      "Machine Learning Engineer",
-      "Problem Solver"
-    ];
-
-    let roleIndex = 0;
-    let characterIndex = 0;
-    let deleting = false;
-
-    function type() {
-
-      const currentRole =
-        roles[roleIndex];
-
-      if (!deleting) {
-
-        characterIndex++;
-
-        element.textContent =
-          currentRole.substring(
-            0,
-            characterIndex
-          );
+    /* =====================================================
+       STEP 5 — AI CHAT
+       ===================================================== */
+
+    const portfolioKnowledge = {
+        skills: `
+Priyanshu's technical stack includes Python, Java, C, C++,
+JavaScript, HTML, CSS, React, Node.js, Express.js, SQL,
+MongoDB, REST APIs, Git, GitHub, OOPs, DBMS, OS and
+Computer Networks. He also works with data analytics and
+machine learning concepts.
+        `,
+
+        projects: `
+Major projects include EcoSentinel, Brain Tumor Detection,
+Enterprise Sales Analytics, Kisan Mitra, AgroSmart AI and
+Cricket Score Predictor.
+        `,
+
+        education: `
+Priyanshu Kumar is a B.Tech Computer Science and Engineering
+student, 2022–2026, from Shershah Engineering College,
+Sasaram, affiliated with Bihar Engineering University.
+        `,
+
+        career: `
+Priyanshu is focused on Software Engineering, Full-Stack
+Development, Data Analytics, Python/Java development and
+Machine Learning opportunities.
+        `,
+
+        github: `
+The portfolio includes GitHub-based projects and development
+work covering software engineering, analytics and ML.
+        `
+    };
+
+    function getLocalAIResponse(message) {
+
+        const text = message
+            .toLowerCase()
+            .trim();
+
+        if (!text) {
+            return "Ask me something about Priyanshu's skills, projects, education or career.";
+        }
 
         if (
-          characterIndex >=
-          currentRole.length
+            text.includes("hello") ||
+            text.includes("hi") ||
+            text.includes("hey") ||
+            text.includes("namaste")
         ) {
-
-          deleting = true;
-
-          setTimeout(
-            type,
-            CONFIG.pauseAfterTyping
-          );
-
-          return;
+            return "Hello! 👋 I'm Priyanshu's portfolio assistant. Ask me about his skills, projects, education or career.";
         }
 
-        setTimeout(
-          type,
-          CONFIG.typingSpeed
-        );
-
-      } else {
-
-        characterIndex--;
-
-        element.textContent =
-          currentRole.substring(
-            0,
-            characterIndex
-          );
-
-        if (characterIndex <= 0) {
-
-          deleting = false;
-
-          roleIndex =
-            (roleIndex + 1) %
-            roles.length;
-
-          setTimeout(
-            type,
-            CONFIG.pauseAfterDeleting
-          );
-
-          return;
+        if (
+            text.includes("skill") ||
+            text.includes("technology") ||
+            text.includes("tech stack") ||
+            text.includes("know")
+        ) {
+            return portfolioKnowledge.skills.trim();
         }
 
-        setTimeout(
-          type,
-          CONFIG.deletingSpeed
-        );
-      }
-    }
-
-    if (!prefersReducedMotion) {
-      setTimeout(type, 700);
-    }
-  }
-
-
-  /* =========================================================
-     SCROLL REVEAL
-  ========================================================= */
-
-  function initScrollReveal() {
-
-    if (prefersReducedMotion) return;
-
-    const revealTargets = [
-      "section",
-      ".glass-card",
-      "article",
-      ".tech-chip",
-      footer
-    ];
-
-    const elements = $$(
-      revealTargets.join(",")
-    );
-
-    elements.forEach((element, index) => {
-
-      if (
-        element.id === "about" ||
-        element.closest("#aiChat") ||
-        element.closest("#projectModal") ||
-        element.closest("#spotlight")
-      ) {
-        return;
-      }
-
-      element.classList.add("reveal-ready");
-
-      element.style.transitionDelay =
-        `${Math.min((index % 5) * 55, 220)}ms`;
-    });
-
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-
-          entries.forEach((entry) => {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add(
-                "reveal-visible"
-              );
-
-              observer.unobserve(
-                entry.target
-              );
-            }
-          });
-
-        },
-        {
-          threshold: 0.08,
-          rootMargin: "0px 0px -50px 0px"
+        if (
+            text.includes("project") ||
+            text.includes("projects") ||
+            text.includes("work")
+        ) {
+            return portfolioKnowledge.projects.trim();
         }
-      );
 
-    elements.forEach((element) => {
-
-      if (
-        !element.classList.contains(
-          "reveal-ready"
-        )
-      ) {
-        return;
-      }
-
-      observer.observe(element);
-    });
-  }
-
-
-  /* =========================================================
-     ANIMATED COUNTERS
-  ========================================================= */
-
-  function initCounters() {
-
-    const counters =
-      $$("[data-counter]");
-
-    if (!counters.length) return;
-
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-
-          entries.forEach((entry) => {
-
-            if (!entry.isIntersecting) return;
-
-            const element =
-              entry.target;
-
-            const target =
-              parseFloat(
-                element.dataset.counter
-              );
-
-            const suffix =
-              element.dataset.suffix || "";
-
-            const decimals =
-              element.dataset.decimals
-                ? parseInt(
-                    element.dataset.decimals,
-                    10
-                  )
-                : 0;
-
-            let start = 0;
-
-            const duration = 1400;
-            const startTime =
-              performance.now();
-
-            function update(currentTime) {
-
-              const progress =
-                clamp(
-                  (currentTime - startTime) /
-                  duration,
-                  0,
-                  1
-                );
-
-              const eased =
-                1 -
-                Math.pow(
-                  1 - progress,
-                  3
-                );
-
-              const value =
-                start +
-                (target - start) *
-                eased;
-
-              element.textContent =
-                value.toFixed(decimals) +
-                suffix;
-
-              if (progress < 1) {
-                requestAnimationFrame(update);
-              }
-            }
-
-            requestAnimationFrame(update);
-
-            observer.unobserve(element);
-          });
-
-        },
-        {
-          threshold: 0.5
+        if (
+            text.includes("education") ||
+            text.includes("college") ||
+            text.includes("degree") ||
+            text.includes("study")
+        ) {
+            return portfolioKnowledge.education.trim();
         }
-      );
 
-    counters.forEach((counter) =>
-      observer.observe(counter)
-    );
-  }
+        if (
+            text.includes("career") ||
+            text.includes("job") ||
+            text.includes("role") ||
+            text.includes("developer")
+        ) {
+            return portfolioKnowledge.career.trim();
+        }
 
+        if (
+            text.includes("github") ||
+            text.includes("repository") ||
+            text.includes("repo")
+        ) {
+            return portfolioKnowledge.github.trim();
+        }
 
-  /* =========================================================
-     SCROLL PROGRESS BAR
-  ========================================================= */
+        if (
+            text.includes("contact") ||
+            text.includes("email") ||
+            text.includes("hire")
+        ) {
+            return "You can use the Contact section of this portfolio to connect with Priyanshu for opportunities and collaboration.";
+        }
 
-  function initScrollProgress() {
+        if (
+            text.includes("python") ||
+            text.includes("java") ||
+            text.includes("javascript")
+        ) {
+            return "Priyanshu works with Python, Java and JavaScript, along with web technologies, APIs, databases and development tools.";
+        }
 
-    const bar =
-      document.createElement("div");
+        if (
+            text.includes("data") ||
+            text.includes("analytics") ||
+            text.includes("sql") ||
+            text.includes("power bi")
+        ) {
+            return "His profile combines Software Engineering with Data Analytics, including SQL, data handling, visualization and analytics-oriented projects.";
+        }
 
-    bar.id = "scrollProgress";
+        if (
+            text.includes("machine learning") ||
+            text.includes("ml") ||
+            text.includes("ai")
+        ) {
+            return "Priyanshu has worked on ML/AI-oriented projects including Brain Tumor Detection and Spam Mail Detection, with Python-based workflows.";
+        }
 
-    bar.style.cssText = `
-      position:fixed;
-      top:0;
-      left:0;
-      width:0%;
-      height:2px;
-      z-index:9999;
-      background:linear-gradient(
-        90deg,
-        #f97316,
-        #facc15,
-        #fb923c
-      );
-      box-shadow:0 0 12px rgba(249,115,22,.7);
-      pointer-events:none;
-    `;
-
-    document.body.appendChild(bar);
-
-    let ticking = false;
-
-    function update() {
-
-      if (ticking) return;
-
-      ticking = true;
-
-      requestAnimationFrame(() => {
-
-        const scrollTop =
-          window.scrollY;
-
-        const maxScroll =
-          document.documentElement.scrollHeight -
-          window.innerHeight;
-
-        const progress =
-          maxScroll > 0
-            ? (scrollTop / maxScroll) * 100
-            : 0;
-
-        bar.style.width =
-          `${progress}%`;
-
-        ticking = false;
-      });
+        return "I can help you explore Priyanshu's portfolio. Try asking about his skills, projects, education, career, GitHub or contact details.";
     }
 
-    window.addEventListener(
-      "scroll",
-      update,
-      { passive: true }
-    );
+    function addChatMessage(text, sender = "ai") {
 
-    update();
-  }
+        const container = $("#chatMessages");
 
+        if (!container) return;
 
-  /* =========================================================
-     ACTIVE NAVIGATION
-  ========================================================= */
+        const message = document.createElement("div");
 
-  function initActiveNavigation() {
+        message.className =
+            `chat-message ${sender === "user" ? "user-message" : "ai-message"}`;
 
-    const sections =
-      $$("main section[id]");
+        const bubble = document.createElement("div");
 
-    const links =
-      $$('header nav a[href^="#"]');
+        bubble.className =
+            sender === "user"
+                ? "max-w-[85%] ml-auto rounded-2xl rounded-br-sm px-4 py-3 bg-orange-500 text-black"
+                : "max-w-[85%] mr-auto rounded-2xl rounded-bl-sm px-4 py-3 bg-white/5 border border-white/10 text-white/80";
 
-    if (!sections.length || !links.length) {
-      return;
+        bubble.innerHTML = escapeHTML(text)
+            .replace(/\n/g, "<br>");
+
+        message.appendChild(bubble);
+        container.appendChild(message);
+
+        while (container.children.length > 50) {
+            container.removeChild(container.firstChild);
+        }
+
+        container.scrollTo({
+            top: container.scrollHeight,
+            behavior: reducedMotion ? "auto" : "smooth"
+        });
+
+        refreshIcons();
     }
 
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
+    function showTypingIndicator() {
 
-          entries.forEach((entry) => {
+        const container = $("#chatMessages");
 
-            if (!entry.isIntersecting) return;
+        if (!container) return null;
 
-            const id =
-              entry.target.id;
+        const typing = document.createElement("div");
 
-            links.forEach((link) => {
+        typing.id = "aiTypingIndicator";
 
-              const active =
-                link.getAttribute("href") ===
-                `#${id}`;
+        typing.className =
+            "flex items-center gap-1 px-4 py-3 w-fit rounded-2xl bg-white/5 border border-white/10";
 
-              link.classList.toggle(
-                "text-orange-400",
-                active
-              );
+        typing.innerHTML = `
+            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-bounce"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-bounce" style="animation-delay:.15s"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-bounce" style="animation-delay:.3s"></span>
+        `;
 
-              link.classList.toggle(
-                "bg-white/5",
-                active
-              );
+        container.appendChild(typing);
+
+        container.scrollTo({
+            top: container.scrollHeight,
+            behavior: reducedMotion ? "auto" : "smooth"
+        });
+
+        return typing;
+    }
+
+    async function askBackend(message) {
+
+        /*
+         * If you later create /api/chat, this function can
+         * connect the portfolio UI to your real AI backend.
+         */
+
+        try {
+
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message
+                })
             });
 
-          });
-
-        },
-        {
-          threshold: 0.25,
-          rootMargin: "-20% 0px -60% 0px"
-        }
-      );
-
-    sections.forEach((section) =>
-      observer.observe(section)
-    );
-  }
-
-
-  /* =========================================================
-     EDGE SERVER STATUS
-  ========================================================= */
-
-  async function pingEdgeServer() {
-
-    const status =
-      document.querySelector(
-        ".text-emerald-400.font-bold"
-      );
-
-    if (!status) return;
-
-    try {
-
-      const start =
-        performance.now();
-
-      const response =
-        await fetch(
-          `./index.html?ping=${Date.now()}`,
-          {
-            method: "HEAD",
-            cache: "no-store"
-          }
-        );
-
-      const latency =
-        Math.round(
-          performance.now() - start
-        );
-
-      if (response.ok) {
-        status.textContent =
-          `${latency}ms`;
-      }
-
-    } catch (error) {
-      status.textContent =
-        "Online";
-    }
-  }
-
-
-  /* =========================================================
-     AI CHAT ENGINE
-  ========================================================= */
-
-  const assistantKnowledge = {
-
-    name: "Priyanshu Kumar",
-
-    roles: [
-      "Software Engineer",
-      "Data Analyst",
-      "Full-Stack Developer",
-      "Python Developer",
-      "Machine Learning Engineer"
-    ],
-
-    education:
-      "B.Tech in Computer Science and Engineering from Shershah Engineering College, Sasaram, Bihar Engineering University, Patna (2022–2026).",
-
-    skills: [
-      "Python",
-      "Java",
-      "C",
-      "C++",
-      "JavaScript",
-      "SQL",
-      "React",
-      "Node.js",
-      "Express.js",
-      "REST APIs",
-      "MongoDB",
-      "Git",
-      "GitHub",
-      "Power BI",
-      "Tableau",
-      "Excel",
-      "TensorFlow",
-      "Keras",
-      "CNN",
-      "OpenCV"
-    ],
-
-    projects: [
-      "EcoSentinel",
-      "Brain Tumor Detection",
-      "Enterprise Sales Analytics",
-      "Kisan Mitra",
-      "AgroSmart AI",
-      "Cricket Score Predictor"
-    ],
-
-    github:
-      "github.com/priyanshu18611",
-
-    linkedin:
-      "linkedin.com/in/priyanshuroy18",
-
-    email:
-      "priyanshu6202018611@gmail.com"
-  };
-
-
-  function getAIResponse(message) {
-
-    const text =
-      message
-        .toLowerCase()
-        .trim();
-
-    if (!text) {
-      return "Please type a question and I'll help you.";
-    }
-
-    if (
-      text.includes("who are you") ||
-      text.includes("about priyanshu") ||
-      text.includes("priyanshu")
-    ) {
-      return `
-        Priyanshu Kumar is a B.Tech Computer Science graduate
-        focused on Software Engineering, Full-Stack Development,
-        Data Analytics and Machine Learning.
-      `;
-    }
-
-    if (
-      text.includes("skill") ||
-      text.includes("technology") ||
-      text.includes("tech stack")
-    ) {
-      return `
-        Priyanshu's core stack includes Python, Java, C/C++,
-        JavaScript, SQL, React, Node.js, Express.js, MongoDB,
-        REST APIs, Git, Power BI, Tableau, Excel, TensorFlow,
-        Keras and OpenCV.
-      `;
-    }
-
-    if (
-      text.includes("project") ||
-      text.includes("projects")
-    ) {
-      return `
-        Featured projects include EcoSentinel, Brain Tumor
-        Detection, Enterprise Sales Analytics, Kisan Mitra,
-        AgroSmart AI and Cricket Score Predictor.
-      `;
-    }
-
-    if (
-      text.includes("education") ||
-      text.includes("college") ||
-      text.includes("degree")
-    ) {
-      return `
-        Priyanshu is pursuing/completing B.Tech in Computer
-        Science & Engineering at Shershah Engineering College,
-        Sasaram, affiliated with Bihar Engineering University,
-        Patna. The program is 2022–2026.
-      `;
-    }
-
-    if (
-      text.includes("github") ||
-      text.includes("code")
-    ) {
-      return `
-        You can explore Priyanshu's repositories through the
-        GitHub button on this portfolio.
-      `;
-    }
-
-    if (
-      text.includes("linkedin") ||
-      text.includes("contact") ||
-      text.includes("email")
-    ) {
-      return `
-        You can connect with Priyanshu through LinkedIn or
-        email using the Contact section of this portfolio.
-      `;
-    }
-
-    if (
-      text.includes("hire") ||
-      text.includes("job") ||
-      text.includes("opportunity")
-    ) {
-      return `
-        Priyanshu is focused on entry-level opportunities in
-        Software Engineering, Full-Stack Development, Data
-        Analytics, Python Development and Machine Learning.
-      `;
-    }
-
-    if (
-      text.includes("python")
-    ) {
-      return `
-        Python is one of Priyanshu's primary technologies and
-        is used across machine learning, data analytics and
-        development projects.
-      `;
-    }
-
-    if (
-      text.includes("data analyst") ||
-      text.includes("analytics") ||
-      text.includes("power bi") ||
-      text.includes("tableau")
-    ) {
-      return `
-        Priyanshu's Data Analytics stack includes SQL, Excel,
-        Power BI, Tableau, data exploration, dashboards and
-        business-focused insights.
-      `;
-    }
-
-    if (
-      text.includes("full stack") ||
-      text.includes("react") ||
-      text.includes("node")
-    ) {
-      return `
-        His full-stack toolkit includes React, Node.js,
-        Express.js, REST APIs, MongoDB, JWT, Git and GitHub.
-      `;
-    }
-
-    if (
-      text.includes("machine learning") ||
-      text.includes("ml") ||
-      text.includes("ai")
-    ) {
-      return `
-        His AI/ML experience includes Python, TensorFlow,
-        Keras, CNN, OpenCV and machine-learning workflows.
-      `;
-    }
-
-    if (
-      text.includes("hello") ||
-      text.includes("hi") ||
-      text.includes("hey")
-    ) {
-      return `
-        Hi! 👋 I'm Priyanshu's portfolio assistant.
-        Ask me about his skills, projects, education,
-        technologies or career focus.
-      `;
-    }
-
-    if (
-      text.includes("thank")
-    ) {
-      return `
-        You're welcome! 🚀
-      `;
-    }
-
-    return `
-      I can help you explore Priyanshu's portfolio.
-      Try asking about his skills, projects, education,
-      Software Engineering, Data Analytics, Full-Stack
-      Development, Python, Machine Learning or contact details.
-    `;
-  }
-
-
-  function openChat() {
-
-    const chat =
-      $("#aiChat");
-
-    if (!chat) return;
-
-    chat.classList.remove("hidden");
-
-    document.body.classList.add(
-      "chat-open"
-    );
-
-    setTimeout(() => {
-
-      $("#chatInput")?.focus();
-
-      const messages =
-        $("#chatMessages");
-
-      if (messages) {
-        messages.scrollTop =
-          messages.scrollHeight;
-      }
-
-    }, 120);
-
-    audio.beep(650, 0.045, 0.018);
-  }
-
-
-  function closeChat() {
-
-    const chat =
-      $("#aiChat");
-
-    if (!chat) return;
-
-    chat.classList.add("hidden");
-
-    document.body.classList.remove(
-      "chat-open"
-    );
-  }
-
-
-  function addChatMessage(
-    message,
-    type = "bot"
-  ) {
-
-    const container =
-      $("#chatMessages");
-
-    if (!container) return;
-
-    const wrapper =
-      document.createElement("div");
-
-    wrapper.className =
-      type === "user"
-        ? "flex justify-end"
-        : "flex justify-start";
-
-    const bubble =
-      document.createElement("div");
-
-    bubble.className =
-      type === "user"
-        ? "max-w-[88%] p-3 rounded-2xl bg-orange-500 text-black text-xs leading-6"
-        : "max-w-[88%] p-3 rounded-2xl bg-white/5 border border-white/10 text-xs text-slate-300 leading-6";
-
-    bubble.textContent =
-      message;
-
-    wrapper.appendChild(bubble);
-    container.appendChild(wrapper);
-
-    container.scrollTop =
-      container.scrollHeight;
-  }
-
-
-  function showTypingIndicator() {
-
-    const container =
-      $("#chatMessages");
-
-    if (!container) return null;
-
-    const wrapper =
-      document.createElement("div");
-
-    wrapper.id =
-      "typingIndicator";
-
-    wrapper.className =
-      "flex justify-start";
-
-    wrapper.innerHTML = `
-      <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-xs text-slate-500">
-        <span class="inline-flex gap-1">
-          <span class="animate-pulse">●</span>
-          <span class="animate-pulse" style="animation-delay:.15s">●</span>
-          <span class="animate-pulse" style="animation-delay:.3s">●</span>
-        </span>
-      </div>
-    `;
-
-    container.appendChild(wrapper);
-
-    container.scrollTop =
-      container.scrollHeight;
-
-    return wrapper;
-  }
-
-
-  function handleChatSubmit(event) {
-
-    event.preventDefault();
-
-    const input =
-      $("#chatInput");
-
-    if (!input) return;
-
-    const message =
-      input.value.trim();
-
-    if (!message) return;
-
-    addChatMessage(
-      message,
-      "user"
-    );
-
-    input.value = "";
-
-    const typing =
-      showTypingIndicator();
-
-    setTimeout(() => {
-
-      typing?.remove();
-
-      const response =
-        getAIResponse(message);
-
-      addChatMessage(
-        response,
-        "bot"
-      );
-
-      audio.beep(
-        520,
-        0.035,
-        0.012
-      );
-
-    }, 450);
-  }
-
-
-  /* =========================================================
-     GLOBAL FUNCTIONS
-     Required by inline HTML onclick handlers
-  ========================================================= */
-
-  window.openChat =
-    openChat;
-
-  window.closeChat =
-    closeChat;
-
-  window.handleChatSubmit =
-    handleChatSubmit;
-
-
-  /* =========================================================
-     KEYBOARD SHORTCUTS
-  ========================================================= */
-
-  function initKeyboardControls() {
-
-    document.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (
-          (event.ctrlKey || event.metaKey) &&
-          event.key.toLowerCase() === "k"
-        ) {
-
-          event.preventDefault();
-
-          if (
-            typeof window.toggleSpotlight ===
-            "function"
-          ) {
-            window.toggleSpotlight();
-          }
-        }
-
-        if (
-          event.key === "Escape"
-        ) {
-
-          const chat =
-            $("#aiChat");
-
-          if (
-            chat &&
-            !chat.classList.contains("hidden")
-          ) {
-            closeChat();
-          }
-
-        }
-      }
-    );
-  }
-
-
-  /* =========================================================
-     BUTTON SOUND
-  ========================================================= */
-
-  function initButtonSounds() {
-
-    $$(
-      "button, .magnetic, header a"
-    ).forEach((element) => {
-
-      element.addEventListener(
-        "click",
-        () => {
-
-          audio.init();
-
-          audio.beep(
-            560,
-            0.025,
-            0.009
-          );
-
-        },
-        { passive: true }
-      );
-    });
-  }
-
-
-  /* =========================================================
-     IMAGE PARALLAX
-  ========================================================= */
-
-  function initImageParallax() {
-
-    if (
-      prefersReducedMotion ||
-      isMobile
-    ) {
-      return;
-    }
-
-    const images =
-      $$("img");
-
-    images.forEach((image) => {
-
-      const parent =
-        image.closest(
-          ".relative"
-        );
-
-      if (!parent) return;
-
-      parent.addEventListener(
-        "pointermove",
-        (event) => {
-
-          const rect =
-            parent.getBoundingClientRect();
-
-          const x =
-            (event.clientX - rect.left) /
-            rect.width -
-            0.5;
-
-          const y =
-            (event.clientY - rect.top) /
-            rect.height -
-            0.5;
-
-          image.style.transform =
-            `scale(1.025)
-             translate(${x * 5}px,${y * 5}px)`;
-
-        },
-        { passive: true }
-      );
-
-      parent.addEventListener(
-        "pointerleave",
-        () => {
-
-          image.style.transform =
-            "";
-
-        },
-        { passive: true }
-      );
-
-      image.style.transition =
-        "transform .45s cubic-bezier(.16,1,.3,1)";
-    });
-  }
-
-
-  /* =========================================================
-     SMOOTH ANCHOR NAVIGATION
-  ========================================================= */
-
-  function initSmoothAnchors() {
-
-    $$('a[href^="#"]').forEach(
-      (link) => {
-
-        link.addEventListener(
-          "click",
-          (event) => {
-
-            const id =
-              link.getAttribute(
-                "href"
-              );
-
-            if (
-              !id ||
-              id === "#"
-            ) {
-              return;
+            if (!response.ok) {
+                throw new Error("Backend unavailable");
             }
 
-            const target =
-              $(id);
+            const data = await response.json();
 
-            if (!target) return;
+            return (
+                data.reply ||
+                data.message ||
+                data.response ||
+                null
+            );
 
-            event.preventDefault();
+        } catch {
+            return null;
+        }
+    }
 
-            const headerOffset =
-              window.innerWidth < 640
-                ? 85
-                : 100;
+    window.openChat = function () {
 
-            const targetPosition =
-              target.getBoundingClientRect().top +
-              window.scrollY -
-              headerOffset;
+        const chat = $("#aiChat");
+
+        if (!chat) return;
+
+        chat.classList.remove("hidden");
+
+        const input = $("#chatInput");
+
+        if (input) {
+            setTimeout(() => input.focus(), 150);
+        }
+
+        refreshIcons();
+    };
+
+    window.closeChat = function () {
+
+        const chat = $("#aiChat");
+
+        if (!chat) return;
+
+        chat.classList.add("hidden");
+    };
+
+    window.handleChatSubmit = async function (event) {
+
+        event.preventDefault();
+
+        const input = $("#chatInput");
+
+        if (!input) return;
+
+        const message = input.value.trim();
+
+        if (!message) return;
+
+        addChatMessage(message, "user");
+
+        input.value = "";
+
+        const typing = showTypingIndicator();
+
+        await wait(reducedMotion ? 50 : 550);
+
+        let response = await askBackend(message);
+
+        if (!response) {
+            response = getLocalAIResponse(message);
+        }
+
+        if (typing) {
+            typing.remove();
+        }
+
+        addChatMessage(response, "ai");
+    };
+
+    function initChatKeyboard() {
+
+        const input = $("#chatInput");
+
+        if (!input) return;
+
+        input.addEventListener("keydown", event => {
+
+            if (
+                event.key === "Enter" &&
+                !event.shiftKey
+            ) {
+                event.preventDefault();
+
+                const form = input.closest("form");
+
+                if (form) {
+                    form.requestSubmit();
+                }
+            }
+
+            if (event.key === "Escape") {
+                window.closeChat();
+            }
+        });
+    }
+
+    /* =====================================================
+       SPOTLIGHT SEARCH
+       ===================================================== */
+
+    function buildSpotlightResults(query = "") {
+
+        const results = $("#spotlightResults");
+
+        if (!results) return;
+
+        const normalized = query
+            .toLowerCase()
+            .trim();
+
+        const searchable = [
+            {
+                title: "About Me",
+                description: "About Priyanshu Kumar",
+                target: "#about"
+            },
+            {
+                title: "Skills",
+                description: "Technical skills and technologies",
+                target: "#skills"
+            },
+            {
+                title: "Projects",
+                description: "Featured software and AI projects",
+                target: "#projects"
+            },
+            {
+                title: "Experience & Education",
+                description: "Education and professional journey",
+                target: "#experience"
+            },
+            {
+                title: "Contact",
+                description: "Get in touch and collaboration",
+                target: "#contact"
+            }
+        ];
+
+        const filtered = normalized
+            ? searchable.filter(item =>
+                `${item.title} ${item.description}`
+                    .toLowerCase()
+                    .includes(normalized)
+            )
+            : searchable;
+
+        results.innerHTML = "";
+
+        if (!filtered.length) {
+
+            results.innerHTML = `
+                <div class="p-5 text-center text-white/40">
+                    No results found
+                </div>
+            `;
+
+            return;
+        }
+
+        filtered.forEach((item, index) => {
+
+            const button = document.createElement("button");
+
+            button.type = "button";
+
+            button.className = `
+                w-full text-left px-4 py-3 rounded-xl
+                border border-white/5
+                hover:border-orange-400/30
+                hover:bg-white/5
+                transition-all
+                flex items-center gap-3
+            `;
+
+            button.innerHTML = `
+                <span class="w-8 h-8 rounded-lg bg-orange-400/10
+                    flex items-center justify-center text-orange-300">
+                    ${index + 1}
+                </span>
+
+                <span>
+                    <span class="block text-sm text-white">
+                        ${escapeHTML(item.title)}
+                    </span>
+
+                    <span class="block text-xs text-white/40 mt-0.5">
+                        ${escapeHTML(item.description)}
+                    </span>
+                </span>
+            `;
+
+            button.addEventListener("click", () => {
+
+                const target = $(item.target);
+
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: reducedMotion ? "auto" : "smooth",
+                        block: "start"
+                    });
+                }
+
+                if (typeof window.closeSpotlight === "function") {
+                    window.closeSpotlight();
+                }
+            });
+
+            results.appendChild(button);
+        });
+    }
+
+    function initSpotlightEnhancement() {
+
+        const input = $("#spotlightInput");
+
+        if (!input) return;
+
+        input.addEventListener("input", () => {
+            buildSpotlightResults(input.value);
+        });
+
+        buildSpotlightResults();
+
+        document.addEventListener("keydown", event => {
+
+            const key =
+                event.key.toLowerCase();
+
+            if (
+                (event.ctrlKey || event.metaKey) &&
+                key === "k"
+            ) {
+
+                event.preventDefault();
+
+                if (typeof window.toggleSpotlight === "function") {
+                    window.toggleSpotlight();
+                }
+
+                setTimeout(() => input.focus(), 80);
+            }
+
+            if (event.key === "Escape") {
+
+                if (
+                    typeof window.closeSpotlight === "function"
+                ) {
+                    window.closeSpotlight();
+                }
+            }
+        });
+    }
+
+    /* =====================================================
+       SCROLL PROGRESS
+       ===================================================== */
+
+    function initScrollProgress() {
+
+        let progress = $(".scroll-progress");
+
+        if (!progress) {
+
+            progress = document.createElement("div");
+
+            progress.className = "scroll-progress";
+
+            document.body.appendChild(progress);
+        }
+
+        let ticking = false;
+
+        function updateProgress() {
+
+            const scrollTop =
+                window.scrollY || window.pageYOffset;
+
+            const height =
+                document.documentElement.scrollHeight -
+                window.innerHeight;
+
+            const percentage =
+                height > 0
+                    ? (scrollTop / height) * 100
+                    : 0;
+
+            progress.style.width =
+                `${Math.min(100, Math.max(0, percentage))}%`;
+
+            ticking = false;
+        }
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (!ticking) {
+
+                    requestAnimationFrame(
+                        updateProgress
+                    );
+
+                    ticking = true;
+                }
+
+            },
+            { passive: true }
+        );
+
+        updateProgress();
+    }
+
+    /* =====================================================
+       BACK TO TOP
+       ===================================================== */
+
+    function initBackToTop() {
+
+        let button = $(".back-to-top");
+
+        if (!button) {
+
+            button = document.createElement("button");
+
+            button.type = "button";
+
+            button.className = "back-to-top";
+
+            button.setAttribute(
+                "aria-label",
+                "Back to top"
+            );
+
+            button.innerHTML = `
+                <i data-lucide="arrow-up" width="18"></i>
+            `;
+
+            document.body.appendChild(button);
+        }
+
+        button.addEventListener("click", () => {
 
             window.scrollTo({
-              top: targetPosition,
-              behavior:
-                prefersReducedMotion
-                  ? "auto"
-                  : "smooth"
+                top: 0,
+                behavior: reducedMotion
+                    ? "auto"
+                    : "smooth"
             });
+        });
 
-          }
-        );
-      }
-    );
-  }
+        function update() {
 
+            if (window.scrollY > 600) {
+                button.classList.add("visible");
+            } else {
+                button.classList.remove("visible");
+            }
+        }
 
-  /* =========================================================
-     HOVER GLOW FOR TECH CHIPS
-  ========================================================= */
-
-  function initChipEffects() {
-
-    if (prefersReducedMotion) return;
-
-    $$(".tech-chip").forEach(
-      (chip) => {
-
-        chip.addEventListener(
-          "pointerenter",
-          () => {
-
-            chip.style.transform =
-              "translateY(-2px)";
-
-            chip.style.boxShadow =
-              "0 0 18px rgba(249,115,22,.08)";
-
-          },
-          { passive: true }
+        window.addEventListener(
+            "scroll",
+            update,
+            { passive: true }
         );
 
-        chip.addEventListener(
-          "pointerleave",
-          () => {
+        update();
+    }
 
-            chip.style.transform =
-              "";
+    /* =====================================================
+       SCROLL REVEAL
+       ===================================================== */
 
-            chip.style.boxShadow =
-              "";
+    function initScrollReveal() {
 
-          },
-          { passive: true }
-        );
-      }
-    );
-  }
+        const targets = [
+            "section",
+            ".glass-card",
+            ".tech-chip"
+        ];
 
+        const elements = $$(targets.join(","));
 
-  /* =========================================================
-     DYNAMIC YEAR
-  ========================================================= */
+        if (!elements.length) return;
 
-  function initYear() {
-
-    const currentYear =
-      new Date().getFullYear();
-
-    $$("footer").forEach(
-      (footer) => {
-
-        const yearElements =
-          footer.querySelectorAll(
-            "*"
-          );
-
-        yearElements.forEach(
-          (element) => {
+        elements.forEach((element, index) => {
 
             if (
-              element.childNodes.length === 1 &&
-              element.textContent.includes(
-                "© 2026"
-              )
+                element.classList.contains("js-reveal")
             ) {
-              element.textContent =
-                element.textContent.replace(
-                  "2026",
-                  currentYear
+                return;
+            }
+
+            element.classList.add("js-reveal");
+
+            element.style.transitionDelay =
+                `${Math.min(index % 6, 5) * 60}ms`;
+        });
+
+        if (
+            reducedMotion ||
+            !("IntersectionObserver" in window)
+        ) {
+
+            elements.forEach(element =>
+                element.classList.add("revealed")
+            );
+
+            return;
+        }
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        entry.target.classList.add(
+                            "revealed"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
+                    });
+
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -60px 0px"
+                }
+            );
+
+        elements.forEach(element =>
+            observer.observe(element)
+        );
+    }
+
+    /* =====================================================
+       ACTIVE NAVIGATION
+       ===================================================== */
+
+    function initActiveNavigation() {
+
+        const sections =
+            $$("section[id]");
+
+        const links =
+            $$('a[href^="#"]');
+
+        if (!sections.length) return;
+
+        if (
+            !("IntersectionObserver" in window)
+        ) return;
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        const id =
+                            entry.target.id;
+
+                        links.forEach(link => {
+
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") ===
+                                `#${id}`
+                            );
+                        });
+                    });
+
+                },
+                {
+                    threshold: 0.35
+                }
+            );
+
+        sections.forEach(section =>
+            observer.observe(section)
+        );
+    }
+
+    /* =====================================================
+       MAGNETIC BUTTONS
+       ===================================================== */
+
+    function initMagneticButtons() {
+
+        if (
+            isMobile ||
+            reducedMotion
+        ) {
+            return;
+        }
+
+        const buttons =
+            $$(".magnetic");
+
+        buttons.forEach(button => {
+
+            button.addEventListener(
+                "pointermove",
+                event => {
+
+                    const rect =
+                        button.getBoundingClientRect();
+
+                    const x =
+                        event.clientX -
+                        rect.left -
+                        rect.width / 2;
+
+                    const y =
+                        event.clientY -
+                        rect.top -
+                        rect.height / 2;
+
+                    const strength = 0.16;
+
+                    button.style.transform =
+                        `translate(${x * strength}px, ${y * strength}px)`;
+                }
+            );
+
+            button.addEventListener(
+                "pointerleave",
+                () => {
+
+                    button.style.transform = "";
+                }
+            );
+        });
+    }
+
+    /* =====================================================
+       3D CARD TILT
+       ===================================================== */
+
+    function initCardTilt() {
+
+        if (
+            isMobile ||
+            reducedMotion
+        ) {
+            return;
+        }
+
+        const cards =
+            $$(".glass-card");
+
+        cards.forEach(card => {
+
+            card.addEventListener(
+                "pointermove",
+                event => {
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+                    const x =
+                        event.clientX -
+                        rect.left;
+
+                    const y =
+                        event.clientY -
+                        rect.top;
+
+                    const rotateY =
+                        ((x / rect.width) - 0.5) * 10;
+
+                    const rotateX =
+                        ((y / rect.height) - 0.5) * -10;
+
+                    card.style.setProperty(
+                        "--mouse-x",
+                        `${x}px`
+                    );
+
+                    card.style.setProperty(
+                        "--mouse-y",
+                        `${y}px`
+                    );
+
+                    card.style.transform =
+                        `perspective(1000px)
+                         rotateX(${rotateX}deg)
+                         rotateY(${rotateY}deg)
+                         translateY(-4px)`;
+                }
+            );
+
+            card.addEventListener(
+                "pointerleave",
+                () => {
+
+                    card.style.transform = "";
+                    card.style.removeProperty(
+                        "--mouse-x"
+                    );
+                    card.style.removeProperty(
+                        "--mouse-y"
+                    );
+                }
+            );
+        });
+    }
+
+    /* =====================================================
+       CURSOR GLOW
+       ===================================================== */
+
+    function initCursorGlow() {
+
+        if (
+            isMobile ||
+            reducedMotion
+        ) {
+            return;
+        }
+
+        if (
+            !window.matchMedia(
+                "(pointer: fine)"
+            ).matches
+        ) {
+            return;
+        }
+
+        let glow =
+            $(".cursor-glow");
+
+        if (!glow) {
+
+            glow = document.createElement("div");
+
+            glow.className =
+                "cursor-glow";
+
+            document.body.appendChild(glow);
+        }
+
+        let x = window.innerWidth / 2;
+        let y = window.innerHeight / 2;
+
+        let targetX = x;
+        let targetY = y;
+
+        window.addEventListener(
+            "pointermove",
+            event => {
+
+                targetX = event.clientX;
+                targetY = event.clientY;
+
+                glow.style.opacity = "1";
+            },
+            { passive: true }
+        );
+
+        window.addEventListener(
+            "pointerleave",
+            () => {
+                glow.style.opacity = "0";
+            }
+        );
+
+        function animate() {
+
+            x += (targetX - x) * 0.12;
+            y += (targetY - y) * 0.12;
+
+            glow.style.left = `${x}px`;
+            glow.style.top = `${y}px`;
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+
+    /* =====================================================
+       TYPEWRITER
+       ===================================================== */
+
+    function initTypewriter() {
+
+        const element =
+            $("#typewriter");
+
+        if (!element) return;
+
+        const roles = [
+            "Software Engineer",
+            "Full-Stack Developer",
+            "Data Analyst & BI Specialist",
+            "Machine Learning Engineer",
+            "Python Developer"
+        ];
+
+        let roleIndex = 0;
+        let characterIndex = 0;
+        let deleting = false;
+
+        function type() {
+
+            const current =
+                roles[roleIndex];
+
+            if (!deleting) {
+
+                characterIndex++;
+
+                element.textContent =
+                    current.substring(
+                        0,
+                        characterIndex
+                    );
+
+                if (
+                    characterIndex >=
+                    current.length
+                ) {
+
+                    deleting = true;
+
+                    setTimeout(
+                        type,
+                        reducedMotion ? 1000 : 1600
+                    );
+
+                    return;
+                }
+
+            } else {
+
+                characterIndex--;
+
+                element.textContent =
+                    current.substring(
+                        0,
+                        characterIndex
+                    );
+
+                if (characterIndex <= 0) {
+
+                    deleting = false;
+
+                    roleIndex =
+                        (roleIndex + 1) %
+                        roles.length;
+                }
+            }
+
+            setTimeout(
+                type,
+                deleting
+                    ? 45
+                    : 75
+            );
+        }
+
+        type();
+    }
+
+    /* =====================================================
+       COUNTERS
+       ===================================================== */
+
+    function initAnimatedCounters() {
+
+        const counters =
+            $$("[data-counter]");
+
+        if (!counters.length) return;
+
+        const animateCounter =
+            element => {
+
+                const target =
+                    Number(
+                        element.dataset.counter
+                    );
+
+                if (
+                    !Number.isFinite(target)
+                ) {
+                    return;
+                }
+
+                const duration =
+                    reducedMotion ? 0 : 1200;
+
+                const start =
+                    performance.now();
+
+                function update(now) {
+
+                    const progress =
+                        duration === 0
+                            ? 1
+                            : Math.min(
+                                1,
+                                (now - start) /
+                                duration
+                            );
+
+                    const eased =
+                        1 -
+                        Math.pow(
+                            1 - progress,
+                            3
+                        );
+
+                    element.textContent =
+                        Math.round(
+                            target * eased
+                        );
+
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    }
+                }
+
+                requestAnimationFrame(update);
+            };
+
+        if (
+            reducedMotion ||
+            !("IntersectionObserver" in window)
+        ) {
+
+            counters.forEach(counter => {
+                counter.textContent =
+                    counter.dataset.counter;
+            });
+
+            return;
+        }
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
+                        }
+
+                        animateCounter(
+                            entry.target
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
+                    });
+
+                },
+                {
+                    threshold: 0.6
+                }
+            );
+
+        counters.forEach(counter =>
+            observer.observe(counter)
+        );
+    }
+
+    /* =====================================================
+       SMOOTH ANCHOR NAVIGATION
+       ===================================================== */
+
+    function initSmoothAnchors() {
+
+        $$('a[href^="#"]').forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const href =
+                        link.getAttribute("href");
+
+                    if (
+                        !href ||
+                        href === "#"
+                    ) {
+                        return;
+                    }
+
+                    const target =
+                        $(href);
+
+                    if (!target) return;
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior:
+                            reducedMotion
+                                ? "auto"
+                                : "smooth",
+                        block: "start"
+                    });
+                }
+            );
+        });
+    }
+
+    /* =====================================================
+       KEYBOARD SHORTCUTS
+       ===================================================== */
+
+    function initKeyboardShortcuts() {
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Escape") {
+
+                    if (
+                        typeof window.closeChat ===
+                        "function"
+                    ) {
+                        window.closeChat();
+                    }
+
+                    if (
+                        typeof window.closeSpotlight ===
+                        "function"
+                    ) {
+                        window.closeSpotlight();
+                    }
+                }
+
+                if (
+                    (event.ctrlKey || event.metaKey) &&
+                    event.key.toLowerCase() === "k"
+                ) {
+
+                    event.preventDefault();
+
+                    if (
+                        typeof window.toggleSpotlight ===
+                        "function"
+                    ) {
+                        window.toggleSpotlight();
+                    }
+                }
+            }
+        );
+    }
+
+    /* =====================================================
+       CINEMATIC ENTRANCE
+       ===================================================== */
+
+    function cinematicEntrance() {
+
+        if (reducedMotion) return;
+
+        const candidates = [
+            "header",
+            ".hero-grid",
+            "#about",
+            "#skills",
+            "#projects",
+            "#experience",
+            "#contact"
+        ];
+
+        candidates.forEach(
+            (selector, index) => {
+
+                const element =
+                    $(selector);
+
+                if (!element) return;
+
+                element.classList.add(
+                    "js-enter"
+                );
+
+                element.style.animationDelay =
+                    `${index * 90}ms`;
+            }
+        );
+    }
+
+    /* =====================================================
+       THREE.JS BACKGROUND
+       ===================================================== */
+
+    function initThreeBackground() {
+
+        const canvas =
+            $("#three-bg");
+
+        if (
+            !canvas ||
+            !window.THREE
+        ) {
+            return;
+        }
+
+        try {
+
+            const THREE =
+                window.THREE;
+
+            const scene =
+                new THREE.Scene();
+
+            const camera =
+                new THREE.PerspectiveCamera(
+                    55,
+                    window.innerWidth /
+                    window.innerHeight,
+                    0.1,
+                    100
+                );
+
+            camera.position.z = 14;
+
+            const renderer =
+                new THREE.WebGLRenderer({
+                    canvas,
+                    alpha: true,
+                    antialias: true,
+                    powerPreference: "high-performance"
+                });
+
+            renderer.setPixelRatio(
+                Math.min(
+                    window.devicePixelRatio || 1,
+                    1.5
+                )
+            );
+
+            renderer.setSize(
+                window.innerWidth,
+                window.innerHeight
+            );
+
+            /* ---------------------------------------------
+               PARTICLES
+            --------------------------------------------- */
+
+            const particleCount =
+                isMobile ? 55 : 110;
+
+            const positions =
+                new Float32Array(
+                    particleCount * 3
+                );
+
+            const velocity =
+                [];
+
+            for (
+                let i = 0;
+                i < particleCount;
+                i++
+            ) {
+
+                const i3 = i * 3;
+
+                positions[i3] =
+                    (Math.random() - 0.5) * 28;
+
+                positions[i3 + 1] =
+                    (Math.random() - 0.5) * 18;
+
+                positions[i3 + 2] =
+                    (Math.random() - 0.5) * 16;
+
+                velocity.push({
+                    x:
+                        (Math.random() - 0.5) *
+                        0.0015,
+
+                    y:
+                        (Math.random() - 0.5) *
+                        0.0015,
+
+                    z:
+                        (Math.random() - 0.5) *
+                        0.001
+                });
+            }
+
+            const geometry =
+                new THREE.BufferGeometry();
+
+            geometry.setAttribute(
+                "position",
+                new THREE.BufferAttribute(
+                    positions,
+                    3
+                )
+            );
+
+            const material =
+                new THREE.PointsMaterial({
+                    color: 0xffb13b,
+                    size: 0.035,
+                    transparent: true,
+                    opacity: 0.65,
+                    sizeAttenuation: true
+                });
+
+            const particles =
+                new THREE.Points(
+                    geometry,
+                    material
+                );
+
+            scene.add(particles);
+
+            /* ---------------------------------------------
+               CONNECTION LINES
+            --------------------------------------------- */
+
+            const linePositions = [];
+
+            const maxDistance = isMobile
+                ? 3.4
+                : 3.8;
+
+            for (
+                let i = 0;
+                i < particleCount;
+                i++
+            ) {
+
+                for (
+                    let j = i + 1;
+                    j < particleCount;
+                    j++
+                ) {
+
+                    const i3 = i * 3;
+                    const j3 = j * 3;
+
+                    const dx =
+                        positions[i3] -
+                        positions[j3];
+
+                    const dy =
+                        positions[i3 + 1] -
+                        positions[j3 + 1];
+
+                    const dz =
+                        positions[i3 + 2] -
+                        positions[j3 + 2];
+
+                    const distance =
+                        Math.sqrt(
+                            dx * dx +
+                            dy * dy +
+                            dz * dz
+                        );
+
+                    if (
+                        distance <
+                        maxDistance
+                    ) {
+
+                        linePositions.push(
+                            positions[i3],
+                            positions[i3 + 1],
+                            positions[i3 + 2],
+
+                            positions[j3],
+                            positions[j3 + 1],
+                            positions[j3 + 2]
+                        );
+                    }
+                }
+            }
+
+            const lineGeometry =
+                new THREE.BufferGeometry();
+
+            lineGeometry.setAttribute(
+                "position",
+                new THREE.Float32BufferAttribute(
+                    linePositions,
+                    3
+                )
+            );
+
+            const lineMaterial =
+                new THREE.LineBasicMaterial({
+                    color: 0xffa726,
+                    transparent: true,
+                    opacity: 0.07
+                });
+
+            const lines =
+                new THREE.LineSegments(
+                    lineGeometry,
+                    lineMaterial
+                );
+
+            scene.add(lines);
+
+            /* ---------------------------------------------
+               MOUSE PARALLAX
+            --------------------------------------------- */
+
+            let mouseX = 0;
+            let mouseY = 0;
+
+            let targetMouseX = 0;
+            let targetMouseY = 0;
+
+            window.addEventListener(
+                "pointermove",
+                event => {
+
+                    targetMouseX =
+                        (event.clientX /
+                            window.innerWidth -
+                            0.5);
+
+                    targetMouseY =
+                        (event.clientY /
+                            window.innerHeight -
+                            0.5);
+                },
+                { passive: true }
+            );
+
+            let animationFrame;
+
+            function animate() {
+
+                animationFrame =
+                    requestAnimationFrame(
+                        animate
+                    );
+
+                mouseX +=
+                    (targetMouseX - mouseX) *
+                    0.025;
+
+                mouseY +=
+                    (targetMouseY - mouseY) *
+                    0.025;
+
+                camera.position.x =
+                    mouseX * 1.2;
+
+                camera.position.y =
+                    -mouseY * 0.8;
+
+                camera.lookAt(
+                    scene.position
+                );
+
+                particles.rotation.y +=
+                    0.00035;
+
+                particles.rotation.x +=
+                    0.00008;
+
+                lines.rotation.y +=
+                    0.00035;
+
+                renderer.render(
+                    scene,
+                    camera
                 );
             }
-          }
+
+            animate();
+
+            /* ---------------------------------------------
+               RESIZE
+            --------------------------------------------- */
+
+            function resize() {
+
+                camera.aspect =
+                    window.innerWidth /
+                    window.innerHeight;
+
+                camera.updateProjectionMatrix();
+
+                renderer.setSize(
+                    window.innerWidth,
+                    window.innerHeight
+                );
+
+                renderer.setPixelRatio(
+                    Math.min(
+                        window.devicePixelRatio || 1,
+                        1.5
+                    )
+                );
+            }
+
+            window.addEventListener(
+                "resize",
+                resize,
+                { passive: true }
+            );
+
+            /* ---------------------------------------------
+               TAB PERFORMANCE
+            --------------------------------------------- */
+
+            document.addEventListener(
+                "visibilitychange",
+                () => {
+
+                    if (
+                        document.hidden &&
+                        animationFrame
+                    ) {
+
+                        cancelAnimationFrame(
+                            animationFrame
+                        );
+
+                    } else if (
+                        !document.hidden
+                    ) {
+
+                        animate();
+                    }
+                }
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Three.js background disabled:",
+                error
+            );
+        }
+    }
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initPage,
+            { once: true }
         );
-      }
-    );
-  }
 
+    } else {
 
-  /* =========================================================
-     PERFORMANCE — PAUSE HEAVY EFFECTS WHEN TAB HIDDEN
-  ========================================================= */
-
-  document.addEventListener(
-    "visibilitychange",
-    () => {
-
-      if (
-        document.hidden &&
-        renderer
-      ) {
-        renderer.setAnimationLoop?.(
-          null
-        );
-      }
-
+        initPage();
     }
-  );
-
-
-  /* =========================================================
-     ADD REQUIRED CSS DYNAMICALLY
-  ========================================================= */
-
-  function injectEngineStyles() {
-
-    if ($("#portfolioEngineStyles")) {
-      return;
-    }
-
-    const style =
-      document.createElement("style");
-
-    style.id =
-      "portfolioEngineStyles";
-
-    style.textContent = `
-
-      .reveal-ready {
-        opacity:0;
-        transform:
-          translateY(28px)
-          scale(.985);
-        transition:
-          opacity .75s cubic-bezier(.16,1,.3,1),
-          transform .75s cubic-bezier(.16,1,.3,1);
-        will-change:opacity,transform;
-      }
-
-      .reveal-visible {
-        opacity:1 !important;
-        transform:
-          translateY(0)
-          scale(1) !important;
-      }
-
-      .glass-card {
-        transition:
-          transform .35s cubic-bezier(.16,1,.3,1),
-          border-color .3s ease,
-          box-shadow .3s ease;
-      }
-
-      .glass-card:hover {
-        border-color:
-          rgba(249,115,22,.18);
-        box-shadow:
-          0 25px 80px rgba(0,0,0,.22);
-      }
-
-      .tech-chip {
-        will-change:transform;
-      }
-
-      #aiChat {
-        animation:
-          portfolioChatIn .35s
-          cubic-bezier(.16,1,.3,1);
-      }
-
-      @keyframes portfolioChatIn {
-        from {
-          opacity:0;
-          transform:
-            translateY(20px)
-            scale(.96);
-        }
-
-        to {
-          opacity:1;
-          transform:
-            translateY(0)
-            scale(1);
-        }
-      }
-
-      #spotlight:not(.hidden),
-      #projectModal:not(.hidden) {
-        animation:
-          portfolioOverlayIn .3s
-          ease-out;
-      }
-
-      @keyframes portfolioOverlayIn {
-        from {
-          opacity:0;
-        }
-
-        to {
-          opacity:1;
-        }
-      }
-
-      #suiteMenu:not(.hidden) {
-        animation:
-          portfolioMenuIn .25s
-          cubic-bezier(.16,1,.3,1);
-          transform-origin:top right;
-      }
-
-      @keyframes portfolioMenuIn {
-        from {
-          opacity:0;
-          transform:
-            translateY(-8px)
-            scale(.96);
-        }
-
-        to {
-          opacity:1;
-          transform:
-            translateY(0)
-            scale(1);
-        }
-      }
-
-      @media(max-width:768px) {
-
-        .reveal-ready {
-          transform:
-            translateY(18px);
-        }
-
-        #cursorGlow {
-          display:none !important;
-        }
-
-      }
-
-      @media(prefers-reduced-motion:reduce) {
-
-        .reveal-ready {
-          opacity:1 !important;
-          transform:none !important;
-          transition:none !important;
-        }
-
-      }
-
-    `;
-
-    document.head.appendChild(style);
-  }
-
-
-  /* =========================================================
-     INITIALIZATION
-  ========================================================= */
-
-  function initPortfolioEngine() {
-
-    injectEngineStyles();
-
-    initThreeBackground();
-
-    initCursorGlow();
-
-    initCardTilt();
-
-    initMagneticButtons();
-
-    initTypewriter();
-
-    initScrollReveal();
-
-    initCounters();
-
-    initScrollProgress();
-
-    initActiveNavigation();
-
-    initKeyboardControls();
-
-    initButtonSounds();
-
-    initImageParallax();
-
-    initSmoothAnchors();
-
-    initChipEffects();
-
-    initYear();
-
-    setTimeout(
-      pingEdgeServer,
-      1200
-    );
-
-    if (window.lucide) {
-      try {
-        lucide.createIcons();
-      } catch (error) {}
-    }
-
-    console.log(
-      "%c PRIYANSHU KUMAR ",
-      "background:#f97316;color:#000;font-weight:900;padding:6px 10px;border-radius:6px;"
-    );
-
-    console.log(
-      "%c Portfolio Engine V3 initialized 🚀 ",
-      "color:#fb923c;font-weight:bold;"
-    );
-  }
-
-
-  /* =========================================================
-     DOM READY
-  ========================================================= */
-
-  if (
-    document.readyState ===
-    "loading"
-  ) {
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      initPortfolioEngine,
-      { once: true }
-    );
-
-  } else {
-
-    initPortfolioEngine();
-
-  }
 
 })();
