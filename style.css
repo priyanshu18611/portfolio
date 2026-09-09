@@ -1,134 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+/* =========================================================
+   PRIYANSHU KUMAR — PORTFOLIO V3
+   Premium 3D / Glass / Cinematic UI
+========================================================= */
+
+/* =========================================================
+   ROOT
+========================================================= */
 
 :root {
-  --bg-primary: #040507;
-  --accent-orange: #f97316;
-  --accent-amber: #f59e0b;
-  --accent-blue: #3b82f6;
-  --accent-cyan: #06b6d4;
-  --card-bg: rgba(11, 15, 23, 0.85);
-  --card-border: rgba(255, 255, 255, 0.08);
+  --bg: #030406;
+  --bg-soft: #07090d;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-strong: rgba(255, 255, 255, 0.06);
+
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --muted-2: #64748b;
+
+  --orange: #f97316;
+  --orange-light: #fb923c;
+  --amber: #facc15;
+
+  --border: rgba(255, 255, 255, 0.09);
+  --border-soft: rgba(255, 255, 255, 0.05);
+
+  --shadow:
+    0 30px 90px rgba(0, 0, 0, 0.55);
+
+  --ease:
+    cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
-  background-color: var(--bg-primary);
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color-scheme: dark;
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-primary);
-  color: #f8fafc;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(249, 115, 22, 0.055),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(99, 102, 241, 0.045),
+      transparent 30%
+    ),
+    var(--bg);
+
+  color: var(--text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
   overflow-x: hidden;
-  position: relative;
+
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Hardware Accelerated ThreeJS Background Canvas */
-#three-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
-  transform: translateZ(0);
+::selection {
+  background: rgba(249, 115, 22, 0.9);
+  color: #050505;
 }
 
-/* Ambient Radial Glow Gradients */
-.glow-orange {
-  position: fixed;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
-  filter: blur(90px);
-  pointer-events: none;
-  z-index: 1;
-  transform: translateZ(0);
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* Glassmorphism 3D Holographic Card Architecture */
-.glass-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  position: relative;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  will-change: transform, box-shadow, border-color;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.3s ease, 
-              box-shadow 0.3s ease;
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: var(--mouse-y, -150px);
-  left: var(--mouse-x, -150px);
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.16) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
-.glass-card:hover::before {
-  opacity: 1;
-}
+/* =========================================================
+   SCROLLBAR
+========================================================= */
 
-.glass-card:hover {
-  border-color: rgba(249, 115, 22, 0.45);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 25px rgba(249, 115, 22, 0.14);
-}
-
-/* Floating Navigation Bar Dock */
-.floating-header {
-  background: rgba(6, 7, 10, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.85), 0 0 25px rgba(249, 115, 22, 0.08);
-}
-
-.nav-btn {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  white-space: nowrap;
-}
-
-.nav-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-1.5px);
-}
-
-.dropdown-menu {
-  background: rgba(8, 11, 18, 0.97);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  box-shadow: 0 35px 70px rgba(0,0,0,0.95), 0 0 35px rgba(249, 115, 22, 0.18);
-}
-
-/* Monospace & Micro Typography */
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -136,13 +115,1092 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.16);
-  border-radius: 9999px;
+  background: linear-gradient(
+    180deg,
+    rgba(249, 115, 22, 0.8),
+    rgba(249, 115, 22, 0.2)
+  );
+
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-orange);
+  background: rgba(249, 115, 22, 0.95);
 }
 
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* =========================================================
+   SELECTION / FOCUS
+========================================================= */
+
+:focus-visible {
+  outline: 2px solid rgba(249, 115, 22, 0.75);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   THREE.JS BACKGROUND
+========================================================= */
+
+#three-bg {
+  position: fixed;
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.9;
+}
+
+.page-content {
+  position: relative;
+  z-index: 5;
+}
+
+
+/* =========================================================
+   CINEMATIC GRID
+========================================================= */
+
+.hero-grid {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.55;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black 0%,
+      rgba(0, 0, 0, 0.6) 45%,
+      transparent 100%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      black 0%,
+      rgba(0, 0, 0, 0.6) 45%,
+      transparent 100%
+    );
+}
+
+
+/* =========================================================
+   AMBIENT LIGHT
+========================================================= */
+
+.ambient-light {
+  position: fixed;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(120px);
+
+  opacity: 0.12;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   GLASS SYSTEM
+========================================================= */
+
+.glass-card {
+  position: relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  border: 1px solid var(--border);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  transition:
+    transform 0.55s var(--ease),
+    border-color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.55s var(--ease);
+
+  isolation: isolate;
+}
+
+.glass-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.045) 45%,
+      transparent 60%
+    );
+
+  opacity: 0;
+
+  transform: translateX(-30%);
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.7s var(--ease);
+
+  z-index: -1;
+}
+
+.glass-card:hover {
+  transform:
+    translateY(-8px)
+    perspective(900px)
+    rotateX(1deg);
+
+  border-color:
+    rgba(249, 115, 22, 0.25);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.02)
+    );
+
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(249, 115, 22, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-card:hover::after {
+  opacity: 1;
+  transform: translateX(30%);
+}
+
+
+/* =========================================================
+   GRADIENT TEXT
+========================================================= */
+
+.text-gradient {
+  display: inline-block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #fb923c 0%,
+      #facc15 25%,
+      #f97316 50%,
+      #fdba74 75%,
+      #fb923c 100%
+    );
+
+  background-size: 300% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  animation:
+    gradientFlow 6s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+header {
+  transform: translateZ(0);
+}
+
+header nav {
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s var(--ease);
+}
+
+header nav:hover {
+  border-color: rgba(249, 115, 22, 0.15);
+}
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+nav a {
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s var(--ease);
+}
+
+nav a:hover {
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.magnetic {
+  position: relative;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.magnetic::before {
+  content: "";
+
+  position: absolute;
+
+  width: 160px;
+  height: 160px;
+
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+
+  transform:
+    translate(-50%, -50%)
+    scale(0);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.16),
+      transparent 65%
+    );
+
+  transition:
+    transform 0.5s var(--ease);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+.magnetic:hover::before {
+  transform:
+    translate(-50%, -50%)
+    scale(1);
+}
+
+.magnetic:hover {
+  transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   ORBIT SYSTEM
+========================================================= */
+
+.orbit {
+  animation:
+    orbitForward 20s linear infinite;
+}
+
+.orbit-reverse {
+  animation:
+    orbitReverse 28s linear infinite;
+}
+
+@keyframes orbitForward {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+
+/* =========================================================
+   FLOATING ELEMENTS
+========================================================= */
+
+.float {
+  animation:
+    premiumFloat 5s ease-in-out infinite;
+}
+
+@keyframes premiumFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+
+/* =========================================================
+   PULSE RING
+========================================================= */
+
+.pulse-ring {
+  animation:
+    pulseRing 2.3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+
+  70% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   SCANLINE
+========================================================= */
+
+.scanline {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(249, 115, 22, 0.9),
+      rgba(251, 191, 36, 0.8),
+      transparent
+    );
+
+  box-shadow:
+    0 0 12px rgba(249, 115, 22, 0.6);
+
+  animation:
+    scanlineMove 4.5s linear infinite;
+
+  pointer-events: none;
+
+  z-index: 20;
+}
+
+@keyframes scanlineMove {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 105%;
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   TECH CHIPS
+========================================================= */
+
+.tech-chip {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 10px;
+
+  border-radius: 9px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  color: #94a3b8;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  font-size: 9px;
+
+  line-height: 1;
+
+  letter-spacing: 0.01em;
+
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s var(--ease);
+}
+
+.tech-chip:hover {
+  color: #fdba74;
+
+  border-color:
+    rgba(249, 115, 22, 0.25);
+
+  background:
+    rgba(249, 115, 22, 0.06);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* =========================================================
+   PROJECT CARDS
+========================================================= */
+
+.project-number {
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+
+  letter-spacing: 0.18em;
+
+  opacity: 0.9;
+}
+
+article.glass-card {
+  min-height: 340px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+article.glass-card > div:last-child {
+  margin-top: auto;
+}
+
+
+/* =========================================================
+   PROJECT HOVER GLOW
+========================================================= */
+
+article.glass-card:hover h3 {
+  text-shadow:
+    0 0 25px rgba(249, 115, 22, 0.15);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+img {
+  max-width: 100%;
+}
+
+img[alt="Priyanshu Kumar"] {
+  transition:
+    transform 0.8s var(--ease),
+    filter 0.8s ease;
+}
+
+img[alt="Priyanshu Kumar"]:hover {
+  transform: scale(1.025);
+  filter: brightness(1.04) contrast(1.02);
+}
+
+
+/* =========================================================
+   PROFILE POD
+========================================================= */
+
+#about {
+  perspective: 1400px;
+}
+
+#about img {
+  transform:
+    translateZ(20px);
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+section h2 {
+  letter-spacing: -0.04em;
+}
+
+section p {
+  text-wrap: pretty;
+}
+
+
+/* =========================================================
+   DIVIDERS
+========================================================= */
+
+section + section {
+  scroll-margin-top: 100px;
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+#projectModal,
+#spotlight,
+#aiChat {
+  animation:
+    fadeIn 0.25s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+#projectModalBox {
+  animation:
+    modalEnter 0.45s var(--ease);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform:
+      translateY(30px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+#aiChat {
+  box-shadow:
+    0 35px 100px rgba(0, 0, 0, 0.8),
+    0 0 50px rgba(249, 115, 22, 0.06);
+}
+
+#chatInput {
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#chatInput:focus {
+  background: rgba(255, 255, 255, 0.055);
+
+  border-color:
+    rgba(249, 115, 22, 0.35);
+
+  box-shadow:
+    0 0 0 3px rgba(249, 115, 22, 0.05);
+}
+
+
+/* =========================================================
+   SPOTLIGHT
+========================================================= */
+
+#spotlight > div > div {
+  animation:
+    spotlightEnter 0.35s var(--ease);
+}
+
+@keyframes spotlightEnter {
+  from {
+    opacity: 0;
+    transform:
+      translateY(-20px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+.spotlight-item {
+  transition:
+    background 0.2s ease,
+    transform 0.2s var(--ease);
+}
+
+.spotlight-item:hover {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   SUITE MENU
+========================================================= */
+
+#suiteMenu {
+  animation:
+    menuEnter 0.3s var(--ease);
+}
+
+@keyframes menuEnter {
+  from {
+    opacity: 0;
+    transform:
+      translateY(-8px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+@media (max-width: 1023px) {
+
+  header nav {
+    border-radius: 20px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  .hero-grid {
+    background-size: 34px 34px;
+    opacity: 0.35;
+  }
+
+  #three-bg {
+    opacity: 0.65;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+  }
+
+  article.glass-card {
+    min-height: 310px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  header {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  header nav {
+    border-radius: 18px;
+    padding: 7px;
+  }
+
+  .hero-grid {
+    background-size: 30px 30px;
+    opacity: 0.25;
+  }
+
+  #three-bg {
+    opacity: 0.45;
+  }
+
+  .glass-card {
+    border-radius: 22px;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-3px);
+  }
+
+  article.glass-card {
+    min-height: auto;
+  }
+
+  .tech-chip {
+    padding: 6px 9px;
+    font-size: 8px;
+  }
+
+  #projectModal {
+    padding: 10px;
+  }
+
+  #projectModalBox {
+    max-height: 92vh;
+    border-radius: 24px;
+    padding: 20px;
+  }
+
+  #aiChat {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+    border-radius: 24px;
+  }
+
+  #chatMessages {
+    height: 320px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 390px) {
+
+  header nav {
+    padding: 6px;
+  }
+
+  #suiteBtn {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  #about h1 {
+    font-size: 3.4rem;
+  }
+
+}
+
+
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
+.glass-card,
+.magnetic,
+.orbit,
+.orbit-reverse,
+.float {
+  will-change: transform;
+}
+
+#three-bg {
+  contain: strict;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
+  .glass-card:hover,
+  .magnetic:hover {
+    transform: none;
+  }
+
+}
+
+
+/* =========================================================
+   PREMIUM LIGHT SWEEP
+========================================================= */
+
+@keyframes lightSweep {
+
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(120%);
+  }
+
+}
+
+
+/* =========================================================
+   CURSOR GLOW SUPPORT
+========================================================= */
+
+.cursor-glow {
+  position: fixed;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(249, 115, 22, 0.08),
+      transparent 68%
+    );
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 2;
+
+  mix-blend-mode: screen;
+
+  transition:
+    opacity 0.3s ease;
+}
+
+
+/* =========================================================
+   HERO ENERGY
+========================================================= */
+
+.hero-energy {
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(249, 115, 22, 0.13),
+      transparent 70%
+    );
+
+  filter: blur(20px);
+
+  pointer-events: none;
+
+  animation:
+    energyPulse 4s ease-in-out infinite;
+}
+
+@keyframes energyPulse {
+
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  position: relative;
+}
+
+footer::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 0;
+
+  width: 50%;
+
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(249, 115, 22, 0.25),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+  #three-bg,
+  .hero-grid,
+  header,
+  #aiChat,
+  #spotlight,
+  #projectModal {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+}
