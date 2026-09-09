@@ -1690,5 +1690,96 @@ work covering software engineering, analytics and ML.
 
         initPage();
     }
+/* =====================================================
+   STEP 6 — PROJECT MODAL ENHANCEMENT
+   ===================================================== */
 
+function initProjectModalEnhancement() {
+
+    const modal = document.getElementById("projectModal");
+    const box = document.getElementById("projectModalBox");
+
+    if (!modal || !box) return;
+
+    /* ESC CLOSE */
+
+    document.addEventListener("keydown", event => {
+
+        if (event.key !== "Escape") return;
+
+        if (
+            !modal.classList.contains("hidden") &&
+            typeof window.closeProjectModal === "function"
+        ) {
+            window.closeProjectModal();
+        }
+    });
+
+    /* CLICK OUTSIDE */
+
+    modal.addEventListener("click", event => {
+
+        if (event.target !== modal) return;
+
+        if (
+            typeof window.closeProjectModal === "function"
+        ) {
+            window.closeProjectModal();
+        }
+    });
+
+    /* 3D MODAL MOVEMENT */
+
+    if (
+        window.matchMedia("(pointer: fine)").matches &&
+        !window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+        modal.addEventListener(
+            "pointermove",
+            event => {
+
+                if (
+                    modal.classList.contains("hidden")
+                ) {
+                    return;
+                }
+
+                const rect =
+                    box.getBoundingClientRect();
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+                const rotateY =
+                    ((x / rect.width) - 0.5) * 2.5;
+
+                const rotateX =
+                    ((y / rect.height) - 0.5) * -2.5;
+
+                box.style.transform =
+                    `perspective(1400px)
+                     rotateX(${rotateX}deg)
+                     rotateY(${rotateY}deg)`;
+            },
+            { passive: true }
+        );
+
+        modal.addEventListener(
+            "pointerleave",
+            () => {
+                box.style.transform = "";
+            }
+        );
+    }
+}
+
+initProjectModalEnhancement();
 })();
