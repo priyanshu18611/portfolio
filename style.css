@@ -1,1206 +1,517 @@
 /* =========================================================
-   PRIYANSHU KUMAR — PORTFOLIO V3
-   Premium 3D / Glass / Cinematic UI
-========================================================= */
+   STEP 4 — ULTRA PREMIUM 3D / CINEMATIC EFFECTS
+   ========================================================= */
 
-/* =========================================================
-   ROOT
-========================================================= */
-
-:root {
-  --bg: #030406;
-  --bg-soft: #07090d;
-  --surface: rgba(255, 255, 255, 0.035);
-  --surface-strong: rgba(255, 255, 255, 0.06);
-
-  --text: #f8fafc;
-  --muted: #94a3b8;
-  --muted-2: #64748b;
-
-  --orange: #f97316;
-  --orange-light: #fb923c;
-  --amber: #facc15;
-
-  --border: rgba(255, 255, 255, 0.09);
-  --border-soft: rgba(255, 255, 255, 0.05);
-
-  --shadow:
-    0 30px 90px rgba(0, 0, 0, 0.55);
-
-  --ease:
-    cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* ---------- GLOBAL 3D SETTINGS ---------- */
 
 html {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  color-scheme: dark;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-
-  background:
-    radial-gradient(
-      circle at 15% 10%,
-      rgba(249, 115, 22, 0.055),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 85% 30%,
-      rgba(99, 102, 241, 0.045),
-      transparent 30%
-    ),
-    var(--bg);
-
-  color: var(--text);
-
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
-  overflow-x: hidden;
-
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+    perspective: 1200px;
 }
 
-::selection {
-  background: rgba(249, 115, 22, 0.9);
-  color: #050505;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-
-/* =========================================================
-   SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background: #030406;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    rgba(249, 115, 22, 0.8),
-    rgba(249, 115, 22, 0.2)
-  );
-
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(249, 115, 22, 0.95);
-}
-
-
-/* =========================================================
-   SELECTION / FOCUS
-========================================================= */
-
-:focus-visible {
-  outline: 2px solid rgba(249, 115, 22, 0.75);
-  outline-offset: 3px;
-}
-
-
-/* =========================================================
-   THREE.JS BACKGROUND
-========================================================= */
-
-#three-bg {
-  position: fixed;
-  inset: 0;
-
-  width: 100vw;
-  height: 100vh;
-
-  z-index: 0;
-
-  pointer-events: none;
-
-  opacity: 0.9;
-}
-
-.page-content {
-  position: relative;
-  z-index: 5;
-}
-
-
-/* =========================================================
-   CINEMATIC GRID
-========================================================= */
-
-.hero-grid {
-  position: fixed;
-  inset: 0;
-
-  pointer-events: none;
-
-  opacity: 0.55;
-
-  background-image:
-    linear-gradient(
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px
-    );
-
-  background-size: 48px 48px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black 0%,
-      rgba(0, 0, 0, 0.6) 45%,
-      transparent 100%
-    );
-
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      black 0%,
-      rgba(0, 0, 0, 0.6) 45%,
-      transparent 100%
-    );
-}
-
-
-/* =========================================================
-   AMBIENT LIGHT
-========================================================= */
-
-.ambient-light {
-  position: fixed;
-
-  width: 420px;
-  height: 420px;
-
-  border-radius: 50%;
-
-  pointer-events: none;
-
-  filter: blur(120px);
-
-  opacity: 0.12;
-
-  z-index: 1;
-}
-
-
-/* =========================================================
-   GLASS SYSTEM
-========================================================= */
+/* ---------- PREMIUM GLASS CARDS ---------- */
 
 .glass-card {
-  position: relative;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.055),
-      rgba(255, 255, 255, 0.015)
-    );
-
-  border: 1px solid var(--border);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.035);
-
-  transition:
-    transform 0.55s var(--ease),
-    border-color 0.35s ease,
-    background 0.35s ease,
-    box-shadow 0.55s var(--ease);
-
-  isolation: isolate;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    will-change: transform;
+    overflow: hidden;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
 }
 
-.glass-card::after {
-  content: "";
+/* Moving light reflection */
 
-  position: absolute;
+.glass-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    pointer-events: none;
+    z-index: 0;
 
-  inset: 0;
+    background:
+        radial-gradient(
+            circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 170, 0, 0.16),
+            transparent 35%
+        );
 
-  border-radius: inherit;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.045) 45%,
-      transparent 60%
-    );
-
-  opacity: 0;
-
-  transform: translateX(-30%);
-
-  transition:
-    opacity 0.4s ease,
-    transform 0.7s var(--ease);
-
-  z-index: -1;
+    opacity: 0;
+    transition: opacity 0.35s ease;
 }
+
+.glass-card:hover::before {
+    opacity: 1;
+}
+
+/* Keep content above reflection */
+
+.glass-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- PROJECT CARD DEPTH ---------- */
 
 .glass-card:hover {
-  transform:
-    translateY(-8px)
-    perspective(900px)
-    rotateX(1deg);
-
-  border-color:
-    rgba(249, 115, 22, 0.25);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.075),
-      rgba(255, 255, 255, 0.02)
-    );
-
-  box-shadow:
-    0 35px 90px rgba(0, 0, 0, 0.5),
-    0 0 50px rgba(249, 115, 22, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 170, 0, 0.35);
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(255, 170, 0, 0.08);
 }
 
-.glass-card:hover::after {
-  opacity: 1;
-  transform: translateX(30%);
-}
-
-
-/* =========================================================
-   GRADIENT TEXT
-========================================================= */
+/* ---------- 3D TEXT DEPTH ---------- */
 
 .text-gradient {
-  display: inline-block;
-
-  background:
-    linear-gradient(
-      90deg,
-      #fb923c 0%,
-      #facc15 25%,
-      #f97316 50%,
-      #fdba74 75%,
-      #fb923c 100%
-    );
-
-  background-size: 300% 100%;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  color: transparent;
-
-  animation:
-    gradientFlow 6s ease infinite;
+    text-shadow:
+        0 0 20px rgba(255, 170, 0, 0.12);
 }
 
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
+/* ---------- HERO GRID ---------- */
 
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+.hero-grid {
+    transform-style: preserve-3d;
 }
 
-
-/* =========================================================
-   NAVBAR
-========================================================= */
-
-header {
-  transform: translateZ(0);
+.hero-grid > * {
+    transform: translateZ(20px);
 }
 
-header nav {
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.3s var(--ease);
+/* ---------- PROFILE IMAGE ---------- */
+
+.profile-image,
+.hero-profile img {
+    transform-style: preserve-3d;
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
 }
 
-header nav:hover {
-  border-color: rgba(249, 115, 22, 0.15);
+.profile-image:hover,
+.hero-profile img:hover {
+    transform:
+        translateZ(25px)
+        scale(1.04);
+
+    filter:
+        brightness(1.05)
+        contrast(1.05);
 }
 
-
-/* =========================================================
-   NAV LINKS
-========================================================= */
-
-nav a {
-  transition:
-    color 0.25s ease,
-    background 0.25s ease,
-    transform 0.25s var(--ease);
-}
-
-nav a:hover {
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.magnetic {
-  position: relative;
-
-  overflow: hidden;
-
-  isolation: isolate;
-
-  transition:
-    transform 0.35s var(--ease),
-    box-shadow 0.35s ease,
-    border-color 0.3s ease,
-    background 0.3s ease;
-}
-
-.magnetic::before {
-  content: "";
-
-  position: absolute;
-
-  width: 160px;
-  height: 160px;
-
-  left: var(--mouse-x, 50%);
-  top: var(--mouse-y, 50%);
-
-  transform:
-    translate(-50%, -50%)
-    scale(0);
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.16),
-      transparent 65%
-    );
-
-  transition:
-    transform 0.5s var(--ease);
-
-  pointer-events: none;
-
-  z-index: -1;
-}
-
-.magnetic:hover::before {
-  transform:
-    translate(-50%, -50%)
-    scale(1);
-}
-
-.magnetic:hover {
-  transform: translateY(-3px);
-}
-
-
-/* =========================================================
-   ORBIT SYSTEM
-========================================================= */
+/* ---------- ORBIT RINGS ---------- */
 
 .orbit {
-  animation:
-    orbitForward 20s linear infinite;
+    transform-style: preserve-3d;
+    animation:
+        orbitRotate 14s linear infinite;
 }
 
 .orbit-reverse {
-  animation:
-    orbitReverse 28s linear infinite;
+    transform-style: preserve-3d;
+    animation:
+        orbitReverse 18s linear infinite;
 }
 
-@keyframes orbitForward {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes orbitRotate {
+    from {
+        transform: rotateZ(0deg) rotateX(8deg);
+    }
 
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotateZ(360deg) rotateX(8deg);
+    }
 }
 
 @keyframes orbitReverse {
-  from {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotateZ(360deg) rotateX(-8deg);
+    }
 
-  to {
-    transform: rotate(0deg);
-  }
+    to {
+        transform: rotateZ(0deg) rotateX(-8deg);
+    }
 }
 
-
-/* =========================================================
-   FLOATING ELEMENTS
-========================================================= */
-
-.float {
-  animation:
-    premiumFloat 5s ease-in-out infinite;
-}
-
-@keyframes premiumFloat {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(0, -12px, 0);
-  }
-}
-
-
-/* =========================================================
-   PULSE RING
-========================================================= */
-
-.pulse-ring {
-  animation:
-    pulseRing 2.3s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes pulseRing {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.8;
-  }
-
-  70% {
-    transform: scale(1.7);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1.7);
-    opacity: 0;
-  }
-}
-
-
-/* =========================================================
-   SCANLINE
-========================================================= */
-
-.scanline {
-  position: absolute;
-
-  left: 0;
-  right: 0;
-
-  height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(249, 115, 22, 0.9),
-      rgba(251, 191, 36, 0.8),
-      transparent
-    );
-
-  box-shadow:
-    0 0 12px rgba(249, 115, 22, 0.6);
-
-  animation:
-    scanlineMove 4.5s linear infinite;
-
-  pointer-events: none;
-
-  z-index: 20;
-}
-
-@keyframes scanlineMove {
-  0% {
-    top: -5%;
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
-    top: 105%;
-    opacity: 0;
-  }
-}
-
-
-/* =========================================================
-   TECH CHIPS
-========================================================= */
+/* ---------- FLOATING TECH LABELS ---------- */
 
 .tech-chip {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 6px 10px;
-
-  border-radius: 9px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.07);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.045),
-      rgba(255, 255, 255, 0.015)
-    );
-
-  color: #94a3b8;
-
-  font-family:
-    "SFMono-Regular",
-    Consolas,
-    "Liberation Mono",
-    monospace;
-
-  font-size: 9px;
-
-  line-height: 1;
-
-  letter-spacing: 0.01em;
-
-  transition:
-    color 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease,
-    transform 0.25s var(--ease);
+    transform-style: preserve-3d;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .tech-chip:hover {
-  color: #fdba74;
+    transform:
+        translateZ(20px)
+        translateY(-4px)
+        scale(1.06);
 
-  border-color:
-    rgba(249, 115, 22, 0.25);
-
-  background:
-    rgba(249, 115, 22, 0.06);
-
-  transform:
-    translateY(-2px);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 0 18px rgba(255, 170, 0, 0.12);
 }
 
+/* ---------- MAGNETIC BUTTONS ---------- */
 
-/* =========================================================
-   PROJECT CARDS
-========================================================= */
-
-.project-number {
-  font-family:
-    "SFMono-Regular",
-    Consolas,
-    monospace;
-
-  letter-spacing: 0.18em;
-
-  opacity: 0.9;
+.magnetic {
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
-article.glass-card {
-  min-height: 340px;
+.magnetic::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
 
-  display: flex;
-  flex-direction: column;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+    transition:
+        box-shadow 0.3s ease;
 }
 
-article.glass-card > div:last-child {
-  margin-top: auto;
+.magnetic:hover::after {
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 170, 0, 0.2),
+        0 0 25px rgba(255, 170, 0, 0.08);
 }
 
+/* ---------- SCROLL REVEAL ---------- */
 
-/* =========================================================
-   PROJECT HOVER GLOW
-========================================================= */
+.js-reveal {
+    opacity: 0;
+    transform:
+        translateY(45px)
+        scale(0.97);
 
-article.glass-card:hover h3 {
-  text-shadow:
-    0 0 25px rgba(249, 115, 22, 0.15);
+    transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
-/* =========================================================
-   IMAGE
-========================================================= */
-
-img {
-  max-width: 100%;
+.js-reveal.revealed {
+    opacity: 1;
+    transform:
+        translateY(0)
+        scale(1);
 }
 
-img[alt="Priyanshu Kumar"] {
-  transition:
-    transform 0.8s var(--ease),
-    filter 0.8s ease;
+/* ---------- CINEMATIC ENTRANCE ---------- */
+
+.js-enter {
+    opacity: 0;
+    transform:
+        translateY(25px)
+        scale(0.98);
+
+    animation:
+        cinematicEnter 1s cubic-bezier(0.16, 1, 0.3, 1)
+        forwards;
 }
 
-img[alt="Priyanshu Kumar"]:hover {
-  transform: scale(1.025);
-  filter: brightness(1.04) contrast(1.02);
+@keyframes cinematicEnter {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(25px)
+            scale(0.98);
+        filter: blur(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+        filter: blur(0);
+    }
 }
 
-
-/* =========================================================
-   PROFILE POD
-========================================================= */
-
-#about {
-  perspective: 1400px;
-}
-
-#about img {
-  transform:
-    translateZ(20px);
-}
-
-
-/* =========================================================
-   SECTION HEADINGS
-========================================================= */
+/* ---------- SECTION HEADINGS ---------- */
 
 section h2 {
-  letter-spacing: -0.04em;
+    position: relative;
+    transform-style: preserve-3d;
 }
 
-section p {
-  text-wrap: pretty;
+section h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+
+    width: 60px;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        rgba(255, 170, 0, 0.9),
+        transparent
+    );
+
+    box-shadow:
+        0 0 15px rgba(255, 170, 0, 0.3);
+
+    transform-origin: left;
+    transform: scaleX(0);
+
+    transition:
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
-/* =========================================================
-   DIVIDERS
-========================================================= */
-
-section + section {
-  scroll-margin-top: 100px;
+section:hover h2::after {
+    transform: scaleX(1);
 }
 
+/* ---------- PROJECT IMAGE EFFECT ---------- */
 
-/* =========================================================
-   MODALS
-========================================================= */
+.glass-card img {
+    transition:
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.6s ease;
+}
 
-#projectModal,
-#spotlight,
+.glass-card:hover img {
+    transform:
+        scale(1.035)
+        translateZ(10px);
+
+    filter:
+        brightness(1.05)
+        saturate(1.08);
+}
+
+/* ---------- CUSTOM CURSOR GLOW ---------- */
+
+.cursor-glow {
+    position: fixed;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 9998;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 170, 0, 0.10) 0%,
+            rgba(255, 170, 0, 0.04) 25%,
+            transparent 70%
+        );
+
+    transform:
+        translate(-50%, -50%);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+/* ---------- SCROLL PROGRESS ---------- */
+
+.scroll-progress {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 0%;
+    height: 2px;
+
+    z-index: 10000;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 140, 0, 0.9),
+            rgba(255, 200, 80, 1)
+        );
+
+    box-shadow:
+        0 0 12px rgba(255, 170, 0, 0.4);
+
+    pointer-events: none;
+}
+
+/* ---------- BACK TO TOP ---------- */
+
+.back-to-top {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 170, 0, 0.25);
+
+    background:
+        rgba(15, 15, 15, 0.75);
+
+    backdrop-filter: blur(12px);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translateY(15px)
+        scale(0.8);
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease;
+
+    z-index: 9997;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.back-to-top:hover {
+    border-color: rgba(255, 170, 0, 0.6);
+
+    box-shadow:
+        0 0 25px rgba(255, 170, 0, 0.15);
+
+    transform:
+        translateY(-4px)
+        scale(1.05);
+}
+
+/* ---------- AI CHAT ---------- */
+
 #aiChat {
-  animation:
-    fadeIn 0.25s ease forwards;
+    transform-origin: bottom right;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+#aiChat:not(.hidden) {
+    animation:
+        chatOpen 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#projectModalBox {
-  animation:
-    modalEnter 0.45s var(--ease);
+@keyframes chatOpen {
+    from {
+        opacity: 0;
+        transform:
+            translateY(15px)
+            scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
-@keyframes modalEnter {
-  from {
-    opacity: 0;
-    transform:
-      translateY(30px)
-      scale(0.96);
-  }
+/* ---------- CHAT MESSAGE ---------- */
 
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
+.chat-message {
+    animation:
+        messageIn 0.3s ease;
 }
 
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform:
+            translateY(8px);
+    }
 
-/* =========================================================
-   CHAT
-========================================================= */
-
-#aiChat {
-  box-shadow:
-    0 35px 100px rgba(0, 0, 0, 0.8),
-    0 0 50px rgba(249, 115, 22, 0.06);
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
 }
 
-#chatInput {
-  transition:
-    border-color 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-#chatInput:focus {
-  background: rgba(255, 255, 255, 0.055);
-
-  border-color:
-    rgba(249, 115, 22, 0.35);
-
-  box-shadow:
-    0 0 0 3px rgba(249, 115, 22, 0.05);
-}
-
-
-/* =========================================================
-   SPOTLIGHT
-========================================================= */
-
-#spotlight > div > div {
-  animation:
-    spotlightEnter 0.35s var(--ease);
-}
-
-@keyframes spotlightEnter {
-  from {
-    opacity: 0;
-    transform:
-      translateY(-20px)
-      scale(0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
-
-.spotlight-item {
-  transition:
-    background 0.2s ease,
-    transform 0.2s var(--ease);
-}
-
-.spotlight-item:hover {
-  transform: translateX(4px);
-}
-
-
-/* =========================================================
-   SUITE MENU
-========================================================= */
-
-#suiteMenu {
-  animation:
-    menuEnter 0.3s var(--ease);
-}
-
-@keyframes menuEnter {
-  from {
-    opacity: 0;
-    transform:
-      translateY(-8px)
-      scale(0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
-
-
-/* =========================================================
-   MOBILE NAV
-========================================================= */
-
-@media (max-width: 1023px) {
-
-  header nav {
-    border-radius: 20px;
-  }
-
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
+/* ---------- MOBILE ---------- */
 
 @media (max-width: 768px) {
 
-  body {
-    font-size: 15px;
-  }
+    body {
+        perspective: none;
+    }
 
-  .hero-grid {
-    background-size: 34px 34px;
-    opacity: 0.35;
-  }
+    .glass-card {
+        transform: none !important;
+    }
 
-  #three-bg {
-    opacity: 0.65;
-  }
+    .cursor-glow {
+        display: none;
+    }
 
-  .glass-card:hover {
-    transform: translateY(-4px);
-  }
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+    }
 
-  article.glass-card {
-    min-height: 310px;
-  }
+    .glass-card:hover {
+        transform: translateY(-3px) !important;
+    }
 
+    .orbit {
+        animation-duration: 20s;
+    }
+
+    .orbit-reverse {
+        animation-duration: 24s;
+    }
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 640px) {
-
-  body {
-    overflow-x: hidden;
-  }
-
-  header {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-
-  header nav {
-    border-radius: 18px;
-    padding: 7px;
-  }
-
-  .hero-grid {
-    background-size: 30px 30px;
-    opacity: 0.25;
-  }
-
-  #three-bg {
-    opacity: 0.45;
-  }
-
-  .glass-card {
-    border-radius: 22px;
-  }
-
-  .glass-card:hover {
-    transform: translateY(-3px);
-  }
-
-  article.glass-card {
-    min-height: auto;
-  }
-
-  .tech-chip {
-    padding: 6px 9px;
-    font-size: 8px;
-  }
-
-  #projectModal {
-    padding: 10px;
-  }
-
-  #projectModalBox {
-    max-height: 92vh;
-    border-radius: 24px;
-    padding: 20px;
-  }
-
-  #aiChat {
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    width: auto;
-    border-radius: 24px;
-  }
-
-  #chatMessages {
-    height: 320px;
-  }
-
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 390px) {
-
-  header nav {
-    padding: 6px;
-  }
-
-  #suiteBtn {
-    padding-left: 9px;
-    padding-right: 9px;
-  }
-
-  #about h1 {
-    font-size: 3.4rem;
-  }
-
-}
-
-
-/* =========================================================
-   PERFORMANCE
-========================================================= */
-
-.glass-card,
-.magnetic,
-.orbit,
-.orbit-reverse,
-.float {
-  will-change: transform;
-}
-
-#three-bg {
-  contain: strict;
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
+/* ---------- REDUCED MOTION ---------- */
 
 @media (prefers-reduced-motion: reduce) {
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    html {
+        scroll-behavior: auto;
+    }
 
-    scroll-behavior: auto !important;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 
-    transition-duration: 0.01ms !important;
-  }
-
-  .glass-card:hover,
-  .magnetic:hover {
-    transform: none;
-  }
-
-}
-
-
-/* =========================================================
-   PREMIUM LIGHT SWEEP
-========================================================= */
-
-@keyframes lightSweep {
-
-  0% {
-    transform: translateX(-120%);
-  }
-
-  100% {
-    transform: translateX(120%);
-  }
-
-}
-
-
-/* =========================================================
-   CURSOR GLOW SUPPORT
-========================================================= */
-
-.cursor-glow {
-  position: fixed;
-
-  width: 280px;
-  height: 280px;
-
-  border-radius: 50%;
-
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(249, 115, 22, 0.08),
-      transparent 68%
-    );
-
-  transform:
-    translate(-50%, -50%);
-
-  z-index: 2;
-
-  mix-blend-mode: screen;
-
-  transition:
-    opacity 0.3s ease;
-}
-
-
-/* =========================================================
-   HERO ENERGY
-========================================================= */
-
-.hero-energy {
-  position: absolute;
-
-  width: 220px;
-  height: 220px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(249, 115, 22, 0.13),
-      transparent 70%
-    );
-
-  filter: blur(20px);
-
-  pointer-events: none;
-
-  animation:
-    energyPulse 4s ease-in-out infinite;
-}
-
-@keyframes energyPulse {
-
-  0%,
-  100% {
-    transform: scale(0.9);
-    opacity: 0.6;
-  }
-
-  50% {
-    transform: scale(1.15);
-    opacity: 1;
-  }
-
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-  position: relative;
-}
-
-footer::before {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  top: 0;
-
-  width: 50%;
-
-  height: 1px;
-
-  transform: translateX(-50%);
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(249, 115, 22, 0.25),
-      transparent
-    );
-}
-
-
-/* =========================================================
-   PRINT
-========================================================= */
-
-@media print {
-
-  #three-bg,
-  .hero-grid,
-  header,
-  #aiChat,
-  #spotlight,
-  #projectModal {
-    display: none !important;
-  }
-
-  body {
-    background: white;
-    color: black;
-  }
-
+    .js-reveal {
+        opacity: 1;
+        transform: none;
+    }
 }
