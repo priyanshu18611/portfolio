@@ -10013,6 +10013,793 @@
     })();
 
   </script>
+  <!-- =========================================================
+     PART 7
+     CINEMATIC LOADER + CAREERPILOT AI + PREMIUM 3D LAYER
+========================================================== -->
+
+<style>
+
+/* =========================================================
+   CINEMATIC LOADER
+========================================================= */
+
+#pkLoader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(249,115,22,.10), transparent 28%),
+    radial-gradient(circle at 50% 50%, rgba(99,102,241,.08), transparent 45%),
+    #020307;
+  overflow: hidden;
+  transition:
+    opacity 1s cubic-bezier(.16,1,.3,1),
+    visibility 1s ease;
+}
+
+#pkLoader.loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.pk-loader-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 45px 45px;
+  mask-image: radial-gradient(circle at center, black, transparent 75%);
+}
+
+.pk-loader-core {
+  position: relative;
+  width: min(430px, 90vw);
+  text-align: center;
+}
+
+.pk-loader-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 230px;
+  height: 230px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(249,115,22,.18);
+  animation: pkOrbit 7s linear infinite;
+}
+
+.pk-loader-orbit::before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fb923c;
+  box-shadow:
+    0 0 15px #fb923c,
+    0 0 35px rgba(249,115,22,.8);
+  top: -3px;
+  left: 50%;
+}
+
+.pk-loader-orbit.two {
+  width: 290px;
+  height: 170px;
+  border-color: rgba(99,102,241,.16);
+  animation-duration: 10s;
+  animation-direction: reverse;
+  transform: translate(-50%, -50%) rotate(55deg);
+}
+
+.pk-loader-orbit.two::before {
+  background: #818cf8;
+  box-shadow:
+    0 0 15px #818cf8,
+    0 0 35px rgba(99,102,241,.7);
+}
+
+.pk-loader-orbit.three {
+  width: 180px;
+  height: 300px;
+  border-color: rgba(16,185,129,.12);
+  animation-duration: 13s;
+  transform: translate(-50%, -50%) rotate(115deg);
+}
+
+.pk-loader-orbit.three::before {
+  background: #34d399;
+  box-shadow:
+    0 0 15px #34d399,
+    0 0 30px rgba(16,185,129,.7);
+}
+
+@keyframes pkOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.pk-loader-logo {
+  position: relative;
+  z-index: 5;
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 28px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 1000;
+  letter-spacing: -.08em;
+  color: #050505;
+  background:
+    linear-gradient(
+      135deg,
+      #fb923c,
+      #facc15,
+      #fb923c
+    );
+  box-shadow:
+    0 0 35px rgba(249,115,22,.35),
+    0 0 90px rgba(249,115,22,.12);
+  animation: pkLogoFloat 2s ease-in-out infinite;
+}
+
+@keyframes pkLogoFloat {
+  0%,100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(2deg);
+  }
+}
+
+.pk-loader-name {
+  position: relative;
+  z-index: 5;
+  font-size: clamp(26px, 6vw, 52px);
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: -.055em;
+  color: white;
+}
+
+.pk-loader-name span {
+  background:
+    linear-gradient(
+      90deg,
+      #fb923c,
+      #facc15,
+      #fb923c,
+      #f97316
+    );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pkGradient 4s ease infinite;
+}
+
+@keyframes pkGradient {
+  0%,100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.pk-loader-subtitle {
+  position: relative;
+  z-index: 5;
+  margin-top: 13px;
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: .35em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.pk-loader-status {
+  position: relative;
+  z-index: 5;
+  margin-top: 30px;
+}
+
+.pk-loader-status-line {
+  width: min(300px, 75vw);
+  height: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.07);
+}
+
+.pk-loader-progress {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, #f97316, #facc15);
+  box-shadow: 0 0 15px rgba(249,115,22,.6);
+  animation: pkProgress 2.6s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes pkProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.pk-loader-status-text {
+  margin-top: 10px;
+  font-family: monospace;
+  font-size: 8px;
+  letter-spacing: .25em;
+  color: #475569;
+}
+
+
+/* =========================================================
+   PREMIUM 3D AMBIENT LAYER
+========================================================= */
+
+.pk-3d-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.pk-3d-glow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(
+      circle,
+      rgba(249,115,22,.075),
+      rgba(99,102,241,.035) 35%,
+      transparent 70%
+    );
+  filter: blur(20px);
+  animation: pkCorePulse 5s ease-in-out infinite;
+}
+
+@keyframes pkCorePulse {
+  0%,100% {
+    transform: translate(-50%,-50%) scale(.92);
+    opacity: .65;
+  }
+
+  50% {
+    transform: translate(-50%,-50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+.pk-3d-ring {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 520px;
+  height: 180px;
+  border: 1px solid rgba(249,115,22,.08);
+  border-radius: 50%;
+  transform:
+    translate(-50%,-50%)
+    rotateX(68deg)
+    rotateZ(15deg);
+  animation: pkRingOne 18s linear infinite;
+}
+
+.pk-3d-ring.r2 {
+  width: 700px;
+  height: 240px;
+  border-color: rgba(99,102,241,.07);
+  transform:
+    translate(-50%,-50%)
+    rotateX(68deg)
+    rotateZ(-35deg);
+  animation-duration: 25s;
+  animation-direction: reverse;
+}
+
+.pk-3d-ring.r3 {
+  width: 380px;
+  height: 130px;
+  border-color: rgba(16,185,129,.06);
+  transform:
+    translate(-50%,-50%)
+    rotateX(68deg)
+    rotateZ(75deg);
+  animation-duration: 13s;
+}
+
+@keyframes pkRingOne {
+  from {
+    transform:
+      translate(-50%,-50%)
+      rotateX(68deg)
+      rotateZ(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%,-50%)
+      rotateX(68deg)
+      rotateZ(360deg);
+  }
+}
+
+
+/* =========================================================
+   CAREERPILOT AI FLOATING BUTTON
+========================================================= */
+
+#careerPilotLauncher {
+  position: fixed;
+  right: 20px;
+  bottom: 22px;
+  z-index: 180;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  border-radius: 18px;
+  border: 1px solid rgba(249,115,22,.28);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20,12,5,.92),
+      rgba(10,10,15,.94)
+    );
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  color: white;
+  text-decoration: none;
+  box-shadow:
+    0 15px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(249,115,22,.08);
+  transition:
+    transform .3s cubic-bezier(.16,1,.3,1),
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+#careerPilotLauncher:hover {
+  transform: translateY(-6px) scale(1.025);
+  border-color: rgba(249,115,22,.65);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,.65),
+    0 0 35px rgba(249,115,22,.18);
+}
+
+.cp-launch-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg,#f97316,#facc15);
+  color: #050505;
+  box-shadow: 0 0 20px rgba(249,115,22,.3);
+}
+
+.cp-launch-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-launch-title {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .03em;
+}
+
+.cp-launch-sub {
+  margin-top: 2px;
+  font-family: monospace;
+  font-size: 7px;
+  letter-spacing: .16em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.cp-launch-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 10px rgba(52,211,153,.8);
+  animation: cpDot 1.7s ease-in-out infinite;
+}
+
+@keyframes cpDot {
+  0%,100% {
+    opacity: .4;
+    transform: scale(.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+
+/* =========================================================
+   CAREERPILOT HERO CTA
+========================================================= */
+
+.careerpilot-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.careerpilot-cta::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent,
+      rgba(249,115,22,.28),
+      transparent 25%
+    );
+  animation: cpSweep 4s linear infinite;
+}
+
+.careerpilot-cta::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: #090b10;
+}
+
+.careerpilot-cta > * {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes cpSweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  #careerPilotLauncher {
+    right: 12px;
+    bottom: 14px;
+    padding: 9px 11px;
+    border-radius: 15px;
+  }
+
+  .cp-launch-icon {
+    width: 31px;
+    height: 31px;
+  }
+
+  .cp-launch-title {
+    font-size: 9px;
+  }
+
+  .cp-launch-sub {
+    font-size: 6px;
+  }
+
+  .pk-loader-orbit {
+    width: 190px;
+    height: 190px;
+  }
+
+  .pk-loader-orbit.two {
+    width: 240px;
+    height: 145px;
+  }
+
+  .pk-loader-orbit.three {
+    width: 150px;
+    height: 250px;
+  }
+
+  .pk-3d-ring {
+    width: 330px;
+    height: 120px;
+  }
+
+  .pk-3d-ring.r2 {
+    width: 430px;
+    height: 160px;
+  }
+
+  .pk-3d-ring.r3 {
+    width: 260px;
+    height: 90px;
+  }
+}
+
+</style>
+
+
+<!-- =========================================================
+     CINEMATIC LOADER
+========================================================= -->
+
+<div id="pkLoader">
+
+  <div class="pk-loader-grid"></div>
+
+  <div class="pk-loader-core">
+
+    <div class="pk-loader-orbit"></div>
+    <div class="pk-loader-orbit two"></div>
+    <div class="pk-loader-orbit three"></div>
+
+    <div class="pk-loader-logo">
+      PK
+    </div>
+
+    <div class="pk-loader-name">
+      Priyanshu <span>Kumar.</span>
+    </div>
+
+    <div class="pk-loader-subtitle">
+      Software × Data × AI
+    </div>
+
+    <div class="pk-loader-status">
+
+      <div class="pk-loader-status-line">
+        <div class="pk-loader-progress"></div>
+      </div>
+
+      <div class="pk-loader-status-text" id="pkLoaderText">
+        INITIALIZING DIGITAL EXPERIENCE
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PREMIUM 3D AMBIENT BACKGROUND
+========================================================= -->
+
+<div class="pk-3d-ambient">
+
+  <div class="pk-3d-glow"></div>
+
+  <div class="pk-3d-ring"></div>
+
+  <div class="pk-3d-ring r2"></div>
+
+  <div class="pk-3d-ring r3"></div>
+
+</div>
+
+
+<!-- =========================================================
+     CAREERPILOT AI LAUNCHER
+========================================================= -->
+
+<a
+  id="careerPilotLauncher"
+  href="https://priyanshu18611.github.io/careerpilot-ai/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Open CareerPilot AI"
+>
+
+  <div class="cp-launch-icon">
+    <i data-lucide="sparkles" style="width:17px;height:17px;"></i>
+  </div>
+
+  <div class="cp-launch-text">
+
+    <div class="cp-launch-title">
+      CareerPilot AI
+    </div>
+
+    <div class="cp-launch-sub">
+      AI Career Platform
+    </div>
+
+  </div>
+
+  <div class="cp-launch-dot"></div>
+
+</a>
+
+
+<!-- =========================================================
+     PART 7 JAVASCRIPT
+========================================================= -->
+
+<script>
+
+(function () {
+
+  /* =======================================================
+     CINEMATIC LOADER
+  ======================================================= */
+
+  const loader = document.getElementById("pkLoader");
+  const loaderText = document.getElementById("pkLoaderText");
+
+  if (loader) {
+
+    const messages = [
+      "INITIALIZING DIGITAL EXPERIENCE",
+      "LOADING PRIYANSHU KUMAR",
+      "CONNECTING SOFTWARE × DATA × AI",
+      "BUILDING 3D ENVIRONMENT",
+      "SYSTEM READY"
+    ];
+
+    let index = 0;
+
+    const messageTimer = setInterval(() => {
+
+      index++;
+
+      if (index < messages.length && loaderText) {
+        loaderText.textContent = messages[index];
+      }
+
+    }, 520);
+
+    window.addEventListener("load", () => {
+
+      setTimeout(() => {
+
+        clearInterval(messageTimer);
+
+        if (loaderText) {
+          loaderText.textContent = "WELCOME";
+        }
+
+        setTimeout(() => {
+
+          loader.classList.add("loader-hidden");
+
+          setTimeout(() => {
+            loader.remove();
+          }, 1100);
+
+        }, 450);
+
+      }, 1500);
+
+    });
+
+  }
+
+
+  /* =======================================================
+     CAREERPILOT ICON REFRESH
+  ======================================================= */
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+
+
+  /* =======================================================
+     3D MOUSE PARALLAX
+  ======================================================= */
+
+  const ambient = document.querySelector(".pk-3d-ambient");
+
+  if (ambient && window.matchMedia("(pointer:fine)").matches) {
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    window.addEventListener("mousemove", (event) => {
+
+      targetX =
+        (event.clientX / window.innerWidth - 0.5) * 18;
+
+      targetY =
+        (event.clientY / window.innerHeight - 0.5) * 18;
+
+    }, { passive: true });
+
+
+    function animateParallax() {
+
+      currentX += (targetX - currentX) * 0.045;
+      currentY += (targetY - currentY) * 0.045;
+
+      ambient.style.transform =
+        `translate3d(${currentX}px, ${currentY}px, 0)`;
+
+      requestAnimationFrame(animateParallax);
+
+    }
+
+    animateParallax();
+
+  }
+
+
+  /* =======================================================
+     CAREERPILOT MAGNETIC EFFECT
+  ======================================================= */
+
+  const cpButton =
+    document.getElementById("careerPilotLauncher");
+
+  if (
+    cpButton &&
+    window.matchMedia("(pointer:fine)").matches
+  ) {
+
+    cpButton.addEventListener("mousemove", (event) => {
+
+      const rect = cpButton.getBoundingClientRect();
+
+      const x =
+        event.clientX -
+        rect.left -
+        rect.width / 2;
+
+      const y =
+        event.clientY -
+        rect.top -
+        rect.height / 2;
+
+      cpButton.style.transform =
+        `translate(${x * .08}px, ${y * .08}px) translateY(-5px)`;
+
+    });
+
+    cpButton.addEventListener("mouseleave", () => {
+
+      cpButton.style.transform = "";
+
+    });
+
+  }
+
+})();
+
+</script>
 
 </body>
 
