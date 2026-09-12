@@ -14680,6 +14680,291 @@
 
 })();
 </script>
+  <!-- =========================================================
+     PART 15 — HERO CLEANUP + DUPLICATE FIX
+     ========================================================= -->
+
+<style>
+/* ---------- HERO POSITION FIX ---------- */
+
+@media (min-width: 768px) {
+  section:first-of-type {
+    min-height: 760px !important;
+  }
+
+  section:first-of-type {
+    padding-top: 90px !important;
+    padding-bottom: 70px !important;
+  }
+}
+
+/* ---------- REMOVE BAD FLOATING STATUS ---------- */
+
+.pk-hero-status {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  z-index: 20 !important;
+  margin: 0 auto 24px !important;
+  width: fit-content !important;
+}
+
+/* ---------- HERO SOCIALS ---------- */
+
+.pk-hero-socials {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+/* ---------- CAREERPILOT HERO BUTTON ---------- */
+
+.pk-career-hero {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin-top: 14px !important;
+}
+
+/* ---------- 3D ORB ---------- */
+
+#pkHeroOrb {
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+#pkHeroOrb * {
+  pointer-events: none !important;
+}
+
+/* ---------- CONTENT ABOVE 3D ---------- */
+
+section:first-of-type > * {
+  position: relative;
+  z-index: 5;
+}
+
+/* ---------- FLOATING CAREERPILOT ---------- */
+
+#careerPilotLauncher {
+  z-index: 9998 !important;
+}
+
+/* ---------- COMMAND CENTER ---------- */
+
+#pkCommandCenter {
+  z-index: 9999 !important;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 767px) {
+
+  section:first-of-type {
+    min-height: auto !important;
+    padding-top: 55px !important;
+    padding-bottom: 70px !important;
+  }
+
+  .pk-hero-status {
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    font-size: 8px !important;
+  }
+
+  .pk-hero-socials {
+    flex-wrap: wrap !important;
+    margin-top: 14px !important;
+  }
+
+  .pk-career-hero {
+    margin-top: 12px !important;
+  }
+
+  #pkHeroOrb {
+    opacity: .55 !important;
+    transform: scale(.72) !important;
+  }
+}
+
+/* ---------- PREVENT HORIZONTAL OVERFLOW ---------- */
+
+html,
+body {
+  overflow-x: hidden !important;
+}
+
+/* ---------- CLEAN GLASS EFFECT ---------- */
+
+.pk-hero-social,
+.pk-career-hero,
+.pk-hero-status {
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* ---------- BUTTON HOVER ---------- */
+
+.pk-hero-social,
+.pk-career-hero {
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease !important;
+}
+
+.pk-hero-social:hover,
+.pk-career-hero:hover {
+  transform: translateY(-3px) !important;
+}
+</style>
+
+
+<script>
+/* =========================================================
+   PART 15 — DOM CLEANUP
+   ========================================================= */
+
+(function () {
+
+  function getRealHero() {
+
+    const allSections = document.querySelectorAll("section");
+
+    for (const section of allSections) {
+
+      const text = section.innerText || "";
+
+      if (
+        text.includes("HELLO, I’M") ||
+        text.includes("HELLO, I'M") ||
+        text.includes("Priyanshu Kumar")
+      ) {
+        return section;
+      }
+
+    }
+
+    return document.querySelector("section:first-of-type");
+  }
+
+
+  function cleanHero() {
+
+    const hero = getRealHero();
+
+    if (!hero) return;
+
+
+    /* Move Part-14 status into the actual hero */
+
+    const status = document.querySelector(".pk-hero-status");
+
+    if (status && !hero.contains(status)) {
+      hero.insertBefore(status, hero.firstChild);
+    }
+
+
+    /* Move Part-14 socials into hero */
+
+    const socials = document.querySelector(".pk-hero-socials");
+
+    if (socials && !hero.contains(socials)) {
+      hero.appendChild(socials);
+    }
+
+
+    /* Move CareerPilot hero button into hero */
+
+    const careerHero = document.querySelector(".pk-career-hero");
+
+    if (careerHero && !hero.contains(careerHero)) {
+      hero.appendChild(careerHero);
+    }
+
+
+    /* Remove duplicate CareerPilot hero buttons */
+
+    const careerButtons =
+      document.querySelectorAll(".pk-career-hero");
+
+    if (careerButtons.length > 1) {
+
+      for (let i = 1; i < careerButtons.length; i++) {
+        careerButtons[i].remove();
+      }
+
+    }
+
+
+    /* Remove duplicate hero social groups */
+
+    const socialGroups =
+      document.querySelectorAll(".pk-hero-socials");
+
+    if (socialGroups.length > 1) {
+
+      for (let i = 1; i < socialGroups.length; i++) {
+        socialGroups[i].remove();
+      }
+
+    }
+
+
+    /* Remove duplicate status badges */
+
+    const statuses =
+      document.querySelectorAll(".pk-hero-status");
+
+    if (statuses.length > 1) {
+
+      for (let i = 1; i < statuses.length; i++) {
+        statuses[i].remove();
+      }
+
+    }
+
+  }
+
+
+  /* Run after everything loads */
+
+  if (document.readyState === "loading") {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      cleanHero
+    );
+
+  } else {
+
+    cleanHero();
+
+  }
+
+
+  window.addEventListener(
+    "load",
+    function () {
+      setTimeout(cleanHero, 500);
+    }
+  );
+
+})();
+</script>
 </body>
 
 </html>
