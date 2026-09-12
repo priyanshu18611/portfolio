@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
   <meta
@@ -25,11 +24,11 @@
   >
 
   <title>
-    Priyanshu Kumar | Software Engineer
+    Priyanshu Kumar | Software Engineer • Full Stack • Data Analytics
   </title>
 
   <!-- =====================================================
-       FONTS
+       PREMIUM FONTS
        ===================================================== -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,63 +54,43 @@
        THREE.JS
        ===================================================== -->
 
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 
   <style>
 
     /* =====================================================
-       GLOBAL DESIGN SYSTEM
+       PRIYANSHU KUMAR
+       ULTRA PREMIUM PORTFOLIO
+       PART 1 — FOUNDATION
        ===================================================== */
 
     :root {
 
-      --pk-bg:
-        #03050d;
+      --pk-bg: #03050d;
+      --pk-bg-soft: #070b18;
 
-      --pk-bg-2:
-        #070b18;
+      --pk-white: #f7faff;
+      --pk-text: #edf2ff;
 
-      --pk-surface:
-        rgba(15, 20, 42, .58);
+      --pk-muted: #9ba7c1;
+      --pk-dim: #68738d;
 
-      --pk-surface-strong:
-        rgba(13, 18, 38, .82);
-
-      --pk-white:
-        #f8fbff;
-
-      --pk-text:
-        #eef3ff;
-
-      --pk-muted:
-        #9ba7c1;
-
-      --pk-dim:
-        #68738d;
-
-      --pk-cyan:
-        #55e6ff;
-
-      --pk-blue:
-        #6685ff;
-
-      --pk-violet:
-        #a56cff;
-
-      --pk-pink:
-        #ff63c7;
+      --pk-cyan: #55e6ff;
+      --pk-blue: #6685ff;
+      --pk-violet: #a56cff;
+      --pk-pink: #ff63c7;
 
       --pk-border:
         rgba(255,255,255,.085);
 
-      --pk-border-strong:
-        rgba(255,255,255,.16);
+      --pk-border-bright:
+        rgba(255,255,255,.17);
 
-      --pk-radius:
-        24px;
+      --pk-glass:
+        rgba(9,14,31,.58);
+
+      --pk-radius: 24px;
 
       --pk-ease:
         cubic-bezier(.22,1,.36,1);
@@ -123,26 +102,36 @@
        RESET
        ===================================================== */
 
-    * {
+    *,
+    *::before,
+    *::after {
+
       margin: 0;
       padding: 0;
+
       box-sizing: border-box;
+
     }
 
 
     html {
-      scroll-behavior: smooth;
+
+      scroll-behavior:
+        smooth;
 
       background:
         var(--pk-bg);
+
     }
 
 
     body {
 
-      min-height: 100vh;
+      min-height:
+        100vh;
 
-      overflow-x: hidden;
+      overflow-x:
+        hidden;
 
       color:
         var(--pk-text);
@@ -151,12 +140,12 @@
 
         radial-gradient(
           circle at 50% -20%,
-          rgba(91,112,255,.18),
+          rgba(89,108,255,.17),
           transparent 38%
         ),
 
         radial-gradient(
-          circle at 90% 30%,
+          circle at 90% 25%,
           rgba(85,230,255,.055),
           transparent 30%
         ),
@@ -172,29 +161,45 @@
 
       text-rendering:
         optimizeLegibility;
+
     }
 
 
     body.pk-loading {
-      overflow: hidden;
+
+      overflow:
+        hidden;
+
     }
 
 
     a {
-      color: inherit;
-      text-decoration: none;
+
+      color:
+        inherit;
+
+      text-decoration:
+        none;
+
     }
 
 
     button {
-      font: inherit;
+
+      font:
+        inherit;
+
     }
 
 
-    button,
-    a {
-      -webkit-tap-highlight-color:
-        transparent;
+    img {
+
+      max-width:
+        100%;
+
+      display:
+        block;
+
     }
 
 
@@ -210,53 +215,74 @@
 
 
     /* =====================================================
-       GLOBAL VISUAL ATMOSPHERE
+       THREE.JS BACKGROUND
        ===================================================== */
 
-    #pk-three-background {
+    #pk-three-bg {
 
-      position: fixed;
+      position:
+        fixed;
 
-      inset: 0;
+      inset:
+        0;
 
-      z-index: 0;
+      z-index:
+        0;
 
-      width: 100%;
-      height: 100%;
+      width:
+        100%;
 
-      pointer-events: none;
+      height:
+        100%;
 
-      opacity: .92;
+      pointer-events:
+        none;
+
+      opacity:
+        .9;
+
+    }
+
+
+    #pk-three-bg canvas {
+
+      display:
+        block;
+
+      width:
+        100%;
+
+      height:
+        100%;
 
     }
 
 
-    #pk-three-background canvas {
-
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-    }
-
+    /* =====================================================
+       CINEMATIC ATMOSPHERE
+       ===================================================== */
 
     .pk-noise {
 
-      position: fixed;
+      position:
+        fixed;
 
-      inset: 0;
+      inset:
+        0;
 
-      z-index: 9990;
+      z-index:
+        9990;
 
-      pointer-events: none;
+      pointer-events:
+        none;
 
-      opacity: .028;
+      opacity:
+        .025;
 
       background-image:
 
         url(
-          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='pkNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23pkNoise)'/%3E%3C/svg%3E"
         );
 
     }
@@ -264,20 +290,24 @@
 
     .pk-vignette {
 
-      position: fixed;
+      position:
+        fixed;
 
-      inset: 0;
+      inset:
+        0;
 
-      z-index: 9989;
+      z-index:
+        9989;
 
-      pointer-events: none;
+      pointer-events:
+        none;
 
       background:
 
         radial-gradient(
           circle at center,
           transparent 38%,
-          rgba(0,0,0,.42) 100%
+          rgba(0,0,0,.4) 100%
         );
 
     }
@@ -289,19 +319,29 @@
 
     #pk-cursor-light {
 
-      position: fixed;
+      position:
+        fixed;
 
-      left: 0;
-      top: 0;
+      left:
+        0;
 
-      width: 340px;
-      height: 340px;
+      top:
+        0;
 
-      z-index: 9995;
+      width:
+        340px;
 
-      pointer-events: none;
+      height:
+        340px;
 
-      border-radius: 50%;
+      z-index:
+        9995;
+
+      pointer-events:
+        none;
+
+      border-radius:
+        50%;
 
       transform:
         translate3d(-50%,-50%,0);
@@ -310,7 +350,7 @@
 
         radial-gradient(
           circle,
-          rgba(85,230,255,.095),
+          rgba(85,230,255,.09),
           rgba(108,124,255,.045) 32%,
           transparent 70%
         );
@@ -318,10 +358,11 @@
       filter:
         blur(3px);
 
-      opacity: 0;
+      opacity:
+        0;
 
       transition:
-        opacity .4s ease;
+        opacity .35s ease;
 
     }
 
@@ -329,7 +370,8 @@
     body.pk-pointer-active
     #pk-cursor-light {
 
-      opacity: 1;
+      opacity:
+        1;
 
     }
 
@@ -340,33 +382,42 @@
 
     #pk-loader {
 
-      position: fixed;
+      position:
+        fixed;
 
-      inset: 0;
+      inset:
+        0;
 
-      z-index: 100000;
+      z-index:
+        100000;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      overflow: hidden;
+      overflow:
+        hidden;
 
       background:
 
         radial-gradient(
-          circle at 50% 45%,
-          rgba(82,99,210,.15),
+          circle at 50% 44%,
+          rgba(79,96,210,.16),
           transparent 34%
         ),
 
         #02030a;
 
-      opacity: 1;
+      opacity:
+        1;
 
-      visibility: visible;
+      visibility:
+        visible;
 
       transition:
 
@@ -376,26 +427,32 @@
     }
 
 
-    #pk-loader.pk-loader-complete {
+    #pk-loader.pk-loader-hide {
 
-      opacity: 0;
+      opacity:
+        0;
 
-      visibility: hidden;
+      visibility:
+        hidden;
 
-      pointer-events: none;
+      pointer-events:
+        none;
 
     }
 
 
-    /* Loader grid */
+    /* Loader perspective grid */
 
     .pk-loader-grid {
 
-      position: absolute;
+      position:
+        absolute;
 
-      inset: -30%;
+      inset:
+        -30%;
 
-      opacity: .26;
+      opacity:
+        .24;
 
       background-image:
 
@@ -415,15 +472,15 @@
 
       transform:
 
-        perspective(800px)
+        perspective(850px)
         rotateX(63deg)
-        translateY(20%);
+        translateY(21%);
 
       transform-origin:
         center bottom;
 
       animation:
-        pk-loader-grid-move
+        pk-grid-flow
         7s
         linear
         infinite;
@@ -431,16 +488,20 @@
     }
 
 
-    @keyframes pk-loader-grid-move {
+    @keyframes pk-grid-flow {
 
       from {
+
         background-position:
           0 0;
+
       }
 
       to {
+
         background-position:
           0 52px;
+
       }
 
     }
@@ -450,7 +511,8 @@
 
     .pk-loader-orbit {
 
-      position: absolute;
+      position:
+        absolute;
 
       width:
         min(560px,90vw);
@@ -474,7 +536,7 @@
         rgba(165,108,255,.025);
 
       animation:
-        pk-loader-orbit
+        pk-loader-spin
         18s
         linear
         infinite;
@@ -484,11 +546,14 @@
 
     .pk-loader-orbit::before {
 
-      content: "";
+      content:
+        "";
 
-      position: absolute;
+      position:
+        absolute;
 
-      inset: 11%;
+      inset:
+        11%;
 
       border-radius:
         50%;
@@ -502,11 +567,14 @@
 
     .pk-loader-orbit::after {
 
-      content: "";
+      content:
+        "";
 
-      position: absolute;
+      position:
+        absolute;
 
-      inset: 24%;
+      inset:
+        24%;
 
       border-radius:
         50%;
@@ -516,7 +584,7 @@
         rgba(255,99,199,.085);
 
       animation:
-        pk-loader-orbit-reverse
+        pk-loader-spin-reverse
         11s
         linear
         infinite;
@@ -524,39 +592,45 @@
     }
 
 
-    @keyframes pk-loader-orbit {
+    @keyframes pk-loader-spin {
 
       to {
+
         transform:
           rotate(360deg);
+
       }
 
     }
 
 
-    @keyframes pk-loader-orbit-reverse {
+    @keyframes pk-loader-spin-reverse {
 
       to {
+
         transform:
           rotate(-360deg);
+
       }
 
     }
 
 
-    /* Loader core */
+    /* Loader center */
 
     .pk-loader-content {
 
-      position: relative;
+      position:
+        relative;
 
-      z-index: 4;
+      z-index:
+        5;
 
       width:
         min(560px,90vw);
 
       padding:
-        35px 24px;
+        30px 22px;
 
       text-align:
         center;
@@ -566,20 +640,29 @@
 
     .pk-loader-logo {
 
-      position: relative;
+      position:
+        relative;
 
-      width: 100px;
-      height: 100px;
+      width:
+        100px;
+
+      height:
+        100px;
 
       margin:
-        0 auto 28px;
+        0 auto 27px;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
-      justify-content: center;
+      align-items:
+        center;
 
-      border-radius: 30px;
+      justify-content:
+        center;
+
+      border-radius:
+        30px;
 
       border:
         1px solid
@@ -596,10 +679,10 @@
       box-shadow:
 
         0 30px 90px
-        rgba(0,0,0,.48),
+        rgba(0,0,0,.5),
 
-        0 0 70px
-        rgba(85,230,255,.07);
+        0 0 75px
+        rgba(85,230,255,.065);
 
       backdrop-filter:
         blur(20px);
@@ -618,13 +701,17 @@
 
     .pk-loader-logo::before {
 
-      content: "";
+      content:
+        "";
 
-      position: absolute;
+      position:
+        absolute;
 
-      inset: -2px;
+      inset:
+        -2px;
 
-      border-radius: inherit;
+      border-radius:
+        inherit;
 
       background:
 
@@ -637,7 +724,8 @@
           transparent 70%
         );
 
-      padding: 1px;
+      padding:
+        1px;
 
       -webkit-mask:
 
@@ -737,8 +825,10 @@
     @keyframes pk-loader-ring {
 
       to {
+
         transform:
           rotate(360deg);
+
       }
 
     }
@@ -747,8 +837,10 @@
     @keyframes pk-gradient-flow {
 
       to {
+
         background-position:
           250% center;
+
       }
 
     }
@@ -766,7 +858,7 @@
         700;
 
       letter-spacing:
-        .32em;
+        .3em;
 
       text-transform:
         uppercase;
@@ -816,7 +908,7 @@
         11px;
 
       letter-spacing:
-        .04em;
+        .035em;
 
     }
 
@@ -869,7 +961,7 @@
         rgba(85,230,255,.5);
 
       transition:
-        width .15s linear;
+        width .14s linear;
 
     }
 
@@ -1003,7 +1095,8 @@
         12px;
 
       border:
-        1px solid var(--pk-border);
+        1px solid
+        var(--pk-border);
 
       border-radius:
         21px;
@@ -1166,7 +1259,7 @@
         600;
 
       letter-spacing:
-        .11em;
+        .1em;
 
       text-transform:
         uppercase;
@@ -1212,6 +1305,7 @@
         600;
 
       transition:
+
         color .3s ease,
         background .3s ease;
 
@@ -1301,7 +1395,8 @@
         center;
 
       border:
-        1px solid var(--pk-border);
+        1px solid
+        var(--pk-border);
 
       border-radius:
         12px;
@@ -1313,6 +1408,7 @@
         rgba(255,255,255,.03);
 
       transition:
+
         transform .3s var(--pk-ease),
         color .3s ease,
         border-color .3s ease,
@@ -1343,8 +1439,126 @@
       display:
         none;
 
+      border:
+        0;
+
       cursor:
         pointer;
+
+    }
+
+
+    /* =====================================================
+       MOBILE MENU
+       ===================================================== */
+
+    #pk-mobile-menu {
+
+      position:
+        fixed;
+
+      top:
+        78px;
+
+      left:
+        12px;
+
+      right:
+        12px;
+
+      z-index:
+        4900;
+
+      padding:
+        9px;
+
+      border:
+        1px solid
+        var(--pk-border);
+
+      border-radius:
+        19px;
+
+      background:
+        rgba(4,7,18,.84);
+
+      backdrop-filter:
+        blur(25px);
+
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.42);
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transform:
+        translateY(-12px)
+        scale(.98);
+
+      transition:
+
+        opacity .3s ease,
+        visibility .3s ease,
+        transform .3s var(--pk-ease);
+
+    }
+
+
+    #pk-mobile-menu.pk-menu-open {
+
+      opacity:
+        1;
+
+      visibility:
+        visible;
+
+      transform:
+        translateY(0)
+        scale(1);
+
+    }
+
+
+    .pk-mobile-link {
+
+      display:
+        block;
+
+      padding:
+        14px;
+
+      border-radius:
+        12px;
+
+      color:
+        var(--pk-muted);
+
+      font-size:
+        12px;
+
+      font-weight:
+        600;
+
+      transition:
+
+        color .25s ease,
+        background .25s ease;
+
+    }
+
+
+    .pk-mobile-link:hover,
+    .pk-mobile-link:active {
+
+      color:
+        #fff;
+
+      background:
+        rgba(255,255,255,.055);
 
     }
 
@@ -1395,7 +1609,7 @@
         center;
 
       gap:
-        70px;
+        65px;
 
     }
 
@@ -1486,19 +1700,23 @@
     @keyframes pk-live-pulse {
 
       0%,100% {
+
+        opacity:
+          .4;
+
         transform:
           scale(.75);
 
-        opacity:
-          .45;
       }
 
       50% {
-        transform:
-          scale(1);
 
         opacity:
           1;
+
+        transform:
+          scale(1);
+
       }
 
     }
@@ -1528,7 +1746,7 @@
     }
 
 
-    .pk-hero-title .pk-line {
+    .pk-hero-line {
 
       display:
         block;
@@ -1543,7 +1761,7 @@
         linear-gradient(
           110deg,
           #fff 0%,
-          #fff 23%,
+          #fff 22%,
           var(--pk-cyan) 48%,
           #fff 67%,
           var(--pk-violet) 91%
@@ -1573,8 +1791,10 @@
     @keyframes pk-title-gradient {
 
       to {
+
         background-position:
           240% center;
+
       }
 
     }
@@ -1655,7 +1875,8 @@
         hidden;
 
       border:
-        1px solid var(--pk-border);
+        1px solid
+        var(--pk-border);
 
       border-radius:
         14px;
@@ -1673,6 +1894,7 @@
         700;
 
       transition:
+
         transform .35s var(--pk-ease),
         border-color .35s ease,
         background .35s ease,
@@ -1724,7 +1946,7 @@
         translateY(-3px);
 
       border-color:
-        var(--pk-border-strong);
+        var(--pk-border-bright);
 
       box-shadow:
         0 15px 45px
@@ -1814,7 +2036,7 @@
 
 
     /* =====================================================
-       ADVANCED 3D HERO
+       ADVANCED 3D HERO SCENE
        ===================================================== */
 
     .pk-hero-visual {
@@ -1869,7 +2091,7 @@
         absolute;
 
       inset:
-        10%;
+        9%;
 
       border-radius:
         50%;
@@ -1892,7 +2114,7 @@
     }
 
 
-    /* Rings */
+    /* Main orbit */
 
     .pk-scene-ring {
 
@@ -1977,9 +2199,11 @@
     @keyframes pk-ring-a {
 
       to {
+
         transform:
           rotateX(66deg)
           rotateZ(360deg);
+
       }
 
     }
@@ -1988,9 +2212,11 @@
     @keyframes pk-ring-b {
 
       to {
+
         transform:
           rotateX(66deg)
           rotateZ(405deg);
+
       }
 
     }
@@ -1999,15 +2225,17 @@
     @keyframes pk-ring-c {
 
       to {
+
         transform:
           rotateX(66deg)
           rotateZ(330deg);
+
       }
 
     }
 
 
-    /* Central sphere */
+    /* Core */
 
     .pk-3d-core {
 
@@ -2163,7 +2391,9 @@
     }
 
 
-    /* Floating nodes */
+    /* =====================================================
+       3D TECHNOLOGY NODES
+       ===================================================== */
 
     .pk-3d-node {
 
@@ -2434,7 +2664,7 @@
         var(--pk-cyan);
 
       animation:
-        pk-scroll-animation
+        pk-scroll
         1.7s
         ease-in-out
         infinite;
@@ -2442,36 +2672,46 @@
     }
 
 
-    @keyframes pk-scroll-animation {
+    @keyframes pk-scroll {
 
       from {
+
         transform:
           translateY(-120%);
+
       }
 
       to {
+
         transform:
           translateY(240%);
+
       }
 
     }
 
 
     /* =====================================================
-       RESPONSIVE
+       TABLET
        ===================================================== */
 
     @media (max-width: 960px) {
 
       .pk-navigation {
+
         display:
           none;
+
       }
 
+
       .pk-mobile-toggle {
+
         display:
           flex;
+
       }
+
 
       .pk-hero-container {
 
@@ -2483,6 +2723,7 @@
 
       }
 
+
       .pk-hero-content {
 
         text-align:
@@ -2490,12 +2731,14 @@
 
       }
 
+
       .pk-availability {
 
         justify-content:
           center;
 
       }
+
 
       .pk-hero-description {
 
@@ -2507,6 +2750,7 @@
 
       }
 
+
       .pk-hero-actions {
 
         justify-content:
@@ -2514,12 +2758,14 @@
 
       }
 
+
       .pk-hero-meta {
 
         justify-content:
           center;
 
       }
+
 
       .pk-hero-visual {
 
@@ -2531,6 +2777,10 @@
     }
 
 
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
     @media (max-width: 560px) {
 
       .pk-navbar {
@@ -2539,6 +2789,7 @@
           10px;
 
       }
+
 
       .pk-navbar-inner {
 
@@ -2553,6 +2804,7 @@
 
       }
 
+
       .pk-brand-mark {
 
         width:
@@ -2566,6 +2818,7 @@
 
       }
 
+
       .pk-brand-name {
 
         font-size:
@@ -2573,12 +2826,14 @@
 
       }
 
+
       .pk-brand-role {
 
         display:
           none;
 
       }
+
 
       .pk-nav-icon {
 
@@ -2590,6 +2845,15 @@
 
       }
 
+
+      #pk-mobile-menu {
+
+        top:
+          72px;
+
+      }
+
+
       .pk-hero {
 
         min-height:
@@ -2600,12 +2864,14 @@
 
       }
 
+
       .pk-hero-title {
 
         font-size:
           clamp(45px,14vw,68px);
 
       }
+
 
       .pk-hero-description {
 
@@ -2614,6 +2880,7 @@
 
       }
 
+
       .pk-hero-actions {
 
         flex-direction:
@@ -2621,12 +2888,14 @@
 
       }
 
+
       .pk-button {
 
         width:
           100%;
 
       }
+
 
       .pk-hero-meta {
 
@@ -2638,6 +2907,7 @@
 
       }
 
+
       .pk-hero-visual {
 
         min-height:
@@ -2645,12 +2915,14 @@
 
       }
 
+
       .pk-3d-scene {
 
         width:
           min(330px,88vw);
 
       }
+
 
       .pk-3d-node {
 
@@ -2662,12 +2934,14 @@
 
       }
 
+
       .pk-3d-node strong {
 
         font-size:
           8px;
 
       }
+
 
       .pk-3d-node small {
 
@@ -2676,40 +2950,62 @@
 
       }
 
+
       .pk-node-react {
+
         right:
           -2%;
+
       }
+
 
       .pk-node-node {
+
         right:
           -2%;
+
       }
+
 
       .pk-node-python {
+
         left:
           -2%;
+
       }
+
 
       .pk-node-sql {
+
         left:
           -3%;
+
       }
 
+
       .pk-scroll {
+
         display:
           none;
+
       }
 
     }
 
 
+    /* =====================================================
+       REDUCED MOTION
+       ===================================================== */
+
     @media (prefers-reduced-motion: reduce) {
 
       html {
+
         scroll-behavior:
           auto;
+
       }
+
 
       *,
       *::before,
@@ -2741,13 +3037,13 @@
        ===================================================== -->
 
   <div
-    id="pk-three-background"
+    id="pk-three-bg"
     aria-hidden="true"
   ></div>
 
 
   <!-- =====================================================
-       GLOBAL ATMOSPHERE
+       ATMOSPHERE
        ===================================================== -->
 
   <div
@@ -2841,7 +3137,7 @@
 
 
     <!-- ===================================================
-         NAVBAR
+         NAVIGATION
          =================================================== -->
 
     <header class="pk-navbar">
@@ -2852,6 +3148,7 @@
         <a
           href="#home"
           class="pk-brand"
+          aria-label="Priyanshu Kumar"
         >
 
           <div class="pk-brand-mark">
@@ -2939,8 +3236,11 @@
             class="pk-nav-icon"
             aria-label="GitHub"
           >
+
             <i data-lucide="github"></i>
+
           </a>
+
 
           <a
             href="https://www.linkedin.com/in/priyanshuroy18"
@@ -2949,16 +3249,22 @@
             class="pk-nav-icon"
             aria-label="LinkedIn"
           >
+
             <i data-lucide="linkedin"></i>
+
           </a>
+
 
           <button
             class="pk-nav-icon pk-mobile-toggle"
             id="pk-mobile-toggle"
             type="button"
             aria-label="Open menu"
+            aria-expanded="false"
           >
+
             <i data-lucide="menu"></i>
+
           </button>
 
         </div>
@@ -2966,6 +3272,67 @@
       </div>
 
     </header>
+
+
+    <!-- ===================================================
+         MOBILE NAVIGATION
+         =================================================== -->
+
+    <div
+      id="pk-mobile-menu"
+      aria-hidden="true"
+    >
+
+      <a
+        href="#home"
+        class="pk-mobile-link"
+      >
+        Home
+      </a>
+
+      <a
+        href="#about"
+        class="pk-mobile-link"
+      >
+        About
+      </a>
+
+      <a
+        href="#skills"
+        class="pk-mobile-link"
+      >
+        Skills
+      </a>
+
+      <a
+        href="#experience"
+        class="pk-mobile-link"
+      >
+        Experience
+      </a>
+
+      <a
+        href="#projects"
+        class="pk-mobile-link"
+      >
+        Projects
+      </a>
+
+      <a
+        href="#workspace"
+        class="pk-mobile-link"
+      >
+        Workspace
+      </a>
+
+      <a
+        href="#contact"
+        class="pk-mobile-link"
+      >
+        Contact
+      </a>
+
+    </div>
 
 
     <!-- ===================================================
@@ -2986,6 +3353,7 @@
 
           <div class="pk-hero-content">
 
+
             <div class="pk-availability">
 
               <span class="pk-live-dot"></span>
@@ -2997,12 +3365,12 @@
 
             <h1 class="pk-hero-title">
 
-              <span class="pk-line">
+              <span class="pk-hero-line">
                 Software
               </span>
 
               <span
-                class="pk-line pk-gradient-title"
+                class="pk-hero-line pk-gradient-title"
               >
                 Engineer.
               </span>
@@ -3017,7 +3385,7 @@
                 scalable full-stack applications
               </strong>,
               analytical solutions and polished
-              digital experiences with modern
+              digital experiences using modern
               software engineering technologies.
 
             </p>
@@ -3025,21 +3393,30 @@
 
             <div class="pk-hero-actions">
 
+
               <a
                 href="#projects"
                 class="pk-button pk-button-primary"
               >
+
                 <i data-lucide="rocket"></i>
+
                 Explore Projects
+
               </a>
+
 
               <a
                 href="#workspace"
                 class="pk-button"
               >
+
                 <i data-lucide="command"></i>
+
                 Open Workspace
+
               </a>
+
 
               <a
                 href="https://github.com/priyanshu18611"
@@ -3047,14 +3424,18 @@
                 rel="noopener noreferrer"
                 class="pk-button"
               >
+
                 <i data-lucide="github"></i>
+
                 GitHub
+
               </a>
 
             </div>
 
 
             <div class="pk-hero-meta">
+
 
               <span class="pk-meta-item">
 
@@ -3088,10 +3469,11 @@
 
 
           <!-- =================================================
-               3D VISUAL
+               3D HERO
                ================================================= -->
 
           <div class="pk-hero-visual">
+
 
             <div
               class="pk-3d-scene"
@@ -3100,13 +3482,16 @@
 
               <div class="pk-scene-glow"></div>
 
+
               <div
                 class="pk-scene-ring pk-ring-a"
               ></div>
 
+
               <div
                 class="pk-scene-ring pk-ring-b"
               ></div>
+
 
               <div
                 class="pk-scene-ring pk-ring-c"
@@ -3223,7 +3608,7 @@
 
 
       /* ===================================================
-         ELEMENTS
+         DOM REFERENCES
          =================================================== */
 
       const body =
@@ -3264,9 +3649,19 @@
           "pk-hero-3d"
         );
 
+      const mobileToggle =
+        document.getElementById(
+          "pk-mobile-toggle"
+        );
+
+      const mobileMenu =
+        document.getElementById(
+          "pk-mobile-menu"
+        );
+
 
       /* ===================================================
-         ICONS
+         LUCIDE ICONS
          =================================================== */
 
       if (window.lucide) {
@@ -3277,10 +3672,10 @@
 
 
       /* ===================================================
-         CINEMATIC LOADER
+         ULTRA LOADER
          =================================================== */
 
-      const stages = [
+      const loaderStages = [
 
         {
           name:
@@ -3311,7 +3706,7 @@
             "SYSTEMS",
 
           text:
-            "Connecting portfolio modules..."
+            "Preparing portfolio modules..."
         },
 
         {
@@ -3325,7 +3720,8 @@
       ];
 
 
-      let progress = 0;
+      let progress =
+        0;
 
 
       const loaderInterval =
@@ -3333,20 +3729,25 @@
 
           let increment;
 
-          if (progress < 45) {
+
+          if (progress < 40) {
 
             increment =
               Math.random() * 5 + 2;
 
-          } else if (progress < 80) {
+          }
+
+          else if (progress < 78) {
 
             increment =
               Math.random() * 3 + 1;
 
-          } else {
+          }
+
+          else {
 
             increment =
-              Math.random() * 1.8 + .5;
+              Math.random() * 1.6 + .5;
 
           }
 
@@ -3360,17 +3761,21 @@
 
           const stageIndex =
             Math.min(
-              stages.length - 1,
+              loaderStages.length - 1,
               Math.floor(
-                progress /
-                100 *
-                stages.length
+                (
+                  progress /
+                  100
+                ) *
+                loaderStages.length
               )
             );
 
 
           const stage =
-            stages[stageIndex];
+            loaderStages[
+              stageIndex
+            ];
 
 
           loaderBar.style.width =
@@ -3399,12 +3804,14 @@
             setTimeout(() => {
 
               loader.classList.add(
-                "pk-loader-complete"
+                "pk-loader-hide"
               );
+
 
               body.classList.remove(
                 "pk-loading"
               );
+
 
               body.classList.add(
                 "pk-ready"
@@ -3425,15 +3832,124 @@
 
 
       /* ===================================================
-         CURSOR EFFECT
+         MOBILE MENU
          =================================================== */
 
-      let mouseX = 0;
-      let mouseY = 0;
+      function closeMobileMenu() {
 
-      let cursorX = 0;
-      let cursorY = 0;
+        if (!mobileMenu) {
+          return;
+        }
 
+
+        mobileMenu.classList.remove(
+          "pk-menu-open"
+        );
+
+
+        mobileMenu.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+
+        if (mobileToggle) {
+
+          mobileToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+
+
+      if (
+        mobileToggle &&
+        mobileMenu
+      ) {
+
+        mobileToggle.addEventListener(
+          "click",
+          () => {
+
+            const isOpen =
+              mobileMenu.classList.toggle(
+                "pk-menu-open"
+              );
+
+
+            mobileMenu.setAttribute(
+              "aria-hidden",
+              String(!isOpen)
+            );
+
+
+            mobileToggle.setAttribute(
+              "aria-expanded",
+              String(isOpen)
+            );
+
+
+            const oldIcon =
+              mobileToggle.querySelector(
+                "svg"
+              );
+
+
+            if (oldIcon) {
+
+              const newIcon =
+                document.createElement(
+                  "i"
+                );
+
+
+              newIcon.setAttribute(
+                "data-lucide",
+                isOpen
+                  ? "x"
+                  : "menu"
+              );
+
+
+              oldIcon.replaceWith(
+                newIcon
+              );
+
+
+              if (window.lucide) {
+
+                lucide.createIcons();
+
+              }
+
+            }
+
+          }
+        );
+
+
+        document
+          .querySelectorAll(
+            ".pk-mobile-link"
+          )
+          .forEach(link => {
+
+            link.addEventListener(
+              "click",
+              closeMobileMenu
+            );
+
+          });
+
+      }
+
+
+      /* ===================================================
+         CURSOR LIGHT
+         =================================================== */
 
       const finePointer =
         window.matchMedia(
@@ -3441,7 +3957,23 @@
         ).matches;
 
 
-      if (finePointer) {
+      if (
+        finePointer &&
+        cursorLight
+      ) {
+
+        let mouseX =
+          0;
+
+        let mouseY =
+          0;
+
+        let smoothX =
+          0;
+
+        let smoothY =
+          0;
+
 
         window.addEventListener(
           "pointermove",
@@ -3453,53 +3985,60 @@
             mouseY =
               event.clientY;
 
+
             body.classList.add(
               "pk-pointer-active"
             );
 
           },
           {
-            passive: true
+            passive:
+              true
           }
         );
 
 
-        const animateCursor =
+        const cursorAnimation =
           () => {
 
-            cursorX +=
-              (mouseX - cursorX) *
-              .09;
+            smoothX +=
+              (
+                mouseX -
+                smoothX
+              ) * .09;
 
-            cursorY +=
-              (mouseY - cursorY) *
-              .09;
+
+            smoothY +=
+              (
+                mouseY -
+                smoothY
+              ) * .09;
 
 
             cursorLight.style.transform =
               `
                 translate3d(
-                  ${cursorX}px,
-                  ${cursorY}px,
+                  ${smoothX}px,
+                  ${smoothY}px,
                   0
                 )
               `;
 
 
             requestAnimationFrame(
-              animateCursor
+              cursorAnimation
             );
 
           };
 
 
-        animateCursor();
+        cursorAnimation();
 
       }
 
 
       /* ===================================================
-         HERO 3D MOUSE RESPONSE
+         HERO 3D PARALLAX
          =================================================== */
 
       if (
@@ -3534,11 +4073,11 @@
 
 
             const rotateX =
-              y * -14;
+              y * -13;
 
 
             const rotateY =
-              x * 14;
+              x * 13;
 
 
             hero3D.style.transform =
@@ -3549,7 +4088,8 @@
 
           },
           {
-            passive: true
+            passive:
+              true
           }
         );
 
@@ -3568,19 +4108,20 @@
 
 
       /* ===================================================
-         THREE.JS ADVANCED BACKGROUND
+         THREE.JS ENGINE
          =================================================== */
 
-      const container =
+      const threeContainer =
         document.getElementById(
-          "pk-three-background"
+          "pk-three-bg"
         );
 
 
       if (
-        container &&
+        threeContainer &&
         window.THREE
       ) {
+
 
         const scene =
           new THREE.Scene();
@@ -3629,34 +4170,34 @@
         );
 
 
-        container.appendChild(
+        threeContainer.appendChild(
           renderer.domElement
         );
 
 
         /* -----------------------------------------------
-           PARTICLE FIELD
+           PRIMARY PARTICLE FIELD
            ----------------------------------------------- */
 
-        const mobile =
+        const isMobile =
           window.innerWidth < 700;
 
 
-        const count =
-          mobile
-            ? 650
+        const particleCount =
+          isMobile
+            ? 620
             : 1450;
 
 
-        const positions =
+        const particlePositions =
           new Float32Array(
-            count * 3
+            particleCount * 3
           );
 
 
         for (
           let i = 0;
-          i < count;
+          i < particleCount;
           i++
         ) {
 
@@ -3679,46 +4220,58 @@
             );
 
 
-          positions[i * 3] =
+          particlePositions[
+            i * 3
+          ] =
+
             radius *
             Math.sin(phi) *
             Math.cos(theta);
 
 
-          positions[i * 3 + 1] =
+          particlePositions[
+            i * 3 + 1
+          ] =
+
             radius *
             Math.sin(phi) *
             Math.sin(theta);
 
 
-          positions[i * 3 + 2] =
+          particlePositions[
+            i * 3 + 2
+          ] =
+
             radius *
             Math.cos(phi);
 
         }
 
 
-        const geometry =
+        const particleGeometry =
           new THREE.BufferGeometry();
 
 
-        geometry.setAttribute(
+        particleGeometry.setAttribute(
+
           "position",
+
           new THREE.BufferAttribute(
-            positions,
+            particlePositions,
             3
           )
+
         );
 
 
-        const material =
+        const particleMaterial =
           new THREE.PointsMaterial({
 
             color:
               0x65ddff,
 
             size:
-              mobile
+              isMobile
                 ? .018
                 : .025,
 
@@ -3739,8 +4292,11 @@
 
         const particleField =
           new THREE.Points(
-            geometry,
-            material
+
+            particleGeometry,
+
+            particleMaterial
+
           );
 
 
@@ -3750,12 +4306,12 @@
 
 
         /* -----------------------------------------------
-           DISTANT STARS
+           DISTANT STAR FIELD
            ----------------------------------------------- */
 
         const starCount =
-          mobile
-            ? 180
+          isMobile
+            ? 170
             : 420;
 
 
@@ -3771,21 +4327,27 @@
           i++
         ) {
 
-          starPositions[i * 3] =
+          starPositions[
+            i * 3
+          ] =
             (
               Math.random() -
               .5
             ) * 24;
 
 
-          starPositions[i * 3 + 1] =
+          starPositions[
+            i * 3 + 1
+          ] =
             (
               Math.random() -
               .5
             ) * 15;
 
 
-          starPositions[i * 3 + 2] =
+          starPositions[
+            i * 3 + 2
+          ] =
             (
               Math.random() -
               .5
@@ -3799,11 +4361,14 @@
 
 
         starGeometry.setAttribute(
+
           "position",
+
           new THREE.BufferAttribute(
             starPositions,
             3
           )
+
         );
 
 
@@ -3833,8 +4398,11 @@
 
         const stars =
           new THREE.Points(
+
             starGeometry,
+
             starMaterial
+
           );
 
 
@@ -3883,7 +4451,8 @@
 
           },
           {
-            passive: true
+            passive:
+              true
           }
         );
 
@@ -3896,7 +4465,7 @@
           new THREE.Clock();
 
 
-        const animate =
+        const render =
           () => {
 
             const time =
@@ -3961,13 +4530,13 @@
 
 
             requestAnimationFrame(
-              animate
+              render
             );
 
           };
 
 
-        animate();
+        render();
 
 
         /* -----------------------------------------------
