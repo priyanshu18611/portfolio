@@ -7260,3 +7260,2084 @@
 })();
 
 </script>
+  <!-- =========================================================
+     PART 3
+     EXPERIENCE + EDUCATION
+     CINEMATIC 3D TIMELINE
+     ========================================================= -->
+
+
+<style>
+
+/* =========================================================
+   EXPERIENCE / EDUCATION FOUNDATION
+   ========================================================= */
+
+.pk-timeline-wrap {
+
+  position: relative;
+
+  margin-top: 45px;
+
+}
+
+
+/* =========================================================
+   TIMELINE CENTRAL BEAM
+   ========================================================= */
+
+.pk-timeline-wrap::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  bottom: 0;
+
+  left: 50%;
+
+  width: 1px;
+
+  transform: translateX(-50%);
+
+  background:
+
+    linear-gradient(
+
+      to bottom,
+
+      transparent,
+
+      rgba(85,230,255,.35) 8%,
+
+      rgba(165,108,255,.35) 50%,
+
+      rgba(85,230,255,.35) 92%,
+
+      transparent
+
+    );
+
+}
+
+
+.pk-timeline-wrap::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 50%;
+
+  width: 3px;
+
+  height: 105px;
+
+  transform:
+
+    translateX(-50%);
+
+  border-radius: 999px;
+
+  background:
+
+    linear-gradient(
+
+      to bottom,
+
+      transparent,
+
+      var(--pk-cyan),
+
+      transparent
+
+    );
+
+  filter:
+
+    blur(.4px);
+
+  box-shadow:
+
+    0 0 18px
+
+    rgba(85,230,255,.65);
+
+  animation:
+
+    pk-timeline-scan
+
+    4.5s
+
+    linear
+
+    infinite;
+
+}
+
+
+@keyframes pk-timeline-scan {
+
+  from {
+
+    transform:
+
+      translateX(-50%)
+
+      translateY(-120px);
+
+  }
+
+  to {
+
+    transform:
+
+      translateX(-50%)
+
+      translateY(calc(100vh + 120px));
+
+  }
+
+}
+
+
+/* =========================================================
+   TIMELINE ITEM
+   ========================================================= */
+
+.pk-timeline-item {
+
+  position: relative;
+
+  width: 50%;
+
+  padding-bottom: 42px;
+
+}
+
+
+.pk-timeline-item:nth-child(
+  odd
+) {
+
+  padding-right: 38px;
+
+}
+
+
+.pk-timeline-item:nth-child(
+  even
+) {
+
+  margin-left: 50%;
+
+  padding-left: 38px;
+
+}
+
+
+/* =========================================================
+   TIMELINE NODE
+   ========================================================= */
+
+.pk-timeline-node {
+
+  position: absolute;
+
+  top: 27px;
+
+  width: 13px;
+
+  height: 13px;
+
+  z-index: 10;
+
+  border-radius: 50%;
+
+  border:
+
+    2px solid
+
+    var(--pk-bg);
+
+  background:
+
+    var(--pk-cyan);
+
+  box-shadow:
+
+    0 0 0 5px
+
+    rgba(85,230,255,.07),
+
+    0 0 25px
+
+    rgba(85,230,255,.65);
+
+  animation:
+
+    pk-node-pulse
+
+    2.8s
+
+    ease-in-out
+
+    infinite;
+
+}
+
+
+.pk-timeline-item:nth-child(
+  odd
+) .pk-timeline-node {
+
+  right:
+
+    -6.5px;
+
+}
+
+
+.pk-timeline-item:nth-child(
+  even
+) .pk-timeline-node {
+
+  left:
+
+    -6.5px;
+
+}
+
+
+@keyframes pk-node-pulse {
+
+  0%,100% {
+
+    transform: scale(.85);
+
+    box-shadow:
+
+      0 0 0 5px
+
+      rgba(85,230,255,.06),
+
+      0 0 18px
+
+      rgba(85,230,255,.45);
+
+  }
+
+  50% {
+
+    transform: scale(1.08);
+
+    box-shadow:
+
+      0 0 0 8px
+
+      rgba(85,230,255,.025),
+
+      0 0 32px
+
+      rgba(85,230,255,.8);
+
+  }
+
+}
+
+
+/* =========================================================
+   TIMELINE CARD
+   ========================================================= */
+
+.pk-timeline-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 27px;
+
+  border:
+
+    1px solid
+
+    var(--pk-border);
+
+  border-radius: 21px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      rgba(255,255,255,.052),
+
+      rgba(255,255,255,.016)
+
+    );
+
+  backdrop-filter:
+
+    blur(20px)
+
+    saturate(130%);
+
+  box-shadow:
+
+    0 25px 70px
+
+    rgba(0,0,0,.2);
+
+  transform-style:
+
+    preserve-3d;
+
+  transition:
+
+    transform .45s var(--pk-ease),
+
+    border-color .35s ease,
+
+    box-shadow .35s ease,
+
+    background .35s ease;
+
+}
+
+
+.pk-timeline-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+
+      circle at 10% 0%,
+
+      rgba(85,230,255,.09),
+
+      transparent 35%
+
+    );
+
+}
+
+
+.pk-timeline-card::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -120%;
+
+  left: -30%;
+
+  width: 50%;
+
+  height: 300%;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      transparent,
+
+      rgba(255,255,255,.065),
+
+      transparent
+
+    );
+
+  transform:
+
+    rotate(22deg);
+
+  transition:
+
+    left .9s var(--pk-ease);
+
+}
+
+
+.pk-timeline-card:hover::after {
+
+  left: 125%;
+
+}
+
+
+.pk-timeline-card:hover {
+
+  transform:
+
+    perspective(1000px)
+
+    rotateX(2deg)
+
+    rotateY(-2deg)
+
+    translateY(-7px);
+
+  border-color:
+
+    rgba(85,230,255,.2);
+
+  box-shadow:
+
+    0 35px 85px
+
+    rgba(0,0,0,.3),
+
+    0 0 40px
+
+    rgba(85,230,255,.035);
+
+  background:
+
+    rgba(85,230,255,.028);
+
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.pk-timeline-top {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+}
+
+
+.pk-timeline-icon {
+
+  width: 43px;
+
+  height: 43px;
+
+  flex: 0 0 43px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+
+    1px solid
+
+    rgba(85,230,255,.14);
+
+  border-radius: 13px;
+
+  color:
+
+    var(--pk-cyan);
+
+  background:
+
+    rgba(85,230,255,.055);
+
+  transform:
+
+    translateZ(35px);
+
+}
+
+
+.pk-timeline-icon svg {
+
+  width: 18px;
+
+  height: 18px;
+
+}
+
+
+/* =========================================================
+   DATE BADGE
+   ========================================================= */
+
+.pk-timeline-date {
+
+  padding: 7px 9px;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.075);
+
+  border-radius: 999px;
+
+  color:
+
+    var(--pk-muted);
+
+  background:
+
+    rgba(255,255,255,.025);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: .09em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+}
+
+
+/* =========================================================
+   CARD TEXT
+   ========================================================= */
+
+.pk-timeline-company {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 20px;
+
+  color:
+
+    var(--pk-cyan);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: .15em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-timeline-title {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 7px;
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 21px;
+
+  line-height: 1.15;
+
+  letter-spacing: -.045em;
+
+  font-weight: 700;
+
+  transform:
+
+    translateZ(25px);
+
+}
+
+
+.pk-timeline-location {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 9px;
+
+  color:
+
+    var(--pk-dim);
+
+  font-size: 8px;
+
+}
+
+
+.pk-timeline-location svg {
+
+  width: 11px;
+
+  height: 11px;
+
+  color:
+
+    var(--pk-cyan);
+
+}
+
+
+.pk-timeline-description {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 17px;
+
+  color:
+
+    var(--pk-muted);
+
+  font-size: 11px;
+
+  line-height: 1.75;
+
+}
+
+
+/* =========================================================
+   TECHNOLOGY TAGS
+   ========================================================= */
+
+.pk-timeline-tags {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin-top: 20px;
+
+}
+
+
+.pk-timeline-tag {
+
+  padding: 6px 8px;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.07);
+
+  border-radius: 7px;
+
+  color:
+
+    var(--pk-dim);
+
+  background:
+
+    rgba(255,255,255,.022);
+
+  font-size: 7px;
+
+  font-weight: 600;
+
+  transition:
+
+    color .25s ease,
+
+    border-color .25s ease,
+
+    transform .25s var(--pk-ease);
+
+}
+
+
+.pk-timeline-tag:hover {
+
+  color: #fff;
+
+  border-color:
+
+    rgba(85,230,255,.18);
+
+  transform:
+
+    translateY(-2px);
+
+}
+
+
+/* =========================================================
+   EXPERIENCE LABEL
+   ========================================================= */
+
+.pk-timeline-label {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 20px;
+
+  color:
+
+    var(--pk-dim);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: .1em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-timeline-label::before {
+
+  content: "";
+
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background:
+
+    var(--pk-cyan);
+
+  box-shadow:
+
+    0 0 9px
+
+    rgba(85,230,255,.7);
+
+}
+
+
+/* =========================================================
+   EDUCATION
+   ========================================================= */
+
+.pk-education-grid {
+
+  display: grid;
+
+  grid-template-columns:
+
+    repeat(3,minmax(0,1fr));
+
+  gap: 13px;
+
+  margin-top: 42px;
+
+}
+
+
+.pk-education-card {
+
+  position: relative;
+
+  min-height: 285px;
+
+  padding: 23px;
+
+  overflow: hidden;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.075);
+
+  border-radius: 19px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      rgba(255,255,255,.045),
+
+      rgba(255,255,255,.015)
+
+    );
+
+  transform-style:
+
+    preserve-3d;
+
+  transition:
+
+    transform .42s var(--pk-ease),
+
+    border-color .3s ease,
+
+    box-shadow .3s ease;
+
+}
+
+
+.pk-education-card:hover {
+
+  transform:
+
+    perspective(900px)
+
+    rotateX(3deg)
+
+    rotateY(-3deg)
+
+    translateY(-7px);
+
+  border-color:
+
+    rgba(165,108,255,.2);
+
+  box-shadow:
+
+    0 30px 70px
+
+    rgba(0,0,0,.26);
+
+}
+
+
+.pk-education-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+
+  height: 170px;
+
+  top: -90px;
+
+  right: -70px;
+
+  border-radius: 50%;
+
+  background:
+
+    radial-gradient(
+
+      circle,
+
+      rgba(165,108,255,.13),
+
+      transparent 70%
+
+    );
+
+  filter:
+
+    blur(8px);
+
+}
+
+
+.pk-education-icon {
+
+  position: relative;
+
+  z-index: 2;
+
+  width: 39px;
+
+  height: 39px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 12px;
+
+  color:
+
+    var(--pk-violet);
+
+  background:
+
+    rgba(165,108,255,.065);
+
+  border:
+
+    1px solid
+
+    rgba(165,108,255,.12);
+
+  transform:
+
+    translateZ(35px);
+
+}
+
+
+.pk-education-icon svg {
+
+  width: 17px;
+
+  height: 17px;
+
+}
+
+
+.pk-education-year {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 22px;
+
+  color:
+
+    var(--pk-violet);
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: .15em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-education-degree {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 8px;
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 17px;
+
+  line-height: 1.2;
+
+  letter-spacing: -.035em;
+
+  font-weight: 700;
+
+}
+
+
+.pk-education-institute {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 10px;
+
+  color:
+
+    #dfe6fa;
+
+  font-size: 9px;
+
+  line-height: 1.55;
+
+  font-weight: 600;
+
+}
+
+
+.pk-education-details {
+
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 8px;
+
+  color:
+
+    var(--pk-dim);
+
+  font-size: 8px;
+
+  line-height: 1.6;
+
+}
+
+
+.pk-education-footer {
+
+  position: absolute;
+
+  left: 23px;
+
+  right: 23px;
+
+  bottom: 21px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  color:
+
+    var(--pk-dim);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: .06em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-education-status {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+}
+
+
+.pk-education-status::before {
+
+  content: "";
+
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background:
+
+    var(--pk-cyan);
+
+  box-shadow:
+
+    0 0 8px
+
+    rgba(85,230,255,.7);
+
+}
+
+
+/* =========================================================
+   SECTION DIVIDER
+   ========================================================= */
+
+.pk-section-divider {
+
+  width: 100%;
+
+  height: 1px;
+
+  margin-top: 28px;
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      transparent,
+
+      rgba(255,255,255,.08),
+
+      transparent
+
+    );
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 820px) {
+
+  .pk-timeline-wrap::before {
+
+    left: 15px;
+
+  }
+
+
+  .pk-timeline-wrap::after {
+
+    left: 15px;
+
+  }
+
+
+  .pk-timeline-item,
+
+  .pk-timeline-item:nth-child(even) {
+
+    width: 100%;
+
+    margin-left: 0;
+
+    padding-left: 45px;
+
+    padding-right: 0;
+
+  }
+
+
+  .pk-timeline-item:nth-child(odd) {
+
+    padding-right: 0;
+
+  }
+
+
+  .pk-timeline-item:nth-child(odd)
+  .pk-timeline-node,
+
+  .pk-timeline-item:nth-child(even)
+  .pk-timeline-node {
+
+    left: 9px;
+
+    right: auto;
+
+  }
+
+
+  .pk-education-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .pk-education-card {
+
+    min-height:
+      245px;
+
+  }
+
+}
+
+
+@media (max-width: 560px) {
+
+  .pk-timeline-wrap {
+
+    margin-top:
+      30px;
+
+  }
+
+
+  .pk-timeline-card {
+
+    padding:
+      20px;
+
+    border-radius:
+      17px;
+
+  }
+
+
+  .pk-timeline-title {
+
+    font-size:
+      17px;
+
+  }
+
+
+  .pk-timeline-description {
+
+    font-size:
+      10px;
+
+  }
+
+
+  .pk-timeline-date {
+
+    font-size:
+      6px;
+
+  }
+
+
+  .pk-timeline-icon {
+
+    width:
+      38px;
+
+    height:
+      38px;
+
+    flex-basis:
+      38px;
+
+  }
+
+
+  .pk-education-card {
+
+    padding:
+      20px;
+
+  }
+
+
+  .pk-education-footer {
+
+    left:
+      20px;
+
+    right:
+      20px;
+
+  }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     EXPERIENCE SECTION
+     ========================================================= -->
+
+<section
+  id="experience"
+  class="pk-section"
+>
+
+
+  <div
+    class="pk-section-head pk-reveal"
+  >
+
+    <div class="pk-eyebrow">
+      EXPERIENCE / PROFESSIONAL JOURNEY
+    </div>
+
+
+    <h2 class="pk-section-title">
+
+      Learning through
+      <span>
+        experience.
+      </span>
+
+    </h2>
+
+
+    <p class="pk-section-description">
+
+      Internship experiences across railway
+      telecommunications, cloud computing and
+      robotics — building practical exposure
+      beyond the classroom.
+
+    </p>
+
+  </div>
+
+
+  <div class="pk-timeline-wrap">
+
+
+    <!-- ===================================================
+         EXPERIENCE 1
+         =================================================== -->
+
+    <article
+      class="pk-timeline-item pk-reveal pk-reveal-delay-1"
+    >
+
+      <span class="pk-timeline-node"></span>
+
+
+      <div class="pk-timeline-card">
+
+
+        <div class="pk-timeline-top">
+
+
+          <div class="pk-timeline-icon">
+
+            <i data-lucide="train-front"></i>
+
+          </div>
+
+
+          <div class="pk-timeline-date">
+
+            Jun 2025 — Jul 2025
+
+          </div>
+
+
+        </div>
+
+
+        <div class="pk-timeline-company">
+
+          East Central Railway
+
+        </div>
+
+
+        <h3 class="pk-timeline-title">
+
+          Signal &amp;
+          Telecommunication Intern
+
+        </h3>
+
+
+        <div class="pk-timeline-location">
+
+          <i data-lucide="map-pin"></i>
+
+          Danapur Division, Danapur, Bihar
+
+        </div>
+
+
+        <p class="pk-timeline-description">
+
+          Practical industrial exposure in railway
+          signal and telecommunication systems,
+          with focus on understanding operational
+          engineering environments and technical
+          infrastructure.
+
+        </p>
+
+
+        <div class="pk-timeline-tags">
+
+          <span class="pk-timeline-tag">
+            Telecommunications
+          </span>
+
+          <span class="pk-timeline-tag">
+            Railway Systems
+          </span>
+
+          <span class="pk-timeline-tag">
+            Technical Operations
+          </span>
+
+        </div>
+
+
+        <div class="pk-timeline-label">
+
+          Industrial Internship
+
+        </div>
+
+
+      </div>
+
+    </article>
+
+
+    <!-- ===================================================
+         EXPERIENCE 2
+         =================================================== -->
+
+    <article
+      class="pk-timeline-item pk-reveal pk-reveal-delay-2"
+    >
+
+      <span class="pk-timeline-node"></span>
+
+
+      <div class="pk-timeline-card">
+
+
+        <div class="pk-timeline-top">
+
+
+          <div class="pk-timeline-icon">
+
+            <i data-lucide="cloud-cog"></i>
+
+          </div>
+
+
+          <div class="pk-timeline-date">
+
+            Dec 2025
+
+          </div>
+
+
+        </div>
+
+
+        <div class="pk-timeline-company">
+
+          Aagaaz Training Centre Pvt. Ltd.
+
+        </div>
+
+
+        <h3 class="pk-timeline-title">
+
+          Cloud Computing Intern
+
+        </h3>
+
+
+        <div class="pk-timeline-location">
+
+          <i data-lucide="globe-2"></i>
+
+          Remote • 4 Weeks
+
+        </div>
+
+
+        <p class="pk-timeline-description">
+
+          Completed a four-week cloud computing
+          internship focused on foundational cloud
+          concepts, computing infrastructure and
+          practical technical learning.
+
+        </p>
+
+
+        <div class="pk-timeline-tags">
+
+          <span class="pk-timeline-tag">
+            Cloud Computing
+          </span>
+
+          <span class="pk-timeline-tag">
+            Cloud Fundamentals
+          </span>
+
+          <span class="pk-timeline-tag">
+            Infrastructure
+          </span>
+
+        </div>
+
+
+        <div class="pk-timeline-label">
+
+          Performance: 88%
+
+        </div>
+
+
+      </div>
+
+    </article>
+
+
+    <!-- ===================================================
+         EXPERIENCE 3
+         =================================================== -->
+
+    <article
+      class="pk-timeline-item pk-reveal pk-reveal-delay-3"
+    >
+
+      <span class="pk-timeline-node"></span>
+
+
+      <div class="pk-timeline-card">
+
+
+        <div class="pk-timeline-top">
+
+
+          <div class="pk-timeline-icon">
+
+            <i data-lucide="bot"></i>
+
+          </div>
+
+
+          <div class="pk-timeline-date">
+
+            Jan 2024 — Feb 2024
+
+          </div>
+
+
+        </div>
+
+
+        <div class="pk-timeline-company">
+
+          InfinityCore Technologies
+          <span style="opacity:.55;">
+            / BlinkSkills
+          </span>
+
+        </div>
+
+
+        <h3 class="pk-timeline-title">
+
+          Robotics Intern
+
+        </h3>
+
+
+        <div class="pk-timeline-location">
+
+          <i data-lucide="globe-2"></i>
+
+          Remote
+
+        </div>
+
+
+        <p class="pk-timeline-description">
+
+          Hands-on learning experience around
+          robotics concepts, hardware-oriented
+          engineering workflows and technology
+          implementation.
+
+        </p>
+
+
+        <div class="pk-timeline-tags">
+
+          <span class="pk-timeline-tag">
+            Robotics
+          </span>
+
+          <span class="pk-timeline-tag">
+            Embedded Systems
+          </span>
+
+          <span class="pk-timeline-tag">
+            Hardware
+          </span>
+
+        </div>
+
+
+        <div class="pk-timeline-label">
+
+          Performance: 92%
+
+        </div>
+
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+
+  <div class="pk-section-divider"></div>
+
+</section>
+
+
+<!-- =========================================================
+     EDUCATION SECTION
+     ========================================================= -->
+
+<section
+  id="education"
+  class="pk-section"
+>
+
+
+  <div
+    class="pk-section-head pk-reveal"
+  >
+
+    <div class="pk-eyebrow">
+      EDUCATION / ACADEMIC FOUNDATION
+    </div>
+
+
+    <h2 class="pk-section-title">
+
+      Academic
+      <span>
+        foundation.
+      </span>
+
+    </h2>
+
+
+    <p class="pk-section-description">
+
+      A Computer Science and Engineering
+      foundation supported by programming,
+      software development, databases and
+      analytical problem solving.
+
+    </p>
+
+  </div>
+
+
+  <div class="pk-education-grid">
+
+
+    <!-- ===================================================
+         BTECH
+         =================================================== -->
+
+    <article
+      class="pk-education-card pk-reveal pk-reveal-delay-1"
+    >
+
+
+      <div class="pk-education-icon">
+
+        <i data-lucide="graduation-cap"></i>
+
+      </div>
+
+
+      <div class="pk-education-year">
+
+        Oct 2022 — May 2026
+
+      </div>
+
+
+      <h3 class="pk-education-degree">
+
+        B.Tech —
+        Computer Science
+        &amp; Engineering
+
+      </h3>
+
+
+      <div class="pk-education-institute">
+
+        Shershah Engineering College,
+        Sasaram
+
+      </div>
+
+
+      <div class="pk-education-details">
+
+        Bihar Engineering University,
+        Patna
+
+      </div>
+
+
+      <div class="pk-education-footer">
+
+        <span>
+          CSE
+        </span>
+
+        <span class="pk-education-status">
+          Completed
+        </span>
+
+      </div>
+
+
+    </article>
+
+
+    <!-- ===================================================
+         INTERMEDIATE
+         =================================================== -->
+
+    <article
+      class="pk-education-card pk-reveal pk-reveal-delay-2"
+    >
+
+
+      <div class="pk-education-icon">
+
+        <i data-lucide="book-open"></i>
+
+      </div>
+
+
+      <div class="pk-education-year">
+
+        May 2018 — Jul 2020
+
+      </div>
+
+
+      <h3 class="pk-education-degree">
+
+        Intermediate
+        Science
+
+      </h3>
+
+
+      <div class="pk-education-institute">
+
+        RB College,
+        Dalsingsaray
+
+      </div>
+
+
+      <div class="pk-education-details">
+
+        Physics • Chemistry • Mathematics
+
+      </div>
+
+
+      <div class="pk-education-footer">
+
+        <span>
+          PCM
+        </span>
+
+        <span>
+          61.6%
+        </span>
+
+      </div>
+
+
+    </article>
+
+
+    <!-- ===================================================
+         HIGH SCHOOL
+         =================================================== -->
+
+    <article
+      class="pk-education-card pk-reveal pk-reveal-delay-3"
+    >
+
+
+      <div class="pk-education-icon">
+
+        <i data-lucide="school"></i>
+
+      </div>
+
+
+      <div class="pk-education-year">
+
+        Mar 2017 — Apr 2018
+
+      </div>
+
+
+      <h3 class="pk-education-degree">
+
+        High School
+
+      </h3>
+
+
+      <div class="pk-education-institute">
+
+        JPNS Narhan
+
+      </div>
+
+
+      <div class="pk-education-details">
+
+        Secondary School Education
+
+      </div>
+
+
+      <div class="pk-education-footer">
+
+        <span>
+          Class X
+        </span>
+
+        <span>
+          56.8%
+        </span>
+
+      </div>
+
+
+    </article>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- =========================================================
+     PART 3 JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+(() => {
+
+  "use strict";
+
+
+  /* =======================================================
+     ICON REFRESH
+     ======================================================= */
+
+  if (window.lucide) {
+
+    lucide.createIcons();
+
+  }
+
+
+  /* =======================================================
+     TIMELINE 3D TILT
+     ======================================================= */
+
+  const finePointer =
+    window.matchMedia(
+      "(pointer:fine)"
+    ).matches;
+
+
+  if (finePointer) {
+
+
+    document
+      .querySelectorAll(
+        ".pk-timeline-card, .pk-education-card"
+      )
+      .forEach(
+        card => {
+
+
+          card.addEventListener(
+            "pointermove",
+            event => {
+
+
+              const rect =
+                card.getBoundingClientRect();
+
+
+              const x =
+                (
+                  event.clientX -
+                  rect.left
+                ) /
+                rect.width -
+                .5;
+
+
+              const y =
+                (
+                  event.clientY -
+                  rect.top
+                ) /
+                rect.height -
+                .5;
+
+
+              const rotateY =
+                x * 4.5;
+
+
+              const rotateX =
+                y * -4.5;
+
+
+              card.style.transform =
+                `
+                  perspective(1000px)
+                  rotateX(${rotateX}deg)
+                  rotateY(${rotateY}deg)
+                  translateY(-7px)
+                `;
+
+            },
+
+            {
+              passive:
+                true
+            }
+
+          );
+
+
+          card.addEventListener(
+            "pointerleave",
+            () => {
+
+              card.style.transform =
+                "";
+
+            }
+          );
+
+
+        }
+      );
+
+  }
+
+
+  /* =======================================================
+     EXPERIENCE CARD POINTER GLOW
+     ======================================================= */
+
+  document
+    .querySelectorAll(
+      ".pk-timeline-card, .pk-education-card"
+    )
+    .forEach(
+      card => {
+
+
+        card.addEventListener(
+          "pointermove",
+          event => {
+
+            const rect =
+              card.getBoundingClientRect();
+
+
+            const x =
+              (
+                event.clientX -
+                rect.left
+              ) /
+              rect.width *
+              100;
+
+
+            const y =
+              (
+                event.clientY -
+                rect.top
+              ) /
+              rect.height *
+              100;
+
+
+            card.style.background =
+
+              `
+                radial-gradient(
+                  circle at ${x}% ${y}%,
+                  rgba(85,230,255,.045),
+                  rgba(255,255,255,.018) 45%,
+                  rgba(255,255,255,.012)
+                )
+              `;
+
+          },
+
+          {
+            passive:
+              true
+          }
+
+        );
+
+
+        card.addEventListener(
+          "pointerleave",
+          () => {
+
+            card.style.background =
+              "";
+
+          }
+        );
+
+
+      }
+    );
+
+
+})();
+
+</script>
