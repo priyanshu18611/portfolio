@@ -3151,7 +3151,8 @@
           aria-label="Priyanshu Kumar"
         >
 
-          <div class="pk-brand-mark">
+          <div class="pk-brand-mark pk-brand-avatar" aria-hidden="true">
+            <img src="./1000078800.jpg" alt="" loading="eager" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
             <span>PK</span>
           </div>
 
@@ -3237,7 +3238,7 @@
             aria-label="GitHub"
           >
 
-            <i data-lucide="github"></i>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 22v-4.2c0-1.45-.5-2.35-1.1-2.8 3.65-.4 7.5-1.8 7.5-8.1 0-1.8-.65-3.25-1.7-4.4.17-.4.75-2.1-.17-4.35 0 0-1.4-.45-4.55 1.68A15.8 15.8 0 0 0 12 9.4c-1 0-2-.15-2.98-.4C5.87-1.3 4.47-.85 4.47-.85c-.92 2.25-.34 3.95-.17 4.35C3.25 3.65 2.6 5.1 2.6 6.9c0 6.3 3.85 7.7 7.5 8.1-.6.45-1.1 1.35-1.1 2.8V22" transform="translate(0 1)" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.8 18.3c-3.4 1.15-3.4-1.55-4.8-1.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
 
           </a>
 
@@ -3250,7 +3251,7 @@
             aria-label="LinkedIn"
           >
 
-            <i data-lucide="linkedin"></i>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="16" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10v6M8 7.5v.1M11.5 16v-3.1a2.4 2.4 0 0 1 4.8 0V16M11.5 10v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
 
           </a>
 
@@ -19497,6 +19498,55 @@ input:focus-visible{
 
 
 /* =========================================================
+   ULTRA PREMIUM NAV + HOLOGRAPHIC 3D UPGRADE
+========================================================= */
+.pk-brand-avatar{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  box-shadow:0 0 0 1px rgba(85,230,255,.08),0 0 28px rgba(85,230,255,.10),inset 0 0 18px rgba(255,255,255,.06);
+}
+.pk-brand-avatar::before{
+  content:""; position:absolute; inset:-40%; z-index:0;
+  background:conic-gradient(from 0deg,transparent,rgba(85,230,255,.55),transparent 32%,rgba(168,105,255,.45),transparent 66%);
+  animation:pk-avatar-spin 5s linear infinite;
+}
+.pk-brand-avatar::after{
+  content:""; position:absolute; inset:1px; z-index:1; border-radius:inherit;
+  background:rgba(7,10,24,.86);
+}
+.pk-brand-avatar img{
+  position:relative; z-index:2; width:100%; height:100%; object-fit:cover; object-position:center top; display:block;
+}
+.pk-brand-avatar span{position:relative;z-index:2;display:none;place-items:center;width:100%;height:100%;font-weight:800;color:#fff}
+@keyframes pk-avatar-spin{to{transform:rotate(360deg)}}
+.pk-nav-icon svg{width:18px;height:18px;display:block;filter:drop-shadow(0 0 6px rgba(85,230,255,.18))}
+.pk-nav-icon{position:relative;overflow:hidden;box-shadow:inset 0 0 16px rgba(255,255,255,.025)}
+.pk-nav-icon::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,.12) 48%,transparent 70%);transform:translateX(-130%);transition:transform .6s ease}
+.pk-nav-icon:hover::before{transform:translateX(130%)}
+.pk-nav-icon:hover svg{transform:scale(1.12) translateY(-1px);filter:drop-shadow(0 0 9px rgba(85,230,255,.55))}
+
+/* deeper holographic depth around the hero */
+.pk-3d-scene::before,.pk-3d-scene::after{
+  content:"";position:absolute;left:50%;top:50%;width:68%;height:68%;border-radius:50%;
+  transform:translate(-50%,-50%) rotateX(66deg) translateZ(-30px);
+  border:1px solid rgba(85,230,255,.08);pointer-events:none;
+}
+.pk-3d-scene::after{width:82%;height:82%;border-color:rgba(168,105,255,.07);transform:translate(-50%,-50%) rotateY(66deg) translateZ(-55px)}
+.pk-3d-core{
+  box-shadow:0 35px 110px rgba(0,0,0,.45),0 0 55px rgba(85,230,255,.12),0 0 120px rgba(108,124,255,.08),inset 0 0 45px rgba(255,255,255,.045);
+}
+.pk-3d-core::before{
+  content:"";position:absolute;inset:7%;border-radius:50%;border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 22px rgba(85,230,255,.10),inset 0 0 20px rgba(85,230,255,.06);
+  animation:pk-core-pulse 3.4s ease-in-out infinite;pointer-events:none;
+}
+@keyframes pk-core-pulse{0%,100%{transform:scale(.98);opacity:.45}50%{transform:scale(1.03);opacity:.9}}
+.pk-core-photo-wrap{box-shadow:0 0 0 5px rgba(85,230,255,.04),0 0 30px rgba(85,230,255,.20),0 0 70px rgba(168,105,255,.10),inset 0 0 24px rgba(255,255,255,.06)}
+.pk-core-photo{filter:saturate(1.04) contrast(1.02);}
+@media(max-width:560px){.pk-brand-avatar{width:39px;height:39px}.pk-brand-avatar img{object-position:center top}}
+
+/* =========================================================
    REAL PROFILE PHOTO
 ========================================================= */
 
@@ -19612,6 +19662,16 @@ input:focus-visible{
    * We add the real photo only when one of the local
    * portfolio image files actually exists.
    */
+
+  /* Premium navbar avatar uses the same repository photo. */
+  const navAvatar = document.querySelector('.pk-brand-avatar img');
+  const navFallback = document.querySelector('.pk-brand-avatar span');
+  if(navAvatar){
+    navAvatar.addEventListener('error', function(){
+      this.style.display='none';
+      if(navFallback) navFallback.style.display='grid';
+    }, {once:true});
+  }
 
   const photoCandidates = [
     './1000078800.jpg',
