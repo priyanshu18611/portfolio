@@ -15373,6 +15373,327 @@ body > a[href*="linkedin.com"] {
 })();
 
 </script>
+  <!-- =========================================================
+     MOBILE HERO HARD FIX
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   MOBILE / TABLET FORCE SINGLE COLUMN
+========================================================= */
+
+@media screen and (max-width: 1100px) {
+
+    /* Main page */
+    main.page-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+    }
+
+
+    /* HERO */
+    #about {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        min-height: auto !important;
+        box-sizing: border-box !important;
+    }
+
+
+    /* THE ORIGINAL HERO GRID */
+    #about > div {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 45px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+
+
+    /* BOTH HERO COLUMNS */
+    #about > div > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        grid-column: auto !important;
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+
+
+    /* HERO TEXT */
+    #about > div > div:first-child {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+
+    /* PROFILE COLUMN */
+    #about > div > div:last-child {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+
+    /* PROFILE POD */
+    #about [class*="max-w-\\[430px\\]"] {
+        width: 100% !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
+        transform: none !important;
+        left: auto !important;
+        right: auto !important;
+    }
+
+
+    /* HERO HEADING */
+    #about h1 {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+
+    /* DESCRIPTION */
+    #about p {
+        max-width: 100% !important;
+    }
+
+
+    /* QUICK FACTS */
+    #about .grid.grid-cols-2.sm\\:grid-cols-4 {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+
+    /* HIDE ANY ABSOLUTE HERO ELEMENT THAT PUSHES LAYOUT */
+    #about .absolute {
+        pointer-events: none !important;
+    }
+
+}
+
+
+/* =========================================================
+   REAL MOBILE
+========================================================= */
+
+@media screen and (max-width: 600px) {
+
+    body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+
+    main.page-content {
+        padding-top: 82px !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        padding-bottom: 50px !important;
+    }
+
+
+    #about {
+        padding-top: 18px !important;
+        padding-bottom: 60px !important;
+    }
+
+
+    #about > div {
+        gap: 34px !important;
+    }
+
+
+    /* Badge */
+    #about > div > div:first-child > div:first-child {
+        margin-left: 0 !important;
+    }
+
+
+    /* Name */
+    #about h1 {
+        font-size: 50px !important;
+        line-height: .88 !important;
+        letter-spacing: -.055em !important;
+    }
+
+
+    /* Role */
+    #about #typewriter {
+        font-size: 18px !important;
+    }
+
+
+    /* Description */
+    #about p {
+        font-size: 12.5px !important;
+        line-height: 1.8 !important;
+    }
+
+
+    /* CTA */
+    #about .flex.flex-wrap.gap-3 {
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+
+
+    /* Social row */
+    #about .flex.items-center.gap-3 {
+        max-width: 100% !important;
+    }
+
+
+    /* Facts */
+    #about .grid.grid-cols-2.sm\\:grid-cols-4 {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+    }
+
+
+    /* Profile */
+    #about [class*="max-w-\\[430px\\]"] {
+        max-width: 335px !important;
+        width: 100% !important;
+    }
+
+
+    #about [class*="max-w-\\[430px\\]"] img {
+        max-height: 235px !important;
+    }
+
+
+    /* Smaller orbital rings */
+    #about [class*="inset-\\[-55px\\]"] {
+        inset: -12px !important;
+    }
+
+    #about [class*="inset-\\[-30px\\]"] {
+        inset: -7px !important;
+    }
+
+
+    /* Hide the extra floating tech labels on small screen */
+    #about [class*="-top-4"],
+    #about [class*="top-\\[35%\\]"],
+    #about [class*="bottom-8"] {
+        display: none !important;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media screen and (max-width: 390px) {
+
+    main.page-content {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+
+    #about h1 {
+        font-size: 46px !important;
+    }
+
+
+    #about [class*="max-w-\\[430px\\]"] {
+        max-width: 320px !important;
+    }
+
+}
+
+</style>
+
+
+<script>
+/* =========================================================
+   MOBILE HERO HARD RESET
+========================================================= */
+
+(function () {
+
+    function fixMobileHero() {
+
+        const hero = document.getElementById("about");
+
+        if (!hero) return;
+
+        const heroGrid = hero.querySelector(":scope > div");
+
+        if (!heroGrid) return;
+
+
+        /* Force hero grid to normal mobile flow */
+        if (window.innerWidth <= 1100) {
+
+            heroGrid.style.display = "flex";
+            heroGrid.style.flexDirection = "column";
+            heroGrid.style.width = "100%";
+            heroGrid.style.maxWidth = "100%";
+            heroGrid.style.margin = "0";
+            heroGrid.style.transform = "none";
+
+
+            Array.from(heroGrid.children).forEach(function (child) {
+
+                child.style.width = "100%";
+                child.style.maxWidth = "100%";
+                child.style.minWidth = "0";
+                child.style.marginLeft = "0";
+                child.style.marginRight = "0";
+                child.style.transform = "none";
+                child.style.gridColumn = "auto";
+
+            });
+
+        }
+
+    }
+
+
+    fixMobileHero();
+
+    window.addEventListener("resize", fixMobileHero);
+
+    window.addEventListener("orientationchange", function () {
+        setTimeout(fixMobileHero, 150);
+    });
+
+    window.addEventListener("load", function () {
+        setTimeout(fixMobileHero, 300);
+    });
+
+})();
+</script>
 </body>
 
 </html>
