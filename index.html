@@ -11598,6 +11598,666 @@
 
 })();
 </script>
+  <!-- =========================================================
+     PART 10 — PREMIUM 3D HERO + SOCIAL ICONS
+     ========================================================= -->
+
+<style>
+
+  /* =========================================================
+     PREMIUM 3D HOLOGRAPHIC CORE
+     ========================================================= */
+
+  #pkHeroOrb {
+    position: fixed;
+    width: 430px;
+    height: 430px;
+    right: 4vw;
+    top: 24vh;
+    z-index: 0;
+    pointer-events: none;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform .15s ease-out;
+    opacity: .92;
+  }
+
+  #pkHeroOrb .pk-orb-shell {
+    position: absolute;
+    inset: 55px;
+    border-radius: 50%;
+
+    background:
+      radial-gradient(
+        circle at 35% 28%,
+        rgba(255,255,255,.95) 0%,
+        rgba(140,220,255,.42) 7%,
+        rgba(50,130,255,.18) 22%,
+        transparent 55%
+      ),
+      radial-gradient(
+        circle,
+        rgba(70,120,255,.20),
+        rgba(120,40,255,.10) 38%,
+        transparent 68%
+      );
+
+    box-shadow:
+      0 0 35px rgba(80,170,255,.32),
+      0 0 90px rgba(100,70,255,.22),
+      inset -25px -20px 50px rgba(0,0,0,.45),
+      inset 15px 12px 30px rgba(255,255,255,.10);
+
+    border: 1px solid rgba(160,220,255,.25);
+
+    transform: translateZ(20px);
+    animation: pkOrbFloat 6s ease-in-out infinite;
+  }
+
+  #pkHeroOrb .pk-orb-core {
+    position: absolute;
+    inset: 115px;
+    border-radius: 50%;
+
+    background:
+      radial-gradient(
+        circle,
+        rgba(255,255,255,.95) 0%,
+        rgba(90,210,255,.80) 8%,
+        rgba(80,90,255,.42) 28%,
+        rgba(130,40,255,.18) 55%,
+        transparent 72%
+      );
+
+    filter: blur(1px);
+
+    box-shadow:
+      0 0 20px rgba(90,210,255,.8),
+      0 0 60px rgba(90,120,255,.55),
+      0 0 110px rgba(130,70,255,.35);
+
+    animation:
+      pkCorePulse 3s ease-in-out infinite,
+      pkCoreRotate 10s linear infinite;
+  }
+
+  #pkHeroOrb .pk-orb-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 350px;
+    height: 125px;
+
+    margin-left: -175px;
+    margin-top: -62px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(100,210,255,.45);
+
+    box-shadow:
+      0 0 12px rgba(70,180,255,.25),
+      inset 0 0 15px rgba(110,100,255,.15);
+
+    transform-style: preserve-3d;
+  }
+
+  #pkHeroOrb .ring-1 {
+    transform: rotateX(65deg) rotateZ(12deg);
+    animation: pkRingOne 8s linear infinite;
+  }
+
+  #pkHeroOrb .ring-2 {
+    width: 310px;
+    height: 110px;
+
+    margin-left: -155px;
+    margin-top: -55px;
+
+    border-color: rgba(180,100,255,.38);
+
+    transform: rotateY(68deg) rotateZ(-18deg);
+    animation: pkRingTwo 11s linear infinite reverse;
+  }
+
+  #pkHeroOrb .ring-3 {
+    width: 390px;
+    height: 145px;
+
+    margin-left: -195px;
+    margin-top: -72px;
+
+    border-color: rgba(80,240,220,.22);
+
+    transform: rotateX(35deg) rotateY(55deg);
+    animation: pkRingThree 14s linear infinite;
+  }
+
+  #pkHeroOrb .pk-orb-grid {
+    position: absolute;
+    inset: 50px;
+
+    border-radius: 50%;
+
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 17px,
+        rgba(130,200,255,.08) 18px,
+        transparent 19px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 17px,
+        rgba(130,200,255,.07) 18px,
+        transparent 19px
+      );
+
+    mask-image: radial-gradient(circle, black 30%, transparent 72%);
+    -webkit-mask-image:
+      radial-gradient(circle, black 30%, transparent 72%);
+
+    animation: pkGridSpin 18s linear infinite;
+  }
+
+  #pkHeroOrb .pk-orb-particle {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: rgba(150,230,255,.9);
+
+    box-shadow:
+      0 0 8px rgba(100,220,255,.9),
+      0 0 18px rgba(100,120,255,.55);
+
+    animation: pkParticleOrbit 5s linear infinite;
+  }
+
+  #pkHeroOrb .p1 {
+    left: 18%;
+    top: 28%;
+    animation-delay: -.8s;
+  }
+
+  #pkHeroOrb .p2 {
+    right: 17%;
+    top: 35%;
+    animation-delay: -2s;
+  }
+
+  #pkHeroOrb .p3 {
+    left: 25%;
+    bottom: 22%;
+    animation-delay: -3.2s;
+  }
+
+  #pkHeroOrb .p4 {
+    right: 25%;
+    bottom: 20%;
+    animation-delay: -1.7s;
+  }
+
+  #pkHeroOrb .p5 {
+    left: 48%;
+    top: 8%;
+    animation-delay: -4s;
+  }
+
+
+  /* =========================================================
+     3D LABEL
+     ========================================================= */
+
+  #pkHeroOrb .pk-orb-label {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+      translate(-50%, -50%)
+      translateZ(70px);
+
+    width: 150px;
+
+    text-align: center;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: .22em;
+
+    color: rgba(225,245,255,.75);
+
+    text-shadow:
+      0 0 10px rgba(100,210,255,.65),
+      0 0 25px rgba(100,100,255,.35);
+  }
+
+
+  /* =========================================================
+     ANIMATIONS
+     ========================================================= */
+
+  @keyframes pkOrbFloat {
+    0%,100% {
+      transform:
+        translateZ(20px)
+        translateY(0px)
+        rotateX(0deg);
+    }
+
+    50% {
+      transform:
+        translateZ(20px)
+        translateY(-18px)
+        rotateX(4deg);
+    }
+  }
+
+  @keyframes pkCorePulse {
+    0%,100% {
+      transform: scale(.92);
+      opacity: .75;
+    }
+
+    50% {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pkCoreRotate {
+    from {
+      filter:
+        hue-rotate(0deg)
+        blur(1px);
+    }
+
+    to {
+      filter:
+        hue-rotate(35deg)
+        blur(1px);
+    }
+  }
+
+  @keyframes pkRingOne {
+    from {
+      transform:
+        rotateX(65deg)
+        rotateZ(0deg);
+    }
+
+    to {
+      transform:
+        rotateX(65deg)
+        rotateZ(360deg);
+    }
+  }
+
+  @keyframes pkRingTwo {
+    from {
+      transform:
+        rotateY(68deg)
+        rotateZ(0deg);
+    }
+
+    to {
+      transform:
+        rotateY(68deg)
+        rotateZ(360deg);
+    }
+  }
+
+  @keyframes pkRingThree {
+    from {
+      transform:
+        rotateX(35deg)
+        rotateY(55deg)
+        rotateZ(0deg);
+    }
+
+    to {
+      transform:
+        rotateX(35deg)
+        rotateY(55deg)
+        rotateZ(360deg);
+    }
+  }
+
+  @keyframes pkGridSpin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pkParticleOrbit {
+    0% {
+      transform:
+        rotate(0deg)
+        translateX(0)
+        scale(.7);
+    }
+
+    50% {
+      transform:
+        rotate(180deg)
+        translateX(35px)
+        scale(1.2);
+    }
+
+    100% {
+      transform:
+        rotate(360deg)
+        translateX(0)
+        scale(.7);
+    }
+  }
+
+
+  /* =========================================================
+     GITHUB / LINKEDIN PREMIUM BUTTON ICONS
+     ========================================================= */
+
+  .pk-social-svg {
+    width: 18px !important;
+    height: 18px !important;
+
+    flex: 0 0 18px;
+
+    display: inline-block;
+
+    fill: currentColor;
+
+    vertical-align: middle;
+  }
+
+  .pk-social-fixed {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+
+  /* =========================================================
+     MOBILE
+     ========================================================= */
+
+  @media (max-width: 900px) {
+
+    #pkHeroOrb {
+      width: 300px;
+      height: 300px;
+
+      right: -85px;
+      top: 27vh;
+
+      opacity: .42;
+    }
+
+    #pkHeroOrb .pk-orb-ring {
+      width: 260px;
+      height: 95px;
+
+      margin-left: -130px;
+      margin-top: -47px;
+    }
+
+    #pkHeroOrb .ring-2 {
+      width: 230px;
+      height: 82px;
+
+      margin-left: -115px;
+      margin-top: -41px;
+    }
+
+    #pkHeroOrb .ring-3 {
+      width: 285px;
+      height: 105px;
+
+      margin-left: -142px;
+      margin-top: -52px;
+    }
+  }
+
+  @media (max-width: 600px) {
+
+    #pkHeroOrb {
+      width: 250px;
+      height: 250px;
+
+      right: -90px;
+      top: 30vh;
+
+      opacity: .30;
+    }
+
+    #pkHeroOrb .pk-orb-shell {
+      inset: 38px;
+    }
+
+    #pkHeroOrb .pk-orb-grid {
+      inset: 35px;
+    }
+
+    #pkHeroOrb .pk-orb-core {
+      inset: 80px;
+    }
+
+    #pkHeroOrb .pk-orb-label {
+      font-size: 7px;
+    }
+  }
+
+</style>
+
+
+<!-- =========================================================
+     3D HERO ORB
+     ========================================================= -->
+
+<div id="pkHeroOrb" aria-hidden="true">
+
+  <div class="pk-orb-shell"></div>
+
+  <div class="pk-orb-grid"></div>
+
+  <div class="pk-orb-core"></div>
+
+  <div class="pk-orb-ring ring-1"></div>
+
+  <div class="pk-orb-ring ring-2"></div>
+
+  <div class="pk-orb-ring ring-3"></div>
+
+  <div class="pk-orb-particle p1"></div>
+  <div class="pk-orb-particle p2"></div>
+  <div class="pk-orb-particle p3"></div>
+  <div class="pk-orb-particle p4"></div>
+  <div class="pk-orb-particle p5"></div>
+
+  <div class="pk-orb-label">
+    PRIYANSHU // AI CORE
+  </div>
+
+</div>
+
+
+<script>
+(function () {
+
+  /* =========================================================
+     3D MOUSE PARALLAX
+     ========================================================= */
+
+  const orb = document.getElementById("pkHeroOrb");
+
+  if (orb) {
+
+    let targetX = 0;
+    let targetY = 0;
+
+    let currentX = 0;
+    let currentY = 0;
+
+    document.addEventListener("mousemove", function (e) {
+
+      targetX =
+        (e.clientX / window.innerWidth - 0.5) * 28;
+
+      targetY =
+        (e.clientY / window.innerHeight - 0.5) * 28;
+
+    });
+
+    function animateOrb() {
+
+      currentX +=
+        (targetX - currentX) * 0.055;
+
+      currentY +=
+        (targetY - currentY) * 0.055;
+
+      orb.style.transform =
+        `translate3d(${currentX}px, ${currentY}px, 0)
+         rotateX(${-currentY * .35}deg)
+         rotateY(${currentX * .35}deg)`;
+
+      requestAnimationFrame(animateOrb);
+    }
+
+    animateOrb();
+  }
+
+
+  /* =========================================================
+     GITHUB + LINKEDIN ICONS
+     ========================================================= */
+
+  function fixSocialButtons() {
+
+    const links = document.querySelectorAll(
+      'a[href*="github.com"], a[href*="linkedin.com"]'
+    );
+
+    links.forEach(function (link) {
+
+      if (link.dataset.pkSocialFixed === "true") {
+        return;
+      }
+
+      const href =
+        (link.getAttribute("href") || "").toLowerCase();
+
+      let icon = "";
+
+      if (href.includes("github.com")) {
+
+        icon = `
+          <svg
+            class="pk-social-svg"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="
+              M12 .5
+              C5.65 .5 .5 5.65 .5 12
+              c0 5.08 3.29 9.39 7.86 10.91
+              .58.11.79-.25.79-.56
+              0-.28-.01-1.02-.02-2
+              -3.2.7-3.88-1.54-3.88-1.54
+              -.53-1.33-1.28-1.68-1.28-1.68
+              -1.04-.71.08-.7.08-.7
+              1.15.08 1.75 1.18 1.75 1.18
+              1.02 1.75 2.68 1.25 3.33.96
+              .1-.74.4-1.25.73-1.54
+              -2.55-.29-5.23-1.28-5.23-5.69
+              0-1.26.45-2.29 1.18-3.1
+              -.12-.29-.51-1.46.11-3.05
+              0 0 .96-.31 3.15 1.18
+              .91-.25 1.88-.38 2.85-.38
+              .97 0 1.94.13 2.85.38
+              2.19-1.49 3.15-1.18 3.15-1.18
+              .62 1.59.23 2.76.11 3.05
+              .73.81 1.18 1.84 1.18 3.1
+              0 4.42-2.69 5.39-5.25 5.67
+              .41.35.78 1.04.78 2.1
+              0 1.52-.01 2.75-.01 3.12
+              0 .31.21.68.8.56
+              A11.52 11.52 0 0 0 23.5 12
+              C23.5 5.65 18.35.5 12 .5Z
+            "/>
+          </svg>
+        `;
+
+      } else if (href.includes("linkedin.com")) {
+
+        icon = `
+          <svg
+            class="pk-social-svg"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="
+              M20.45 20.45h-3.56v-5.57
+              c0-1.33-.03-3.04-1.85-3.04
+              -1.85 0-2.14 1.45-2.14 2.94
+              v5.67H9.34V9h3.42v1.56h.05
+              c.48-.9 1.64-1.85 3.37-1.85
+              3.6 0 4.27 2.37 4.27 5.46
+              v6.28ZM5.32 7.43
+              a2.07 2.07 0 1 1 0-4.14
+              2.07 2.07 0 0 1 0 4.14ZM3.54 20.45H7.1V9H3.54v11.45ZM22.22 0H1.77
+              C.79 0 0 .77 0 1.72v20.56
+              C0 23.23.79 24 1.77 24h20.45
+              C23.2 24 24 23.23 24 22.28V1.72
+              C24 .77 23.2 0 22.22 0Z
+            "/>
+          </svg>
+        `;
+      }
+
+      if (!icon) return;
+
+      link.classList.add("pk-social-fixed");
+
+      link.insertAdjacentHTML(
+        "afterbegin",
+        icon
+      );
+
+      link.dataset.pkSocialFixed = "true";
+    });
+  }
+
+
+  if (document.readyState === "loading") {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      fixSocialButtons
+    );
+
+  } else {
+
+    fixSocialButtons();
+
+  }
+
+})();
+</script>
 </body>
 
 </html>
