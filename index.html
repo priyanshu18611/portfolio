@@ -14965,6 +14965,414 @@ body {
 
 })();
 </script>
+  <!-- =========================================================
+     PART 15 FINAL — CLEAN HERO / MOBILE + DESKTOP FIX
+========================================================= -->
+
+<style>
+
+/* =========================================================
+   1. REMOVE BAD FLOATING DUPLICATES
+========================================================= */
+
+.pk-hero-status,
+.pk-hero-socials,
+.pk-career-hero {
+    display: none !important;
+}
+
+
+/* =========================================================
+   2. KEEP ONLY ONE CLEAN CAREERPILOT LAUNCHER
+========================================================= */
+
+#careerPilotLauncher {
+    position: fixed !important;
+    right: 18px !important;
+    bottom: 22px !important;
+    z-index: 99999 !important;
+}
+
+
+/* =========================================================
+   3. HERO BASE
+========================================================= */
+
+main.page-content {
+    padding-top: 105px !important;
+}
+
+#about {
+    min-height: auto !important;
+    padding-top: 55px !important;
+    padding-bottom: 80px !important;
+}
+
+
+/* =========================================================
+   4. DESKTOP HERO — PROPER TWO COLUMN
+========================================================= */
+
+@media (min-width: 1024px) {
+
+    #about > div {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1.05fr) minmax(360px, .75fr) !important;
+        gap: 70px !important;
+        align-items: center !important;
+    }
+
+    #about > div > div:first-child {
+        grid-column: 1 !important;
+    }
+
+    #about > div > div:last-child {
+        grid-column: 2 !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    #about h1 {
+        font-size: clamp(64px, 6vw, 92px) !important;
+    }
+
+    #about .max-w-\[430px\] {
+        max-width: 390px !important;
+    }
+
+}
+
+
+/* =========================================================
+   5. PROFILE POD CLEANUP
+========================================================= */
+
+#about [class*="max-w-\\[430px\\]"] {
+    transform: none !important;
+}
+
+#about [class*="max-w-\\[430px\\]"] img {
+    max-height: 330px !important;
+}
+
+
+/* =========================================================
+   6. REMOVE EXCESSIVE ORBIT SIZE
+========================================================= */
+
+#about [class*="inset-\\[-55px\\]"] {
+    inset: -25px !important;
+}
+
+#about [class*="inset-\\[-30px\\]"] {
+    inset: -15px !important;
+}
+
+
+/* =========================================================
+   7. MOBILE — CLEAN SINGLE COLUMN
+========================================================= */
+
+@media (max-width: 1023px) {
+
+    main.page-content {
+        padding-top: 88px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    #about {
+        min-height: auto !important;
+        padding-top: 28px !important;
+        padding-bottom: 65px !important;
+    }
+
+    #about > div {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 38px !important;
+        align-items: stretch !important;
+    }
+
+    #about > div > div:first-child {
+        width: 100% !important;
+    }
+
+    #about > div > div:last-child {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+
+    /* Hero heading */
+
+    #about h1 {
+        font-size: clamp(48px, 15vw, 72px) !important;
+        line-height: .88 !important;
+        letter-spacing: -.06em !important;
+    }
+
+
+    /* Role */
+
+    #about #typewriter {
+        font-size: 18px !important;
+    }
+
+
+    /* Description */
+
+    #about p.max-w-2xl {
+        font-size: 13px !important;
+        line-height: 1.9 !important;
+        max-width: 340px !important;
+    }
+
+
+    /* Buttons */
+
+    #about .flex.flex-wrap.gap-3 {
+        gap: 9px !important;
+    }
+
+    #about .flex.flex-wrap.gap-3 a {
+        padding: 11px 15px !important;
+        border-radius: 14px !important;
+    }
+
+
+    /* Social buttons */
+
+    #about .flex.items-center.gap-3.mt-5 {
+        gap: 8px !important;
+    }
+
+
+    /* Quick facts */
+
+    #about .grid.grid-cols-2.sm\\:grid-cols-4 {
+        margin-top: 25px !important;
+        gap: 8px !important;
+        max-width: 100% !important;
+    }
+
+    #about .grid.grid-cols-2.sm\\:grid-cols-4 > div {
+        min-height: 65px !important;
+        padding: 11px !important;
+    }
+
+
+    /* Profile card */
+
+    #about [class*="max-w-\\[430px\\]"] {
+        width: min(100%, 360px) !important;
+        max-width: 360px !important;
+    }
+
+    #about [class*="max-w-\\[430px\\]"] img {
+        max-height: 250px !important;
+        width: 100% !important;
+        object-fit: contain !important;
+    }
+
+
+    /* Profile card internal spacing */
+
+    #about [class*="max-w-\\[430px\\]"] .p-5 {
+        padding: 15px !important;
+    }
+
+}
+
+
+/* =========================================================
+   8. SMALL PHONE — EXTRA COMPACT
+========================================================= */
+
+@media (max-width: 480px) {
+
+    main.page-content {
+        padding-top: 78px !important;
+    }
+
+    #about {
+        padding-top: 20px !important;
+    }
+
+    #about h1 {
+        font-size: 49px !important;
+    }
+
+    #about #typewriter {
+        font-size: 17px !important;
+    }
+
+    #about p.max-w-2xl {
+        font-size: 12px !important;
+        line-height: 1.85 !important;
+    }
+
+    #about .grid.grid-cols-2.sm\\:grid-cols-4 > div {
+        min-height: 62px !important;
+    }
+
+    #about [class*="max-w-\\[430px\\]"] {
+        width: 100% !important;
+        max-width: 345px !important;
+    }
+
+    #about [class*="max-w-\\[430px\\]"] img {
+        max-height: 225px !important;
+    }
+
+}
+
+
+/* =========================================================
+   9. MOBILE 3D AMBIENT — LESS CHAOTIC
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .pk-3d-ambient {
+        opacity: .35 !important;
+    }
+
+    .pk-3d-ring {
+        opacity: .35 !important;
+    }
+
+    #pkHeroOrb {
+        opacity: .30 !important;
+        transform: scale(.60) !important;
+    }
+
+}
+
+
+/* =========================================================
+   10. STOP HORIZONTAL OVERFLOW
+========================================================= */
+
+html,
+body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+
+/* =========================================================
+   11. CLEAN FLOATING SOCIAL DUPLICATES
+========================================================= */
+
+body > a[href*="github.com"],
+body > a[href*="linkedin.com"] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   12. CAREERPILOT BUTTON MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    #careerPilotLauncher {
+        right: 10px !important;
+        bottom: 15px !important;
+        transform: scale(.82) !important;
+        transform-origin: bottom right !important;
+    }
+
+}
+
+
+/* =========================================================
+   13. PROFILE POD — NO BLUE EMPTY SPACE
+========================================================= */
+
+#about [class*="max-w-\\[430px\\]"] .absolute.inset-0 {
+    opacity: .25 !important;
+}
+
+</style>
+
+
+<script>
+
+/* =========================================================
+   FINAL HERO CLEANUP JS
+========================================================= */
+
+(function () {
+
+    function finalHeroCleanup() {
+
+        /* Remove Part 14 duplicate elements */
+        document.querySelectorAll(
+            '.pk-hero-status, .pk-hero-socials, .pk-career-hero'
+        ).forEach(el => el.remove());
+
+
+        /* Remove duplicate floating social buttons */
+        const floatingGithub =
+            document.querySelectorAll(
+                'body > a[href*="github.com"]'
+            );
+
+        const floatingLinkedin =
+            document.querySelectorAll(
+                'body > a[href*="linkedin.com"]'
+            );
+
+        floatingGithub.forEach(el => el.remove());
+        floatingLinkedin.forEach(el => el.remove());
+
+
+        /* Make sure original hero stays visible */
+        const hero = document.getElementById('about');
+
+        if (hero) {
+            hero.style.visibility = 'visible';
+            hero.style.opacity = '1';
+        }
+
+
+        /* Re-render Lucide icons */
+        if (window.lucide) {
+            try {
+                lucide.createIcons();
+            } catch (e) {}
+        }
+
+    }
+
+
+    if (document.readyState === 'loading') {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            finalHeroCleanup
+        );
+
+    } else {
+
+        finalHeroCleanup();
+
+    }
+
+
+    window.addEventListener(
+        'load',
+        function () {
+            setTimeout(finalHeroCleanup, 300);
+        }
+    );
+
+})();
+
+</script>
 </body>
 
 </html>
