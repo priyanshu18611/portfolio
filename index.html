@@ -11300,7 +11300,304 @@
 })();
 
 </script>
+<!-- =========================================================
+     PART 9 — COMPLETE STUDIO / DEVELOPER LAB RESTORE
+     ========================================================= -->
 
+<style>
+  /* Complete Studio Menu */
+  #pkCompleteStudio {
+    margin-top: 14px;
+    padding: 16px;
+    border-radius: 22px;
+    background: rgba(8, 12, 25, 0.82);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow:
+      0 20px 60px rgba(0,0,0,0.35),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+    backdrop-filter: blur(18px);
+  }
+
+  #pkCompleteStudio .pk-studio-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  #pkCompleteStudio .pk-studio-heading {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  #pkCompleteStudio .pk-studio-count {
+    font-size: 10px;
+    padding: 5px 8px;
+    border-radius: 999px;
+    color: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #pkCompleteStudio .pk-studio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  #pkCompleteStudio a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 58px;
+    padding: 10px;
+    border-radius: 15px;
+    color: inherit;
+    text-decoration: none;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition:
+      transform .25s ease,
+      border-color .25s ease,
+      background .25s ease,
+      box-shadow .25s ease;
+  }
+
+  #pkCompleteStudio a:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.075);
+    border-color: rgba(120,180,255,0.35);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  }
+
+  #pkCompleteStudio .pk-tool-icon {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    font-size: 16px;
+    background: linear-gradient(
+      135deg,
+      rgba(99,102,241,0.20),
+      rgba(6,182,212,0.16)
+    );
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #pkCompleteStudio .pk-tool-info {
+    min-width: 0;
+  }
+
+  #pkCompleteStudio .pk-tool-name {
+    font-size: 12px;
+    font-weight: 750;
+    color: #fff;
+    line-height: 1.25;
+  }
+
+  #pkCompleteStudio .pk-tool-desc {
+    margin-top: 3px;
+    font-size: 9px;
+    color: rgba(255,255,255,0.50);
+    line-height: 1.25;
+  }
+
+  #pkCompleteStudio .pk-career-tool {
+    border-color: rgba(34,211,238,0.22);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(34,211,238,0.07),
+        rgba(99,102,241,0.07)
+      );
+  }
+
+  #pkCompleteStudio .pk-career-tool:hover {
+    border-color: rgba(34,211,238,0.48);
+    box-shadow:
+      0 12px 35px rgba(34,211,238,0.10),
+      0 12px 30px rgba(0,0,0,0.25);
+  }
+
+  #pkCompleteStudio .pk-external {
+    margin-left: auto;
+    font-size: 10px;
+    color: rgba(255,255,255,0.38);
+  }
+
+  @media (max-width: 520px) {
+    #pkCompleteStudio {
+      padding: 12px;
+    }
+
+    #pkCompleteStudio .pk-studio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+(function () {
+
+  function restoreCompleteStudio() {
+
+    const menu = document.getElementById("suiteMenu");
+
+    if (!menu) {
+      console.warn("Studio menu (#suiteMenu) not found.");
+      return;
+    }
+
+    /* Remove previous Part 8 generated menu
+       so options don't duplicate */
+    const oldRestored = document.getElementById("pkRestoredStudio");
+    if (oldRestored) {
+      oldRestored.remove();
+    }
+
+    /* Remove previous Part 9 version if script runs again */
+    const oldComplete = document.getElementById("pkCompleteStudio");
+    if (oldComplete) {
+      oldComplete.remove();
+    }
+
+    const wrapper = document.createElement("div");
+    wrapper.id = "pkCompleteStudio";
+
+    wrapper.innerHTML = `
+      <div class="pk-studio-title">
+        <div class="pk-studio-heading">
+          Developer Studio
+        </div>
+
+        <div class="pk-studio-count">
+          8 TOOLS
+        </div>
+      </div>
+
+      <div class="pk-studio-grid">
+
+        <!-- Python -->
+        <a href="./python-engine.html">
+          <div class="pk-tool-icon">🐍</div>
+          <div class="pk-tool-info">
+            <div class="pk-tool-name">Python Engine</div>
+            <div class="pk-tool-desc">
+              Run Python experiments & utilities
+            </div>
+          </div>
+        </a>
+
+        <!-- Excel -->
+        <a href="./excel-studio.html">
+          <div class="pk-tool-icon">📊</div>
+          <div class="pk-tool-info">
+            <div class="pk-tool-name">Excel Studio</div>
+            <div class="pk-tool-desc">
+              Spreadsheet analysis workspace
+            </div>
+          </div>
+        </a>
+
+        <!-- Analytics -->
+        <a href="./analytics.html">
+          <div class="pk-tool-icon">📈</div>
+          <div class="pk-tool-info">
+            <div class="pk-tool-name">Analytics Studio</div>
+            <div class="pk-tool-desc">
+              Data analytics & visualization
+            </div>
+          </div>
+        </a>
+
+        <!-- Terminal -->
+        <a href="./terminal.html">
+          <div class="pk-tool-icon">⌘</div>
+          <div class="pk-tool-info">
+            <div class="pk-tool-name">Developer Terminal</div>
+            <div class="pk-tool-desc">
+              Interactive developer command center
+            </div>
+          </div>
+        </a>
+
+        <!-- Playground -->
+        <a href="./playground.html">
+          <div class="pk-tool-icon">🧪</div>
+          <div class="pk-tool-info">
+            <div class="pk-tool-name">Playground Lab</div>
+            <div class="pk-tool-desc">
+              Experiments, demos & creative coding
+            </div>
+          </div>
+        </a>
+
+        <!-- Architecture -->
+        <a href="./system-architecture.html">
+          <div class="pk-tool-icon">🏗️</div>
+          <div class="pk-tool-info">
+            <div class="pk-tool-name">Architecture Blueprint</div>
+            <div class="pk-tool-desc">
+              System architecture & engineering view
+            </div>
+          </div>
+        </a>
+
+        <!-- Resume Builder -->
+        <a href="./resume-builder.html">
+          <div class="pk-tool-icon">📄</div>
+          <div class="pk-tool-info">
+            <div class="pk-tool-name">Resume Builder</div>
+            <div class="pk-tool-desc">
+              Build and optimize your resume
+            </div>
+          </div>
+        </a>
+
+        <!-- CareerPilot AI -->
+        <a
+          class="pk-career-tool"
+          href="https://priyanshu18611.github.io/careerpilot-ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="pk-tool-icon">🚀</div>
+          <div class="pk-tool-info">
+            <div class="pk-tool-name">CareerPilot AI</div>
+            <div class="pk-tool-desc">
+              AI career, resume & interview assistant
+            </div>
+          </div>
+          <span class="pk-external">↗</span>
+        </a>
+
+      </div>
+    `;
+
+    menu.appendChild(wrapper);
+
+    console.log("✓ Complete Studio restored");
+  }
+
+  /* Wait for existing portfolio JS */
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      restoreCompleteStudio
+    );
+  } else {
+    restoreCompleteStudio();
+  }
+
+})();
+</script>
 </body>
 
 </html>
