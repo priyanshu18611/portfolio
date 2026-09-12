@@ -9341,3 +9341,2480 @@
 })();
 
 </script>
+  <!-- =========================================================
+     PART 4
+     PROJECTS — ULTRA PREMIUM 3D SHOWCASE
+     ========================================================= -->
+
+<style>
+
+/* =========================================================
+   PROJECT SECTION
+   ========================================================= */
+
+.pk-project-intro {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(260px,.65fr);
+
+  gap: 30px;
+
+  align-items: end;
+
+  margin-bottom: 48px;
+
+}
+
+
+.pk-project-counter {
+
+  justify-self: end;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: var(--pk-dim);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: .14em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-project-counter strong {
+
+  color: #fff;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 26px;
+
+  letter-spacing: -.05em;
+
+}
+
+
+/* =========================================================
+   PROJECT GRID
+   ========================================================= */
+
+.pk-project-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap: 18px;
+
+}
+
+
+/* =========================================================
+   PROJECT CARD
+   ========================================================= */
+
+.pk-project-card {
+
+  position: relative;
+
+  min-height: 455px;
+
+  overflow: hidden;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.08);
+
+  border-radius: 25px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      rgba(255,255,255,.055),
+
+      rgba(255,255,255,.014)
+
+    );
+
+  backdrop-filter:
+
+    blur(22px)
+
+    saturate(135%);
+
+  box-shadow:
+
+    0 30px 90px
+
+    rgba(0,0,0,.24);
+
+  transform-style:
+
+    preserve-3d;
+
+  transition:
+
+    transform .5s var(--pk-ease),
+
+    border-color .35s ease,
+
+    box-shadow .5s ease;
+
+}
+
+
+/* =========================================================
+   CARD ATMOSPHERE
+   ========================================================= */
+
+.pk-project-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+
+      circle at var(--mx,50%) var(--my,20%),
+
+      rgba(85,230,255,.09),
+
+      transparent 36%
+
+    );
+
+  opacity: .85;
+
+}
+
+
+.pk-project-card::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -80%;
+
+  left: -55%;
+
+  width: 45%;
+
+  height: 260%;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      transparent,
+
+      rgba(255,255,255,.08),
+
+      transparent
+
+    );
+
+  transform:
+
+    rotate(25deg);
+
+  transition:
+
+    left 1s var(--pk-ease);
+
+}
+
+
+.pk-project-card:hover::after {
+
+  left: 125%;
+
+}
+
+
+.pk-project-card:hover {
+
+  border-color:
+
+    rgba(85,230,255,.2);
+
+  box-shadow:
+
+    0 40px 110px
+
+    rgba(0,0,0,.35),
+
+    0 0 55px
+
+    rgba(85,230,255,.035);
+
+}
+
+
+/* =========================================================
+   PROJECT VISUAL
+   ========================================================= */
+
+.pk-project-visual {
+
+  position: relative;
+
+  height: 205px;
+
+  overflow: hidden;
+
+  border-bottom:
+
+    1px solid
+
+    rgba(255,255,255,.06);
+
+  background:
+
+    radial-gradient(
+
+      circle at 50% 50%,
+
+      rgba(85,230,255,.075),
+
+      transparent 52%
+
+    );
+
+}
+
+
+/* =========================================================
+   PROJECT GRID
+   ========================================================= */
+
+.pk-project-grid-lines {
+
+  position: absolute;
+
+  inset: -20%;
+
+  background-image:
+
+    linear-gradient(
+
+      rgba(255,255,255,.035) 1px,
+
+      transparent 1px
+
+    ),
+
+    linear-gradient(
+
+      90deg,
+
+      rgba(255,255,255,.035) 1px,
+
+      transparent 1px
+
+    );
+
+  background-size:
+
+    30px 30px;
+
+  transform:
+
+    perspective(500px)
+
+    rotateX(58deg)
+
+    translateY(20%);
+
+  transform-origin:
+
+    center bottom;
+
+  opacity: .4;
+
+}
+
+
+/* =========================================================
+   PROJECT 3D CORE
+   ========================================================= */
+
+.pk-project-core {
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  width: 112px;
+
+  height: 112px;
+
+  transform:
+
+    translate(-50%,-50%)
+
+    translateZ(50px);
+
+  transform-style: preserve-3d;
+
+}
+
+
+.pk-project-orbit {
+
+  position: absolute;
+
+  inset: -25px;
+
+  border:
+
+    1px solid
+
+    rgba(85,230,255,.16);
+
+  border-radius: 50%;
+
+  transform:
+
+    rotateX(67deg);
+
+  animation:
+
+    pk-project-orbit
+
+    9s
+
+    linear
+
+    infinite;
+
+}
+
+
+.pk-project-orbit:nth-child(2) {
+
+  inset: -10px;
+
+  border-color:
+
+    rgba(165,108,255,.16);
+
+  transform:
+
+    rotateX(67deg)
+
+    rotateZ(55deg);
+
+  animation-duration:
+
+    6s;
+
+  animation-direction:
+
+    reverse;
+
+}
+
+
+.pk-project-orbit:nth-child(3) {
+
+  inset: -40px;
+
+  border-style:
+
+    dashed;
+
+  border-color:
+
+    rgba(255,99,199,.1);
+
+  transform:
+
+    rotateX(67deg)
+
+    rotateZ(-35deg);
+
+  animation-duration:
+
+    13s;
+
+}
+
+
+@keyframes pk-project-orbit {
+
+  to {
+
+    transform:
+
+      rotateX(67deg)
+
+      rotateZ(360deg);
+
+  }
+
+}
+
+
+/* =========================================================
+   PROJECT ICON CORE
+   ========================================================= */
+
+.pk-project-icon-core {
+
+  position: absolute;
+
+  inset: 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 29px;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.15);
+
+  background:
+
+    radial-gradient(
+
+      circle at 30% 25%,
+
+      rgba(255,255,255,.17),
+
+      rgba(85,230,255,.08) 35%,
+
+      rgba(4,8,22,.94) 72%
+
+    );
+
+  box-shadow:
+
+    0 25px 65px
+
+    rgba(0,0,0,.45),
+
+    0 0 45px
+
+    rgba(85,230,255,.07),
+
+    inset 0 0 35px
+
+    rgba(255,255,255,.035);
+
+  transform:
+
+    translateZ(45px);
+
+  animation:
+
+    pk-project-core-float
+
+    4.5s
+
+    ease-in-out
+
+    infinite;
+
+}
+
+
+.pk-project-icon-core svg {
+
+  width: 31px;
+
+  height: 31px;
+
+  color:
+
+    var(--pk-cyan);
+
+  filter:
+
+    drop-shadow(
+
+      0 0 10px
+
+      rgba(85,230,255,.5)
+
+    );
+
+}
+
+
+@keyframes pk-project-core-float {
+
+  0%,100% {
+
+    transform:
+
+      translateZ(45px)
+
+      translateY(0);
+
+  }
+
+  50% {
+
+    transform:
+
+      translateZ(65px)
+
+      translateY(-7px);
+
+  }
+
+}
+
+
+/* =========================================================
+   PROJECT STATUS
+   ========================================================= */
+
+.pk-project-status {
+
+  position: absolute;
+
+  top: 17px;
+
+  left: 18px;
+
+  z-index: 5;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 9px;
+
+  border:
+
+    1px solid
+
+    rgba(85,230,255,.12);
+
+  border-radius: 999px;
+
+  color:
+
+    var(--pk-cyan);
+
+  background:
+
+    rgba(3,7,18,.6);
+
+  backdrop-filter:
+
+    blur(12px);
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: .1em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-project-status::before {
+
+  content: "";
+
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background:
+
+    var(--pk-cyan);
+
+  box-shadow:
+
+    0 0 9px
+
+    var(--pk-cyan);
+
+  animation:
+
+    pk-project-status-pulse
+
+    1.8s
+
+    ease-in-out
+
+    infinite;
+
+}
+
+
+@keyframes pk-project-status-pulse {
+
+  0%,100% {
+
+    opacity: .4;
+
+  }
+
+  50% {
+
+    opacity: 1;
+
+  }
+
+}
+
+
+/* =========================================================
+   PROJECT NUMBER
+   ========================================================= */
+
+.pk-project-number {
+
+  position: absolute;
+
+  top: 17px;
+
+  right: 19px;
+
+  z-index: 5;
+
+  color:
+
+    rgba(255,255,255,.18);
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: .1em;
+
+}
+
+
+/* =========================================================
+   PROJECT BODY
+   ========================================================= */
+
+.pk-project-body {
+
+  position: relative;
+
+  z-index: 5;
+
+  padding: 24px 24px 23px;
+
+}
+
+
+.pk-project-category {
+
+  color:
+
+    var(--pk-cyan);
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: .18em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-project-title {
+
+  margin-top: 8px;
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 24px;
+
+  line-height: 1.08;
+
+  letter-spacing: -.055em;
+
+  font-weight: 700;
+
+  transform:
+
+    translateZ(25px);
+
+}
+
+
+.pk-project-description {
+
+  max-width: 570px;
+
+  margin-top: 12px;
+
+  color:
+
+    var(--pk-muted);
+
+  font-size: 10px;
+
+  line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   TECH STACK
+   ========================================================= */
+
+.pk-project-stack {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin-top: 16px;
+
+}
+
+
+.pk-project-tech {
+
+  padding: 6px 8px;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.07);
+
+  border-radius: 7px;
+
+  color:
+
+    var(--pk-dim);
+
+  background:
+
+    rgba(255,255,255,.022);
+
+  font-size: 6.5px;
+
+  font-weight: 700;
+
+  transition:
+
+    transform .25s var(--pk-ease),
+
+    color .25s ease,
+
+    border-color .25s ease;
+
+}
+
+
+.pk-project-tech:hover {
+
+  color: #fff;
+
+  border-color:
+
+    rgba(85,230,255,.2);
+
+  transform:
+
+    translateY(-2px);
+
+}
+
+
+/* =========================================================
+   PROJECT FOOTER
+   ========================================================= */
+
+.pk-project-footer {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 20px;
+
+}
+
+
+.pk-project-metric {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+
+.pk-project-metric strong {
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  color:
+
+    #fff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+}
+
+
+.pk-project-metric span {
+
+  color:
+
+    var(--pk-dim);
+
+  font-size: 6px;
+
+  font-weight: 700;
+
+  letter-spacing: .08em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-project-actions {
+
+  display: flex;
+
+  gap: 7px;
+
+}
+
+
+.pk-project-button {
+
+  min-height: 35px;
+
+  padding: 0 11px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.08);
+
+  border-radius: 10px;
+
+  color:
+
+    var(--pk-muted);
+
+  background:
+
+    rgba(255,255,255,.025);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  transition:
+
+    transform .3s var(--pk-ease),
+
+    color .25s ease,
+
+    border-color .25s ease,
+
+    background .25s ease;
+
+}
+
+
+.pk-project-button svg {
+
+  width: 12px;
+
+  height: 12px;
+
+}
+
+
+.pk-project-button:hover {
+
+  color: #fff;
+
+  border-color:
+
+    rgba(85,230,255,.2);
+
+  background:
+
+    rgba(85,230,255,.045);
+
+  transform:
+
+    translateY(-3px);
+
+}
+
+
+.pk-project-button-primary {
+
+  color: #fff;
+
+  border-color:
+
+    rgba(85,230,255,.18);
+
+  background:
+
+    rgba(85,230,255,.055);
+
+}
+
+
+/* =========================================================
+   PROJECT CARD VARIATIONS
+   ========================================================= */
+
+.pk-project-ecosentinel {
+
+  --project-accent:
+    rgba(85,230,255,.12);
+
+}
+
+
+.pk-project-brain {
+
+  --project-accent:
+    rgba(165,108,255,.12);
+
+}
+
+
+.pk-project-sales {
+
+  --project-accent:
+    rgba(91,212,159,.1);
+
+}
+
+
+.pk-project-cricket {
+
+  --project-accent:
+    rgba(255,177,83,.1);
+
+}
+
+
+.pk-project-ecosentinel
+.pk-project-visual {
+
+  background:
+
+    radial-gradient(
+
+      circle at 50% 50%,
+
+      rgba(85,230,255,.1),
+
+      transparent 58%
+
+    );
+
+}
+
+
+.pk-project-brain
+.pk-project-visual {
+
+  background:
+
+    radial-gradient(
+
+      circle at 50% 50%,
+
+      rgba(165,108,255,.1),
+
+      transparent 58%
+
+    );
+
+}
+
+
+.pk-project-sales
+.pk-project-visual {
+
+  background:
+
+    radial-gradient(
+
+      circle at 50% 50%,
+
+      rgba(91,212,159,.075),
+
+      transparent 58%
+
+    );
+
+}
+
+
+.pk-project-cricket
+.pk-project-visual {
+
+  background:
+
+    radial-gradient(
+
+      circle at 50% 50%,
+
+      rgba(255,177,83,.075),
+
+      transparent 58%
+
+    );
+
+}
+
+
+/* =========================================================
+   PROJECT SPOTLIGHT STRIP
+   ========================================================= */
+
+.pk-project-spotlight {
+
+  position: relative;
+
+  margin-top: 18px;
+
+  padding: 19px 21px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  overflow: hidden;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.075);
+
+  border-radius: 17px;
+
+  background:
+
+    linear-gradient(
+
+      100deg,
+
+      rgba(85,230,255,.045),
+
+      rgba(165,108,255,.035),
+
+      rgba(255,255,255,.018)
+
+    );
+
+}
+
+
+.pk-project-spotlight::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 240px;
+
+  height: 100px;
+
+  left: 25%;
+
+  top: -70px;
+
+  border-radius: 50%;
+
+  background:
+
+    rgba(85,230,255,.08);
+
+  filter: blur(25px);
+
+}
+
+
+.pk-spotlight-left {
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+.pk-spotlight-label {
+
+  color:
+
+    var(--pk-cyan);
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: .17em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-spotlight-title {
+
+  margin-top: 5px;
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  letter-spacing: -.035em;
+
+}
+
+
+.pk-spotlight-description {
+
+  margin-top: 4px;
+
+  color:
+
+    var(--pk-dim);
+
+  font-size: 8px;
+
+}
+
+
+.pk-spotlight-button {
+
+  position: relative;
+
+  z-index: 2;
+
+  min-height: 40px;
+
+  padding: 0 13px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  border:
+
+    1px solid
+
+    rgba(85,230,255,.17);
+
+  border-radius: 11px;
+
+  color:
+
+    #fff;
+
+  background:
+
+    rgba(85,230,255,.045);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  transition:
+
+    transform .3s var(--pk-ease),
+
+    background .25s ease;
+
+}
+
+
+.pk-spotlight-button:hover {
+
+  transform:
+
+    translateY(-3px);
+
+  background:
+
+    rgba(85,230,255,.08);
+
+}
+
+
+.pk-spotlight-button svg {
+
+  width: 13px;
+
+  height: 13px;
+
+  color:
+
+    var(--pk-cyan);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .pk-project-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .pk-project-card {
+
+    min-height:
+      430px;
+
+  }
+
+
+  .pk-project-intro {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .pk-project-counter {
+
+    justify-self:
+      start;
+
+  }
+
+}
+
+
+@media (max-width: 560px) {
+
+  .pk-project-intro {
+
+    margin-bottom:
+      30px;
+
+  }
+
+
+  .pk-project-card {
+
+    min-height:
+      425px;
+
+    border-radius:
+      20px;
+
+  }
+
+
+  .pk-project-visual {
+
+    height:
+      175px;
+
+  }
+
+
+  .pk-project-body {
+
+    padding:
+      20px;
+
+  }
+
+
+  .pk-project-title {
+
+    font-size:
+      21px;
+
+  }
+
+
+  .pk-project-description {
+
+    font-size:
+      9px;
+
+  }
+
+
+  .pk-project-footer {
+
+    align-items:
+      flex-end;
+
+  }
+
+
+  .pk-project-metric {
+
+    display:
+      none;
+
+  }
+
+
+  .pk-project-actions {
+
+    width:
+      100%;
+
+  }
+
+
+  .pk-project-button {
+
+    flex:
+      1;
+
+  }
+
+
+  .pk-project-spotlight {
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+  }
+
+
+  .pk-spotlight-button {
+
+    width:
+      100%;
+
+    justify-content:
+      center;
+
+  }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     PROJECTS SECTION
+     ========================================================= -->
+
+<section
+  id="projects"
+  class="pk-section"
+>
+
+
+  <div
+    class="pk-project-intro pk-reveal"
+  >
+
+
+    <div>
+
+      <div class="pk-eyebrow">
+        SELECTED WORK / PROJECT LAB
+      </div>
+
+
+      <h2 class="pk-section-title">
+
+        Things I've
+        <span>
+          built.
+        </span>
+
+      </h2>
+
+
+      <p class="pk-section-description">
+
+        A selection of engineering projects
+        combining full-stack development,
+        machine learning, computer vision,
+        databases and data analytics.
+
+      </p>
+
+    </div>
+
+
+    <div class="pk-project-counter">
+
+      <strong>
+        04
+      </strong>
+
+      Featured Projects
+
+    </div>
+
+
+  </div>
+
+
+  <div class="pk-project-grid">
+
+
+    <!-- ===================================================
+         ECOSENTINEL
+         =================================================== -->
+
+    <article
+      class="
+        pk-project-card
+        pk-project-ecosentinel
+        pk-reveal
+        pk-reveal-delay-1
+      "
+    >
+
+
+      <div class="pk-project-visual">
+
+
+        <div
+          class="pk-project-grid-lines"
+        ></div>
+
+
+        <div class="pk-project-status">
+          Full Stack / IoT
+        </div>
+
+
+        <div class="pk-project-number">
+          01
+        </div>
+
+
+        <div class="pk-project-core">
+
+          <div class="pk-project-orbit"></div>
+
+          <div class="pk-project-orbit"></div>
+
+          <div class="pk-project-orbit"></div>
+
+
+          <div
+            class="pk-project-icon-core"
+          >
+
+            <i data-lucide="leaf"></i>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="pk-project-body">
+
+
+        <div class="pk-project-category">
+
+          IoT × Full Stack
+
+        </div>
+
+
+        <h3 class="pk-project-title">
+
+          EcoSentinel
+
+        </h3>
+
+
+        <p class="pk-project-description">
+
+          An IoT-oriented full-stack platform
+          designed around environmental monitoring,
+          real-time communication and interactive
+          data-driven interfaces.
+
+        </p>
+
+
+        <div class="pk-project-stack">
+
+          <span class="pk-project-tech">
+            React
+          </span>
+
+          <span class="pk-project-tech">
+            Node.js
+          </span>
+
+          <span class="pk-project-tech">
+            Express.js
+          </span>
+
+          <span class="pk-project-tech">
+            MongoDB
+          </span>
+
+          <span class="pk-project-tech">
+            Socket.io
+          </span>
+
+          <span class="pk-project-tech">
+            JWT
+          </span>
+
+          <span class="pk-project-tech">
+            Leaflet
+          </span>
+
+        </div>
+
+
+        <div class="pk-project-footer">
+
+
+          <div class="pk-project-metric">
+
+            <strong>
+              Real-time
+            </strong>
+
+            <span>
+              Communication
+            </span>
+
+          </div>
+
+
+          <div class="pk-project-actions">
+
+            <a
+              href="https://github.com/priyanshu18611/EcoSentinel"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                pk-project-button
+                pk-project-button-primary
+              "
+            >
+
+              <i data-lucide="github"></i>
+
+              GitHub
+
+            </a>
+
+
+            <a
+              href="#workspace"
+              class="pk-project-button"
+            >
+
+              <i data-lucide="arrow-up-right"></i>
+
+              Explore
+
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </article>
+
+
+    <!-- ===================================================
+         BRAIN TUMOR
+         =================================================== -->
+
+    <article
+      class="
+        pk-project-card
+        pk-project-brain
+        pk-reveal
+        pk-reveal-delay-2
+      "
+    >
+
+
+      <div class="pk-project-visual">
+
+
+        <div
+          class="pk-project-grid-lines"
+        ></div>
+
+
+        <div class="pk-project-status">
+          Deep Learning
+        </div>
+
+
+        <div class="pk-project-number">
+          02
+        </div>
+
+
+        <div class="pk-project-core">
+
+          <div class="pk-project-orbit"></div>
+
+          <div class="pk-project-orbit"></div>
+
+          <div class="pk-project-orbit"></div>
+
+
+          <div
+            class="pk-project-icon-core"
+          >
+
+            <i data-lucide="brain-circuit"></i>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="pk-project-body">
+
+
+        <div class="pk-project-category">
+
+          Computer Vision × ML
+
+        </div>
+
+
+        <h3 class="pk-project-title">
+
+          Brain Tumor Detection
+
+        </h3>
+
+
+        <p class="pk-project-description">
+
+          MRI image classification project
+          using deep learning and computer vision
+          techniques to build an image-based
+          prediction workflow.
+
+        </p>
+
+
+        <div class="pk-project-stack">
+
+          <span class="pk-project-tech">
+            Python
+          </span>
+
+          <span class="pk-project-tech">
+            TensorFlow
+          </span>
+
+          <span class="pk-project-tech">
+            Keras
+          </span>
+
+          <span class="pk-project-tech">
+            CNN
+          </span>
+
+          <span class="pk-project-tech">
+            OpenCV
+          </span>
+
+        </div>
+
+
+        <div class="pk-project-footer">
+
+
+          <div class="pk-project-metric">
+
+            <strong>
+              MRI
+            </strong>
+
+            <span>
+              Image Analysis
+            </span>
+
+          </div>
+
+
+          <div class="pk-project-actions">
+
+            <a
+              href="https://github.com/priyanshu18611/brain-tumor-detection"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                pk-project-button
+                pk-project-button-primary
+              "
+            >
+
+              <i data-lucide="github"></i>
+
+              GitHub
+
+            </a>
+
+
+            <a
+              href="#workspace"
+              class="pk-project-button"
+            >
+
+              <i data-lucide="arrow-up-right"></i>
+
+              Explore
+
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </article>
+
+
+    <!-- ===================================================
+         ENTERPRISE SALES ANALYTICS
+         =================================================== -->
+
+    <article
+      class="
+        pk-project-card
+        pk-project-sales
+        pk-reveal
+        pk-reveal-delay-2
+      "
+    >
+
+
+      <div class="pk-project-visual">
+
+
+        <div
+          class="pk-project-grid-lines"
+        ></div>
+
+
+        <div class="pk-project-status">
+          Analytics / BI
+        </div>
+
+
+        <div class="pk-project-number">
+          03
+        </div>
+
+
+        <div class="pk-project-core">
+
+          <div class="pk-project-orbit"></div>
+
+          <div class="pk-project-orbit"></div>
+
+          <div class="pk-project-orbit"></div>
+
+
+          <div
+            class="pk-project-icon-core"
+          >
+
+            <i data-lucide="bar-chart-4"></i>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="pk-project-body">
+
+
+        <div class="pk-project-category">
+
+          Data Analytics × BI
+
+        </div>
+
+
+        <h3 class="pk-project-title">
+
+          Enterprise Sales Analytics
+
+        </h3>
+
+
+        <p class="pk-project-description">
+
+          Data analytics workflow combining
+          SQL, Python and business intelligence
+          to transform sales data into useful
+          analytical insights and dashboards.
+
+        </p>
+
+
+        <div class="pk-project-stack">
+
+          <span class="pk-project-tech">
+            Python
+          </span>
+
+          <span class="pk-project-tech">
+            SQL
+          </span>
+
+          <span class="pk-project-tech">
+            Scikit-learn
+          </span>
+
+          <span class="pk-project-tech">
+            Power BI
+          </span>
+
+          <span class="pk-project-tech">
+            DAX
+          </span>
+
+        </div>
+
+
+        <div class="pk-project-footer">
+
+
+          <div class="pk-project-metric">
+
+            <strong>
+              BI
+            </strong>
+
+            <span>
+              Business Insights
+            </span>
+
+          </div>
+
+
+          <div class="pk-project-actions">
+
+            <a
+              href="https://github.com/priyanshu18611/enterprise-sales-analytics"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                pk-project-button
+                pk-project-button-primary
+              "
+            >
+
+              <i data-lucide="github"></i>
+
+              GitHub
+
+            </a>
+
+
+            <a
+              href="#workspace"
+              class="pk-project-button"
+            >
+
+              <i data-lucide="arrow-up-right"></i>
+
+              Explore
+
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </article>
+
+
+    <!-- ===================================================
+         CRICKET SCORE PREDICTOR
+         =================================================== -->
+
+    <article
+      class="
+        pk-project-card
+        pk-project-cricket
+        pk-reveal
+        pk-reveal-delay-3
+      "
+    >
+
+
+      <div class="pk-project-visual">
+
+
+        <div
+          class="pk-project-grid-lines"
+        ></div>
+
+
+        <div class="pk-project-status">
+          Machine Learning
+        </div>
+
+
+        <div class="pk-project-number">
+          04
+        </div>
+
+
+        <div class="pk-project-core">
+
+          <div class="pk-project-orbit"></div>
+
+          <div class="pk-project-orbit"></div>
+
+          <div class="pk-project-orbit"></div>
+
+
+          <div
+            class="pk-project-icon-core"
+          >
+
+            <i data-lucide="trophy"></i>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="pk-project-body">
+
+
+        <div class="pk-project-category">
+
+          Predictive Modeling
+
+        </div>
+
+
+        <h3 class="pk-project-title">
+
+          Cricket Score Predictor
+
+        </h3>
+
+
+        <p class="pk-project-description">
+
+          A machine learning project focused
+          on cricket score prediction using
+          structured match data and predictive
+          modeling techniques.
+
+        </p>
+
+
+        <div class="pk-project-stack">
+
+          <span class="pk-project-tech">
+            Python
+          </span>
+
+          <span class="pk-project-tech">
+            XGBoost
+          </span>
+
+          <span class="pk-project-tech">
+            Pandas
+          </span>
+
+          <span class="pk-project-tech">
+            NumPy
+          </span>
+
+          <span class="pk-project-tech">
+            Scikit-learn
+          </span>
+
+        </div>
+
+
+        <div class="pk-project-footer">
+
+
+          <div class="pk-project-metric">
+
+            <strong>
+              ML
+            </strong>
+
+            <span>
+              Prediction
+            </span>
+
+          </div>
+
+
+          <div class="pk-project-actions">
+
+            <a
+              href="https://github.com/priyanshu18611"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                pk-project-button
+                pk-project-button-primary
+              "
+            >
+
+              <i data-lucide="github"></i>
+
+              GitHub
+
+            </a>
+
+
+            <a
+              href="#workspace"
+              class="pk-project-button"
+            >
+
+              <i data-lucide="arrow-up-right"></i>
+
+              Explore
+
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+
+  <!-- =======================================================
+       PROJECT SPOTLIGHT
+       ======================================================= -->
+
+  <div
+    class="
+      pk-project-spotlight
+      pk-reveal
+      pk-reveal-delay-3
+    "
+  >
+
+
+    <div class="pk-spotlight-left">
+
+      <div class="pk-spotlight-label">
+        Featured Architecture
+      </div>
+
+      <div class="pk-spotlight-title">
+        Explore the engineering workspace
+      </div>
+
+      <div class="pk-spotlight-description">
+        Analytics, terminal, Python, architecture
+        and other interactive tools.
+      </div>
+
+    </div>
+
+
+    <a
+      href="#workspace"
+      class="pk-spotlight-button"
+    >
+
+      Open Workspace
+
+      <i data-lucide="arrow-right"></i>
+
+    </a>
+
+
+  </div>
+
+
+</section>
+
+
+<!-- =========================================================
+     PART 4 JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+(() => {
+
+  "use strict";
+
+
+  /* =======================================================
+     ICON REFRESH
+     ======================================================= */
+
+  if (window.lucide) {
+
+    lucide.createIcons();
+
+  }
+
+
+  /* =======================================================
+     PROJECT CARD MOUSE 3D
+     ======================================================= */
+
+  const finePointer =
+    window.matchMedia(
+      "(pointer:fine)"
+    ).matches;
+
+
+  if (finePointer) {
+
+
+    document
+      .querySelectorAll(
+        ".pk-project-card"
+      )
+      .forEach(
+        card => {
+
+
+          card.addEventListener(
+            "pointermove",
+            event => {
+
+
+              const rect =
+                card.getBoundingClientRect();
+
+
+              const x =
+                (
+                  event.clientX -
+                  rect.left
+                ) /
+                rect.width;
+
+
+              const y =
+                (
+                  event.clientY -
+                  rect.top
+                ) /
+                rect.height;
+
+
+              const rotateY =
+                (
+                  x -
+                  .5
+                ) * 5;
+
+
+              const rotateX =
+                (
+                  .5 -
+                  y
+                ) * 5;
+
+
+              card.style.transform =
+
+                `
+                  perspective(1100px)
+                  rotateX(${rotateX}deg)
+                  rotateY(${rotateY}deg)
+                  translateY(-7px)
+                `;
+
+
+              card.style.setProperty(
+                "--mx",
+                `${x * 100}%`
+              );
+
+
+              card.style.setProperty(
+                "--my",
+                `${y * 100}%`
+              );
+
+            },
+
+            {
+              passive:
+                true
+            }
+
+          );
+
+
+          card.addEventListener(
+            "pointerleave",
+            () => {
+
+              card.style.transform =
+                "";
+
+              card.style.setProperty(
+                "--mx",
+                "50%"
+              );
+
+              card.style.setProperty(
+                "--my",
+                "20%"
+              );
+
+            }
+          );
+
+
+        }
+      );
+
+  }
+
+
+  /* =======================================================
+     PROJECT CORE PARALLAX
+     ======================================================= */
+
+  if (finePointer) {
+
+
+    document
+      .querySelectorAll(
+        ".pk-project-card"
+      )
+      .forEach(
+        card => {
+
+
+          const core =
+            card.querySelector(
+              ".pk-project-core"
+            );
+
+
+          if (!core) {
+
+            return;
+
+          }
+
+
+          card.addEventListener(
+            "pointermove",
+            event => {
+
+
+              const rect =
+                card.getBoundingClientRect();
+
+
+              const x =
+                (
+                  event.clientX -
+                  rect.left
+                ) /
+                rect.width -
+                .5;
+
+
+              const y =
+                (
+                  event.clientY -
+                  rect.top
+                ) /
+                rect.height -
+                .5;
+
+
+              core.style.marginLeft =
+                `${x * 7}px`;
+
+
+              core.style.marginTop =
+                `${y * 7}px`;
+
+            },
+
+            {
+              passive:
+                true
+            }
+
+          );
+
+
+          card.addEventListener(
+            "pointerleave",
+            () => {
+
+              core.style.marginLeft =
+                "";
+
+              core.style.marginTop =
+                "";
+
+            }
+          );
+
+
+        }
+      );
+
+  }
+
+
+})();
+
+</script>
