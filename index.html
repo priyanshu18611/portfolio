@@ -12835,6 +12835,624 @@
 
 })();
 </script>
+  <!-- =========================================================
+     PART 12 — PREMIUM DEVELOPER LAB
+     ========================================================= -->
+
+<style>
+
+  #pkDeveloperLab {
+    position: relative;
+    margin-top: 110px;
+    padding: 30px 0;
+  }
+
+  .pk-lab-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 32px;
+    padding: 28px;
+
+    background:
+      radial-gradient(
+        circle at 90% 10%,
+        rgba(99,102,241,.14),
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 10% 90%,
+        rgba(6,182,212,.10),
+        transparent 35%
+      ),
+      rgba(7,10,18,.82);
+
+    border: 1px solid rgba(255,255,255,.09);
+
+    box-shadow:
+      0 35px 100px rgba(0,0,0,.35),
+      inset 0 1px 0 rgba(255,255,255,.05);
+
+    backdrop-filter: blur(20px);
+  }
+
+  .pk-lab-grid-bg {
+    position: absolute;
+    inset: 0;
+    opacity: .18;
+    pointer-events: none;
+
+    background-image:
+      linear-gradient(
+        rgba(255,255,255,.035) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255,255,255,.035) 1px,
+        transparent 1px
+      );
+
+    background-size: 35px 35px;
+
+    mask-image:
+      linear-gradient(
+        to bottom,
+        black,
+        transparent
+      );
+  }
+
+  .pk-lab-header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 24px;
+  }
+
+  .pk-lab-kicker {
+    font-size: 9px;
+    font-family: monospace;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: #22d3ee;
+  }
+
+  .pk-lab-title {
+    margin-top: 8px;
+
+    font-size: clamp(28px, 5vw, 48px);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -.04em;
+    color: white;
+  }
+
+  .pk-lab-title span {
+    background:
+      linear-gradient(
+        90deg,
+        #67e8f9,
+        #818cf8,
+        #c084fc
+      );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .pk-lab-description {
+    max-width: 680px;
+    margin-top: 12px;
+
+    font-size: 13px;
+    line-height: 1.8;
+
+    color: rgba(255,255,255,.48);
+  }
+
+  .pk-lab-tools {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    gap: 11px;
+  }
+
+  .pk-lab-tool {
+    position: relative;
+
+    min-height: 145px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 16px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+    color: white;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    overflow: hidden;
+
+    transition:
+      transform .3s ease,
+      border-color .3s ease,
+      background .3s ease,
+      box-shadow .3s ease;
+  }
+
+  .pk-lab-tool::before {
+    content: "";
+
+    position: absolute;
+    width: 130px;
+    height: 130px;
+
+    right: -55px;
+    top: -55px;
+
+    border-radius: 50%;
+
+    background: rgba(99,102,241,.10);
+
+    filter: blur(15px);
+
+    transition: transform .4s ease;
+  }
+
+  .pk-lab-tool:hover {
+    transform: translateY(-7px);
+
+    background: rgba(255,255,255,.065);
+
+    border-color: rgba(120,180,255,.25);
+
+    box-shadow:
+      0 20px 45px rgba(0,0,0,.30),
+      0 0 35px rgba(100,130,255,.08);
+  }
+
+  .pk-lab-tool:hover::before {
+    transform: scale(1.5);
+  }
+
+  .pk-lab-icon {
+    position: relative;
+    z-index: 1;
+
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    font-size: 18px;
+
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.08);
+  }
+
+  .pk-lab-info {
+    position: relative;
+    z-index: 1;
+  }
+
+  .pk-lab-name {
+    font-size: 12px;
+    font-weight: 850;
+  }
+
+  .pk-lab-desc {
+    margin-top: 4px;
+
+    font-size: 9px;
+    line-height: 1.5;
+
+    color: rgba(255,255,255,.40);
+  }
+
+  .pk-lab-arrow {
+    position: absolute;
+
+    right: 14px;
+    bottom: 14px;
+
+    font-size: 14px;
+
+    color: rgba(255,255,255,.28);
+
+    transition:
+      transform .25s ease,
+      color .25s ease;
+  }
+
+  .pk-lab-tool:hover .pk-lab-arrow {
+    transform: translate(3px,-3px);
+    color: rgba(255,255,255,.75);
+  }
+
+  /* CareerPilot highlight */
+
+  .pk-lab-career {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(34,211,238,.075),
+        rgba(99,102,241,.075)
+      );
+
+    border-color: rgba(34,211,238,.20);
+  }
+
+  .pk-lab-career .pk-lab-icon {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(34,211,238,.16),
+        rgba(129,140,248,.16)
+      );
+
+    border-color: rgba(34,211,238,.22);
+  }
+
+  .pk-lab-career:hover {
+    border-color: rgba(34,211,238,.45);
+
+    box-shadow:
+      0 20px 50px rgba(34,211,238,.08);
+  }
+
+  /* Resume highlight */
+
+  .pk-lab-resume {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(245,158,11,.055),
+        rgba(255,255,255,.025)
+      );
+  }
+
+  /* Mobile */
+
+  @media (max-width: 900px) {
+
+    .pk-lab-tools {
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+
+    #pkDeveloperLab {
+      margin-top: 75px;
+    }
+
+    .pk-lab-container {
+      padding: 20px;
+      border-radius: 26px;
+    }
+
+    .pk-lab-tools {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .pk-lab-tool {
+      min-height: 132px;
+      padding: 13px;
+    }
+
+    .pk-lab-name {
+      font-size: 11px;
+    }
+
+    .pk-lab-desc {
+      font-size: 8px;
+    }
+  }
+
+</style>
+
+
+<!-- =========================================================
+     DEVELOPER LAB
+     ========================================================= -->
+
+<section id="pkDeveloperLab">
+
+  <div class="pk-lab-container">
+
+    <div class="pk-lab-grid-bg"></div>
+
+
+    <!-- HEADER -->
+
+    <div class="pk-lab-header">
+
+      <div class="pk-lab-kicker">
+        INTERACTIVE WORKSTATION // 08 MODULES
+      </div>
+
+      <h2 class="pk-lab-title">
+        Explore the
+        <span>Developer Lab.</span>
+      </h2>
+
+      <p class="pk-lab-description">
+        Don't just read the portfolio. Explore interactive
+        analytics environments, developer utilities,
+        experiments, architecture tools and AI-powered
+        career systems.
+      </p>
+
+    </div>
+
+
+    <!-- TOOLS -->
+
+    <div class="pk-lab-tools">
+
+
+      <!-- ANALYTICS -->
+
+      <a
+        class="pk-lab-tool"
+        href="./analytics.html"
+      >
+
+        <div class="pk-lab-icon">
+          📊
+        </div>
+
+        <div class="pk-lab-info">
+
+          <div class="pk-lab-name">
+            Analytics Studio
+          </div>
+
+          <div class="pk-lab-desc">
+            Data analysis & visualization
+          </div>
+
+        </div>
+
+        <div class="pk-lab-arrow">
+          ↗
+        </div>
+
+      </a>
+
+
+      <!-- EXCEL -->
+
+      <a
+        class="pk-lab-tool"
+        href="./excel-studio.html"
+      >
+
+        <div class="pk-lab-icon">
+          📗
+        </div>
+
+        <div class="pk-lab-info">
+
+          <div class="pk-lab-name">
+            Excel Studio
+          </div>
+
+          <div class="pk-lab-desc">
+            Interactive spreadsheet analytics
+          </div>
+
+        </div>
+
+        <div class="pk-lab-arrow">
+          ↗
+        </div>
+
+      </a>
+
+
+      <!-- PYTHON -->
+
+      <a
+        class="pk-lab-tool"
+        href="./python-engine.html"
+      >
+
+        <div class="pk-lab-icon">
+          🐍
+        </div>
+
+        <div class="pk-lab-info">
+
+          <div class="pk-lab-name">
+            Python Engine
+          </div>
+
+          <div class="pk-lab-desc">
+            Python runtime & experiments
+          </div>
+
+        </div>
+
+        <div class="pk-lab-arrow">
+          ↗
+        </div>
+
+      </a>
+
+
+      <!-- TERMINAL -->
+
+      <a
+        class="pk-lab-tool"
+        href="./terminal.html"
+      >
+
+        <div class="pk-lab-icon">
+          ⌘
+        </div>
+
+        <div class="pk-lab-info">
+
+          <div class="pk-lab-name">
+            Developer Terminal
+          </div>
+
+          <div class="pk-lab-desc">
+            Interactive developer CLI
+          </div>
+
+        </div>
+
+        <div class="pk-lab-arrow">
+          ↗
+        </div>
+
+      </a>
+
+
+      <!-- PLAYGROUND -->
+
+      <a
+        class="pk-lab-tool"
+        href="./playground.html"
+      >
+
+        <div class="pk-lab-icon">
+          🧪
+        </div>
+
+        <div class="pk-lab-info">
+
+          <div class="pk-lab-name">
+            Playground Lab
+          </div>
+
+          <div class="pk-lab-desc">
+            Creative coding & experiments
+          </div>
+
+        </div>
+
+        <div class="pk-lab-arrow">
+          ↗
+        </div>
+
+      </a>
+
+
+      <!-- ARCHITECTURE -->
+
+      <a
+        class="pk-lab-tool"
+        href="./system-architecture.html"
+      >
+
+        <div class="pk-lab-icon">
+          🏗️
+        </div>
+
+        <div class="pk-lab-info">
+
+          <div class="pk-lab-name">
+            Architecture
+          </div>
+
+          <div class="pk-lab-desc">
+            System design visualization
+          </div>
+
+        </div>
+
+        <div class="pk-lab-arrow">
+          ↗
+        </div>
+
+      </a>
+
+
+      <!-- RESUME BUILDER -->
+
+      <a
+        class="pk-lab-tool pk-lab-resume"
+        href="./resume-builder.html"
+      >
+
+        <div class="pk-lab-icon">
+          📄
+        </div>
+
+        <div class="pk-lab-info">
+
+          <div class="pk-lab-name">
+            Resume Builder
+          </div>
+
+          <div class="pk-lab-desc">
+            Build & optimize your resume
+          </div>
+
+        </div>
+
+        <div class="pk-lab-arrow">
+          ↗
+        </div>
+
+      </a>
+
+
+      <!-- CAREERPILOT -->
+
+      <a
+        class="pk-lab-tool pk-lab-career"
+        href="https://priyanshu18611.github.io/careerpilot-ai/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <div class="pk-lab-icon">
+          🤖
+        </div>
+
+        <div class="pk-lab-info">
+
+          <div class="pk-lab-name">
+            CareerPilot AI
+          </div>
+
+          <div class="pk-lab-desc">
+            AI career & interview assistant
+          </div>
+
+        </div>
+
+        <div class="pk-lab-arrow">
+          ↗
+        </div>
+
+      </a>
+
+
+    </div>
+
+  </div>
+
+</section>
 </body>
 
 </html>
