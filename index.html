@@ -12258,6 +12258,583 @@
 
 })();
 </script>
+  <!-- =========================================================
+     PART 11 — PREMIUM COMMAND CENTER
+     ========================================================= -->
+
+<style>
+  #pkCommandCenter {
+    position: fixed;
+    right: 22px;
+    bottom: 88px;
+    z-index: 180;
+
+    width: min(360px, calc(100vw - 32px));
+
+    padding: 14px;
+
+    border-radius: 24px;
+
+    background: rgba(7, 10, 18, .94);
+    border: 1px solid rgba(255,255,255,.10);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+      0 25px 80px rgba(0,0,0,.65),
+      inset 0 1px 0 rgba(255,255,255,.06);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(18px) scale(.96);
+
+    transition:
+      opacity .25s ease,
+      transform .25s ease,
+      visibility .25s ease;
+  }
+
+  #pkCommandCenter.pk-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .pk-command-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 4px 4px 12px;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .pk-command-title {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .pk-command-status {
+    font-size: 8px;
+    color: #34d399;
+    letter-spacing: .12em;
+  }
+
+  .pk-command-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    margin-top: 12px;
+  }
+
+  .pk-command-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    min-height: 52px;
+    padding: 9px;
+
+    border-radius: 15px;
+
+    color: inherit;
+    text-decoration: none;
+
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.065);
+
+    transition: all .22s ease;
+  }
+
+  .pk-command-item:hover {
+    transform: translateY(-2px);
+
+    background: rgba(255,255,255,.075);
+    border-color: rgba(255,255,255,.18);
+
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  }
+
+  .pk-command-icon {
+    width: 31px;
+    height: 31px;
+
+    flex: 0 0 31px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.08);
+
+    font-size: 14px;
+  }
+
+  .pk-command-text {
+    min-width: 0;
+  }
+
+  .pk-command-name {
+    font-size: 10px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .pk-command-desc {
+    margin-top: 2px;
+
+    font-size: 8px;
+    line-height: 1.3;
+
+    color: rgba(255,255,255,.42);
+  }
+
+  .pk-command-close {
+    width: 28px;
+    height: 28px;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+    border-radius: 9px;
+
+    color: rgba(255,255,255,.6);
+    background: rgba(255,255,255,.05);
+
+    cursor: pointer;
+  }
+
+  .pk-command-close:hover {
+    color: white;
+    background: rgba(255,255,255,.1);
+  }
+
+  #pkCommandButton {
+    position: fixed;
+
+    right: 22px;
+    bottom: 22px;
+
+    z-index: 181;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 17px;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255,255,255,.10),
+        rgba(255,255,255,.035)
+      );
+
+    color: white;
+
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+      0 15px 40px rgba(0,0,0,.4),
+      0 0 30px rgba(100,130,255,.10);
+
+    transition:
+      transform .25s ease,
+      border-color .25s ease;
+  }
+
+  #pkCommandButton:hover {
+    transform: translateY(-3px) scale(1.04);
+    border-color: rgba(120,180,255,.35);
+  }
+
+  #pkCommandButton svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 600px) {
+
+    #pkCommandCenter {
+      right: 16px;
+      bottom: 82px;
+
+      width: calc(100vw - 32px);
+    }
+
+    #pkCommandButton {
+      right: 16px;
+      bottom: 16px;
+
+      width: 48px;
+      height: 48px;
+    }
+
+    .pk-command-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+
+<!-- =========================================================
+     COMMAND CENTER BUTTON
+     ========================================================= -->
+
+<button
+  id="pkCommandButton"
+  type="button"
+  aria-label="Open command center"
+  onclick="pkToggleCommandCenter()"
+>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+  >
+    <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+    <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+    <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+    <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+  </svg>
+</button>
+
+
+<!-- =========================================================
+     COMMAND CENTER
+     ========================================================= -->
+
+<div id="pkCommandCenter">
+
+  <div class="pk-command-head">
+
+    <div>
+      <div class="pk-command-title">
+        Command Center
+      </div>
+
+      <div class="pk-command-status">
+        ● SYSTEM ONLINE
+      </div>
+    </div>
+
+    <button
+      class="pk-command-close"
+      onclick="pkCloseCommandCenter()"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="pk-command-grid">
+
+    <!-- ABOUT -->
+    <a
+      class="pk-command-item"
+      href="#about"
+      onclick="pkCloseCommandCenter()"
+    >
+      <div class="pk-command-icon">👤</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">About</div>
+        <div class="pk-command-desc">
+          Profile & introduction
+        </div>
+      </div>
+    </a>
+
+
+    <!-- PROJECTS -->
+    <a
+      class="pk-command-item"
+      href="#projects"
+      onclick="pkCloseCommandCenter()"
+    >
+      <div class="pk-command-icon">🚀</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Projects</div>
+        <div class="pk-command-desc">
+          Featured engineering work
+        </div>
+      </div>
+    </a>
+
+
+    <!-- SKILLS -->
+    <a
+      class="pk-command-item"
+      href="#skills"
+      onclick="pkCloseCommandCenter()"
+    >
+      <div class="pk-command-icon">⚡</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Technical Skills</div>
+        <div class="pk-command-desc">
+          Languages & technologies
+        </div>
+      </div>
+    </a>
+
+
+    <!-- EXPERIENCE -->
+    <a
+      class="pk-command-item"
+      href="#experience"
+      onclick="pkCloseCommandCenter()"
+    >
+      <div class="pk-command-icon">💼</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Experience</div>
+        <div class="pk-command-desc">
+          Internship & education
+        </div>
+      </div>
+    </a>
+
+
+    <!-- ANALYTICS -->
+    <a
+      class="pk-command-item"
+      href="./analytics.html"
+    >
+      <div class="pk-command-icon">📊</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Analytics</div>
+        <div class="pk-command-desc">
+          Data intelligence studio
+        </div>
+      </div>
+    </a>
+
+
+    <!-- EXCEL -->
+    <a
+      class="pk-command-item"
+      href="./excel-studio.html"
+    >
+      <div class="pk-command-icon">📗</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Excel Studio</div>
+        <div class="pk-command-desc">
+          Spreadsheet workspace
+        </div>
+      </div>
+    </a>
+
+
+    <!-- PYTHON -->
+    <a
+      class="pk-command-item"
+      href="./python-engine.html"
+    >
+      <div class="pk-command-icon">🐍</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Python Engine</div>
+        <div class="pk-command-desc">
+          Python runtime
+        </div>
+      </div>
+    </a>
+
+
+    <!-- PLAYGROUND -->
+    <a
+      class="pk-command-item"
+      href="./playground.html"
+    >
+      <div class="pk-command-icon">🧪</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Playground</div>
+        <div class="pk-command-desc">
+          Experiments & demos
+        </div>
+      </div>
+    </a>
+
+
+    <!-- TERMINAL -->
+    <a
+      class="pk-command-item"
+      href="./terminal.html"
+    >
+      <div class="pk-command-icon">⌘</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Terminal</div>
+        <div class="pk-command-desc">
+          Developer CLI
+        </div>
+      </div>
+    </a>
+
+
+    <!-- ARCHITECTURE -->
+    <a
+      class="pk-command-item"
+      href="./system-architecture.html"
+    >
+      <div class="pk-command-icon">🏗️</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Architecture</div>
+        <div class="pk-command-desc">
+          System design
+        </div>
+      </div>
+    </a>
+
+
+    <!-- RESUME -->
+    <a
+      class="pk-command-item"
+      href="./resume-builder.html"
+    >
+      <div class="pk-command-icon">📄</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Resume Builder</div>
+        <div class="pk-command-desc">
+          Create & optimize resume
+        </div>
+      </div>
+    </a>
+
+
+    <!-- CAREERPILOT -->
+    <a
+      class="pk-command-item"
+      href="https://priyanshu18611.github.io/careerpilot-ai/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div class="pk-command-icon">🤖</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">CareerPilot AI</div>
+        <div class="pk-command-desc">
+          AI career assistant
+        </div>
+      </div>
+    </a>
+
+
+    <!-- CONTACT -->
+    <a
+      class="pk-command-item"
+      href="#contact"
+      onclick="pkCloseCommandCenter()"
+    >
+      <div class="pk-command-icon">✉️</div>
+
+      <div class="pk-command-text">
+        <div class="pk-command-name">Contact</div>
+        <div class="pk-command-desc">
+          Let's connect
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+
+<script>
+(function () {
+
+  window.pkToggleCommandCenter = function () {
+
+    const panel =
+      document.getElementById("pkCommandCenter");
+
+    if (!panel) return;
+
+    panel.classList.toggle("pk-open");
+  };
+
+
+  window.pkCloseCommandCenter = function () {
+
+    const panel =
+      document.getElementById("pkCommandCenter");
+
+    if (!panel) return;
+
+    panel.classList.remove("pk-open");
+  };
+
+
+  document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape") {
+      pkCloseCommandCenter();
+    }
+
+    /* Ctrl + K / Cmd + K */
+    if (
+      (event.ctrlKey || event.metaKey) &&
+      event.key.toLowerCase() === "k"
+    ) {
+
+      event.preventDefault();
+
+      pkToggleCommandCenter();
+    }
+
+  });
+
+
+  document.addEventListener("click", function (event) {
+
+    const panel =
+      document.getElementById("pkCommandCenter");
+
+    const button =
+      document.getElementById("pkCommandButton");
+
+    if (!panel || !button) return;
+
+    if (
+      panel.classList.contains("pk-open") &&
+      !panel.contains(event.target) &&
+      !button.contains(event.target)
+    ) {
+
+      panel.classList.remove("pk-open");
+
+    }
+
+  });
+
+})();
+</script>
 </body>
 
 </html>
