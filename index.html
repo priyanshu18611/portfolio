@@ -13996,6 +13996,690 @@
 
 })();
 </script>
+  <!-- =========================================================
+     PART 14 — CINEMATIC HERO IDENTITY + SOCIAL + CAREERPILOT
+     ========================================================= -->
+
+<style>
+
+  /* =========================================================
+     HERO IDENTITY
+     ========================================================= */
+
+  .pk-hero-identity {
+    position: relative;
+    z-index: 20;
+  }
+
+  .pk-hero-name {
+    position: relative;
+    display: inline-block;
+
+    text-shadow:
+      0 0 30px rgba(255,255,255,.06);
+  }
+
+  .pk-hero-name::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 72px;
+    height: 2px;
+
+    border-radius: 999px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #67e8f9,
+        #818cf8,
+        transparent
+      );
+
+    opacity: .75;
+  }
+
+
+  /* =========================================================
+     HERO STATUS
+     ========================================================= */
+
+  .pk-hero-status {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 18px;
+
+    padding: 7px 11px;
+
+    border-radius: 999px;
+
+    background:
+      rgba(34,211,238,.045);
+
+    border:
+      1px solid rgba(34,211,238,.14);
+
+    font-family: monospace;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: .14em;
+
+    color:
+      rgba(103,232,249,.72);
+  }
+
+  .pk-hero-status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #34d399;
+
+    box-shadow:
+      0 0 8px rgba(52,211,153,.75);
+
+    animation:
+      pkStatusPulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pkStatusPulse {
+
+    0%,100% {
+      opacity: .45;
+      transform: scale(.8);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+  }
+
+
+  /* =========================================================
+     HERO SOCIAL BUTTONS
+     ========================================================= */
+
+  .pk-hero-socials {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 18px;
+  }
+
+  .pk-hero-social {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 40px;
+
+    padding:
+      0 13px;
+
+    border-radius: 13px;
+
+    color:
+      rgba(255,255,255,.68);
+
+    background:
+      rgba(255,255,255,.035);
+
+    border:
+      1px solid rgba(255,255,255,.08);
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+    transition:
+      transform .25s ease,
+      color .25s ease,
+      background .25s ease,
+      border-color .25s ease,
+      box-shadow .25s ease;
+  }
+
+  .pk-hero-social:hover {
+
+    transform:
+      translateY(-3px);
+
+    color: white;
+
+    background:
+      rgba(255,255,255,.075);
+
+    border-color:
+      rgba(255,255,255,.18);
+
+    box-shadow:
+      0 12px 28px rgba(0,0,0,.25);
+  }
+
+  .pk-hero-social svg {
+
+    width: 17px;
+    height: 17px;
+
+    fill: currentColor;
+  }
+
+
+  /* =========================================================
+     CAREERPILOT HERO CTA
+     ========================================================= */
+
+  .pk-career-hero {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 18px;
+
+    padding:
+      11px 15px;
+
+    border-radius: 15px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 850;
+
+    letter-spacing: .02em;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(34,211,238,.11),
+        rgba(129,140,248,.10)
+      );
+
+    border:
+      1px solid rgba(103,232,249,.20);
+
+    box-shadow:
+      0 10px 35px rgba(34,211,238,.06);
+
+    overflow: hidden;
+
+    transition:
+      transform .25s ease,
+      border-color .25s ease,
+      box-shadow .25s ease;
+  }
+
+  .pk-career-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+      linear-gradient(
+        110deg,
+        transparent 20%,
+        rgba(255,255,255,.13),
+        transparent 50%
+      );
+
+    transform:
+      translateX(-120%);
+
+    transition:
+      transform .7s ease;
+  }
+
+  .pk-career-hero:hover {
+
+    transform:
+      translateY(-3px);
+
+    border-color:
+      rgba(103,232,249,.42);
+
+    box-shadow:
+      0 15px 45px rgba(34,211,238,.10);
+  }
+
+  .pk-career-hero:hover::before {
+
+    transform:
+      translateX(120%);
+  }
+
+  .pk-career-icon {
+
+    width: 25px;
+    height: 25px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 8px;
+
+    background:
+      rgba(255,255,255,.07);
+
+    font-size: 13px;
+  }
+
+
+  /* =========================================================
+     CINEMATIC BACKGROUND GRID
+     ========================================================= */
+
+  .pk-cinematic-grid {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    opacity: .13;
+
+    background-image:
+
+      linear-gradient(
+        rgba(120,150,255,.06) 1px,
+        transparent 1px
+      ),
+
+      linear-gradient(
+        90deg,
+        rgba(120,150,255,.06) 1px,
+        transparent 1px
+      );
+
+    background-size:
+      80px 80px;
+
+    mask-image:
+      radial-gradient(
+        ellipse at center,
+        black 0%,
+        transparent 75%
+      );
+
+    animation:
+      pkGridMove 25s linear infinite;
+  }
+
+  @keyframes pkGridMove {
+
+    from {
+      transform:
+        translate3d(0,0,0);
+    }
+
+    to {
+      transform:
+        translate3d(80px,80px,0);
+    }
+
+  }
+
+
+  /* =========================================================
+     TOP AMBIENT LIGHT
+     ========================================================= */
+
+  .pk-top-light {
+
+    position: fixed;
+
+    top: -180px;
+    left: 50%;
+
+    width: 520px;
+    height: 360px;
+
+    transform:
+      translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+      radial-gradient(
+        ellipse,
+        rgba(99,102,241,.12),
+        transparent 68%
+      );
+
+    filter: blur(25px);
+
+    pointer-events: none;
+
+    z-index: -1;
+  }
+
+
+  /* =========================================================
+     MOBILE
+     ========================================================= */
+
+  @media (max-width: 600px) {
+
+    .pk-hero-socials {
+      gap: 7px;
+    }
+
+    .pk-hero-social {
+      min-height: 38px;
+      padding: 0 11px;
+    }
+
+    .pk-career-hero {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .pk-cinematic-grid {
+      background-size: 55px 55px;
+    }
+
+  }
+
+</style>
+
+
+<!-- =========================================================
+     CINEMATIC AMBIENCE
+     ========================================================= -->
+
+<div
+  class="pk-cinematic-grid"
+  aria-hidden="true">
+</div>
+
+<div
+  class="pk-top-light"
+  aria-hidden="true">
+</div>
+
+
+<script>
+(function () {
+
+  /* =========================================================
+     ADD HERO STATUS
+     ========================================================= */
+
+  function addHeroStatus() {
+
+    const hero =
+      document.querySelector(
+        "section:first-of-type"
+      );
+
+    if (!hero) return;
+
+    if (
+      hero.querySelector(
+        ".pk-hero-status"
+      )
+    ) {
+      return;
+    }
+
+    const status =
+      document.createElement("div");
+
+    status.className =
+      "pk-hero-status pk-hero-identity";
+
+    status.innerHTML = `
+      <span class="pk-hero-status-dot"></span>
+      AVAILABLE FOR SOFTWARE & DATA ROLES
+    `;
+
+    hero.prepend(status);
+  }
+
+
+  /* =========================================================
+     CAREERPILOT HERO BUTTON
+     ========================================================= */
+
+  function addCareerPilotHero() {
+
+    const hero =
+      document.querySelector(
+        "section:first-of-type"
+      );
+
+    if (!hero) return;
+
+    if (
+      hero.querySelector(
+        ".pk-career-hero"
+      )
+    ) {
+      return;
+    }
+
+    const button =
+      document.createElement("a");
+
+    button.className =
+      "pk-career-hero pk-hero-identity";
+
+    button.href =
+      "https://priyanshu18611.github.io/careerpilot-ai/";
+
+    button.target =
+      "_blank";
+
+    button.rel =
+      "noopener noreferrer";
+
+    button.innerHTML = `
+      <span class="pk-career-icon">
+        🤖
+      </span>
+
+      <span>
+        Open CareerPilot AI
+      </span>
+
+      <span>
+        ↗
+      </span>
+    `;
+
+    hero.appendChild(button);
+  }
+
+
+  /* =========================================================
+     GITHUB / LINKEDIN HERO LINKS
+     ========================================================= */
+
+  function addHeroSocials() {
+
+    const hero =
+      document.querySelector(
+        "section:first-of-type"
+      );
+
+    if (!hero) return;
+
+    if (
+      hero.querySelector(
+        ".pk-hero-socials"
+      )
+    ) {
+      return;
+    }
+
+    const socials =
+      document.createElement("div");
+
+    socials.className =
+      "pk-hero-socials pk-hero-identity";
+
+
+    socials.innerHTML = `
+
+      <a
+        class="pk-hero-social"
+        href="https://github.com/priyanshu18611"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path d="
+            M12 .5
+            C5.65 .5 .5 5.65 .5 12
+            c0 5.08 3.29 9.39 7.86 10.91
+            .58.11.79-.25.79-.56
+            0-.28-.01-1.02-.02-2
+            -3.2.7-3.88-1.54-3.88-1.54
+            -.53-1.33-1.28-1.68-1.28-1.68
+            -1.04-.71.08-.7.08-.7
+            1.15.08 1.75 1.18 1.75 1.18
+            1.02 1.75 2.68 1.25 3.33.96
+            .1-.74.4-1.25.73-1.54
+            -2.55-.29-5.23-1.28-5.23-5.69
+            0-1.26.45-2.29 1.18-3.1
+            -.12-.29-.51-1.46.11-3.05
+            0 0 .96-.31 3.15 1.18
+            .91-.25 1.88-.38 2.85-.38
+            .97 0 1.94.13 2.85.38
+            2.19-1.49 3.15-1.18 3.15-1.18
+            .62 1.59.23 2.76.11 3.05
+            .73.81 1.18 1.84 1.18 3.1
+            0 4.42-2.69 5.39-5.25 5.67
+            .41.35.78 1.04.78 2.1
+            0 1.52-.01 2.75-.01 3.12
+            0 .31.21.68.8.56
+            A11.52 11.52 0 0 0 23.5 12
+            C23.5 5.65 18.35.5 12 .5Z
+          "/>
+
+        </svg>
+
+        GitHub
+
+      </a>
+
+
+      <a
+        class="pk-hero-social"
+        href="https://www.linkedin.com/in/priyanshuroy18"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path d="
+            M20.45 20.45h-3.56v-5.57
+            c0-1.33-.03-3.04-1.85-3.04
+            -1.85 0-2.14 1.45-2.14 2.94
+            v5.67H9.34V9h3.42v1.56h.05
+            c.48-.9 1.64-1.85 3.37-1.85
+            3.6 0 4.27 2.37 4.27 5.46
+            v6.28ZM5.32 7.43
+            a2.07 2.07 0 1 1 0-4.14
+            2.07 2.07 0 0 1 0 4.14ZM3.54 20.45H7.1V9H3.54v11.45ZM22.22 0H1.77
+            C.79 0 0 .77 0 1.72v20.56
+            C0 23.23.79 24 1.77 24h20.45
+            C23.2 24 24 23.23 24 22.28V1.72
+            C24 .77 23.2 0 22.22 0Z
+          "/>
+
+        </svg>
+
+        LinkedIn
+
+      </a>
+
+    `;
+
+
+    hero.appendChild(socials);
+  }
+
+
+  /* =========================================================
+     INIT
+     ========================================================= */
+
+  function initPart14() {
+
+    addHeroStatus();
+    addHeroSocials();
+    addCareerPilotHero();
+
+  }
+
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      initPart14,
+      { once: true }
+    );
+
+  } else {
+
+    initPart14();
+
+  }
+
+})();
+</script>
 </body>
 
 </html>
