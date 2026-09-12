@@ -4577,3 +4577,2686 @@
     })();
 
   </script>
+  <!-- =========================================================
+     PART 2
+     ABOUT + ADVANCED 3D SKILLS
+     ========================================================= -->
+
+
+<style>
+
+/* =========================================================
+   PART 2 — SECTION FOUNDATION
+   ========================================================= */
+
+.pk-section {
+
+  position: relative;
+
+  width: min(1200px, calc(100% - 40px));
+
+  margin: 0 auto;
+
+  padding: 115px 0;
+
+}
+
+
+.pk-section-head {
+
+  position: relative;
+
+  margin-bottom: 58px;
+
+}
+
+
+.pk-eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: var(--pk-cyan);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: .25em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-eyebrow::before {
+
+  content: "";
+
+  width: 25px;
+
+  height: 1px;
+
+  background: var(--pk-cyan);
+
+  box-shadow: 0 0 12px rgba(85,230,255,.6);
+
+}
+
+
+.pk-section-title {
+
+  margin-top: 15px;
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(38px, 6vw, 70px);
+
+  line-height: .98;
+
+  letter-spacing: -.065em;
+
+  font-weight: 700;
+
+}
+
+
+.pk-section-title span {
+
+  color: var(--pk-muted);
+
+}
+
+
+.pk-section-description {
+
+  max-width: 650px;
+
+  margin-top: 18px;
+
+  color: var(--pk-muted);
+
+  font-size: 14px;
+
+  line-height: 1.75;
+
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+.pk-reveal {
+
+  opacity: 0;
+
+  transform:
+
+    translateY(45px)
+
+    scale(.985);
+
+  transition:
+
+    opacity .9s var(--pk-ease),
+
+    transform .9s var(--pk-ease);
+
+}
+
+
+.pk-reveal.pk-visible {
+
+  opacity: 1;
+
+  transform:
+
+    translateY(0)
+
+    scale(1);
+
+}
+
+
+.pk-reveal-delay-1 {
+
+  transition-delay: .08s;
+
+}
+
+
+.pk-reveal-delay-2 {
+
+  transition-delay: .16s;
+
+}
+
+
+.pk-reveal-delay-3 {
+
+  transition-delay: .24s;
+
+}
+
+
+/* =========================================================
+   ABOUT GRID
+   ========================================================= */
+
+.pk-about-grid {
+
+  display: grid;
+
+  grid-template-columns:
+
+    minmax(0, 1.15fr)
+
+    minmax(330px, .85fr);
+
+  gap: 25px;
+
+  align-items: stretch;
+
+}
+
+
+/* =========================================================
+   GLASS CARD
+   ========================================================= */
+
+.pk-glass {
+
+  position: relative;
+
+  overflow: hidden;
+
+  border:
+
+    1px solid
+
+    var(--pk-border);
+
+  border-radius:
+
+    var(--pk-radius);
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      rgba(255,255,255,.055),
+
+      rgba(255,255,255,.018)
+
+    );
+
+  backdrop-filter:
+
+    blur(22px)
+
+    saturate(135%);
+
+  box-shadow:
+
+    0 30px 90px
+
+    rgba(0,0,0,.22);
+
+}
+
+
+.pk-glass::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+
+      115deg,
+
+      transparent 15%,
+
+      rgba(255,255,255,.045) 50%,
+
+      transparent 85%
+
+    );
+
+  transform:
+
+    translateX(-120%);
+
+  transition:
+
+    transform 1s var(--pk-ease);
+
+}
+
+
+.pk-glass:hover::before {
+
+  transform:
+
+    translateX(120%);
+
+}
+
+
+/* =========================================================
+   ABOUT MAIN CARD
+   ========================================================= */
+
+.pk-about-card {
+
+  min-height: 475px;
+
+  padding: 34px;
+
+}
+
+
+.pk-about-top {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 17px;
+
+}
+
+
+.pk-about-avatar {
+
+  position: relative;
+
+  width: 74px;
+
+  height: 74px;
+
+  flex: 0 0 74px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 22px;
+
+  border:
+
+    1px solid
+
+    rgba(85,230,255,.2);
+
+  background:
+
+    radial-gradient(
+
+      circle at 35% 25%,
+
+      rgba(255,255,255,.18),
+
+      rgba(85,230,255,.08) 35%,
+
+      rgba(165,108,255,.08) 70%,
+
+      rgba(0,0,0,.3)
+
+    );
+
+  box-shadow:
+
+    0 15px 45px rgba(0,0,0,.3),
+
+    0 0 35px rgba(85,230,255,.06);
+
+}
+
+
+.pk-about-avatar::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border-radius: inherit;
+
+  border:
+
+    1px solid
+
+    rgba(85,230,255,.12);
+
+  animation:
+
+    pk-avatar-pulse
+
+    3s
+
+    ease-in-out
+
+    infinite;
+
+}
+
+
+@keyframes pk-avatar-pulse {
+
+  0%,100% {
+
+    transform: scale(1);
+
+    opacity: .5;
+
+  }
+
+  50% {
+
+    transform: scale(1.08);
+
+    opacity: .15;
+
+  }
+
+}
+
+
+.pk-about-avatar span {
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 23px;
+
+  font-weight: 800;
+
+  letter-spacing: -.08em;
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      #fff,
+
+      var(--pk-cyan),
+
+      var(--pk-violet)
+
+    );
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+
+}
+
+
+.pk-about-name {
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 21px;
+
+  font-weight: 700;
+
+  letter-spacing: -.04em;
+
+}
+
+
+.pk-about-role {
+
+  margin-top: 5px;
+
+  color: var(--pk-cyan);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: .15em;
+
+  text-transform: uppercase;
+
+}
+
+
+.pk-about-text {
+
+  margin-top: 35px;
+
+  color: var(--pk-muted);
+
+  font-size: 14px;
+
+  line-height: 1.85;
+
+}
+
+
+.pk-about-text + .pk-about-text {
+
+  margin-top: 15px;
+
+}
+
+
+.pk-about-text strong {
+
+  color: #fff;
+
+  font-weight: 600;
+
+}
+
+
+/* =========================================================
+   FOCUS TAGS
+   ========================================================= */
+
+.pk-focus-list {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 28px;
+
+}
+
+
+.pk-focus-tag {
+
+  padding: 8px 11px;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.08);
+
+  border-radius: 999px;
+
+  color: var(--pk-muted);
+
+  background:
+
+    rgba(255,255,255,.025);
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: .04em;
+
+  transition:
+
+    transform .3s var(--pk-ease),
+
+    border-color .3s ease,
+
+    color .3s ease,
+
+    background .3s ease;
+
+}
+
+
+.pk-focus-tag:hover {
+
+  transform: translateY(-3px);
+
+  color: #fff;
+
+  border-color:
+
+    rgba(85,230,255,.22);
+
+  background:
+
+    rgba(85,230,255,.045);
+
+}
+
+
+/* =========================================================
+   ABOUT STATS
+   ========================================================= */
+
+.pk-stats-card {
+
+  padding: 25px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+}
+
+
+.pk-stat {
+
+  position: relative;
+
+  min-height: 145px;
+
+  padding: 21px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.07);
+
+  border-radius: 18px;
+
+  background:
+
+    rgba(255,255,255,.025);
+
+  transition:
+
+    transform .4s var(--pk-ease),
+
+    border-color .35s ease,
+
+    background .35s ease;
+
+}
+
+
+.pk-stat:hover {
+
+  transform:
+
+    translateY(-6px)
+
+    rotateX(2deg);
+
+  border-color:
+
+    rgba(85,230,255,.18);
+
+  background:
+
+    rgba(85,230,255,.035);
+
+}
+
+
+.pk-stat-icon {
+
+  width: 32px;
+
+  height: 32px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 10px;
+
+  color: var(--pk-cyan);
+
+  background:
+
+    rgba(85,230,255,.06);
+
+}
+
+
+.pk-stat-icon svg {
+
+  width: 15px;
+
+  height: 15px;
+
+}
+
+
+.pk-stat-number {
+
+  margin-top: 13px;
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 30px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -.055em;
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      #fff,
+
+      var(--pk-cyan)
+
+    );
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+
+}
+
+
+.pk-stat-label {
+
+  color: var(--pk-dim);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: .11em;
+
+  text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   SKILLS SECTION
+   ========================================================= */
+
+.pk-skills-layout {
+
+  display: grid;
+
+  grid-template-columns:
+
+    minmax(0,.8fr)
+
+    minmax(0,1.2fr);
+
+  gap: 25px;
+
+}
+
+
+/* =========================================================
+   3D SKILL ORBIT
+   ========================================================= */
+
+.pk-skill-orbit-card {
+
+  position: relative;
+
+  min-height: 540px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+}
+
+
+.pk-skill-orbit {
+
+  position: relative;
+
+  width: min(390px, 85vw);
+
+  aspect-ratio: 1;
+
+  transform-style:
+
+    preserve-3d;
+
+  animation:
+
+    pk-orbit-float
+
+    6s
+
+    ease-in-out
+
+    infinite;
+
+}
+
+
+@keyframes pk-orbit-float {
+
+  0%,100% {
+
+    transform:
+
+      translateY(0)
+
+      rotateX(0deg);
+
+  }
+
+  50% {
+
+    transform:
+
+      translateY(-9px)
+
+      rotateX(2deg);
+
+  }
+
+}
+
+
+.pk-orbit-glow {
+
+  position: absolute;
+
+  inset: 17%;
+
+  border-radius: 50%;
+
+  background:
+
+    radial-gradient(
+
+      circle,
+
+      rgba(85,230,255,.13),
+
+      rgba(165,108,255,.055) 42%,
+
+      transparent 72%
+
+    );
+
+  filter: blur(20px);
+
+}
+
+
+.pk-orbit-ring {
+
+  position: absolute;
+
+  inset: 7%;
+
+  border-radius: 50%;
+
+  border:
+
+    1px solid
+
+    rgba(85,230,255,.13);
+
+  transform:
+
+    rotateX(68deg);
+
+  animation:
+
+    pk-skill-ring
+
+    13s
+
+    linear
+
+    infinite;
+
+}
+
+
+.pk-orbit-ring:nth-of-type(2) {
+
+  inset: 18%;
+
+  border-color:
+
+    rgba(165,108,255,.15);
+
+  transform:
+
+    rotateX(68deg)
+
+    rotateZ(45deg);
+
+  animation-duration:
+
+    9s;
+
+  animation-direction:
+
+    reverse;
+
+}
+
+
+.pk-orbit-ring:nth-of-type(3) {
+
+  inset: 29%;
+
+  border-style:
+
+    dashed;
+
+  border-color:
+
+    rgba(255,99,199,.12);
+
+  transform:
+
+    rotateX(68deg)
+
+    rotateZ(-25deg);
+
+  animation-duration:
+
+    7s;
+
+}
+
+
+@keyframes pk-skill-ring {
+
+  to {
+
+    transform:
+
+      rotateX(68deg)
+
+      rotateZ(360deg);
+
+  }
+
+}
+
+
+/* =========================================================
+   SKILL CORE
+   ========================================================= */
+
+.pk-skill-core {
+
+  position: absolute;
+
+  inset: 31%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.14);
+
+  background:
+
+    radial-gradient(
+
+      circle at 30% 22%,
+
+      rgba(255,255,255,.15),
+
+      rgba(85,230,255,.07) 28%,
+
+      rgba(8,12,28,.94) 72%
+
+    );
+
+  box-shadow:
+
+    0 35px 90px rgba(0,0,0,.45),
+
+    0 0 70px rgba(85,230,255,.07),
+
+    inset 0 0 45px rgba(255,255,255,.035);
+
+  transform:
+
+    translateZ(80px);
+
+}
+
+
+.pk-skill-core-content {
+
+  text-align: center;
+
+}
+
+
+.pk-skill-core-number {
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 42px;
+
+  font-weight: 800;
+
+  letter-spacing: -.08em;
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      #fff,
+
+      var(--pk-cyan),
+
+      var(--pk-violet)
+
+    );
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+
+}
+
+
+.pk-skill-core-label {
+
+  margin-top: 7px;
+
+  color: var(--pk-muted);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: .22em;
+
+  text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   ORBITING SKILL PILLS
+   ========================================================= */
+
+.pk-orbit-skill {
+
+  position: absolute;
+
+  z-index: 10;
+
+  min-width: 82px;
+
+  padding: 9px 11px;
+
+  text-align: center;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.1);
+
+  border-radius: 12px;
+
+  background:
+
+    rgba(5,9,23,.75);
+
+  backdrop-filter:
+
+    blur(15px);
+
+  box-shadow:
+
+    0 15px 45px rgba(0,0,0,.3);
+
+  color: #fff;
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  transform:
+
+    translateZ(120px);
+
+  animation:
+
+    pk-orbit-skill-float
+
+    4.2s
+
+    ease-in-out
+
+    infinite;
+
+}
+
+
+.pk-orbit-skill small {
+
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--pk-dim);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 6px;
+
+  font-weight: 600;
+
+}
+
+
+.pk-orbit-skill-1 {
+
+  top: 8%;
+
+  left: 34%;
+
+}
+
+
+.pk-orbit-skill-2 {
+
+  top: 35%;
+
+  right: 1%;
+
+  animation-delay: -.7s;
+
+}
+
+
+.pk-orbit-skill-3 {
+
+  bottom: 9%;
+
+  right: 19%;
+
+  animation-delay: -1.4s;
+
+}
+
+
+.pk-orbit-skill-4 {
+
+  bottom: 8%;
+
+  left: 17%;
+
+  animation-delay: -2.1s;
+
+}
+
+
+.pk-orbit-skill-5 {
+
+  top: 37%;
+
+  left: 0;
+
+  animation-delay: -2.8s;
+
+}
+
+
+@keyframes pk-orbit-skill-float {
+
+  0%,100% {
+
+    transform:
+
+      translateZ(120px)
+
+      translateY(0);
+
+  }
+
+  50% {
+
+    transform:
+
+      translateZ(145px)
+
+      translateY(-8px);
+
+  }
+
+}
+
+
+/* =========================================================
+   SKILL MATRIX
+   ========================================================= */
+
+.pk-skill-matrix {
+
+  display: grid;
+
+  grid-template-columns:
+
+    repeat(2, minmax(0,1fr));
+
+  gap: 10px;
+
+}
+
+
+.pk-skill-card {
+
+  position: relative;
+
+  min-height: 158px;
+
+  padding: 20px;
+
+  overflow: hidden;
+
+  border:
+
+    1px solid
+
+    rgba(255,255,255,.075);
+
+  border-radius: 18px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      rgba(255,255,255,.045),
+
+      rgba(255,255,255,.015)
+
+    );
+
+  transition:
+
+    transform .4s var(--pk-ease),
+
+    border-color .35s ease,
+
+    box-shadow .35s ease,
+
+    background .35s ease;
+
+  transform-style:
+
+    preserve-3d;
+
+}
+
+
+.pk-skill-card:hover {
+
+  transform:
+
+    perspective(800px)
+
+    rotateX(4deg)
+
+    rotateY(-4deg)
+
+    translateY(-5px);
+
+  border-color:
+
+    rgba(85,230,255,.2);
+
+  box-shadow:
+
+    0 25px 60px rgba(0,0,0,.24),
+
+    0 0 35px rgba(85,230,255,.035);
+
+  background:
+
+    rgba(85,230,255,.035);
+
+}
+
+
+.pk-skill-card-icon {
+
+  width: 35px;
+
+  height: 35px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 11px;
+
+  color: var(--pk-cyan);
+
+  background:
+
+    rgba(85,230,255,.055);
+
+  transform:
+
+    translateZ(30px);
+
+}
+
+
+.pk-skill-card-icon svg {
+
+  width: 16px;
+
+  height: 16px;
+
+}
+
+
+.pk-skill-card-title {
+
+  margin-top: 18px;
+
+  font-family:
+
+    "Space Grotesk",
+
+    sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  transform:
+
+    translateZ(25px);
+
+}
+
+
+.pk-skill-card-list {
+
+  margin-top: 8px;
+
+  color: var(--pk-dim);
+
+  font-size: 8px;
+
+  line-height: 1.7;
+
+}
+
+
+.pk-skill-card-line {
+
+  display: block;
+
+}
+
+
+/* =========================================================
+   SKILL PROGRESS LINE
+   ========================================================= */
+
+.pk-skill-progress {
+
+  position: absolute;
+
+  left: 20px;
+
+  right: 20px;
+
+  bottom: 18px;
+
+  height: 2px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+
+    rgba(255,255,255,.055);
+
+}
+
+
+.pk-skill-progress span {
+
+  display: block;
+
+  height: 100%;
+
+  width: 0;
+
+  border-radius: inherit;
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      var(--pk-blue),
+
+      var(--pk-cyan),
+
+      var(--pk-violet)
+
+    );
+
+  box-shadow:
+
+    0 0 12px
+
+    rgba(85,230,255,.4);
+
+  transition:
+
+    width 1.4s
+
+    var(--pk-ease);
+
+}
+
+
+.pk-visible .pk-skill-progress span {
+
+  width: var(--skill-width);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 960px) {
+
+  .pk-section {
+
+    width:
+
+      min(100% - 32px, 720px);
+
+    padding:
+      90px 0;
+
+  }
+
+
+  .pk-about-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .pk-skills-layout {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .pk-skill-orbit-card {
+
+    min-height:
+      470px;
+
+  }
+
+}
+
+
+@media (max-width: 560px) {
+
+  .pk-section {
+
+    width:
+      calc(100% - 28px);
+
+    padding:
+      72px 0;
+
+  }
+
+
+  .pk-section-title {
+
+    font-size:
+      clamp(36px,11vw,52px);
+
+  }
+
+
+  .pk-section-description {
+
+    font-size:
+      13px;
+
+  }
+
+
+  .pk-about-card {
+
+    min-height:
+      auto;
+
+    padding:
+      23px;
+
+  }
+
+
+  .pk-about-text {
+
+    font-size:
+      13px;
+
+  }
+
+
+  .pk-stats-card {
+
+    padding:
+      14px;
+
+  }
+
+
+  .pk-stat {
+
+    min-height:
+      125px;
+
+    padding:
+      16px;
+
+  }
+
+
+  .pk-stat-number {
+
+    font-size:
+      25px;
+
+  }
+
+
+  .pk-skill-orbit-card {
+
+    min-height:
+      390px;
+
+  }
+
+
+  .pk-skill-orbit {
+
+    width:
+      min(310px,90vw);
+
+  }
+
+
+  .pk-skill-matrix {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .pk-skill-card {
+
+    min-height:
+      145px;
+
+  }
+
+
+  .pk-orbit-skill {
+
+    min-width:
+      70px;
+
+    padding:
+      7px 8px;
+
+    font-size:
+      7px;
+
+  }
+
+
+  .pk-orbit-skill small {
+
+    font-size:
+      5px;
+
+  }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     ABOUT SECTION
+     ========================================================= -->
+
+<section
+  id="about"
+  class="pk-section"
+>
+
+
+  <div
+    class="pk-section-head pk-reveal"
+  >
+
+    <div class="pk-eyebrow">
+      ABOUT / ENGINEERING PROFILE
+    </div>
+
+    <h2 class="pk-section-title">
+
+      Building with
+      <span>
+        purpose.
+      </span>
+
+    </h2>
+
+    <p class="pk-section-description">
+
+      A software-focused profile combining
+      full-stack development, backend engineering,
+      data analytics and practical problem solving.
+
+    </p>
+
+  </div>
+
+
+  <div class="pk-about-grid">
+
+
+    <!-- ===================================================
+         ABOUT CARD
+         =================================================== -->
+
+    <article
+      class="pk-glass pk-about-card pk-reveal pk-reveal-delay-1"
+    >
+
+
+      <div class="pk-about-top">
+
+
+        <div class="pk-about-avatar">
+
+          <span>
+            PK
+          </span>
+
+        </div>
+
+
+        <div>
+
+          <div class="pk-about-name">
+            Priyanshu Kumar
+          </div>
+
+          <div class="pk-about-role">
+            Software Engineer
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <p class="pk-about-text">
+
+        I am a Computer Science and Engineering
+        graduate focused on building
+        <strong>
+          reliable software, full-stack applications
+        </strong>
+        and practical data-driven solutions.
+
+      </p>
+
+
+      <p class="pk-about-text">
+
+        My development approach combines
+        clean architecture, APIs, databases,
+        modern frontend experiences and
+        analytical thinking to turn ideas into
+        useful products.
+
+      </p>
+
+
+      <p class="pk-about-text">
+
+        I enjoy working across the stack —
+        from interface and backend logic to
+        databases, analytics and deployment-ready
+        engineering workflows.
+
+      </p>
+
+
+      <div class="pk-focus-list">
+
+
+        <span class="pk-focus-tag">
+          Software Engineering
+        </span>
+
+        <span class="pk-focus-tag">
+          Full Stack Development
+        </span>
+
+        <span class="pk-focus-tag">
+          Data Analytics
+        </span>
+
+        <span class="pk-focus-tag">
+          Backend APIs
+        </span>
+
+        <span class="pk-focus-tag">
+          Python
+        </span>
+
+        <span class="pk-focus-tag">
+          Java
+        </span>
+
+        <span class="pk-focus-tag">
+          SQL
+        </span>
+
+        <span class="pk-focus-tag">
+          Cloud
+        </span>
+
+
+      </div>
+
+
+    </article>
+
+
+    <!-- ===================================================
+         STATS
+         =================================================== -->
+
+    <div
+      class="pk-glass pk-stats-card pk-reveal pk-reveal-delay-2"
+    >
+
+
+      <div class="pk-stat">
+
+
+        <div class="pk-stat-icon">
+
+          <i data-lucide="code-2"></i>
+
+        </div>
+
+
+        <div
+          class="pk-stat-number pk-counter"
+          data-target="5"
+        >
+          0+
+        </div>
+
+
+        <div class="pk-stat-label">
+          Core Development Areas
+        </div>
+
+
+      </div>
+
+
+      <div class="pk-stat">
+
+
+        <div class="pk-stat-icon">
+
+          <i data-lucide="layers-3"></i>
+
+        </div>
+
+
+        <div
+          class="pk-stat-number pk-counter"
+          data-target="6"
+        >
+          0+
+        </div>
+
+
+        <div class="pk-stat-label">
+          Engineering Domains
+        </div>
+
+
+      </div>
+
+
+      <div class="pk-stat">
+
+
+        <div class="pk-stat-icon">
+
+          <i data-lucide="briefcase-business"></i>
+
+        </div>
+
+
+        <div
+          class="pk-stat-number pk-counter"
+          data-target="3"
+        >
+          0
+        </div>
+
+
+        <div class="pk-stat-label">
+          Internship Experiences
+        </div>
+
+
+      </div>
+
+
+      <div class="pk-stat">
+
+
+        <div class="pk-stat-icon">
+
+          <i data-lucide="award"></i>
+
+        </div>
+
+
+        <div
+          class="pk-stat-number pk-counter"
+          data-target="15"
+        >
+          0+
+        </div>
+
+
+        <div class="pk-stat-label">
+          Learning &amp; Certifications
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SKILLS SECTION
+     ========================================================= -->
+
+<section
+  id="skills"
+  class="pk-section"
+>
+
+
+  <div
+    class="pk-section-head pk-reveal"
+  >
+
+    <div class="pk-eyebrow">
+      TECHNICAL STACK / CAPABILITIES
+    </div>
+
+    <h2 class="pk-section-title">
+
+      Engineering
+      <span>
+        toolkit.
+      </span>
+
+    </h2>
+
+    <p class="pk-section-description">
+
+      A practical technology stack spanning
+      software development, full-stack systems,
+      databases and data analytics.
+
+    </p>
+
+  </div>
+
+
+  <div class="pk-skills-layout">
+
+
+    <!-- ===================================================
+         3D SKILL CONSTELLATION
+         =================================================== -->
+
+    <div
+      class="pk-glass pk-skill-orbit-card pk-reveal pk-reveal-delay-1"
+    >
+
+
+      <div class="pk-skill-orbit">
+
+
+        <div class="pk-orbit-glow"></div>
+
+
+        <div
+          class="pk-orbit-ring"
+        ></div>
+
+
+        <div
+          class="pk-orbit-ring"
+        ></div>
+
+
+        <div
+          class="pk-orbit-ring"
+        ></div>
+
+
+        <div class="pk-skill-core">
+
+          <div class="pk-skill-core-content">
+
+            <div class="pk-skill-core-number">
+              CSE
+            </div>
+
+            <div class="pk-skill-core-label">
+              Engineering
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="pk-orbit-skill pk-orbit-skill-1"
+        >
+
+          Python
+
+          <small>
+            Backend / Data
+          </small>
+
+        </div>
+
+
+        <div
+          class="pk-orbit-skill pk-orbit-skill-2"
+        >
+
+          React
+
+          <small>
+            Frontend
+          </small>
+
+        </div>
+
+
+        <div
+          class="pk-orbit-skill pk-orbit-skill-3"
+        >
+
+          Node.js
+
+          <small>
+            Backend
+          </small>
+
+        </div>
+
+
+        <div
+          class="pk-orbit-skill pk-orbit-skill-4"
+        >
+
+          SQL
+
+          <small>
+            Database
+          </small>
+
+        </div>
+
+
+        <div
+          class="pk-orbit-skill pk-orbit-skill-5"
+        >
+
+          Analytics
+
+          <small>
+            Data
+          </small>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         SKILL MATRIX
+         =================================================== -->
+
+    <div
+      class="pk-skill-matrix"
+    >
+
+
+      <article
+        class="pk-skill-card pk-reveal pk-reveal-delay-1"
+        style="--skill-width:88%"
+      >
+
+        <div class="pk-skill-card-icon">
+
+          <i data-lucide="code-2"></i>
+
+        </div>
+
+        <h3 class="pk-skill-card-title">
+          Programming
+        </h3>
+
+        <div class="pk-skill-card-list">
+
+          <span class="pk-skill-card-line">
+            C • C++ • Java
+          </span>
+
+          <span class="pk-skill-card-line">
+            Python • JavaScript
+          </span>
+
+        </div>
+
+        <div class="pk-skill-progress">
+          <span></span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="pk-skill-card pk-reveal pk-reveal-delay-2"
+        style="--skill-width:91%"
+      >
+
+        <div class="pk-skill-card-icon">
+
+          <i data-lucide="globe-2"></i>
+
+        </div>
+
+        <h3 class="pk-skill-card-title">
+          Full Stack
+        </h3>
+
+        <div class="pk-skill-card-list">
+
+          <span class="pk-skill-card-line">
+            HTML • CSS • JavaScript
+          </span>
+
+          <span class="pk-skill-card-line">
+            React • Node.js • Express
+          </span>
+
+        </div>
+
+        <div class="pk-skill-progress">
+          <span></span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="pk-skill-card pk-reveal pk-reveal-delay-2"
+        style="--skill-width:86%"
+      >
+
+        <div class="pk-skill-card-icon">
+
+          <i data-lucide="database"></i>
+
+        </div>
+
+        <h3 class="pk-skill-card-title">
+          Data &amp; Databases
+        </h3>
+
+        <div class="pk-skill-card-list">
+
+          <span class="pk-skill-card-line">
+            SQL • MongoDB • JDBC
+          </span>
+
+          <span class="pk-skill-card-line">
+            Pandas • NumPy
+          </span>
+
+        </div>
+
+        <div class="pk-skill-progress">
+          <span></span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="pk-skill-card pk-reveal pk-reveal-delay-3"
+        style="--skill-width:84%"
+      >
+
+        <div class="pk-skill-card-icon">
+
+          <i data-lucide="bar-chart-3"></i>
+
+        </div>
+
+        <h3 class="pk-skill-card-title">
+          Data Analytics
+        </h3>
+
+        <div class="pk-skill-card-list">
+
+          <span class="pk-skill-card-line">
+            Power BI • Tableau • Excel
+          </span>
+
+          <span class="pk-skill-card-line">
+            Matplotlib • Seaborn • DAX
+          </span>
+
+        </div>
+
+        <div class="pk-skill-progress">
+          <span></span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="pk-skill-card pk-reveal pk-reveal-delay-3"
+        style="--skill-width:80%"
+      >
+
+        <div class="pk-skill-card-icon">
+
+          <i data-lucide="brain-circuit"></i>
+
+        </div>
+
+        <h3 class="pk-skill-card-title">
+          ML &amp; Computer Vision
+        </h3>
+
+        <div class="pk-skill-card-list">
+
+          <span class="pk-skill-card-line">
+            TensorFlow • Keras • CNN
+          </span>
+
+          <span class="pk-skill-card-line">
+            OpenCV • Scikit-learn
+          </span>
+
+        </div>
+
+        <div class="pk-skill-progress">
+          <span></span>
+        </div>
+
+      </article>
+
+
+      <article
+        class="pk-skill-card pk-reveal pk-reveal-delay-3"
+        style="--skill-width:83%"
+      >
+
+        <div class="pk-skill-card-icon">
+
+          <i data-lucide="git-branch"></i>
+
+        </div>
+
+        <h3 class="pk-skill-card-title">
+          Developer Tools
+        </h3>
+
+        <div class="pk-skill-card-list">
+
+          <span class="pk-skill-card-line">
+            Git • GitHub • VS Code
+          </span>
+
+          <span class="pk-skill-card-line">
+            Jupyter • Colab • IntelliJ
+          </span>
+
+        </div>
+
+        <div class="pk-skill-progress">
+          <span></span>
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PART 2 JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+(() => {
+
+  "use strict";
+
+
+  /* =======================================================
+     LUCIDE REFRESH
+     ======================================================= */
+
+  if (window.lucide) {
+
+    lucide.createIcons();
+
+  }
+
+
+  /* =======================================================
+     INTERSECTION REVEAL
+     ======================================================= */
+
+  const revealElements =
+    document.querySelectorAll(
+      ".pk-reveal"
+    );
+
+
+  const revealObserver =
+    new IntersectionObserver(
+
+      entries => {
+
+        entries.forEach(
+          entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target.classList.add(
+                "pk-visible"
+              );
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          }
+        );
+
+      },
+
+      {
+        threshold:
+          .12,
+
+        rootMargin:
+          "0px 0px -50px 0px"
+
+      }
+
+    );
+
+
+  revealElements.forEach(
+    element => {
+
+      revealObserver.observe(
+        element
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     COUNTERS
+     ======================================================= */
+
+  const counters =
+    document.querySelectorAll(
+      ".pk-counter"
+    );
+
+
+  const counterObserver =
+    new IntersectionObserver(
+
+      entries => {
+
+        entries.forEach(
+          entry => {
+
+            if (
+              !entry.isIntersecting
+            ) {
+
+              return;
+
+            }
+
+
+            const element =
+              entry.target;
+
+
+            const target =
+              Number(
+                element.dataset.target
+              );
+
+
+            let current =
+              0;
+
+
+            const duration =
+              1050;
+
+
+            const start =
+              performance.now();
+
+
+            const update =
+              now => {
+
+                const elapsed =
+                  now - start;
+
+
+                const progress =
+                  Math.min(
+                    elapsed /
+                    duration,
+                    1
+                  );
+
+
+                const eased =
+                  1 -
+                  Math.pow(
+                    1 - progress,
+                    3
+                  );
+
+
+                current =
+                  Math.round(
+                    target *
+                    eased
+                  );
+
+
+                const suffix =
+                  target === 3
+                    ? ""
+                    : "+";
+
+
+                element.textContent =
+                  current +
+                  suffix;
+
+
+                if (
+                  progress < 1
+                ) {
+
+                  requestAnimationFrame(
+                    update
+                  );
+
+                }
+
+              };
+
+
+            requestAnimationFrame(
+              update
+            );
+
+
+            counterObserver.unobserve(
+              element
+            );
+
+          }
+        );
+
+      },
+
+      {
+        threshold:
+          .7
+
+      }
+
+    );
+
+
+  counters.forEach(
+    counter => {
+
+      counterObserver.observe(
+        counter
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     SKILL CARD 3D TILT
+     ======================================================= */
+
+  const finePointer =
+    window.matchMedia(
+      "(pointer:fine)"
+    ).matches;
+
+
+  if (finePointer) {
+
+    document
+      .querySelectorAll(
+        ".pk-skill-card"
+      )
+      .forEach(
+        card => {
+
+
+          card.addEventListener(
+            "pointermove",
+            event => {
+
+              const rect =
+                card.getBoundingClientRect();
+
+
+              const x =
+                (
+                  event.clientX -
+                  rect.left
+                ) /
+                rect.width;
+
+
+              const y =
+                (
+                  event.clientY -
+                  rect.top
+                ) /
+                rect.height;
+
+
+              const rotateY =
+                (
+                  x -
+                  .5
+                ) * 7;
+
+
+              const rotateX =
+                (
+                  .5 -
+                  y
+                ) * 7;
+
+
+              card.style.transform =
+                `
+                  perspective(800px)
+                  rotateX(${rotateX}deg)
+                  rotateY(${rotateY}deg)
+                  translateY(-5px)
+                `;
+
+            },
+
+            {
+              passive:
+                true
+            }
+
+          );
+
+
+          card.addEventListener(
+            "pointerleave",
+            () => {
+
+              card.style.transform =
+                "";
+
+            }
+          );
+
+        }
+      );
+
+  }
+
+
+  /* =======================================================
+     ORBIT MOUSE PARALLAX
+     ======================================================= */
+
+  const orbit =
+    document.querySelector(
+      ".pk-skill-orbit"
+    );
+
+
+  if (
+    orbit &&
+    finePointer
+  ) {
+
+    const orbitParent =
+      orbit.closest(
+        ".pk-skill-orbit-card"
+      );
+
+
+    orbitParent.addEventListener(
+      "pointermove",
+      event => {
+
+        const rect =
+          orbitParent.getBoundingClientRect();
+
+
+        const x =
+          (
+            event.clientX -
+            rect.left
+          ) /
+          rect.width -
+          .5;
+
+
+        const y =
+          (
+            event.clientY -
+            rect.top
+          ) /
+          rect.height -
+          .5;
+
+
+        orbit.style.transform =
+          `
+            translateY(-4px)
+            rotateX(${y * -7}deg)
+            rotateY(${x * 9}deg)
+          `;
+
+      },
+
+      {
+        passive:
+          true
+      }
+
+    );
+
+
+    orbitParent.addEventListener(
+      "pointerleave",
+      () => {
+
+        orbit.style.transform =
+          "";
+
+      }
+    );
+
+  }
+
+
+})();
+
+</script>
